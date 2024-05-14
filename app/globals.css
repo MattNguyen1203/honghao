@@ -19,7 +19,7 @@
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 210 36% 79%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 96.1%;
@@ -51,7 +51,7 @@
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 210 36% 79%;
     --muted-foreground: 215 20.2% 65.1%;
 
     --accent: 217.2 32.6% 17.5%;
@@ -66,14 +66,60 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .container {
+    @apply w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
-  body {
-    @apply bg-background text-foreground;
+  .subContainer {
+    @apply w-[90rem] mx-auto xmd:w-full;
+  }
+  h1 {
+    @apply text-[6rem] leading-[1];
+  }
+  h2 {
+    @apply text-[3.5rem] font-black leading-[1] font-londrina;
+  }
+  .text-75 {
+    @apply text-[7.5rem] leading-[1];
+  }
+  .text-35 {
+    @apply text-[3.5rem] leading-[1];
+  }
+  .text-3 {
+    @apply text-[3rem] leading-[1.2];
+  }
+  .text-275 {
+    @apply text-[2.75rem] leading-[1.2];
+  }
+  .text-25 {
+    @apply text-[2.5rem] leading-[1];
+  }
+  .text-2 {
+    @apply text-[2rem] leading-[1];
+  }
+  .text-175 {
+    @apply text-[1.75rem] leading-[1.2];
+  }
+  .text-15 {
+    @apply text-[1.5rem] leading-[1.2];
+  }
+  .text-125 {
+    @apply text-[1.25rem] leading-[1.2];
+  }
+  .text-1125 {
+    @apply text-[1.125rem] leading-[1];
+  }
+  .text-1 {
+    @apply text-[1rem] leading-normal;
+  }
+  .text-0875 {
+    @apply text-[0.875rem] leading-[1.2];
+  }
+  .text-075 {
+    @apply text-[0.75rem] leading-[1.2];
   }
 }
+
 *,
 *:before,
 *:after {
@@ -108,7 +154,68 @@ html {
   font-size: 1vw;
   scroll-behavior: smooth;
 }
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 16px;
+  }
+}
+
 body {
   background: white;
   color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  --radix-navigation-menu-viewport-width: 100%;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 4.267vw;
+  }
+  body {
+    overflow-x: hidden !important;
+    --removed-body-scroll-bar-size: 0px !important;
+  }
+  html body {
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hidden-scrollbar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    display: none;
+  }
+
+  .hidden-scrollbar::-webkit-scrollbar-thumb {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
+
+.input-hidden {
+  border: none !important;
+  outline: none !important;
+}
+
+.input-hidden:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.input-hidden::-webkit-outer-spin-button,
+.input-hidden::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.HoverCardContent[data-side='left'] {
+  transform: translateX(25%);
+}
+
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+  display: none;
 }
