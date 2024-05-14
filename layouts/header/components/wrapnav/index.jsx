@@ -4,6 +4,8 @@ import React, {useEffect} from 'react'
 
 const WrapNav = () => {
   const setIsMobile = useStore((state) => state.setIsMobile)
+  const isMobile = useStore((state) => state.isMobile)
+
   useEffect(() => {
     const userAgent =
       typeof navigator === 'undefined' ? '' : navigator.userAgent
