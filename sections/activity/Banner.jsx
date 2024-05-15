@@ -26,7 +26,7 @@ const Banner = () => {
   ]
   const src = "https://images.unsplash.com/photo-1566204773863-cf63e6d4ab88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1345&q=100"
   return (
-    <section className='bd relative xl:h-[100rem]' >
+    <section className='relative xl:h-[100rem]' >
       <Image priority alt="ảnh" src={'/activity/nature.png'} width={1600} height={1935} className="object-cover xmd:hidden absolute h-full w-full" />
       <Image priority alt="ảnh" src={'/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
 
@@ -46,10 +46,10 @@ const Banner = () => {
           </div>
         </div>
         <Image priority alt="map" src={'/activity/map.png'} width={9950} height={9950} className="w-[57rem] left-[35%] xmd:hidden h-[82rem] absolute bottom-0" />
-        <Image priority alt="map mobi" src={'/activity/map-mobi.png'} width={9950} height={9950} className="object-cover w-[23.4375rem] md:hidden" />
+        <Image priority alt="map mobi" src={'/activity/map-mobi.png'} width={9950} height={9950} className="object-cover mx-auto mt-[3.25rem] w-[21.0375rem] md:hidden" />
 
         {/* motobike */}
-        <div className="absolute w-[4.75rem] h-[6.25rem] xl:right-[32.8rem]  right-[38.7rem] top-[43.5rem]">
+        {/* <div className="absolute w-[4.75rem] h-[6.25rem] xl:right-[32.8rem]  right-[38.7rem] top-[43.5rem]">
           <div className='relative'>
             <div className="inline-flex relative flex-col items-center mt-[0.8rem]">
               <Sheet>
@@ -138,9 +138,9 @@ const Banner = () => {
 
 
           </div>
-        </div>
+        </div> */}
         {/* hiking */}
-        <div className="absolute w-[4.75rem] h-[6.25rem] xl:left-[-3.3rem] left-[-0.2rem] top-[63.5rem]">
+        {/* <div className="absolute w-[4.75rem] h-[6.25rem] xl:left-[-3.3rem] left-[-0.2rem] top-[63.5rem]">
           <div className=' relative '>
             <div className=" absolute left-[31rem] top-[7rem] inline-flex flex-col items-center w-[8.75013rem]">
               <Sheet>
@@ -233,7 +233,7 @@ const Banner = () => {
         </div>
         <div className="absolute xl:right-[3rem] right-[10rem] bottom-[10.5rem] w-[38.0625rem] text-white text-right text-base not-italic font-normal leading-[150%] tracking-[0.005rem]">
           Embark on an unforgettable journey to Ha Giang, where breathtaking landscapes and vibrant cultures await you. Explore the majestic mountains, winding roads, and terraced rice fields while immersing yourself in the rich traditions of the local ethnic communities. Let our guided tours lead you through this mesmerizing region, filled with authentic experiences and hidden gems waiting to be discovered. Join us in Ha Giang and create memories that will last a lifetime
-        </div>
+        </div> */}
       </div>
     </section>
   )

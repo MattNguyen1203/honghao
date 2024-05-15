@@ -9,7 +9,7 @@ const index = () => {
     <div className='activity'>
       <Banner />
       <div className='xmd:hidden'><Breadcrumb /></div>
-      <Discover />
+      {/* <Discover /> */}
     </div>
   )
 }

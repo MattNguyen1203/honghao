@@ -32,29 +32,31 @@ const Button = React.forwardRef(({ className, icon, variant, size, asChild = fal
       {...props} >
       {props.children}
       {icon &&
-        <svg className='w-3 h-[0.65625rem] group-hover:translate-x-[0.4rem] duration-150 ease-linear group-hover:stroke-white group-hover:fill-white' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <div className='w-max'>
+          <svg className='w-3 h-[0.65625rem] group-hover:translate-x-[0.4rem] duration-150 ease-linear group-hover:stroke-white group-hover:fill-white' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 
-          <path className='group-hover:stroke-white ' d="M10.125 6H0" stroke={iconColor} stroke-width="2" />
-          <g filter="url(#filter0_i_10201_23415)">
-            <path className='group-hover:fill-white' d="M12 6L6 11.25L8.41379 6L6 0.75L12 6Z" fill={iconColor} />
-          </g>
-          <defs>
-            <filter id="filter0_i_10201_23415" x="6" y="0.75" width="26" height="14.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-              <feOffset dx="20" dy="4" />
-              <feGaussianBlur stdDeviation="50" />
-              <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="shape" result="effect1_innerShadow_10201_23415" />
-            </filter>
-            <linearGradient id="paint0_linear_10201_23415" x1="4.53912" y1="6" x2="4.53912" y2="6.892" gradientUnits="userSpaceOnUse">
-              <stop offset="0.31" stop-color="white" />
-              <stop offset="1" stop-color="white" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+            <path className='group-hover:stroke-white ' d="M10.125 6H0" stroke={iconColor} stroke-width="2" />
+            <g filter="url(#filter0_i_10201_23415)">
+              <path className='group-hover:fill-white' d="M12 6L6 11.25L8.41379 6L6 0.75L12 6Z" fill={iconColor} />
+            </g>
+            <defs>
+              <filter id="filter0_i_10201_23415" x="6" y="0.75" width="26" height="14.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dx="20" dy="4" />
+                <feGaussianBlur stdDeviation="50" />
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
+                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_10201_23415" />
+              </filter>
+              <linearGradient id="paint0_linear_10201_23415" x1="4.53912" y1="6" x2="4.53912" y2="6.892" gradientUnits="userSpaceOnUse">
+                <stop offset="0.31" stop-color="white" />
+                <stop offset="1" stop-color="white" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       }
     </Comp>)
   );
