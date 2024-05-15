@@ -4,7 +4,7 @@ import WrapNav from './components/wrapnav'
 export default function Header() {
   return (
     <header className='w-full'>
-      <WrapNav />
+      {/* <WrapNav /> */}
     </header>
   )
 }
