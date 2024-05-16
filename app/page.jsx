@@ -1,8 +1,7 @@
-
-import Test from '@/sections/test'
+import OurTeam from '@/layouts/team'
 import React from 'react'
 const page = () => {
-  return <h1><Test /></h1>
+  return <OurTeam />
 }
 
 export default page

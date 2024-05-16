@@ -7,25 +7,22 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
     './sections/**/*.{js,jsx}',
+    './layouts/**/*.{js,jsx}',
   ],
   prefix: '',
   theme: {
-    screens: {
-      md: '768px',
-      lg: '1024px',
-      xl: '1600px',
-      '2xl': '1800px',
-      tablet: {min: '768px', max: '1023px'},
-      xmd: {max: '767px'},
-      xlg: {max: '1023px'},
-      xxl: {max: '1599px'},
-      x2xl: {max: '1799px'},
-    },
-    container: {
-      center: true,
-      padding: '2rem',
-    },
     extend: {
+      screens: {
+        '2xl': '1800px',
+        xl: '1600px',
+        lg: '1024px',
+        md: '768px',
+        x2xl: {max: '1799px'},
+        xxl: {max: '1599px'},
+        xlg: {max: '1023px'},
+        xmd: {max: '767px'},
+        tablet: {min: '768px', max: '1023px'},
+      },
       fontFamily: {
         londrina: ['var(--font-londrina-solid)'],
         tripsans: ['var(--font-trip-sans)'],
