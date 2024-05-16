@@ -1,7 +1,8 @@
+import OurTeam from '@/layouts/team'
 import React from 'react'
 
 const page = () => {
-  return <h1>page</h1>
+  return <OurTeam />
 }
 
 export default page
