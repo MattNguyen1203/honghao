@@ -1,6 +1,6 @@
 'use client'
 import useStore from '@/app/(store)/store'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 const WrapNav = () => {
   const setIsMobile = useStore((state) => state.setIsMobile)
@@ -17,7 +17,7 @@ const WrapNav = () => {
     setIsMobile(mobileCheck)
   }, [])
 
-  return <div>WrapNav</div>
+  return <div className='absolute top-0 z-50'>WrapNav</div>
 }
 
 export default WrapNav

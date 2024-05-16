@@ -67,6 +67,9 @@
 }
 
 @layer components {
+  .bd {
+    @apply border border-black;
+  }
   .container {
     @apply w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
@@ -154,7 +157,6 @@ html {
   font-size: 1vw;
   scroll-behavior: smooth;
 }
-
 @media (min-width: 1601px) {
   html {
     font-size: 16px;
@@ -218,4 +220,90 @@ body {
 input[type='password']::-ms-reveal,
 input[type='password']::-ms-clear {
   display: none;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
+.activity .text-linear {
+  font-size: 6.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 6.25rem */
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    #fff 37.06%,
+    rgba(255, 255, 255, 0) 107.22%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.activity .text-linear2 {
+  font-family: 'Trip Sans';
+  font-size: 6.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 6.25rem */
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    #fff 30.31%,
+    rgba(255, 255, 255, 0) 87.67%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#swiper_discover .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+@keyframes scaleInOut {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.7);
+  }
+}
+
+.circle {
+  animation: scaleInOut 1.5s ease-in-out infinite;
+}
+@keyframes keyArrow {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.arrowFr {
+  animation: keyArrow 1.5s ease-in-out infinite;
+}
+
+.activity .mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+.activity .mySwiper.swiper-slide {
+  opacity: 0.2;
 }

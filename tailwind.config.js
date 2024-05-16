@@ -61,6 +61,9 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        'orange-normal-hover': '#DA4B19',
+
+        'grey-grey-100': '#C3C3C3',
         'greyscale-0': '#fff',
         'greyscale-5': '#F1F1F1',
         'greyscale-10': '#C5C5C5',
@@ -72,6 +75,7 @@ module.exports = {
         'greyscale-80': '#262626',
         'orange-normal': '#E64827',
         'orange-hover': '#DA4B19',
+        'orange-dark': '#B63E15',
         'orange-darker': '#551D0A',
         'green-light': '#E9F1ED',
         'green-normal': '#122718',

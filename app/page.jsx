@@ -1,6 +1,5 @@
 import OurTeam from '@/layouts/team'
 import React from 'react'
-
 const page = () => {
   return <OurTeam />
 }
