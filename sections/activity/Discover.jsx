@@ -273,117 +273,121 @@ const Discover = () => {
   }, [])
   console.log({ isMobile })
   return (
-    <section className='relative border border-transparent w-full xl:container'>
+    <section className='relative'>
       <Image ref={imgRef} priority alt="ảnh" src={'/activity/pattern-white.png'} width={1600} height={1400}
-        className="absolute image xmd:hidden top-0 h-[49.0625rem] shrink-0" />
-      <Image ref={imgRefMobi} priority alt="ảnh" src={'/activity/mountain.png'} width={1600} height={1400}
-        className="absolute image md:hidden top-[5rem] " />
-      <div className='w-full md:hidden flex justify-center items-center mt-[2.87rem]'>
-        <Image priority alt="ảnh" src={'/activity/sun.png'} width={1600} height={1400}
-          className=" size-[10.5rem] " />
-      </div >
+        className="absolute image xmd:hidden w-screen top-0 h-[49.0625rem] shrink-0" />
+      <div className="relative border border-transparent w-full xl:container">
 
-      <div ref={scrollRef} className=' mx-auto md:containter'>
-        <h2 className="xmd:absolute top-[9rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem] md:ml-[5rem]">
-          Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
-        </h2>
 
-        <div ref={menuRef} className=" xmd:mt-[5rem] xmd:bg-white md:z-10 mt-[1.75rem] w-full h-[5.25rem] flex justify-center items-center shrink-0">
-          <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">
-            {data?.map((d, i) => (
-              <div key={i} className="flex group cursor-pointer flex-col justify-end items-start gap-4">
-                <div className={(i !== 0 ? 'text-greyscale-10' : 'text-orange-normal') + " group-hover:text-orange-normal text-[0.875rem] font-bold leading-[1.2] uppercase ease-linear duration-300"}>
-                  {d?.title}
+        <Image ref={imgRefMobi} priority alt="ảnh" src={'/activity/mountain.png'} width={1600} height={1400}
+          className="absolute image md:hidden top-[5rem] " />
+        <div className='w-full md:hidden flex justify-center items-center mt-[2.87rem]'>
+          <Image priority alt="ảnh" src={'/activity/sun.png'} width={1600} height={1400}
+            className=" size-[10.5rem] " />
+        </div >
+
+        <div ref={scrollRef} className=' mx-auto md:containter'>
+          <h2 className="xmd:absolute top-[9rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem] md:ml-[5rem]">
+            Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
+          </h2>
+
+          <div ref={menuRef} className=" xmd:mt-[5rem] xmd:bg-white md:z-10 mt-[1.75rem] w-full h-[5.25rem] flex justify-center items-center shrink-0">
+            <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">
+              {data?.map((d, i) => (
+                <div key={i} className="flex group cursor-pointer flex-col justify-end items-start gap-4">
+                  <div className={(i !== 0 ? 'text-greyscale-10' : 'text-orange-normal') + " group-hover:text-orange-normal text-[0.875rem] font-bold leading-[1.2] uppercase ease-linear duration-300"}>
+                    {d?.title}
+                  </div>
+                  <div className={(i !== 0 ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " group-hover:bg-orange-normal group-hover:w-full h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
                 </div>
-                <div className={(i !== 0 ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " group-hover:bg-orange-normal group-hover:w-full h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="md:hidden w-full">
-          <Swiper
-            modules={[Navigation]}
-            className='container'
-            spaceBetween={0}
-            slidesPerView={1.2}
-            loop={false}
-          >
-            {[1, 1, 1, 1, 1, 1].map((d, i) => (
-              <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
-                {i === 0 &&
-                  <Video>
-                    <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
-                      className=" w-full h-full " />
-                  </Video>}
-                {i !== 0 &&
-                  <ImageNormal>
-
-                    <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
-                      className=" w-full h-full" />
-                  </ImageNormal>}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        <div ref={imagesRef} className="z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center">
-
-          <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
-            <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
-              <Video>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </Video>
-              <ImageBig>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageBig>
-              <ImageNormal>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageNormal>
-              <ImageBig>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageBig>
-              <ImageSmall>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageSmall>
-            </div>
-            <div className="space-y-[4.62rem] mt-[5.8rem]">
-
-              <ImageNormal>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageNormal>
-              <ImageBig>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageBig>
-              <div className="space-x-[4.69rem] flex items-start">
-
-                <ImageSmall>
-                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-                </ImageSmall>
-                <ImageSmall>
-                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-                </ImageSmall>
-              </div>
-              <ImageBig>
-                <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-              </ImageBig>
-              <div className="space-x-[4.69rem] flex items-start">
-
-                <ImageSmall>
-                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-                </ImageSmall>
-                <ImageSmall>
-                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
-                </ImageSmall>
-              </div>
-
-
+              ))}
             </div>
           </div>
-          <div className="text-[0.875rem] text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid">
-            Lear more
-          </div>
-        </div>
 
+          <div className="md:hidden w-full">
+            <Swiper
+              modules={[Navigation]}
+              className='container'
+              spaceBetween={0}
+              slidesPerView={1.2}
+              loop={false}
+            >
+              {[1, 1, 1, 1, 1, 1].map((d, i) => (
+                <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
+                  {i === 0 &&
+                    <Video>
+                      <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
+                        className=" w-full h-full " />
+                    </Video>}
+                  {i !== 0 &&
+                    <ImageNormal>
+
+                      <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
+                        className=" w-full h-full" />
+                    </ImageNormal>}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div ref={imagesRef} className="z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center">
+
+            <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
+              <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
+                <Video>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </Video>
+                <ImageBig>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageBig>
+                <ImageNormal>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageNormal>
+                <ImageBig>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageBig>
+                <ImageSmall>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageSmall>
+              </div>
+              <div className="space-y-[4.62rem] mt-[5.8rem]">
+
+                <ImageNormal>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageNormal>
+                <ImageBig>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageBig>
+                <div className="space-x-[4.69rem] flex items-start">
+
+                  <ImageSmall>
+                    <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                  </ImageSmall>
+                  <ImageSmall>
+                    <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                  </ImageSmall>
+                </div>
+                <ImageBig>
+                  <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                </ImageBig>
+                <div className="space-x-[4.69rem] flex items-start">
+
+                  <ImageSmall>
+                    <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                  </ImageSmall>
+                  <ImageSmall>
+                    <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
+                  </ImageSmall>
+                </div>
+
+
+              </div>
+            </div>
+            <div className="text-[0.875rem] text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid">
+              Lear more
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </section>
