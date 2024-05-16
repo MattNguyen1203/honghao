@@ -7,25 +7,22 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
     './sections/**/*.{js,jsx}',
+    './layouts/**/*.{js,jsx}',
   ],
   prefix: '',
   theme: {
-    screens: {
-      md: '768px',
-      lg: '1024px',
-      xl: '1600px',
-      '2xl': '1800px',
-      tablet: {min: '768px', max: '1023px'},
-      xmd: {max: '767px'},
-      xlg: {max: '1023px'},
-      xxl: {max: '1599px'},
-      x2xl: {max: '1799px'},
-    },
-    container: {
-      center: true,
-      padding: '2rem',
-    },
     extend: {
+      screens: {
+        '2xl': '1800px',
+        xl: '1600px',
+        lg: '1024px',
+        md: '768px',
+        x2xl: {max: '1799px'},
+        xxl: {max: '1599px'},
+        xlg: {max: '1023px'},
+        xmd: {max: '767px'},
+        tablet: {min: '768px', max: '1023px'},
+      },
       fontFamily: {
         londrina: ['var(--font-londrina-solid)'],
         tripsans: ['var(--font-trip-sans)'],
@@ -72,6 +69,7 @@ module.exports = {
         'greyscale-10': '#C5C5C5',
         'greyscale-20': '#A9A9A9',
         'greyscale-40': '#6A6A6A',
+        'greyscale-30': '#828282',
         'greyscale-50': '#454545',
         'greyscale-60': '#3F3F3F',
         'greyscale-70': '#313131',
@@ -83,6 +81,7 @@ module.exports = {
         'green-light': '#E9F1ED',
         'green-normal': '#122718',
         'green-hover': '#206545',
+        'green-dark': '#1A543A',
       },
       borderRadius: {
         lg: 'var(--radius)',
