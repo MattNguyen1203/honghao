@@ -6,23 +6,24 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    './sections/**/*.{js,jsx}',
   ],
   prefix: '',
   theme: {
+    screens: {
+      md: '768px',
+      lg: '1024px',
+      xl: '1600px',
+      '2xl': '1800px',
+      tablet: {min: '768px', max: '1023px'},
+      xmd: {max: '767px'},
+      xlg: {max: '1023px'},
+      xxl: {max: '1599px'},
+      x2xl: {max: '1799px'},
+    },
     container: {
       center: true,
       padding: '2rem',
-      screens: {
-        '2xl': '1800px',
-        xl: '1600px',
-        lg: '1024px',
-        md: '768px',
-        x2xl: {max: '1799px'},
-        xxl: {max: '1599px'},
-        xlg: {max: '1023px'},
-        xmd: {max: '767px'},
-        tablet: {min: '768px', max: '1023px'},
-      },
     },
     extend: {
       fontFamily: {
@@ -63,6 +64,9 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        'orange-normal-hover': '#DA4B19',
+
+        'grey-grey-100': '#C3C3C3',
         'greyscale-0': '#fff',
         'greyscale-5': '#F1F1F1',
         'greyscale-10': '#C5C5C5',
@@ -74,6 +78,7 @@ module.exports = {
         'greyscale-80': '#262626',
         'orange-normal': '#E64827',
         'orange-hover': '#DA4B19',
+        'orange-dark': '#B63E15',
         'orange-darker': '#551D0A',
         'green-light': '#E9F1ED',
         'green-normal': '#122718',

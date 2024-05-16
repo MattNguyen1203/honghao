@@ -1,5 +1,7 @@
 import React from 'react'
-
-export default function page() {
-  return <div>page </div>
+import Activity from '@/sections/activity/index'
+const page = () => {
+  return <Activity />
 }
+
+export default page
