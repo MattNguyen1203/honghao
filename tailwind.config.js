@@ -11,15 +11,15 @@ module.exports = {
   prefix: '',
   theme: {
     screens: {
-      '2xl': '1800px',
-      xl: '1600px',
-      lg: '1024px',
       md: '768px',
-      x2xl: {max: '1799px'},
-      xxl: {max: '1599px'},
-      xlg: {max: '1023px'},
-      xmd: {max: '767px'},
+      lg: '1024px',
+      xl: '1600px',
+      '2xl': '1800px',
       tablet: {min: '768px', max: '1023px'},
+      xmd: {max: '767px'},
+      xlg: {max: '1023px'},
+      xxl: {max: '1599px'},
+      x2xl: {max: '1799px'},
     },
     container: {
       center: true,
@@ -65,7 +65,7 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
         'orange-normal-hover': '#DA4B19',
-        
+
         'grey-grey-100': '#C3C3C3',
         'greyscale-0': '#fff',
         'greyscale-5': '#F1F1F1',

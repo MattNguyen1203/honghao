@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FreeMode, Navigation, Autoplay, Thumbs, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image'
-
+import useStore from '@/app/(store)/store'
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -34,10 +34,21 @@ const data =
       title: 'Food',
     }
   ]
-
+const images = [
+  { img: '/activity/video.png' },
+  { img: '/activity/video2.png' },
+  { img: '/activity/video3.png' },
+  { img: '/activity/video4.png' },
+  { img: '/activity/video5.png' },
+  { img: '/activity/video.png' },
+  { img: '/activity/video2.png' },
+  { img: '/activity/video3.png' },
+  { img: '/activity/video4.png' },
+  { img: '/activity/video5.png' },
+]
 const DialogCp = ({ children }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const mainSwiper = useRef()
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex;
@@ -45,47 +56,42 @@ const DialogCp = ({ children }) => {
   };
 
   useEffect(() => {
-    if (mainSwiper) {
-      console.log({ mainSwiper })
-      mainSwiper?.current?.slideTo(activeIndex);
-    }
+    mainSwiper?.current?.slideTo(activeIndex);
   }, [activeIndex]);
   return (
     <Dialog>
-      <DialogTrigger >
+      <DialogTrigger asChild>
         {children}
       </DialogTrigger>
       <DialogContent className="">
         <div className="relative w-[86.875rem] h-[44.75rem] bg-white flex justify-center items-center rounded-3xl">
-          <svg className='absolute right-[16rem] top-1/2 z-[100] -translate-y-1/2' xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <svg className='  arrowFr absolute right-[17rem] top-[53%] z-[100] -translate-y-1/2' xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
             <path d="M38 27L22 37L27 27L22 17L38 27Z" fill="white" />
           </svg>
-          {/* <Image priority alt="ảnh" src={'/activity/video.png'} width={1500} height={1000} className="w-[83.875rem] h-[41.75rem] shrink-0 rounded-xl " /> */}
           <Swiper
-            ref={mainSwiper}
+            // ref={mainSwiper}
             onBeforeInit={(swiper) => {
               mainSwiper.current = swiper
             }}
             pagination={{
               clickable: true,
             }}
+            allowTouchMove={false}
+            speed={1500}
             effect={'fade'}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs, EffectFade]}
             className=''
           >
-            {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((d, i) => (
+            {images?.map((d, i) => (
               <SwiperSlide key={i} className='!flex !justify-center !items-center'>
-                {/* {i}{activeIndex} */}
-                {i % 2 === 0 && <Image priority alt="ảnh" src={'/activity/video.png'} width={1500} height={1500} className="w-[83.875rem] h-[41.75rem] " />}
-                {i % 2 === 1 && <Image priority alt="ảnh" src={'/activity/video2.png'} width={1500} height={1500} className="w-[83.875rem] h-[41.75rem] " />}
+                <Image priority alt="ảnh" src={d?.img} width={1500} height={1500} className="w-[83.875rem] rounded-[0.75rem] h-[41.75rem] " />
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className='absolute z-[100] right-[5rem]'>
+          <div className='absolute z-[100] right-[6rem]'>
             <Swiper
-              onSwiper={setThumbsSwiper}
-
+              allowTouchMove={false}
               direction={'vertical'}
               pagination={{
                 clickable: true,
@@ -96,18 +102,25 @@ const DialogCp = ({ children }) => {
                 disableOnInteraction: false,
                 pauseOnMouseEnter: false,
               }}
-              speed={3000}
+              speed={1500}
               centeredSlides
               slidesPerView={6}
               watchSlidesProgress={true}
               modules={[FreeMode, Autoplay, Navigation, Thumbs]}
               onSlideChange={handleSlideChange}
+              // onSwiper={setThumbsSwiper}
               className="mySwiper !pb-[3rem]  h-[41.75rem] "
               id="swiper_discover"
             >
-              {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((d, i) => (
+              {images?.map((d, i) => (
                 <SwiperSlide key={i}>
-                  <Image priority alt="ảnh" src={'/activity/video2.png'} width={500} height={500} className={(i === activeIndex ? 'opacity-1 border border-white' : 'border-transparent border opacity-60') + " duration-500 ease-linear w-[10.875rem] h-[6.35rem] "} />
+                  <div className='relative'>
+
+                    <Image priority alt="ảnh" src={d?.img} width={500} height={500} className={(i === activeIndex ? 'opacity-1 border border-white' : 'border-transparent border opacity-1') + " duration-500 ease-linear w-[10.875rem] h-[6.35rem] "} />
+                    <div className={(i === activeIndex ? " bg-opacity-0 " : " bg-opacity-60 ") + ' bg-black absolute  duration-500 ease-linear top-0 left-0 size-full'}>
+
+                    </div>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -127,7 +140,7 @@ const DialogCp = ({ children }) => {
 
 const Video = ({ children }) => {
   return (
-    <div className="relative w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer">
+    <div className="relative xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer">
       {children}
       <div className="w-full h-full absolute top-0 left-0 duration-200 transition-all group-hover:bg-black bg-transparent group-hover:bg-opacity-30 z-50"></div>
       <DialogCp>
@@ -160,7 +173,7 @@ const ImageBig = ({ children }) => {
 }
 const ImageNormal = ({ children }) => {
   return (
-    <div className="relative w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer">
+    <div className="relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer">
       {children}
     </div>
   )
@@ -173,11 +186,34 @@ const ImageSmall = ({ children }) => {
   )
 }
 const Discover = () => {
-
+  const isMobile = useStore((state) => state.isMobile)
   const imgRef = useRef()
   const scrollRef = useRef()
   const menuRef = useRef()
   const imagesRef = useRef()
+  const imgRefMobi = useRef()
+
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        repeat: 0, repeatDelay: 0,
+        scrollTrigger: {
+          pinSpacing: false,
+          trigger: imgRefMobi.current,
+          pin: imgRefMobi.current,
+          start: "0% 0%",
+          end: () => `+=${scrollRef.current.offsetWidth}`,
+          toggleActions: "restart reverse reverse reverse",
+          // markers: true,
+          scrub: 1,
+        }
+      });
+
+    }, imgRefMobi)
+    return () => ctx.revert()
+  }, [])
+
   useEffect(() => {
 
     const ctx = gsap.context(() => {
@@ -202,6 +238,7 @@ const Discover = () => {
   useEffect(() => {
 
     const ctx = gsap.context(() => {
+
       const tl = gsap.timeline({
         repeat: 0, repeatDelay: 0,
         scrollTrigger: {
@@ -209,16 +246,15 @@ const Discover = () => {
           pin: true,
           pinSpacing: false,
           start: "0% -0.001%",
-          // end: "+=3000",
           end: () => `+=${scrollRef.current.offsetWidth}`,
           toggleActions: "restart reverse reverse reverse",
-          // markers: true,
           scrub: 1,
           onToggle: self => {
             if (self.isActive) {
               gsap.to(menuRef.current, {
                 boxShadow: "90px 128px 44px 0px rgba(66, 72, 66, 0.00), 57px 82px 40px 0px rgba(66, 72, 66, 0.01), 32px 46px 34px 0px rgba(66, 72, 66, 0.05), 14px 20px 25px 0px rgba(66, 72, 66, 0.09), 4px 5px 14px 0px rgba(66, 72, 66, 0.10)",
-                backgroundColor: 'white', duration: 0
+                backgroundColor: 'white', duration: 0,
+                width: '1900px'
               });
             } else {
               gsap.to(menuRef.current, {
@@ -230,21 +266,29 @@ const Discover = () => {
         }
       });
 
+
     }, menuRef)
     return () => ctx.revert()
+
   }, [])
-
-
+  console.log({ isMobile })
   return (
     <section className='relative border border-transparent w-full xl:container'>
       <Image ref={imgRef} priority alt="ảnh" src={'/activity/pattern-white.png'} width={1600} height={1400}
-        className="absolute image top-0 h-[49.0625rem] shrink-0" />
-      <div ref={scrollRef} className=' mx-auto containter'>
-        <h2 className="w-[65.25rem] mx-auto  text-green-normal mt-[12.25rem] ml-[5rem]">
+        className="absolute image xmd:hidden top-0 h-[49.0625rem] shrink-0" />
+      <Image ref={imgRefMobi} priority alt="ảnh" src={'/activity/mountain.png'} width={1600} height={1400}
+        className="absolute image md:hidden top-[5rem] " />
+      <div className='w-full md:hidden flex justify-center items-center mt-[2.87rem]'>
+        <Image priority alt="ảnh" src={'/activity/sun.png'} width={1600} height={1400}
+          className=" size-[10.5rem] " />
+      </div >
+
+      <div ref={scrollRef} className=' mx-auto md:containter'>
+        <h2 className="xmd:absolute top-[9rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem] md:ml-[5rem]">
           Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
         </h2>
 
-        <div ref={menuRef} className="z-10 mt-[1.75rem] w-full h-[5.25rem] flex justify-center items-center shrink-0">
+        <div ref={menuRef} className=" xmd:mt-[5rem] xmd:bg-white md:z-10 mt-[1.75rem] w-full h-[5.25rem] flex justify-center items-center shrink-0">
           <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">
             {data?.map((d, i) => (
               <div key={i} className="flex group cursor-pointer flex-col justify-end items-start gap-4">
@@ -257,9 +301,34 @@ const Discover = () => {
           </div>
         </div>
 
-        <div ref={imagesRef} className="z-9 space-y-[4rem] flex flex-col justify-center w-full items-center">
+        <div className="md:hidden w-full">
+          <Swiper
+            modules={[Navigation]}
+            className='container'
+            spaceBetween={0}
+            slidesPerView={1.2}
+            loop={false}
+          >
+            {[1, 1, 1, 1, 1, 1].map((d, i) => (
+              <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
+                {i === 0 &&
+                  <Video>
+                    <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
+                      className=" w-full h-full " />
+                  </Video>}
+                {i !== 0 &&
+                  <ImageNormal>
 
-          <div className="mx-auto w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
+                    <Image priority alt="ảnh" src={'/activity/video2.png'} width={1600} height={1400}
+                      className=" w-full h-full" />
+                  </ImageNormal>}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div ref={imagesRef} className="z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center">
+
+          <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
             <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
               <Video>
                 <Image priority alt="ảnh" src={'/activity/video.png'} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />
@@ -309,9 +378,8 @@ const Discover = () => {
 
 
             </div>
-
           </div>
-          <div className="text-[0.875rem] font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid">
+          <div className="text-[0.875rem] text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid">
             Lear more
           </div>
         </div>

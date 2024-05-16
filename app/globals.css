@@ -282,8 +282,23 @@ input[type='password']::-ms-clear {
     transform: scale(0.7);
   }
 }
+
 .circle {
   animation: scaleInOut 1.5s ease-in-out infinite;
+}
+@keyframes keyArrow {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.arrowFr {
+  animation: keyArrow 1.5s ease-in-out infinite;
 }
 
 .activity .mySwiper .swiper-slide-thumb-active {
