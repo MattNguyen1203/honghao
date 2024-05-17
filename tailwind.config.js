@@ -69,6 +69,7 @@ module.exports = {
         'greyscale-10': '#C5C5C5',
         'greyscale-20': '#A9A9A9',
         'greyscale-40': '#6A6A6A',
+        'greyscale-30': '#828282',
         'greyscale-50': '#454545',
         'greyscale-60': '#3F3F3F',
         'greyscale-70': '#313131',
@@ -80,6 +81,7 @@ module.exports = {
         'green-light': '#E9F1ED',
         'green-normal': '#122718',
         'green-hover': '#206545',
+        'green-dark': '#1A543A',
       },
       borderRadius: {
         lg: 'var(--radius)',

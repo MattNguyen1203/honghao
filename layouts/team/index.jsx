@@ -1,12 +1,12 @@
-import {Button} from '@/components/ui/button'
+import { Button } from '@/components/button'
 import Image from 'next/image'
 import TeamSlide from './TeamSlide'
-import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export default function OurTeam() {
   return (
-    <section>
-      <div className='w-[25.0625rem] space-y-[2.12rem]'>
+    <section className='flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xl:container xmd:flex-col justify-end md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
+      <div className='container md:w-[25.0625rem] space-y-[2.12rem]'>
         <div className='text-1125 uppercase font-bold text-greyscale-80/40'>
           HONG HAO TRAVEL
         </div>
@@ -20,60 +20,30 @@ export default function OurTeam() {
         </p>
 
         <div className='flex flex-start space-x-[1rem] '>
-          <Button
-            className=''
-            variant='hover'
-          >
-            <span className='uppercase text-0875'> book now</span>
-            <div className='ml-[0.5rem]'>
-              <Image
-                src='/imgs/ICArrowHover.svg'
-                alt='icon'
-                width={12}
-                height={12}
-                className='size-[0.75rem] flex'
-              />
-            </div>
-          </Button>
-          <Button className='group'>
-            <span className='uppercase text-0875'> All Tour</span>
-            <div className='ml-[0.5rem]'>
-              <Image
-                src='/imgs/ICArrow.svg'
-                alt='icon'
-                width={12}
-                height={12}
-                className='size-[0.75rem] group-hover:hidden flex'
-              />
 
-              <Image
-                src='/imgs/ICArrowHover.svg'
-                alt='icon'
-                width={12}
-                height={12}
-                className='size-[0.75rem] group-hover:flex hidden'
-              />
-            </div>
-          </Button>
+          <Button icon className='!flex-1 !w-max shrink-0' >BOOK NOW</Button>
+          <Button icon variant='outline' className='!flex-1 !w-max shrink-0'>All tour</Button>
         </div>
       </div>
 
       <Tabs
         defaultValue='guide'
-        className='w-fit'
+        className='w-fit flex justify-end flex-col items-end subContainer'
       >
-        <TabsList className='w-fit'>
+        <TabsList className='w-fit xmd:hidden md:!mr-[4rem] md:!mb-[1rem]'>
           <TabsTrigger
             value='guide'
-            className='uppercase text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal'
+            className='uppercase flex  flex-col items-start text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal'
           >
             TOUR GUIDE
+            <div className='h-[0.1rem] bg-orange-normal w-full mt-[0.4rem] rounded-full'></div>
           </TabsTrigger>
           <TabsTrigger
             value='rider'
-            className='uppercase text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal'
+            className='uppercase flex  flex-col items-start text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal'
           >
             rider team
+            <div className='h-[0.1rem]  bg-orange-normal w-full mt-[0.4rem] rounded-full'></div>
           </TabsTrigger>
         </TabsList>
         <TabsContent value='guide'>

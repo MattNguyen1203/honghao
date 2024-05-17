@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-
+import useStore from '@/app/(store)/store'
 import Image from 'next/image';
 import { Button } from '@/components/button';
 import { cn } from '@/lib/utils';
@@ -24,9 +24,10 @@ const data = [
 ]
 
 const SheetCp = ({ children }) => {
-  const breakpoints={
+  const isMobile = useStore((state) => state.isMobile)
+  const breakpoints = {
     767: {
-      spaceBetween:0,
+      spaceBetween: 0,
       slidesPerView: 1.5
     },
   }
@@ -36,40 +37,44 @@ const SheetCp = ({ children }) => {
         {children}
       </SheetTrigger>
       <SheetContent side={'bottom'} className='!bg-transparent'>
-        <div className='  flex flex-col w-full'>
-          <div className=" relative flex h-16">
+        <div className='  flex flex-col w-full xmd:rounded-tl-xl xmd:rounded-tr-xl xmd:overflow-hidden xmd:w-[23.4375rem] xmd:bg-white xmd:h-[20.4375rem]'>
+          <div className=" relative xmd:w-[23.4375rem] xmd:space-x-[2.25rem] flex xmd:justify-center h-16 xmd:h-[4.75rem] ">
             {data?.map((d, i) => (
               <div
-                style={{ left: `${7 * i}rem`, zIndex: data.length - i }}
-                className={cn(`absolute text-[1.5rem] font-bold leading-[1] flex justify-center items-center w-[10.81256rem] h-16 shrink-0 rounded-tr-2xl`, {
-                  'pl-[3.5rem]': i === 1,
-                  'pl-[8rem] pr-[4.5rem]': i === 2,
-                  'pl-[9.5rem] pr-[4rem]': i === 3,
-                  'bg-orange-normal text-white': i % 2 === 1,
-                  'bg-white text-orange-dark': i % 2 !== 1,
+                style={{ left: isMobile ? null : `${7 * i}rem`, zIndex: data.length - i }}
+                className={cn(` md:absolute group xmd:mt-4 z-1 md:hover:bg-orange-normal cursor-pointer xmd:hover:text-orange-normal hover:text-white duration-300 ease-linear bg-white xmd:text-greyscale-10 text-orange-dark text-[1.5rem] xmd:uppercase xmd:text-[0.875rem] xmd:font-bold xmd:shadow-none shadow-right font-black 
+                xmd:leading-[1.2] leading-[1] flex justify-center items-center md:w-[10.81256rem] md:h-16 shrink-0 md:rounded-tr-2xl`, {
+                  'md:pl-[3.5rem] ': i === 1,
+                  'md:pl-[8rem] md:pr-[4.5rem]': i === 2,
+                  'md:pl-[9.5rem] md:pr-[4rem]': i === 3,
+                  'md:bg-orange-normal md:text-white xmd:text-orange-normal': i === 0,
                 })}>
-                {d?.title}
+                <div className="xmd:flex xmd:flex-col xmd:items-start xmd:gap-y-[0.5rem]">
+
+                  {d?.title}
+                  <div className={(i !== 0 ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " md:hidden  h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
+                </div>
               </div>
             ))}
           </div>
-          <div className=" inline-flex justify-end items-center pr-0 pt-[2.4375rem] xmd:pt-[0.4375rem] xmd:pb-1 pb-10 bg-white">
+          <div className=" inline-flex z-10 justify-end items-center pr-0 pt-[2.4375rem] xmd:pt-[0.4375rem] xmd:pb-1 pb-10 bg-white">
             <Swiper
-            breakpoints={{
-    767: {
-      spaceBetween:0,
-      slidesPerView: 2.5
-    },
-  }}
-              slidesPerView={1.5}
-              spaceBetween={10}
+              breakpoints={{
+                767: {
+                  spaceBetween: 0,
+                  slidesPerView: 2.5
+                },
+              }}
+              slidesPerView={1.2}
+              spaceBetween={20}
               className='!pl-10 xmd:!pl-2  !w-full '
               loop={false}
               modules={[FreeMode]}
-              freeMode={true}
+
             >
               {[0, 0, 0, 0, 0].map((d, i) => (
                 <SwiperSlide key={i} className='' >
-                  <Image priority alt="ảnh" src={'/activity/image-popup-banner.png'} width={1000} height={1000} className="xl:w-[98%] w-[38.0625rem] md:h-[27.9375rem] rounded-[1.25rem]" />
+                  <Image priority alt="ảnh" src={'/imgs/activity/image-popup-banner.png'} width={1000} height={1000} className="xl:w-[98%] xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] md:h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -93,13 +98,13 @@ const Banner = () => {
 
   return (
     <section className='relative xl:h-[100rem] overflow-y-hidden' >
-      <Image priority alt="ảnh" src={'/activity/nature.png'} width={1600} height={1935} className="object-cover xmd:hidden absolute h-full w-full" />
-      <Image priority alt="ảnh" src={'/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
+      <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className="object-cover xmd:hidden absolute h-full w-full" />
+      <Image priority alt="ảnh" src={'/imgs/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
 
       <div className='xl:container relative xmd:h-[105rem] h-[100rem] xmd:mt-[3.3rem]'>
         {/* main title */}
-        <Image priority alt="ảnh title web" src={'/activity/main_title.png'} width={840} height={355} className="absolute left-[5rem] xmd:hidden top-[9rem] w-[52.3605rem] h-[22.1875rem]" />
-        <Image priority alt="ảnh title mobi" src={'/activity/main-title-mobi.png'} width={840} height={355} className=" left-[5rem] xmd:mx-auto top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]" />
+        <Image priority alt="ảnh title web" src={'/imgs/activity/main_title.png'} width={840} height={355} className="absolute left-[5rem] xmd:hidden top-[9rem] w-[52.3605rem] h-[22.1875rem]" />
+        <Image priority alt="ảnh title mobi" src={'/imgs/activity/main-title-mobi.png'} width={840} height={355} className=" left-[5rem] xmd:mx-auto top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]" />
         <div className="md:hidden"><Breadcrumb /></div>
         <div className='xmd:container inline-flex md:absolute  flex-col left-[5rem] top-[32rem] items-start space-y-[2.0625rem]'>
 
@@ -111,15 +116,15 @@ const Banner = () => {
             <Button className='!flex-1 !w-max shrink-0' icon variant='outline_white'>All tour</Button>
           </div>
         </div>
-        <Image priority alt="map" src={'/activity/map.png'} width={9950} height={9950} className="w-[57rem] left-[35%] xmd:hidden h-[82rem] absolute bottom-0" />
-        <Image priority alt="map mobi" src={'/activity/map-mobi.png'} width={9950} height={9950} className=" mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute  left-0 w-full md:hidden" />
+        <Image priority alt="map" src={'/imgs/activity/map.png'} width={9950} height={9950} className="w-[57rem] left-[35%] xmd:hidden h-[82rem] absolute bottom-0" />
+        <Image priority alt="map mobi" src={'/imgs/activity/map-mobi.png'} width={9950} height={9950} className=" mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute  left-0 w-full md:hidden" />
 
         {/* motobike */}
         <div className="absolute xmd:top-[49.5rem] xmd:left-[3rem] w-[4.75rem] h-[6.25rem] xl:right-[32.8rem]  md:right-[38.7rem] top-[43.5rem]">
           <div className='relative'>
             <div className="inline-flex xmd:absolute relative flex-col items-center mt-[0.8rem]">
               <SheetCp>
-                <Image priority alt="ảnh" src={'/activity/motobike-img-all.png'} width={120} height={200} className="cursor-pointer" />
+                <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="cursor-pointer" />
               </SheetCp>
 
               <svg className='circle size-[1.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -168,7 +173,7 @@ const Banner = () => {
           <div className=' relative '>
             <div className=" absolute top-[5rem] left-[14.2rem] md:left-[31rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]">
               <SheetCp>
-                <Image priority alt="ảnh" src={'/activity/motobike-img-all.png'} width={120} height={200} className="w-[4.75rem] cursor-pointer h-[4.55rem]" />
+                <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="w-[4.75rem] cursor-pointer h-[4.55rem]" />
               </SheetCp>
               <svg className='circle size-[1.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="3.5" fill="#E64827" stroke="#E64827" />
