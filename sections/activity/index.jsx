@@ -6,11 +6,10 @@ import Breadcrumb from '@/components/breadcrumb'
 
 const index = () => {
   return (
-    <div className='activity'>
+    <div className='activity overflow-x-hidden'>
       <Banner />
-      <div className='xmd:hidden'><Breadcrumb /></div>
+      <div className='xmd:hidden'><Breadcrumb divider /></div>
       <Discover />
-      <div className='h-[2000px]'></div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex px-8 py-4 xmd:py-[0.75rem] xmd:px-[1.5rem] xmd:h-[3rem] h-[3.5rem] group items-center justify-center whitespace-nowrap rounded-md text-sm font-bold ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300",
+  "inline-flex px-8 py-4 xmd:py-[0.75rem] xmd:px-[1.5rem] xmd:h-[3rem] h-[3.5rem] group items-center justify-center whitespace-nowrap rounded-md text-sm font-bold ring-offset-white ease-linear duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300",
   {
     variants: {
       variant: {
@@ -33,7 +33,7 @@ const Button = React.forwardRef(({ className, icon, variant, size, asChild = fal
       {props.children}
       {icon &&
         <div className='w-max'>
-          <svg className='w-3 h-[0.65625rem] group-hover:translate-x-[0.4rem] duration-150 ease-linear group-hover:stroke-white group-hover:fill-white' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <svg className='w-3 h-[0.65625rem] group-hover:translate-x-[0.4rem] duration-300 ease-linear group-hover:stroke-white group-hover:fill-white' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 
             <path className='group-hover:stroke-white ' d="M10.125 6H0" stroke={iconColor} stroke-width="2" />
             <g filter="url(#filter0_i_10201_23415)">
