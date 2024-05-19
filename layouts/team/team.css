@@ -1,0 +1,46 @@
+.team .rotate-y {
+  transform: rotateX(3.142rad);
+}
+@keyframes rotateForever {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.team .circular-infinity {
+  animation: rotateForever 8s linear infinite;
+}
+
+.team .tabslide[data-state='active'] {
+  background-color: black;
+  color: white;
+}
+.team .data-\[state\=active\]\:text-orange-normal[data-state='active'] > div {
+  --tw-text-opacity: 1;
+  background-color: rgb(230 72 39 / var(--tw-text-opacity));
+}
+
+.team
+  .data-\[state\=active\]\:text-orange-normal[data-state='inactive']:hover
+  div {
+  --tw-text-opacity: 1;
+  background-color: rgb(230 72 39 / var(--tw-text-opacity));
+  width: 100%;
+  transition: all 0.3s linear;
+}
+.team .data-\[state\=active\]\:text-orange-normal[data-state='inactive']:hover {
+  color: rgb(230 72 39 / var(--tw-text-opacity));
+  transition: all 0.3s linear;
+}
+.team .data-\[state\=active\]\:text-orange-normal[data-state='inactive'] {
+  color: rgb(197 197 197 / var(--tw-text-opacity));
+  transition: all 0.3s linear;
+}
+.team .data-\[state\=active\]\:text-orange-normal[data-state='inactive'] > div {
+  --tw-text-opacity: 1;
+  background-color: transparent;
+  width: 0;
+  transition: all 0.3s linear;
+}

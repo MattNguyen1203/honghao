@@ -2,7 +2,7 @@
 import React from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image';
-import { Button } from '@/components/button';
+import { Button } from '@/components/customCn/button';
 import { cn } from '@/lib/utils';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from 'swiper/modules'
@@ -14,7 +14,7 @@ import {
   SheetFooter,
   SheetClose,
   SheetTrigger,
-} from "@/components/sheet"
+} from "@/components/customCn/sheet"
 import Breadcrumb from '@/components/breadcrumb';
 const data = [
   { title: 'Experience', },
@@ -42,7 +42,7 @@ const SheetCp = ({ children }) => {
             {data?.map((d, i) => (
               <div
                 style={{ left: isMobile ? null : `${7 * i}rem`, zIndex: data.length - i }}
-                className={cn(` md:absolute group xmd:mt-4 z-1 md:hover:bg-orange-normal cursor-pointer xmd:hover:text-orange-normal hover:text-white duration-300 ease-linear bg-white xmd:text-greyscale-10 text-orange-dark text-[1.5rem] xmd:uppercase xmd:text-[0.875rem] xmd:font-bold xmd:shadow-none shadow-right font-black 
+                className={cn(` md:absolute group xmd:mt-4 z-1 md:hover:bg-orange-normal cursor-pointer xmd:hover:text-orange-normal hover:text-white duration-300 ease-linear bg-white xmd:text-greyscale-10 text-orange-dark text-[1.5rem] xmd:uppercase xmd:text-[0.875rem] xmd:font-bold xmd:shadow-none activity shadow-right font-black 
                 xmd:leading-[1.2] leading-[1] flex justify-center items-center md:w-[10.81256rem] md:h-16 shrink-0 md:rounded-tr-2xl`, {
                   'md:pl-[3.5rem] ': i === 1,
                   'md:pl-[8rem] md:pr-[4.5rem]': i === 2,
@@ -138,7 +138,7 @@ const Banner = () => {
               </div>
             </div>
             <div className="left-[5rem] top-[4.5rem] absolute flex flex-col items-start xmd:space-y-[0.625rem] space-y-[1.2rem]">
-              <div className=" text-linear xmd:!text-[2.94194rem] relative">Motobike
+              <div className=" text-linear text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative">Motobike
                 tour
 
               </div>
@@ -182,7 +182,7 @@ const Banner = () => {
             </div>
             <div className="xmd:top-[4.5rem] left-[3.5rem] top-[3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]">
               <div>
-                <div className=" text-linear xmd:!text-[2.94194rem] relative">hiking
+                <div className=" text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative">hiking
                 </div>
                 <div className="text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
                 flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl">

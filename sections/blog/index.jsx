@@ -1,14 +1,12 @@
 import React from 'react'
 import Banner from './Banner'
+import StoriesBlog from './StoriesBlog'
+import StartPlanning from './StartPlanning'
 import Breadcrumb from '@/components/breadcrumb'
-
-import RelatedArticle from './RelatedArticle'
-import Detail from './Detail';
-import StartPlanning from '@/sections/blog/StartPlanning.jsx';
-import './blogdetail.css'
-const BlogDetail = () => {
+import './blog.css'
+const Blog = () => {
   return (
-    <div className='blog-detail'>
+    <div className='blog'>
       <section>
         <Banner />
       </section>
@@ -16,16 +14,13 @@ const BlogDetail = () => {
         <Breadcrumb divider />
       </section>
       <section>
-        <Detail />
+        <StoriesBlog />
       </section>
       <section>
         <StartPlanning />
-      </section>
-      <section>
-        <RelatedArticle />
       </section>
     </div>
   )
 }
 
-export default BlogDetail
+export default Blog
