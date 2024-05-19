@@ -1,11 +1,11 @@
-import { Button } from '@/components/button'
+import { Button } from '@/components/customCn/button'
 import Image from 'next/image'
 import TeamSlide from './TeamSlide'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
+import './team.css'
 export default function OurTeam() {
   return (
-    <section className='flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xl:container xmd:flex-col justify-end md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
+    <section className='team flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xl:container xmd:flex-col justify-end md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
       <div className='container md:w-[25.0625rem] space-y-[2.12rem]'>
         <div className='text-1125 uppercase font-bold text-greyscale-80/40'>
           HONG HAO TRAVEL

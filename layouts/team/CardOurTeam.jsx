@@ -1,10 +1,10 @@
-import React from 'react'
+
 import Image from 'next/image'
 const CardOurTeam = () => {
   return (
     <div className='relative overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] h-[28.5rem] flex-col group items-center xmd:space-y-[0.75rem] space-y-[1rem] shadow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)] pb-[0.6875rem] rounded-3xl '>
       <div className='w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-2xl overflow-hidden'>
-        <Image priority alt="ảnh" src={'/common/team.png'} width={300} height={400} className="scale-x-[1.25] scale-y-110 md:group-hover:scale-x-100 md:group-hover:scale-y-100  duration-500 ease-linear rounded-2xl h-full w-full  shrink-0" />
+        <Image priority alt="ảnh" src={'/imgs/common/team.png'} width={300} height={400} className="scale-x-[1.25] scale-y-110 md:group-hover:scale-x-100 md:group-hover:scale-y-100  duration-500 ease-linear rounded-2xl h-full w-full  shrink-0" />
 
       </div>
       <div className="absolute right-[1.1rem] top-[0.6rem] group-hover:opacity-100 opacity-0 duration-500 ">
