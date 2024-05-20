@@ -103,6 +103,11 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        leftToRight: 'leftToRight 10s linear infinite',
+      },
+      backgroundImage: {
+        'custom-gradient':
+          'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.3) 50%, rgba(255, 253, 253, 0) 100%)',
       },
     },
   },

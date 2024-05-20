@@ -235,6 +235,19 @@ input[type='password']::-ms-clear {
     /* Firefox */
   }
 }
+/* animation */
+
+@keyframes leftToRight {
+  0% {
+    right: -2.27806rem;
+  }
+  50% {
+    right: 100%;
+  }
+  100% {
+    right: -2.27806rem;
+  }
+}
 /* 
 [aria-current='page'] {
   color: white;
