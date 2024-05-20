@@ -1,11 +1,16 @@
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '../customCn/button'
-// import {Button} from '../ui/button'
+import {Button} from '../customCn/button'
+import {cn} from '@/lib/utils'
 
-const ItemTour = () => {
+const ItemTour = ({className}) => {
   return (
-    <div className='h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden group'>
+    <div
+      className={cn(
+        'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden group',
+        className,
+      )}
+    >
       <div className='w-full h-full before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'>
         <Image
           src='/imgs/itemTour/demo.jpg'
@@ -16,9 +21,9 @@ const ItemTour = () => {
         />
       </div>
 
-      <div className='flex flex-col h-[13rem] xmd:h-full xmd:p-[1rem] group-hover:h-full transition-all duration-500 justify-between xmd:justify-end absolute bottom-0 left-0 w-full '>
+      <div className='flex flex-col h-[11rem] xmd:h-full xmd:p-[1rem] group-hover:h-full transition-all duration-500 justify-between xmd:justify-end absolute bottom-0 left-0 w-full '>
         {/* top */}
-        <div className='mb-[0.8rem] px-[1rem] py-[1.5rem] xmd:p-0'>
+        <div className='mb-[0.8rem] px-[1rem] pt-[1.5rem] xmd:p-0'>
           <div className='relative overflow-hidden group-hover:hidden group-hover:opacity-0 opacity-100 pointer-events-none transition-all duration-300 flex mb-[1rem] items-center px-[0.75rem] py-[0.38rem] xmd:py-[0.25rem] xmd:px-[0.5rem] rounded-[1.5rem] border border-solid border-[rgba(255, 255, 255, 0.52)] bg-[rgba(255,255,255,0.20)] backdrop-blur-sm w-fit h-[2.25rem] xmd:h-fit'>
             <Image
               src='/imgs/itemTour/icon.svg'
