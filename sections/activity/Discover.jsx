@@ -17,14 +17,15 @@ import {
   DialogContent,
   DialogTrigger,
   DialogClose
-} from "@/components/dialog"
+} from "@/components/customCn/dialog"
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetClose,
   SheetTrigger,
-} from "@/components/sheet"
+} from "@/components/customCn/sheet"
+import SlideVideoTours from '@/components/slide-video-tour';
 gsap.registerPlugin(ScrollTrigger)
 const data =
   [
@@ -66,73 +67,12 @@ const DialogCp = ({ children }) => {
     mainSwiper?.current?.slideTo(activeIndex);
   }, [activeIndex]);
   return (
-    <Dialog>
+    <Dialog className='Dialogclass'>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
       <DialogContent className="">
-        <div className="relative w-[86.875rem] h-[44.75rem] bg-white flex justify-center items-center rounded-3xl">
-          <svg className=' size-[3.3rem] arrowFr absolute right-[17rem] top-[53%] z-[100] -translate-y-1/2' xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
-            <path d="M38 27L22 37L27 27L22 17L38 27Z" fill="white" />
-          </svg>
-          <Swiper
-            // ref={mainSwiper}
-            onBeforeInit={(swiper) => {
-              mainSwiper.current = swiper
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            allowTouchMove={false}
-            speed={1500}
-            effect={'fade'}
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
-            className=''
-          >
-            {images?.map((d, i) => (
-              <SwiperSlide key={i} className='!flex !justify-center !items-center'>
-                <Image priority alt="ảnh" src={d?.img} width={1500} height={1500} className="w-[83.875rem] rounded-[0.75rem] h-[41.75rem] " />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className='absolute z-[100] right-[6rem]'>
-            <Swiper
-              allowTouchMove={false}
-              direction={'vertical'}
-              pagination={{
-                clickable: true,
-              }}
-              loop
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-              }}
-              speed={1500}
-              centeredSlides
-              slidesPerView={6}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Autoplay, Navigation, Thumbs]}
-              onSlideChange={handleSlideChange}
-              // onSwiper={setThumbsSwiper}
-              className="mySwiper !pb-[3rem]  h-[41.75rem] "
-              id="swiper_discover"
-            >
-              {images?.map((d, i) => (
-                <SwiperSlide key={i}>
-                  <div className='relative'>
-
-                    <Image priority alt="ảnh" src={d?.img} width={500} height={500} className={(i === activeIndex ? 'opacity-1 border border-white' : 'border-transparent border opacity-1') + " duration-500 ease-linear w-[10.875rem] h-[6.35rem] "} />
-                    <div className={(i === activeIndex ? " bg-opacity-0 " : " bg-opacity-60 ") + ' bg-black absolute  duration-500 ease-linear top-0 left-0 size-full'}>
-
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
+        <SlideVideoTours />
         <DialogClose className='absolute top-[0rem] -right-[4rem]'>
           <div className="w-[3.25rem] rounded-full flex items-center justify-center h-[3.25rem] shrink-0 bg-[rgba(217,217,217,0.40)] backdrop-blur-[2px]">
             <svg className='size-[1.5rem]' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -176,7 +116,7 @@ const SheetCp = ({ children }) => {
           </div>
         </div>
       </SheetContent>
-    /imgs</Sheet>
+      /imgs</Sheet>
   )
 }
 const Video = ({ children }) => {
@@ -300,10 +240,10 @@ const Discover = () => {
   // menu
   useEffect(() => {
     if (window.innerWidth > 768) {
-    gsap.set(menuRef.current, {
-      boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)",
-      backgroundColor: 'transparent'
-    });
+      gsap.set(menuRef.current, {
+        boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+        backgroundColor: 'transparent'
+      });
       const ctx = gsap.context(() => {
 
         const tl = gsap.timeline({
@@ -375,9 +315,9 @@ const Discover = () => {
         </div >
 
         <div ref={scrollRef} className='w-full'>
-            <h2 className="xmd:absolute top-[9rem] xmd:ml-[0rem] xxl:ml-[5rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] xl:mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem]">
-              Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
-            </h2>
+          <h2 className="xmd:absolute top-[9rem] xmd:ml-[0rem] xxl:ml-[5rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] xl:mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem]">
+            Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
+          </h2>
 
           <div ref={menuRef} className=" xmd:mt-[5rem] md:z-10 mt-[1.75rem] w-full h-[5.25rem] flex justify-center items-center shrink-0">
             <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">

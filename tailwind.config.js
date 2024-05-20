@@ -75,6 +75,8 @@ module.exports = {
         'greyscale-70': '#313131',
         'greyscale-80': '#262626',
         'orange-normal': '#E64827',
+        'orange-normal': '#E64827',
+        'orange-normal-active': '#c24216',
         'orange-hover': '#DA4B19',
         'orange-dark': '#B63E15',
         'orange-darker': '#551D0A',

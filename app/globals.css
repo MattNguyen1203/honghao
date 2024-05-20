@@ -235,157 +235,6 @@ input[type='password']::-ms-clear {
     /* Firefox */
   }
 }
-.activity .text-linear {
-  font-size: 6.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 6.25rem */
-  text-transform: uppercase;
-  background: linear-gradient(
-    180deg,
-    #fff 37.06%,
-    rgba(255, 255, 255, 0) 107.22%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.activity .text-linear2 {
-  font-family: 'Trip Sans';
-  font-size: 6.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 6.25rem */
-  text-transform: uppercase;
-  background: linear-gradient(
-    180deg,
-    #fff 30.31%,
-    rgba(255, 255, 255, 0) 87.67%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-#swiper_discover .swiper-wrapper {
-  transition-timing-function: linear !important;
-}
-
-@keyframes scaleInOut {
-  0% {
-    transform: scale(0.7);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.7);
-  }
-}
-
-.circle {
-  animation: scaleInOut 1.5s ease-in-out infinite;
-}
-@keyframes keyArrow {
-  0% {
-    transform: translateX(0px);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
-}
-.arrowFr {
-  animation: keyArrow 1.5s ease-in-out infinite;
-}
-
-.activity .mySwiper .swiper-slide-thumb-active {
-  opacity: 1;
-}
-.activity .mySwiper.swiper-slide {
-  opacity: 0.2;
-}
-.shadow-right {
-  box-shadow: 20px 0 30px -10px rgba(0, 0, 0, 0.25),
-    8px 0 15px -5px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes rotateForever {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.circular-infinity {
-  animation: rotateForever 8s linear infinite; /* Ví dụ: xoay với tốc độ 5s mỗi vòng và lặp lại vô tận */
-}
-.flip-container {
-  perspective: 1000px; /* Định nghĩa khoảng cách giữa mắt và phần tử */
-  width: 200px;
-  height: 100px;
-}
-
-.flipper {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s; /* Thời gian chuyển đổi */
-  transform-style: preserve-3d; /* Đảm bảo các mặt con sẽ hiển thị đúng trên mặt cha */
-}
-
-.flip-container:hover .flipper {
-  transform: rotateX(180deg);
-}
-
-.front,
-.back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden; /* Ẩn mặt sau của phần tử */
-}
-
-.back {
-  transform: rotateX(180deg);
-}
-
-.rotate-y {
-  transform: rotateX(3.142rad);
-}
-
-.tabslide[data-state='active'] {
-  background-color: black; /* Example styling */
-  color: white; /* Example styling */
-}
-.data-\[state\=active\]\:text-orange-normal[data-state='active'] > div {
-  --tw-text-opacity: 1;
-  background-color: rgb(230 72 39 / var(--tw-text-opacity));
-}
-
-.data-\[state\=active\]\:text-orange-normal[data-state='inactive']:hover div {
-  --tw-text-opacity: 1;
-  background-color: rgb(230 72 39 / var(--tw-text-opacity));
-  width: 100%;
-  transition: all 0.3s linear;
-}
-.data-\[state\=active\]\:text-orange-normal[data-state='inactive']:hover {
-  color: rgb(230 72 39 / var(--tw-text-opacity));
-  transition: all 0.3s linear;
-}
-.data-\[state\=active\]\:text-orange-normal[data-state='inactive'] {
-  color: rgb(197 197 197 / var(--tw-text-opacity));
-  transition: all 0.3s linear;
-}
-.data-\[state\=active\]\:text-orange-normal[data-state='inactive'] > div {
-  --tw-text-opacity: 1;
-  background-color: transparent;
-  width: 0;
-  transition: all 0.3s linear;
-}
-
 /* animation */
 
 @keyframes leftToRight {
@@ -399,3 +248,9 @@ input[type='password']::-ms-clear {
     right: -2.27806rem;
   }
 }
+/* 
+[aria-current='page'] {
+  color: white;
+  font-weight: bold;
+  background-color: #c24216;
+} */
