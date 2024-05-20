@@ -385,3 +385,17 @@ input[type='password']::-ms-clear {
   width: 0;
   transition: all 0.3s linear;
 }
+
+/* animation */
+
+@keyframes leftToRight {
+  0% {
+    right: -2.27806rem;
+  }
+  50% {
+    right: 100%;
+  }
+  100% {
+    right: -2.27806rem;
+  }
+}
