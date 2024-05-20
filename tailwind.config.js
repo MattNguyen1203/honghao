@@ -62,7 +62,6 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
         'orange-normal-hover': '#DA4B19',
-
         'grey-grey-100': '#C3C3C3',
         'greyscale-0': '#fff',
         'greyscale-5': '#F1F1F1',

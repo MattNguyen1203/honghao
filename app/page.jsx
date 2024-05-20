@@ -1,7 +1,7 @@
-import OurTeam from '@/layouts/team'
+import Homepage from '@/sections/homepage'
 import React from 'react'
 const page = () => {
-  return <OurTeam />
+  return <Homepage />
 }
 
 export default page

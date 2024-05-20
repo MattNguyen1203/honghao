@@ -1,0 +1,8 @@
+.nav-slide .swiper-scrollbar {
+  background-color: rgba(240, 240, 240, 0.3);
+  opacity: 1 !important;
+}
+
+.nav-slide .swiper-scrollbar .swiper-scrollbar-drag {
+  background-color: rgba(255, 255, 255, 0.7);
+}
