@@ -1,9 +1,12 @@
-import React from 'react'
+"use client"
+import React, { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from 'next/image'
 import CardBlog from './CardBlog'
 import ListStories from './ListStories'
-
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 const Button = ({ children }) => {
   return (
     <div className='  flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
@@ -39,14 +42,15 @@ const TitleBeauty = ({ children }) => {
 
 const StoriesBlog = () => {
   const data = [
-    { title: 'Article' },
-    { title: 'News' },
-    { title: 'Tips' },
-    { title: 'Hagiang Friends' },
-    { title: 'destination' },
-    { title: 'travel' },
+    { title: 'All Blog', link: '/blog' },
+    { title: 'Article', link: '/blog/article' },
+    { title: 'News', link: '/blog/news' },
+    { title: 'Tips', link: '/blog/tips' },
+    { title: 'Hagiang Friends', link: '/blog/hangiang-friends' },
+    { title: 'destination', link: '/blog/destination' },
+    { title: 'travel', link: '/blog/travel' },
   ]
-
+  const pathName = usePathname()
   return (
     <section>
       <div className="flex flex-col xmd:relative items-center gap-[3.9375rem]">
@@ -71,31 +75,28 @@ const StoriesBlog = () => {
               </h2>
             </TitleBeauty>
           </div>
-          <Tabs defaultValue="Article" className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center subContainer">
+          <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center subContainer">
             <div className='xmd:w-screen xmd:overflow-auto xmd:no-scrollbar'>
-              <TabsList className='w-fit xmd:!pl-[1rem] xmd:space-x-[0.63rem] h-fit  space-x-[0.94rem] md:!mr-[4rem] md:!mb-[1rem]'>
+              <div className='flex items-start space-x-[0.94rem]'>
                 {data?.map((d, i) => (
 
-                  <TabsTrigger key={i} value={d?.title} className='hover:text-white text-[#030922] bg-[#FCF8F7] data-[state=active]:text-white hover:bg-orange-normal  data-[state=active]:bg-orange-normal 
-                    flex justify-center items-center gap-2.5 xmd:px-[2rem] xmd:py-[0.6875rem] px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]
-                  '>
-                    {/* <div className=''> */}
-                    <div className=" font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
+                  <Link href={`${d?.link}`} scroll={false} >
+                    <div key={i} value={d?.title} className={cn('flex duration-200 ease-linear justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                      !pathName?.includes(d?.link) || pathName.localeCompare(d?.link) ? 'bg-[#FCF8F7] text-black hover:bg-orange-normal hover:text-white' : ''
+                    )}>
+                      {/* <div className=''> */}
+                      <div className=" font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
-                      {d?.title}
+                        {d?.title}
+                      </div>
+                      {/* </div> */}
                     </div>
-                    {/* </div> */}
-                  </TabsTrigger>
+                  </Link>
                 ))}
-              </TabsList>
+              </div>
             </div>
-            {data?.map((d, i) => (
-
-              <TabsContent key={i} value={d?.title} className=''>
-                <ListStories />
-              </TabsContent>
-            ))}
-          </Tabs>
+            <ListStories />
+          </div>
 
         </div>
       </div>

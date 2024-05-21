@@ -62,7 +62,6 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
         'orange-normal-hover': '#DA4B19',
-
         'grey-grey-100': '#C3C3C3',
         'greyscale-0': '#fff',
         'greyscale-5': '#F1F1F1',
@@ -77,6 +76,7 @@ module.exports = {
         'orange-normal': '#E64827',
         'orange-normal': '#E64827',
         'orange-normal-active': '#c24216',
+        'green-normal-hover': '#206545',
         'orange-hover': '#DA4B19',
         'orange-dark': '#B63E15',
         'orange-darker': '#551D0A',
@@ -84,11 +84,16 @@ module.exports = {
         'green-normal': '#122718',
         'green-hover': '#206545',
         'green-dark': '#1A543A',
+        'green-dark-active': '#103223',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      backgroundImage: {
+        'card-des':
+          'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 50%, rgba(255, 253, 253, 0.00) 100%)',
       },
       keyframes: {
         'accordion-down': {

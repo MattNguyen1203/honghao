@@ -29,9 +29,6 @@ const BikeAnimation = () => {
           const scrollPosition = window.scrollY || window.pageYOffset
           const sectionTop = sectionRef.current?.getBoundingClientRect()?.top
 
-          console.log('scrollPosition', scrollPosition)
-          console.log('sectionTop', sectionTop)
-
           if (sectionTop > 0 && sectionTop < scrollPosition / 2 && !isStart) {
             isStart = true
 

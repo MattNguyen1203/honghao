@@ -71,10 +71,10 @@
     @apply border border-black;
   }
   .container {
-    @apply max-w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
+    @apply w-[87.5rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
   .subContainer {
-    @apply max-w-[90rem] mx-auto xmd:w-full;
+    @apply w-[87.5rem] mx-auto xmd:w-full;
   }
   h1 {
     @apply text-[6rem] leading-[1];
@@ -249,6 +249,20 @@ input[type='password']::-ms-clear {
     scrollbar-width: none;
     /* Firefox */
   }
+}
+.slide-video-tour.mySwiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+@keyframes rotateForever {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.circular-infinity {
+  animation: rotateForever 8s linear infinite;
 }
 /* animation */
 
