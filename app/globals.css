@@ -71,10 +71,10 @@
     @apply border border-black;
   }
   .container {
-    @apply w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
+    @apply w-[87.5rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
   .subContainer {
-    @apply w-[90rem] mx-auto xmd:w-full;
+    @apply w-[87.5rem] mx-auto xmd:w-full;
   }
   h1 {
     @apply text-[6rem] leading-[1];
