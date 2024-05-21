@@ -8,7 +8,7 @@ const Breadcrumb = ({divider, className, children}) => {
     <>
       <div
         className={cn(
-          'flex flex-col items-start gap-5 mx-auto md:h-14 container xmd:pb-2 pt-2 md:pt-5',
+          'flex flex-col items-start gap-5 mx-auto md:h-14 kKao4-container xmd:pb-2 pt-2 md:pt-5',
           className,
         )}
       >
@@ -31,7 +31,7 @@ const Breadcrumb = ({divider, className, children}) => {
           {children}
         </div>
       </div>
-      {divider && <div className='md:hidden w-full h-[0.0625rem] bg-greyscale-10/30'></div>}
+      {divider && <div className='w-full h-[0.0625rem] bg-greyscale-10/30'></div>}
     </>
   )
 }

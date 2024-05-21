@@ -1,18 +1,12 @@
-'use client'
-// TODO: remove
-
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Banner from '@/sections/common/banner'
-import Image from 'next/image'
-import React, {useState} from 'react'
-import {cn} from '@/lib/utils'
-import QuestionLookHere from '@/sections/faq/QuestionLookHere'
-import FrequentlyAskedQuestions from '@/sections/faq/FrequentlyAskedQuestions'
+import QuestionLookHere from '@/sections/faq/question-look-here/QuestionLookHere'
+import FrequentlyAskedQuestions from '@/sections/faq/frequently-asked-question/FrequentlyAskedQuestions'
 
-export default function page() {
+export default function FaqPage() {
   return (
-    <div>
+    <main>
       <section>
         <Banner
           mainImg={'/imgs/faq/background-image.jpg'}
@@ -25,10 +19,8 @@ export default function page() {
           <BreadcrumbLink href='/faq'>FAQs</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      <div className='container'>
-        <QuestionLookHere />
-        <FrequentlyAskedQuestions />
-      </div>
-    </div>
+      <QuestionLookHere />
+      <FrequentlyAskedQuestions />
+    </main>
   )
 }

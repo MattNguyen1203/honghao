@@ -1,7 +1,8 @@
 'use client'
 
 import {useState} from 'react'
-import AccordionCustom from '../common/accordion'
+import AccordionCustom from '@/sections/common/accordion'
+import './styles.css'
 
 const regName = /^[A-Za-z][\w\s]*[A-Za-z]$/
 const regPhone = /^\d{8,}$/
@@ -26,14 +27,14 @@ export default function FrequentlyAskedQuestions() {
     }
   }
   return (
-    <section>
-      <h3 className='text-greyscale-80 font-tripsans text-1.5 md:text-2.5 font-bold leading-1 mb-6 md:mb-[2.8rem]'>
+    <section className='kKao4-container'>
+      <h3 className='h3 mb-6 md:mb-[2.8rem]'>
         Frequently asked Questions
       </h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={new Array(6).fill(0)} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
-          <h4 className='mb-6 md:mb-8'>Ask a different question</h4>
+          <h4 className='mb-6 h4 md:mb-8'>Ask a different question</h4>
           <form
             className='grid grid-cols-2 gap-4'
             onSubmit={(e) => handleOnSubmit(e)}

@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function QuestionLookHere() {
   return (
-    <section className='relative pt-8 md:pt-[2.94rem] mb-12 md:mb-[4.5rem]'>
+    <section className='kKao4-container relative pt-8 md:pt-[2.94rem] mb-12 md:mb-[4.5rem]'>
       <div className='mb-[1.12rem] md:mb-14'>
         <SectionHeading
           h5='FAQS'
