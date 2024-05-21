@@ -24,7 +24,6 @@ const AccordionCustom = ({data}) => {
             <AccordionTrigger className='text-1 xmd:text-0875 font-bold tracking-[0.0125rem] text-greyscale-30 py-[0.5rem] hover:no-underline border-b border-solid border-[#828282] [&[data-state=open]]:border-orange-normal [&[data-state=open]]:text-orange-normal'>
               Is it accessible?
             </AccordionTrigger>
-            <AccordionContent className='text-1 tracking-[0.0125rem] text-greyscale-40 py-2 md:py-4'>
             <AccordionContent className='!text-1 xmd:!text-0875 tracking-[0.0125rem] text-greyscale-40 pt-[1rem]'>
               Yes. It adheres to the WAI-ARIA design pattern.
             </AccordionContent>
