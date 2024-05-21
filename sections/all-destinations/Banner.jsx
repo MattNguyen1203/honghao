@@ -59,121 +59,13 @@ const data = [
 const Banner = () => {
   return (
     <div className='relative'>
-      <SlideVideoTours type='banner' />
+      <div><SlideVideoTours type='banner' /></div>
       <Image priority alt="ảnh" src={'/imgs/all-destinations/map.png'} width={401} height={401}
         className="w-[24.4375rem] h-[24.75rem] shrink-0 absolute bottom-[13rem] z-10 right-[18.72rem]" />
-      <div className='relative xl:container'>
-        <div className='absolute bottom-[2rem] z-10 left-[5rem] inline-flex flex-col items-start space-y-[1.5625rem]'>
-          <div className="flex flex-col items-start space-y-3">
-            <div className="flex items-center space-x-[0.85rem] self-stretch">
-              <div className="flex items-center space-x-[0.375rem]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white" />
-                  <path d="M15.7106 15.9298C15.5806 15.9298 15.4506 15.8998 15.3306 15.8198L12.2306 13.9698C11.4606 13.5098 10.8906 12.4998 10.8906 11.6098V7.50977C10.8906 7.09977 11.2306 6.75977 11.6406 6.75977C12.0506 6.75977 12.3906 7.09977 12.3906 7.50977V11.6098C12.3906 11.9698 12.6906 12.4998 13.0006 12.6798L16.1006 14.5298C16.4606 14.7398 16.5706 15.1998 16.3606 15.5598C16.2106 15.7998 15.9606 15.9298 15.7106 15.9298Z" fill="white" />
-                </svg>
-                <div className="text-base not-italic font-extrabold leading-[150%] text-white">
-                  Intermediate
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-[0.575rem]">
-                <div className="size-[0.28rem] bg-white rounded-full"></div>
-                <div className=" overflow-hidden text-greyscale-5 text-ellipsis text-base not-italic font-normal leading-[120%] tracking-[0.0125rem]">
-                  3 Days / 4 Night
-                </div>
-              </div>
-
-
-            </div>
-            <div className=' font-londrina text-white text-[2rem] not-italic font-black leading-[100%]'>
-              Ha Giang Loop tour: Itinerary in 3 Days 4 Nights
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2  w-[40rem] gap-x-[3rem] gap-y-[1.5rem]">
-            <div className='space-y-[1.5rem]'>
-              {data.slice(0, 2).map((d, i) => (
-                <div key={i} className="flex flex-col items-start space-y-[0.75rem]">
-
-                  <div className="flex w-72 flex-col justify-center items-start gap-2">
-                    <div className="flex items-center gap-1">
-                      <div className="size-[1.5rem]">
-
-                        {d?.icon}
-                      </div>
-                      <div className="text-greyscale-10 text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]">
-                        {d?.title}
-                      </div>
-                    </div>
-                    <svg className='w-[17rem] h-[2px] stroke-[1px] stroke-[#D9D9D9]' xmlns="http://www.w3.org/2000/svg" width="274" height="2" viewBox="0 0 274 2" fill="none">
-                      <path d="M1 1H273" stroke="url(#paint0_linear_8549_24325)" stroke-linecap="round" />
-                      <defs>
-                        <linearGradient id="paint0_linear_8549_24325" x1="2.3399" y1="1.49976" x2="270.99" y2="1.49976" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#D9D9D9" />
-                          <stop offset="1" stop-color="#D9D9D9" stop-opacity="0" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                  <ul className='pl-[1.6rem] w-[19rem]'>
-
-                    {d?.children.map((c, i) => (
-                      <li key={i} className="list-disc text-white text-sm not-italic font-bold leading-[150%]">
-                        {c?.text}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-              ))}
-            </div>
-            <div className='space-y-[1.5rem]'>
-              {data.slice(2, 4).map((d, i) => (
-                <div key={i} className="flex flex-col items-start space-y-[0.75rem]">
-
-                  <div className="flex w-72 flex-col justify-center items-start gap-2">
-                    <div className="flex items-center gap-1">
-                      <div className="size-[1.5rem]">
-
-                        {d?.icon}
-                      </div>
-                      <div className="text-greyscale-10 text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]">
-                        {d?.title}
-                      </div>
-                    </div>
-                    <svg className='w-[17rem] h-[2px] stroke-[1px] stroke-[#D9D9D9]' xmlns="http://www.w3.org/2000/svg" width="274" height="2" viewBox="0 0 274 2" fill="none">
-                      <path d="M1 1H273" stroke="url(#paint0_linear_8549_24325)" stroke-linecap="round" />
-                      <defs>
-                        <linearGradient id="paint0_linear_8549_24325" x1="2.3399" y1="1.49976" x2="270.99" y2="1.49976" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#D9D9D9" />
-                          <stop offset="1" stop-color="#D9D9D9" stop-opacity="0" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                  <ul className='pl-[1.6rem] w-[19rem]'>
-
-                    {d?.children.map((c, i) => (
-                      <li key={i} className="list-disc text-white text-sm not-italic font-bold leading-[150%]">
-                        {c?.text}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-              ))}
-            </div>
-          </div>
-
-        </div>
-
-
-        <div className="absolute z-10 left-1/2 -translate-x-1/2 bottom-[6rem] opacity-100 duration-500 ">
-          <div className="relative">
-            <Image priority alt="ảnh" src={'/imgs/all-destinations/price.png'} width={300} height={400} className="z-10 w-[7.71775rem]" />
-            <Image priority alt="ảnh" src={'/imgs/all-destinations/honghao-xoay.png'} width={300} height={400} className="w-[11.375rem] z-10 absolute top-0 circular-infinity " />
-          </div>
-
+      <div className='absolute xl:container border-red-500 left-1/2 z-50 h-full w-full -translate-x-1/2 top-0'>
+        <div className='relative'>
+          <Image priority alt="ảnh title web" src={'/imgs/all-destinations/main_title.png'} width={840} height={355} className="absolute left-[5rem] z-50 xmd:hidden top-[9rem] w-[43.3605rem] h-[16.1875rem]" />
+          <Image priority alt="ảnh title mobi" src={'/imgs/all-destinations/main-title-mobi.png'} width={840} height={355} className=" left-[5rem]  xmd:mx-auto top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]" />
         </div>
       </div>
     </div>

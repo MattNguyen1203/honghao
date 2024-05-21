@@ -296,8 +296,8 @@ const Discover = () => {
 
       }, menuRef)
       return () => ctx.revert()
-    }
 
+    }
   }, [])
   console.log({ isMobile })
   return (

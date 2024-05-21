@@ -4,6 +4,7 @@ import Image from 'next/image'
 import CardDestination from './CardDestination';
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import PaginationCustom from '@/components/paginationcustom';
 gsap.registerPlugin(ScrollTrigger)
 const DiscoveryDestinations = () => {
 
@@ -11,40 +12,44 @@ const DiscoveryDestinations = () => {
   const pinRef = useRef()
   const pin2Ref = useRef()
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // ScrollTrigger cho phần tử đầu tiên
-      ScrollTrigger.create({
-        trigger: pinRef.current,
-        pin: pinRef.current,
-        start: "top 13%",
-        end: () => `+=${scrollRef.current.offsetHeight} 80%`,
-        toggleActions: "restart reverse reverse reverse",
-        scrub: 1,
-        markers: true,
-        pinSpacing: false,
-      });
+    if (window.innerWidth > 768) {
 
-      // ScrollTrigger cho phần tử thứ hai
-      ScrollTrigger.create({
-        trigger: pin2Ref.current,
-        pin: pin2Ref.current,
-        start: "-1% 13%",
-        end: () => `+=${scrollRef.current.offsetHeight} 80%`,
-        toggleActions: "restart reverse reverse reverse",
-        scrub: 1,
+      const ctx = gsap.context(() => {
+        // ScrollTrigger cho phần tử đầu tiên
+        ScrollTrigger.create({
+          trigger: pinRef.current,
+          pin: pinRef.current,
+          start: "top 13%",
+          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          toggleActions: "restart reverse reverse reverse",
+          scrub: 1,
+          markers: true,
+          pinSpacing: false,
+        });
 
-        pinSpacing: false,
-      });
-    }, scrollRef);
+        // ScrollTrigger cho phần tử thứ hai
+        ScrollTrigger.create({
+          trigger: pin2Ref.current,
+          pin: pin2Ref.current,
+          start: "-1% 13%",
+          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          toggleActions: "restart reverse reverse reverse",
+          scrub: 1,
 
-    return () => ctx.revert();
+          pinSpacing: false,
+        });
+      }, scrollRef);
+
+      return () => ctx.revert();
+    }
+
   }, []);
 
   return (
     <section className='relative mt-[2.63rem]'>
       <Image ref={pinRef} priority alt="ảnh" src={'/imgs/all-destinations/discover-desti.png'} width={1600} height={900} className="absolute w-full h-[49.25rem]" />
-      <div ref={scrollRef} className=' xl:container flex justify-around'>
-        <div ref={pin2Ref} className=" inline-flex flex-col mt-[1.4rem] w-fit items-center space-y-[1.5rem]">
+      <div ref={scrollRef} className=' xl:container flex xmd:flex-col justify-around'>
+        <div ref={pin2Ref} className=" inline-flex flex-col mt-[1.4rem] w-fit items-start space-y-[1.5rem]">
           <div className="flex flex-col items-start space-y-[0.75rem]">
             <div className="text-green-dark-active opacity-40 text-lg not-italic font-extrabold leading-[100%]">
               DISCOVERY HA GIANG
@@ -59,7 +64,7 @@ const DiscoveryDestinations = () => {
         </div>
         <div>
 
-          <div className="grid grid-cols-2 gap-[1.25rem] w-fit ">
+          <div className="grid xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit ">
             <CardDestination />
             <CardDestination />
             <CardDestination />
@@ -69,6 +74,7 @@ const DiscoveryDestinations = () => {
             <CardDestination />
             <CardDestination />
           </div>
+          <PaginationCustom />
         </div>
       </div>
     </section>
