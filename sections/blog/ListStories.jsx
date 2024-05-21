@@ -5,7 +5,7 @@ const CardMain = () => {
   return (
     <div className='xmd:hidden relative rounded-md overflow-hidden'>
       <Image priority alt="ảnh" src={'/imgs/blog/cardmain.jpg'} width={1500} height={800} className="w-[89.9375rem] h-[43.6875rem] shrink-0" />
-      <div className="absolute botstom-0 left-0">
+      <div className="absolute z-10 bottom-0 left-0">
         <div className="bg-green-dark flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0">
           <div className="inline-flex flex-col items-start space-y-[5.1875rem]">
             <div className="inline-flex flex-col items-start space-y-[1.1875rem]">

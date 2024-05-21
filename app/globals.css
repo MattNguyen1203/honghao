@@ -235,6 +235,20 @@ input[type='password']::-ms-clear {
     /* Firefox */
   }
 }
+.slide-video-tour.mySwiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+@keyframes rotateForever {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.circular-infinity {
+  animation: rotateForever 8s linear infinite;
+}
 /* animation */
 
 @keyframes leftToRight {
