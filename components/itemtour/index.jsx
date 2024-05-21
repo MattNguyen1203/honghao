@@ -39,7 +39,7 @@ const ItemTour = () => {
               <span className='text-15 xmd:text-1125 font-medium mr-[0.44rem]'>
                 $199
               </span>
-              <span className='relative text-0875  xmd:text-075 tracking-[0.00219rem] border-b border-b-[#fff] pb-[0.12rem]'>
+              <span className='relative text-0875  xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                 Self - Driving
               </span>
             </div>
@@ -48,7 +48,7 @@ const ItemTour = () => {
               <span className='text-15  xmd:text-1125 font-medium mr-[0.44rem]'>
                 $199
               </span>
-              <span className='relative text-0875 xmd:text-075 tracking-[0.00219rem] border-b border-b-[#fff] pb-[0.12rem]'>
+              <span className='relative text-0875 xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                 Local driver
               </span>
             </div>

@@ -71,16 +71,22 @@
     @apply border border-black;
   }
   .container {
-    @apply w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
+    @apply max-w-[90rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
   .subContainer {
-    @apply w-[90rem] mx-auto xmd:w-full;
+    @apply max-w-[90rem] mx-auto xmd:w-full;
   }
   h1 {
     @apply text-[6rem] leading-[1];
   }
   h2 {
-    @apply text-[3.5rem] font-black leading-[1] font-londrina;
+    @apply text-2 md:text-3.5 font-black leading-1.2 md:leading-1 font-londrina text-greyscale-80 xmd:tracking-[0.005rem];
+  }
+  h4 {
+    @apply font-bold text-greyscale-80 font-tripsans leading-1 text-1.5;
+  }
+  h5 {
+    @apply text-greyscale-60 md:text-greyscale-80 font-tripsans text-0.875 leading-1.2 md:text-1.125 md:leading-1 font-extrabold opacity-40;
   }
   .text-75 {
     @apply text-[7.5rem] leading-[1];
@@ -120,6 +126,15 @@
   }
   .text-075 {
     @apply text-[0.75rem] leading-[1.2];
+  }
+  .transition-300 {
+    @apply transition-all duration-300 ease-out;
+  }
+  .transition-400 {
+    @apply transition-all duration-400 ease-out;
+  }
+  .transition-500 {
+    @apply transition-all duration-500 ease-out;
   }
 }
 

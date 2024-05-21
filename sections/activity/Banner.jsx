@@ -108,7 +108,7 @@ const Banner = () => {
         <div className="md:hidden"><Breadcrumb /></div>
         <div className='xmd:container inline-flex md:absolute  flex-col left-[5rem] top-[32rem] items-start space-y-[2.0625rem]'>
 
-          <div className="md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]">
+          <div className="md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]">
             Ha Giang, nestled in the rugged mountains of northern Vietnam, beckons adventurers with its breathtaking scenery and vibrant cultural tapestry. From the towering peaks of the Dong Van Karst Plateau to the winding roads of the Ma Pi Leng Pass, Ha Giang offers an unforgettable journey through some of Vietnam's most awe-inspiring landscapes.
           </div>
           <div className=" flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]">
@@ -218,7 +218,7 @@ const Banner = () => {
 
           </div>
         </div>
-        <div className="absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-[0.00219rem]  tracking-[0.005rem]">
+        <div className="absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]">
           Embark on an unforgettable journey to Ha Giang, where breathtaking landscapes and vibrant cultures await you. Explore the majestic mountains, winding roads, and terraced rice fields while immersing yourself in the rich traditions of the local ethnic communities. Let our guided tours lead you through this mesmerizing region, filled with authentic experiences and hidden gems waiting to be discovered. Join us in Ha Giang and create memories that will last a lifetime
         </div>
       </div>
