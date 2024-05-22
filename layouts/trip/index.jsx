@@ -1,15 +1,9 @@
-import Image from "next/image";
+import SliderTour from '@/sections/all-tour/SliderTour'
 
 export default function TripsForYou() {
   return (
-    <section className="w-full h-[38.2rem] flex justify-center">
-      <Image
-        className="object-fill w-[90rem] h-full"
-        src={"/layouts/trip/trip.png"}
-        alt="trip"
-        width={1600}
-        height={500}
-      />
+    <section className='w-full flex justify-center'>
+      <SliderTour />
     </section>
-  );
+  )
 }
