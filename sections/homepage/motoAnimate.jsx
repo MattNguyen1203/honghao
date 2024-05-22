@@ -9,22 +9,10 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
 
 const MotoAnimate = () => {
   useEffect(() => {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#animate',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-
-    timeline
+    const motionPathTimeline = gsap.timeline({paused: true})
+    motionPathTimeline
       .from('#line_path', {
-        height: 0, // Initially hide the whole path
-        duration: 3,
-      })
-      .to('#line_path', {
-        height: '100px', // Draw the path
+        drawSVG: '0%',
         duration: 3,
       })
       .to(
@@ -41,7 +29,14 @@ const MotoAnimate = () => {
           opacity: 1,
         },
         '+=1',
-      ) // 1-second delay after the line is drawn
+      )
+
+    ScrollTrigger.create({
+      trigger: '#animate',
+      start: 'top center',
+      markers: true,
+      onEnter: () => motionPathTimeline.play(),
+    })
   }, [])
   return (
     <div
