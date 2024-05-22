@@ -3,7 +3,8 @@ import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
-import ResponsiveProvider from '@/components/provider/responsiveProivder'
+import ResponsiveProvider from '@/components/provider/responsiveProvider'
+import {Toaster} from '@/components/ui/toaster'
 
 const londrina = Londrina_Solid({
   display: 'swap',
@@ -65,6 +66,7 @@ export default function RootLayout({children}) {
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </ResponsiveProvider>
       </body>
     </html>

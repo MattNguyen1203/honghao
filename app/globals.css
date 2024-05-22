@@ -303,3 +303,7 @@ input[type='password']::-ms-clear {
   font-weight: bold;
   background-color: #c24216;
 } */
+
+.cut-img {
+  mask-image: url('../public/imgs/home/1-buc-anh-co-hinh-giong-england-deco-1.png');
+}
