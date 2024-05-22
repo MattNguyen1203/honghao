@@ -1,14 +1,13 @@
-"use client"
-import SlideVideoTours from '@/components/slide-video-tour'
+
 import React from 'react'
 import './allDestinations.css'
-import Breadcrumb from '@/components/breadcrumb'
 import DiscoveryDestinations from './DiscoveryDestinations'
 import Banner from './Banner'
 import BannerMobile from '../common/banner'
-const AllDestinations = () => {
+import Breadcrumb from '@/components/breadcrumb'
+const Destinations = () => {
   return (
-    <div className='alldestinations'>
+    <div csName='alldestinations'>
       <section className='xmd:hidden'><Banner /></section>
       <section className='md:hidden'>
 
@@ -18,11 +17,10 @@ const AllDestinations = () => {
           mainTextMb='/imgs/common/textMb.png'
         />
       </section>
-      <section><Breadcrumb divider /></section>
+      <section className='md:hidden'><Breadcrumb divider /></section>
       <section><DiscoveryDestinations /></section>
-      <section className='h-[1000px]'></section>
     </div>
   )
 }
 
-export default AllDestinations
+export default Destinations

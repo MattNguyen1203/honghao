@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 const Breadcrumb = ({divider}) => {
   return (
     <>
-      <div className='flex md:w-[100rem] md:h-14 xl: container flex-col items-start gap-5 xmd:pb-2 md:pt-5'>
+      <div className='flex md:w-[100rem] md:h-14 container flex-col items-start gap-5 xmd:pb-2 md:pt-5'>
         <div className='flex items-center space-x-[0.25rem]'>
           <svg
             className='size-[1rem]'
