@@ -34,7 +34,7 @@
     transform: translateX(0px);
   }
 }
-.activity .arrowfr {
+.activity.arrowfr {
   animation: keyArrow 1.5s ease-in-out infinite;
 }
 .activity .mySwiper .swiper-wrapper {

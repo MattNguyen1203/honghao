@@ -5,14 +5,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './team.css'
 export default function OurTeam() {
   return (
-    <section className=' flex items-center justify-center'>
+  <section className=' flex items-center justify-center'>
       <div className='team  xl:container md:mx-auto flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-start md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
         <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem]'>
           <div className='text-1125 uppercase font-bold text-greyscale-80/40'>
             HONG HAO TRAVEL
           </div>
           <h2 className='uppercase !mt-[0.75rem]'>OUR TEAM</h2>
-          <p className='text-1 tracking-[0.005rem] text-greyscale-40'>
+          <p className='text-1 z-[1000] tracking-[0.005rem] text-greyscale-40'>
             We pride ourselves on having a team of dedicated and passionate
             individuals who are committed to providing exceptional service and
             unforgettable experiences to our guests. Our team is comprised of

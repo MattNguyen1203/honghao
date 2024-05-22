@@ -7,8 +7,8 @@ export default function AllTour() {
   return (
     <main>
       <BannerAllTour />
-      <div className='xmd:mt-[0.5rem]'>
-        <Breadcrumb divider />
+      <div>
+        <Breadcrumb type='section' divider />
       </div>
       <section>
         <SliderTour />

@@ -1,9 +1,10 @@
 
-
-const Breadcrumb = ({divider}) => {
+import { cn } from '@/lib/utils'
+const Breadcrumb = ({ divider, type }) => {
+  const checkIsSection = type === 'section'
   return (
     <>
-      <div className='flex md:w-[100rem] md:h-14 container flex-col items-start gap-5 xmd:pb-2 md:pt-5'>
+      <div className='flex md:w-[100rem] container flex-col items-start justify-center gap-5 xmd:pb-2 h-14 xmd:h-[2.375rem] xmd:pt-2 py-5 '>
         <div className='flex items-center space-x-[0.25rem]'>
           <svg
             className='size-[1rem]'
@@ -23,7 +24,8 @@ const Breadcrumb = ({divider}) => {
               Home
             </div>
             <svg
-              className='w-[0.1875rem] xmd:mt-[0.1rem] h-[0.375rem] stroke-[#E64827] xmd:stroke-white'
+              className={cn('w-[0.1875rem] xmd:mt-[0.1rem] h-[0.375rem] stroke-[#E64827] ',
+                checkIsSection ? '' : 'xmd:stroke-white')}
               xmlns='http://www.w3.org/2000/svg'
               width='5'
               height='8'
@@ -37,7 +39,9 @@ const Breadcrumb = ({divider}) => {
                 stroke-linejoin='round'
               />
             </svg>
-            <div className='text-greyscale-80 xmd:text-white text-sm not-italic font-normal leading-[150%] tracking-[0.00219rem]'>
+            <div className={cn('text-greyscale-80  text-sm not-italic font-normal leading-[150%] tracking-[0.00219rem]',
+              checkIsSection ? '' : 'xmd:text-white'
+            )}>
               Blog
             </div>
           </div>

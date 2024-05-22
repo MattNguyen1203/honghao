@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Detail = () => {
+const Detail = ({ data }) => {
   return (
     <section className='w-full md:border-b md:border-[#E5E5E5]'>
       <div className="md:container relative h-[50rem] md:border-l md:border-r md:border-[#E5E5E5] mx-auto">
