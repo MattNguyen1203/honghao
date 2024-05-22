@@ -80,7 +80,7 @@
     @apply text-[6rem] leading-[1];
   }
   h2 {
-    @apply text-[3.5rem] font-black leading-[1] font-londrina;
+    @apply text-[3.5rem] tablet:text-[5rem] font-black leading-[1] font-londrina;
   }
   .text-75 {
     @apply text-[7.5rem] leading-[1];
