@@ -7,6 +7,7 @@ import NavDropdown from '../dropdown'
 const WrapNav = () => {
   const setIsMobile = useStore((state) => state.setIsMobile)
   const isMobile = useStore((state) => state.isMobile)
+  const setIsTablet = useStore((state) => state.setIsTablet)
 
   const [openNav, setOpenNav] = useState(false)
 
