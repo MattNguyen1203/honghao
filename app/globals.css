@@ -156,6 +156,7 @@ button {
 html {
   font-size: 1vw;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 @media (min-width: 1601px) {
   html {
@@ -170,6 +171,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   --radix-navigation-menu-viewport-width: 100%;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
