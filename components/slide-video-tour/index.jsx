@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { FreeMode, Navigation, Autoplay, Thumbs, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image'
+import useStore from '@/app/(store)/store'
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -53,6 +54,7 @@ const SlideVideoTours
   = ({ type }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const isMobile = useStore((state) => state.isMobile)
     const mainSwiper = useRef()
     const checkIsBanner = type === 'banner'
     const imagesToUse = checkIsBanner ? images2 : images;
@@ -65,10 +67,10 @@ const SlideVideoTours
       mainSwiper?.current?.slideTo(activeIndex);
     }, [activeIndex]);
     return (
-      <div className={cn("relative w-[86.875rem] h-[44.75rem] bg-white flex justify-center items-center rounded-3xl",
+      <div className={cn("xmd:w-[23.40656rem] xmd:h-fit relative w-[86.875rem] h-[44.75rem] bg-white flex xmd:flex-col justify-center items-center rounded-3xl",
         checkIsBanner ? 'w-full h-[43.75rem] rounded-none' : ''
       )}>
-        <svg className='activity arrowfr size-[3.3rem]  absolute right-[17rem] top-[53%] z-[100] -translate-y-1/2' xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
+        <svg className='xmd:hidden activity arrowfr size-[3.3rem]  absolute right-[17rem] top-[53%] z-[100] -translate-y-1/2' xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
           <path d="M38 27L22 37L27 27L22 17L38 27Z" fill="white" />
         </svg>
         <Swiper
@@ -84,20 +86,20 @@ const SlideVideoTours
           effect={'fade'}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
-          className=''
+          className='xmd:w-full xmd:h-[20.93544rem]'
         >
           {imagesToUse?.map((d, i) => (
             <SwiperSlide key={i} className='!flex !justify-center !items-center'>
-              <Image priority alt="ảnh" src={d?.img} width={1500} height={1500} className={cn("w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
-                checkIsBanner ? 'w-full h-[43.75rem] rounded-none' : ''
+              <Image priority alt="ảnh" src={d?.img} width={1500} height={1500} className={cn(" w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
+                checkIsBanner ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none' : ''
               )} />
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className='absolute z-[100] right-[6rem]'>
+        <div className='md:absolute xmd:mt-[0.2rem] z-[100] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem]'>
           <Swiper
             allowTouchMove={false}
-            direction={'vertical'}
+            direction={isMobile ? 'horizontal' : 'vertical'}
             pagination={{
               clickable: true,
             }}
@@ -109,7 +111,7 @@ const SlideVideoTours
             }}
             speed={1500}
             centeredSlides
-            slidesPerView={6}
+            slidesPerView={isMobile ? 2.12 : 6}
             watchSlidesProgress={true}
             modules={[FreeMode, Autoplay, Navigation, Thumbs]}
             onSlideChange={handleSlideChange}

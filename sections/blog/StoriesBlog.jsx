@@ -70,13 +70,13 @@ const StoriesBlog = () => {
             <Button>OUR BLOG</Button>
             <TitleBeauty>
 
-              <h2 className='text-greyscale-70 xmd:text-[2rem] xmd:font-black xmd:leading-[1.2] xmd:tracking-[0.005rem] opacity-80'>
+              <h2 className='text-greyscale-70 font-londrina xmd:text-[2rem] xmd:font-black xmd:leading-[1.2] xmd:tracking-[0.005rem] opacity-80'>
                 STORIES ABOUT  JOURNEYS OF JOY
               </h2>
             </TitleBeauty>
           </div>
-          <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center subContainer">
-            <div className='xmd:w-screen xmd:overflow-auto xmd:no-scrollbar'>
+          <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
+            <div className='xmd:w-screen xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='flex items-start space-x-[0.94rem]'>
                 {data?.map((d, i) => (
 
@@ -85,7 +85,7 @@ const StoriesBlog = () => {
                       !pathName?.includes(d?.link) || pathName.localeCompare(d?.link) ? 'bg-[#FCF8F7] text-black hover:bg-orange-normal hover:text-white' : ''
                     )}>
                       {/* <div className=''> */}
-                      <div className=" font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
+                      <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
                         {d?.title}
                       </div>
