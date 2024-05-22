@@ -19,7 +19,7 @@ const AccordionCustom = ({ data }) => {
           <AccordionItem
             value={index + 1}
             key={index}
-            className='mb-[2rem] border-none'
+            className='mb-5 border-none md:mb-6'
           >
             <AccordionTrigger className='text-1 xmd:text-0875 font-bold tracking-[0.0125rem] text-greyscale-30 py-[0.5rem] hover:no-underline border-b border-solid border-[#828282] [&[data-state=open]]:border-orange-normal [&[data-state=open]]:text-orange-normal'>
               {item?.title}
