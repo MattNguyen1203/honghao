@@ -9,7 +9,7 @@ const Banner = ({ mainImg, mainText, mainTextMb }) => {
         alt=''
         width={1600}
         height={728}
-        className='w-full h-full object-cover'
+        className='object-cover w-full h-full'
       />
       <Image
         src={mainText}
@@ -18,7 +18,6 @@ const Banner = ({ mainImg, mainText, mainTextMb }) => {
         height={728}
         className='w-[52.1105rem] h-[22.1875rem] object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex xmd:hidden'
       />
-
       <Image
         src={mainTextMb}
         alt=''

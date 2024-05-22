@@ -7,7 +7,7 @@ import {MotionPathPlugin} from 'gsap/MotionPathPlugin'
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(MotionPathPlugin)
 }
-const BikeAnimationMb = () => {
+const BikeAnimationMb = ({children}) => {
   const sectionRef = useRef()
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const BikeAnimationMb = () => {
   }, [])
   return (
     <div
-      className='w-full'
+      className='relative w-full'
       ref={sectionRef}
     >
       {/* icon xe máy */}
@@ -85,6 +85,7 @@ const BikeAnimationMb = () => {
           id='pathMb'
         />
       </svg>
+      {children}
     </div>
   )
 }
