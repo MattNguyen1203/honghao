@@ -4,7 +4,7 @@ import './nav.css'
 
 export default function Header() {
   return (
-    <header className='w-full fixed top-0 left-0 z-[1000]'>
+    <header className='w-full fixed top-0 left-0 z-[10000]'>
       <WrapNav />
     </header>
   )

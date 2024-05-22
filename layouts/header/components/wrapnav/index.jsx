@@ -19,7 +19,13 @@ const WrapNav = () => {
         userAgent,
       )
 
+    const tabletCheck =
+      /iPad|Tablet|PlayBook|Silk|Kindle|Nexus 7|Nexus 10|Nexus 9|KFAPWI/i.test(
+        userAgent,
+      )
+
     setIsMobile(mobileCheck)
+    setIsTablet(tabletCheck)
   }, [])
 
   return (

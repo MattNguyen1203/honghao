@@ -1,51 +1,46 @@
 'use client'
 import gsap from 'gsap'
+import DrawSVGPlugin from 'gsap/DrawSVGPlugin'
 import MotionPathPlugin from 'gsap/MotionPathPlugin'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
 
-gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger, DrawSVGPlugin)
 
 const MotoAnimate = () => {
   useEffect(() => {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#animate',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-
-    timeline
+    const motionPathTimeline = gsap.timeline({paused: true})
+    motionPathTimeline
       .from('#line_path', {
-        height: 0, // Initially hide the whole path
+        drawSVG: '0%',
         duration: 3,
       })
-      .to('#line_path', {
-        height: '100px', // Draw the path
-        duration: 3,
-      })
-      .to(
-        '#moto',
-        {
-          motionPath: {
-            path: '#line_path',
-            start: 0.4,
-            end: 1,
-            fromCurrent: true,
-          },
-          duration: 5,
-          transformOrigin: '-50% -50%',
-          opacity: 1,
+      .to('#moto', {
+        motionPath: {
+          path: '#line_path',
+          start: 0.1,
+          end: 1,
+          fromCurrent: true,
         },
-        '+=1',
-      ) // 1-second delay after the line is drawn
+        duration: 5,
+        transformOrigin: '-50% -50%',
+        opacity: 1,
+      })
+      .to('#animate', {
+        opacity: 0,
+        duration: 1,
+      })
+
+    ScrollTrigger.create({
+      trigger: '#animate',
+      start: 'top center',
+      onEnter: () => motionPathTimeline.play(),
+    })
   }, [])
   return (
     <div
-      className='absolute top-[-2rem] left-1/2 z-10'
+      className='max-h-full absolute top-[-4rem] left-1/2 z-10 xlg:hidden'
       id='animate'
     >
       <div
