@@ -100,6 +100,7 @@ const NavDropdown = ({openNav, setOpenNav}) => {
     setOpenNav(false)
     setOpenChild(false)
   }
+
   return (
     <div
       className={cn(
@@ -221,7 +222,7 @@ const NavDropdown = ({openNav, setOpenNav}) => {
       </div>
 
       {!isMobile && (
-        <div className='w-full ml-auto h-full relative z-10'>
+        <div className='w-[51rem] ml-auto h-full relative z-10'>
           {activeKey !== 'tours' && (
             <div className='w-full h-full'>
               {dataHeader?.map((item, index) => {

@@ -9,7 +9,7 @@
     transform: translateX(0px);
   }
 }
-.alldestinations .arrowfr {
+ .arrowfr {
   animation: keyArrow 1.5s ease-in-out infinite;
 }
 @keyframes slide-background {
@@ -24,7 +24,7 @@
   animation: slide-background 3s linear infinite;
 }
 
-@keyframes keyArrow {
+/* @keyframes keyArrow {
   0% {
     transform: translateX(-3px);
   }
@@ -37,4 +37,4 @@
 }
 .arrowfr {
   animation: keyArrow 1s ease-in-out infinite;
-}
+} */

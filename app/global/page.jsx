@@ -4,6 +4,7 @@ import ItemTour from '@/components/itemtour'
 import React from 'react'
 import Banner from '@/sections/common/banner'
 import AccordionCustom from '@/sections/common/accordion'
+import Breadcrumb from '@/components/breadcrumb'
 
 const page = () => {
   const data = new Array(5).fill(0)
@@ -24,6 +25,7 @@ const page = () => {
       />
 
       <BikeAnimation />
+      <Breadcrumb divider />
     </div>
   )
 }

@@ -8,7 +8,7 @@ import StartPlanning from '@/sections/blog/StartPlanning.jsx';
 import './blogdetail.css'
 const BlogDetail = () => {
   return (
-    <div className='blog-detail'>
+    <main className='blog-detail'>
       <section>
         <Banner />
       </section>
@@ -24,7 +24,7 @@ const BlogDetail = () => {
       <section>
         <RelatedArticle />
       </section>
-    </div>
+    </main>
   )
 }
 

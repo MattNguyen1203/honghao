@@ -1,6 +1,8 @@
-import Blog from '@/sections/blog'
+import BlogDetail from '@/sections/blog-detail'
+import React from 'react'
+
 const page = () => {
-  return <Blog />
+  return <BlogDetail />
 }
 
 export default page

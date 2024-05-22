@@ -91,10 +91,6 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      backgroundImage: {
-        'card-des':
-          'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 50%, rgba(255, 253, 253, 0.00) 100%)',
-      },
       keyframes: {
         'accordion-down': {
           from: {height: '0'},
@@ -115,6 +111,8 @@ module.exports = {
           'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.3) 50%, rgba(255, 253, 253, 0) 100%)',
         'contact-us-gradient':
           'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 39.54%, #FFF 99.98%)',
+        'card-des':
+          'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 50%, rgba(255, 253, 253, 0.00) 100%)',
       },
       fontSize: {
         0.75: '0.75rem',

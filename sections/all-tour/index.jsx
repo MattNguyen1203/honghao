@@ -7,11 +7,13 @@ export default function AllTour() {
   return (
     <main>
       <BannerAllTour />
-      <Breadcrumb divider />
+      <div className='xmd:mt-[0.5rem]'>
+        <Breadcrumb divider />
+      </div>
       <section>
         <SliderTour />
       </section>
-      <section className='pt-[4.19rem] mt-[4rem] bg-[#F0F0F0] rounded-t-[1.5rem]'>
+      <section className='md:pt-[4.19rem] mt-[3rem] bg-[#F0F0F0] rounded-t-[1.5rem]'>
         <GridCheckBox />
       </section>
     </main>
