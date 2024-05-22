@@ -113,8 +113,11 @@ module.exports = {
       backgroundImage: {
         'custom-gradient':
           'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.3) 50%, rgba(255, 253, 253, 0) 100%)',
+        'contact-us-gradient':
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 39.54%, #FFF 99.98%)',
       },
       fontSize: {
+        0.75: '0.75rem',
         0.875: '0.875rem',
         1: '1rem',
         1.125: '1.125rem',

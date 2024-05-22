@@ -1,6 +1,8 @@
 import Banner from '@/sections/common/banner'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+import ContactUs from '@/sections/contact-us/ContactUs'
+import GetInTouch from '@/sections/contact-us/GetInTouch'
 
 export default function ContactUsPage() {
   return (
@@ -17,7 +19,8 @@ export default function ContactUsPage() {
           <BreadcrumbLink href='/contact-us'>Contact Us</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      
+      <ContactUs />
+      <GetInTouch />
     </main>
   )
 }

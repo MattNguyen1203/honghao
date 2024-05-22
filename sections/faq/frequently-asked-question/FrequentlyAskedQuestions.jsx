@@ -3,10 +3,7 @@
 import {useState} from 'react'
 import AccordionCustom from '@/sections/common/accordion'
 import './styles.css'
-
-const regName = /^[A-Za-z][\w\s]*[A-Za-z]$/
-const regPhone = /^\d{8,}$/
-const regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+import {regName, regPhone, regEmail} from '@/lib/reg'
 
 export default function FrequentlyAskedQuestions() {
   const [name, setName] = useState('')
@@ -28,9 +25,7 @@ export default function FrequentlyAskedQuestions() {
   }
   return (
     <section className='kKao4-container'>
-      <h3 className='h3 mb-6 md:mb-[2.8rem]'>
-        Frequently asked Questions
-      </h3>
+      <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={new Array(6).fill(0)} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
@@ -55,7 +50,7 @@ export default function FrequentlyAskedQuestions() {
                   })
                 }}
               />
-              <p className='text-0.875 font-tripsans font-semibold text-red-500'>
+              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
                 {errorMessage.name}
               </p>
             </label>
@@ -77,7 +72,7 @@ export default function FrequentlyAskedQuestions() {
                   })
                 }}
               />
-              <p className='text-0.875 font-tripsans font-semibold text-red-500'>
+              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
                 {errorMessage.phone}
               </p>
             </div>
@@ -97,7 +92,7 @@ export default function FrequentlyAskedQuestions() {
                   })
                 }}
               />
-              <p className='text-0.875 font-tripsans font-semibold text-red-500'>
+              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
                 {errorMessage.email}
               </p>
             </div>
@@ -108,7 +103,10 @@ export default function FrequentlyAskedQuestions() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <button className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'>
+            <button
+              type='submit'
+              className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
+            >
               Send a message
             </button>
           </form>
