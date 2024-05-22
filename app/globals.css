@@ -268,3 +268,11 @@ input[type='password']::-ms-clear {
   font-weight: bold;
   background-color: #c24216;
 } */
+.hidden_scrollbar {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+.hidden_scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}

@@ -16,67 +16,71 @@ export default function page() {
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
   console.log('🚀 ~ page ~ index:', index)
-  useGSAP(
-    () => {
-      ScrollTrigger.create({
-        trigger: container.current,
-        start: 'top top',
-        end: '+=1800',
-        scrub: true,
-        pin: true,
-        markers: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          listTourHome.current.style.transform = `translateY(-${
-            Number(self.progress.toFixed(3)) * 80
-          }%)`
-          if (Number(self.progress.toFixed(3)) <= 0.15) {
-            setIndex(0)
-          }
-          if (
-            Number(self.progress.toFixed(3)) > 0.15 &&
-            Number(self.progress.toFixed(3)) < 0.4
-          ) {
-            setIndex(1)
-          }
-          if (
-            Number(self.progress.toFixed(3)) >= 0.4 &&
-            Number(self.progress.toFixed(3)) < 0.6
-          ) {
-            setIndex(2)
-          }
-          if (
-            Number(self.progress.toFixed(3)) >= 0.6 &&
-            Number(self.progress.toFixed(3)) < 0.8
-          ) {
-            setIndex(3)
-          }
-          if (Number(self.progress.toFixed(3)) >= 0.8) {
-            setIndex(4)
-          }
-        },
-      })
-    },
-    {scope: container},
-  )
+  let mm = gsap.matchMedia()
+
+  mm.add('(min-width: 1025px)', () => {
+    useGSAP(
+      () => {
+        ScrollTrigger.create({
+          trigger: container.current,
+          start: 'top top',
+          end: '+=1800',
+          scrub: true,
+          pin: true,
+          markers: true,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            listTourHome.current.style.transform = `translateY(-${
+              Number(self.progress.toFixed(3)) * 80
+            }%)`
+            if (Number(self.progress.toFixed(3)) <= 0.15) {
+              setIndex(0)
+            }
+            if (
+              Number(self.progress.toFixed(3)) > 0.15 &&
+              Number(self.progress.toFixed(3)) < 0.4
+            ) {
+              setIndex(1)
+            }
+            if (
+              Number(self.progress.toFixed(3)) >= 0.4 &&
+              Number(self.progress.toFixed(3)) < 0.6
+            ) {
+              setIndex(2)
+            }
+            if (
+              Number(self.progress.toFixed(3)) >= 0.6 &&
+              Number(self.progress.toFixed(3)) < 0.8
+            ) {
+              setIndex(3)
+            }
+            if (Number(self.progress.toFixed(3)) >= 0.8) {
+              setIndex(4)
+            }
+          },
+        })
+      },
+      {scope: container},
+    )
+  })
 
   return (
     <>
       <div className='h-[500px] bg-black'></div>
       <section
         ref={container}
-        className='relative w-full h-screen bg-white'
+        className='relative w-full lg:h-screen bg-white'
       >
-        <div className='container pt-[5.63rem] flex justify-between'>
-          <div>
-            <h3 className='text-1125 font-extrabold text-greyscale-80 opacity-40'>
+        <div className='lg:container subContainer xmd:!px-0 tablet:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
+          <div className='xmd:mb-[2rem] xmd:pl-[0.75rem]'>
+            <h3 className='text-1125 xmd:text-0875 font-extrabold xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
               EXPLORE
             </h3>
-            <h2 className='mt-[0.75rem] text-35 font-black text-greyscale-80'>
-              BEST TRIPS FOR YOU
+            <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem]'>
+              BEST TRIPS <br className='md:hidden' /> FOR YOU
             </h2>
             <Image
-              className='w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
+              className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
               src={'/home/map.png'}
               alt='map'
               width={500}
@@ -84,11 +88,11 @@ export default function page() {
             />
             {/* <div>{index}</div> */}
           </div>
-          <div className='w-[47.3125rem]'>
+          <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-[50rem] w-full lg:h-auto h-[23.33956rem] tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
             <div
               ref={listTourHome}
               id='list_tour_home'
-              className='flex flex-col w-full h-fit space-y-[2rem]'
+              className='flex lg:flex-col lg:w-full w-fit h-fit lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem] lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem]'
             >
               {Array(5)
                 .fill(0)
@@ -100,7 +104,7 @@ export default function page() {
         </div>
         <button
           style={{writingMode: 'vertical-rl'}}
-          className='absolute space-y-[0.5rem] right-0 -translate-y-1/2 top-1/2 bg-orange-normal w-[3.4rem] h-[9.4rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
+          className='top-0 translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
         >
           All tour
           <svg
