@@ -24,7 +24,7 @@ const FaqAboutTrip = () => {
 
             <AccordionCustom data={data} />
           </div>
-          <div className='relative bd w-[42.4485rem] h-[26.69638rem]'>
+          <div className='relative w-[42.4485rem] h-[26.69638rem]'>
             <div className="size-[4rem] flex items-center justify-center rounded-full bg-opacity-30 bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
               <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23.7734 13.5945L0.230469 27.187L0.23047 0.00195312L23.7734 13.5945Z" fill="white" />

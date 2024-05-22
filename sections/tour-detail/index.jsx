@@ -6,11 +6,11 @@ import Banner from './Banner'
 import FaqAboutTrip from './FaqAboutTrip'
 const TourDetail = () => {
   return (
-    <div className='alldestinations '>
+    <main className='alldestinations '>
       <section><Banner /></section>
       <section className='xmd:hidden'><Breadcrumb divider /></section>
       <section><FaqAboutTrip /></section>
-    </div>
+    </main>
   )
 }
 

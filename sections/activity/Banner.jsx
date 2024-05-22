@@ -100,7 +100,7 @@ const Banner = () => {
 
   return (
     <section className='relative xl:h-[100rem] overflow-y-hidden' >
-      <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className="object-cover xmd:hidden absolute h-full w-full" />
+      <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className=" xmd:hidden absolute h-full w-full" />
       <Image priority alt="ảnh" src={'/imgs/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
 
       <div className='xl:container relative xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
@@ -212,7 +212,7 @@ const Banner = () => {
 
               </div>
             </div>
-        <div className="absolute xmd:top-[5.6rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-2rem] text-white bg-orange-normal 
+            <div className="absolute xmd:top-[5.6rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-2rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 p-2.5 rounded-[1.25rem]">
               222
