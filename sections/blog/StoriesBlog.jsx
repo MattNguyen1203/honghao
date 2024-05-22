@@ -42,13 +42,13 @@ const TitleBeauty = ({ children }) => {
 
 const StoriesBlog = () => {
   const data = [
-    { title: 'All Blog', link: '/blog' },
-    { title: 'Article', link: '/blog/article' },
-    { title: 'News', link: '/blog/news' },
-    { title: 'Tips', link: '/blog/tips' },
-    { title: 'Hagiang Friends', link: '/blog/hangiang-friends' },
-    { title: 'destination', link: '/blog/destination' },
-    { title: 'travel', link: '/blog/travel' },
+    { title: 'All Blog', link: '/blog/categories/all-blog' },
+    { title: 'Article', link: '/blog/categories/article' },
+    { title: 'News', link: '/blog/categories/news' },
+    { title: 'Tips', link: '/blog/categories/tips' },
+    { title: 'Hagiang Friends', link: '/blog/categories/hangiang-friends' },
+    { title: 'destination', link: '/blog/categories/destination' },
+    { title: 'travel', link: '/blog/categories/travel' },
   ]
   const pathName = usePathname()
   return (

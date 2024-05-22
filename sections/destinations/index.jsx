@@ -7,7 +7,7 @@ import BannerMobile from '../common/banner'
 import Breadcrumb from '@/components/breadcrumb'
 const Destinations = () => {
   return (
-    <div csName='alldestinations'>
+    <main csName='alldestinations'>
       <section className='xmd:hidden'><Banner /></section>
       <section className='md:hidden'>
 
@@ -17,9 +17,10 @@ const Destinations = () => {
           mainTextMb='/imgs/common/textMb.png'
         />
       </section>
-      <section className='md:hidden'><Breadcrumb divider /></section>
+      {/* <section className='xmd:hidden'><Breadcrumb divider /></section> */}
+      <section className=''><Breadcrumb type='section' divider /></section>
       <section><DiscoveryDestinations /></section>
-    </div>
+    </main>
   )
 }
 

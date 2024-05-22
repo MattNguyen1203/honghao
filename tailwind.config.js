@@ -67,9 +67,9 @@ module.exports = {
         'greyscale-5': '#F1F1F1',
         'greyscale-10': '#C5C5C5',
         'greyscale-20': '#A9A9A9',
-        'greyscale-40': '#6A6A6A',
         'greyscale-30': '#828282',
-        'greyscale-50': '#454545',
+        'greyscale-40': '#6A6A6A',
+        'greyscale-50': '#727272',
         'greyscale-60': '#3F3F3F',
         'greyscale-70': '#313131',
         'greyscale-80': '#262626',
@@ -111,8 +111,33 @@ module.exports = {
       backgroundImage: {
         'custom-gradient':
           'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.3) 50%, rgba(255, 253, 253, 0) 100%)',
+        'contact-us-gradient':
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 39.54%, #FFF 99.98%)',
         'card-des':
           'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 50%, rgba(255, 253, 253, 0.00) 100%)',
+      },
+      fontSize: {
+        0.75: '0.75rem',
+        0.875: '0.875rem',
+        1: '1rem',
+        1.125: '1.125rem',
+        1.5: '1.5rem',
+        2: '2rem',
+        2.5: '2.5rem',
+        2.75: '2.75rem',
+        3.5: '3.5rem',
+      },
+      lineHeight: {
+        1: '100%',
+        1.2: '120%',
+        1.375: '1.375rem',
+        1.5: '150%',
+      },
+      transitionDuration: {
+        400: '400ms',
+      },
+      letterSpacing: {
+        0.00219: '0.00219rem',
       },
     },
   },
