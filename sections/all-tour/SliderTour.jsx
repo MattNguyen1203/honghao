@@ -1,9 +1,9 @@
 'use client'
 
-import {Navigation} from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import ItemTour from '@/components/itemtour'
 import Image from 'next/image'
 

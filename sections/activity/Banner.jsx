@@ -99,9 +99,9 @@ const SheetCp = ({ children }) => {
 const Banner = () => {
 
   return (
-    <section className='relative xl:h-[100rem] overflow-y-hidden' >
-      <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className="absolute w-full h-full  xmd:hidden" />
-      <Image priority alt="ảnh" src={'/imgs/activity/nature-mobi.png'} width={1600} height={1935} className="absolute w-full h-full  md:hidden" />
+    <section className='relative xl:h-[100rem] overflow-hidden' >
+      <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className=" xmd:hidden absolute h-full w-full" />
+      <Image priority alt="ảnh" src={'/imgs/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
 
       <div className='xl:container relative xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
         {/* main title */}
@@ -172,13 +172,13 @@ const Banner = () => {
         </div> */}
         {/* motobike */}
 
-        <div className="absolute w-[4.75rem] h-[6.25rem] xl:left-[-1rem] left-[3.4rem] top-[43.5rem]">
-          <div className='relative '>
+        <div className="absolute w-[4.75rem] h-[6.25rem] xmd:top-[43.2rem] xl:left-[-1rem] left-[3.4rem] top-[43.5rem]">
+          <div className=' relative'>
             <div className=" absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center w-[8.75013rem]">
               <SheetCp>
                 <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="w-[4.75rem] cursor-pointer h-[4.55rem]" />
               </SheetCp>
-              <svg className='circle size-[1.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <svg className='circle size-[2.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="3.5" fill="#E64827" stroke="#E64827" />
                 <circle cx="10" cy="10" r="9.5" stroke="#E64827" />
               </svg>
@@ -230,7 +230,7 @@ const Banner = () => {
               <SheetCp>
                 <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="w-[4.75rem] cursor-pointer h-[4.55rem]" />
               </SheetCp>
-              <svg className='circle size-[1.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <svg className='circle size-[2.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="3.5" fill="#E64827" stroke="#E64827" />
                 <circle cx="10" cy="10" r="9.5" stroke="#E64827" />
               </svg>

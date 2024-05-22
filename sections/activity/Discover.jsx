@@ -116,7 +116,7 @@ const SheetCp = ({ children }) => {
           </div>
         </div>
       </SheetContent>
-      /imgs</Sheet>
+    </Sheet>
   )
 }
 const Video = ({ children }) => {
@@ -335,8 +335,9 @@ const Discover = () => {
           <div className="md:hidden w-full">
             <Swiper
               modules={[Navigation]}
-              className='container'
+              className=''
               spaceBetween={0}
+              speed={1050}
               slidesPerView={1.2}
               loop={false}
             >

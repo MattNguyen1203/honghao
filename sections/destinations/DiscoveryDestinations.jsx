@@ -20,8 +20,8 @@ const DiscoveryDestinations = () => {
         ScrollTrigger.create({
           trigger: pinRef.current,
           pin: pinRef.current,
-          start: "top 0%",
-          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          start: "top 10%",
+          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
           toggleActions: "restart reverse reverse reverse",
           scrub: 1,
           // markers: true,
@@ -30,8 +30,8 @@ const DiscoveryDestinations = () => {
         ScrollTrigger.create({
           trigger: pin2Ref.current,
           pin: pin2Ref.current,
-          start: "-1% 0%",
-          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          start: "-1% 10%",
+          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
           toggleActions: "restart reverse reverse reverse",
           scrub: 1,
 

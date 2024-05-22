@@ -1,9 +1,9 @@
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const Breadcrumb = ({divider, className, children}) => {
+const Breadcrumb = ({ divider, className, children }) => {
   return (
     <>
       <div
