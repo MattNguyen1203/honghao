@@ -9,12 +9,12 @@ import Image from 'next/image'
 
 export default function SliderTour() {
   return (
-    <div className='container mt-[4.38rem]'>
+    <div className='container mt-[4.38rem] xmd:mt-[2rem] xmd:!pr-0'>
       <span className='xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
         EXPLORE
       </span>
       <h1 className='text-3 xmd:text-25 font-black text-greyscale-80'>
-        BEST TRIPS FOR YOU
+        BEST TRIPS <br className='md:hidden' /> FOR YOU
       </h1>
       <div className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
@@ -35,10 +35,10 @@ export default function SliderTour() {
         >
           {new Array(10).fill(0).map((e, index) => (
             <SwiperSlide
-              className='!w-[16.8755rem] !h-[23.33956rem]'
+              className='xmd:!w-[16.8755rem] xmd:!h-[23.33956rem] !h-[34.375rem]'
               key={index}
             >
-              <ItemTour className={'xmd:!h-[23.33956rem]'} />
+              <ItemTour className={'xmd:!h-[23.33956rem] !h-[34.375rem]'} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -20,7 +20,7 @@ export default function GridCheckBox() {
       <div
         className={`${
           isActive ? 'h-0' : 'py-[1.9375rem] px-[1.875rem] h-fill mb-[6.4rem]'
-        } overflow-hidden xmd:absolute xmd:shadow-sm xmd:z-10 xmd:top-[2rem] xmd:right-0 sticky top-[8rem] rounded-[1rem] bg-white`}
+        } overflow-hidden xmd:absolute xmd:shadow-2xl xmd:z-10 xmd:top-[2rem] xmd:right-0 sticky top-[8rem] rounded-[1rem] bg-white`}
       >
         <span className='text-1 font-bold text-greyscale-80'>TYPE OF TOUR</span>
         <hr className='bg-[#C5C5C5] h-[0.0625rem] w-[17rem] my-[1.25rem]' />

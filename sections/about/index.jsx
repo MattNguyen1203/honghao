@@ -1,11 +1,19 @@
-import Banner from "./Banner"
+import Banner from './Banner'
+import Commit from './Commit'
 import './about.css'
-import Breadcrumb from "@/components/breadcrumb"
+import OurTeam from '@/layouts/team'
+import Breadcrumb from '@/components/breadcrumb'
 export default function About() {
-  return <main className='about'>
-    <section className=''><Banner /></section>
-
-    
-    <section className=''><Breadcrumb type='section' divider /></section>
-  </main>
+  return (
+    <main className='about'>
+      <Banner />
+      <div className='xmd:mt-[0.5rem]'>
+        <Breadcrumb divider />
+      </div>
+      <Commit />
+      <div className='xmd:translate-y-[-6rem]'>
+        <OurTeam />
+      </div>
+    </main>
+  )
 }

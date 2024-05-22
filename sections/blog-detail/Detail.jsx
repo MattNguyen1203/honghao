@@ -10,13 +10,13 @@ const Detail = ({ data }) => {
         <div className='flex w-[65.8rem] xmd:w-[21.4375rem] mx-auto flex-col items-start bg-greyscale-5 xmd:space-y-[0.63rem] space-y-[1.875rem] xmd:py-[1.25rem] xmd:px-[0.62rem] md:p-5'>
           <div className="text-greyscale-80 xmd:text-greyscale-30 text-[2rem] xmd:text-[1.125rem] xmd:font-medium not-italic font-normal leading-[1.2]">Table of Contents</div>
           <ul className='flex flex-col ml-[1.25rem]'>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-[0.00219rem] tracking-[0.00875rem]'>
+            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
               Tanzanians are passionate about soccer (football). The sport is a significant part of the culture, and you'll often find
             </li>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-[0.00219rem] tracking-[0.00875rem]'>
+            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
               Locals engaging in lively discussions about their favorite teams and players.
             </li>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-[0.00219rem] tracking-[0.00875rem]'>
+            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
               Traditional dance forms like "Ngoma" are also cherished, often performed during cultural festivals
             </li>
           </ul>

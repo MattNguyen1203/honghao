@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+
 const useStore = create((set) => ({
   isMobile: false,
   isTablet: false,
@@ -20,4 +21,5 @@ const useStore = create((set) => ({
     })
   },
 }))
+
 export default useStore

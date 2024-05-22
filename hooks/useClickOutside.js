@@ -2,7 +2,7 @@
 
 import {useEffect, useRef, useState} from 'react'
 
-export default function useClickOutSide() {
+export default function useClickOutSide(fnc) {
   const [isOutSide, setIsOutSide] = useState(false)
   const [isClick, setIsClick] = useState(false)
   const sideRef = useRef()
@@ -17,6 +17,9 @@ export default function useClickOutSide() {
       //out side
       setIsOutSide(true)
       setIsClick((prev) => !prev)
+      if (fnc && typeof fnc === 'function') {
+        fnc()
+      }
     } else {
       //in side
       setIsOutSide(false)
