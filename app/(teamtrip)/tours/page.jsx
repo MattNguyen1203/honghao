@@ -1,6 +1,10 @@
 import AllTour from '@/sections/all-tour'
-import React from 'react'
+import React, {Suspense} from 'react'
 
 export default function page() {
-  return <AllTour />
+  return (
+    <Suspense>
+      <AllTour />
+    </Suspense>
+  )
 }
