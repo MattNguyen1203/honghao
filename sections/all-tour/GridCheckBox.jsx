@@ -1,13 +1,25 @@
 'use client'
 
 import useStore from '@/app/(store)/store'
+import {useEffect, useState} from 'react'
+
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
-import {useEffect, useState} from 'react'
+import CheckBox from './CheckBox'
+import {usePathname, useRouter} from 'next/navigation'
+
+const dataFiter = [
+  {title: 'PREMIUM', slug: 'premium'},
+  {title: 'BEST BUDGET', slug: 'best-budget'},
+  {title: 'STANDARD', slug: 'standard'},
+]
 
 export default function GridCheckBox() {
   const isMobile = useStore((state) => state.isMobile)
   const [isActive, setIsActive] = useState(true)
+  const [isAllTour, setIsAllTour] = useState(true)
+  const router = useRouter()
+  const pathName = usePathname()
   useEffect(() => {
     if (isMobile) {
       setIsActive(true)
@@ -15,6 +27,12 @@ export default function GridCheckBox() {
       setIsActive(false)
     }
   }, [isMobile])
+  const handleFilterAll = () => {
+    setIsAllTour(true)
+    router.push(pathName, {
+      scroll: false,
+    })
+  }
   return (
     <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] mb-[4rem]'>
       <div
@@ -25,42 +43,27 @@ export default function GridCheckBox() {
         <span className='text-1 font-bold text-greyscale-80'>TYPE OF TOUR</span>
         <hr className='bg-[#C5C5C5] h-[0.0625rem] w-[17rem] my-[1.25rem]' />
         <div className='space-y-[0.75rem]'>
-          <div className='flex justify-start items-center space-x-[0.375rem]'>
+          <div
+            onClick={handleFilterAll}
+            className='flex justify-start items-center space-x-[0.375rem]'
+          >
             <input
+              checked={isAllTour}
               type='checkbox'
-              className='checked:bg-[#E64828] accent-[#E64828]'
+              className='accent-[#E64828]'
             />
             <span className='text-0875 font-medium text-greyscale-80'>
               ALL TOUR
             </span>
           </div>
-          <div className='flex justify-start items-center space-x-[0.375rem]'>
-            <input
-              type='checkbox'
-              className='checked:bg-[#E64828] accent-[#E64828]'
+          {dataFiter?.map((e, index) => (
+            <CheckBox
+              length={dataFiter?.length}
+              setIsAllTour={setIsAllTour}
+              item={e}
+              key={index}
             />
-            <span className='text-0875 font-medium text-greyscale-80'>
-              PREMIUM
-            </span>
-          </div>
-          <div className='flex justify-start items-center space-x-[0.375rem]'>
-            <input
-              type='checkbox'
-              className='checked:bg-[#E64828] accent-[#E64828]'
-            />
-            <span className='text-0875 font-medium text-greyscale-80'>
-              BEST BUDGET
-            </span>
-          </div>
-          <div className='flex justify-start items-center space-x-[0.375rem]'>
-            <input
-              type='checkbox'
-              className='checked:bg-[#E64828] accent-[#E64828]'
-            />
-            <span className='text-0875 font-medium text-greyscale-80'>
-              STANDARD
-            </span>
-          </div>
+          ))}
         </div>
       </div>
       <div className='md:hidden flex justify-between items-center mb-[1.25rem] w-full'>
