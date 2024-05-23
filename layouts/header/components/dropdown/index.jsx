@@ -144,10 +144,10 @@ const NavDropdown = ({openNav, setOpenNav}) => {
               <div
                 className='overflow-hidden'
                 onMouseOver={() => handleHover(item?.key)}
+                key={index}
               >
                 {isTour ? (
                   <div
-                    key={index}
                     onClick={() => setOpenChild((prev) => !prev)}
                     className={cn(
                       'cursor-pointer flex items-center relative ',
@@ -178,7 +178,6 @@ const NavDropdown = ({openNav, setOpenNav}) => {
                 ) : (
                   <Link
                     href={item.link}
-                    key={index}
                     className='flex items-center relative group'
                     onClick={handleClose}
                   >
@@ -255,8 +254,11 @@ const NavDropdown = ({openNav, setOpenNav}) => {
               modules={[Scrollbar]}
               className='nav-slide w-full h-[28rem]'
             >
-              {new Array(5).fill(0).map((item) => (
-                <SwiperSlide className='select-none max-w-full'>
+              {new Array(5).fill(0).map((item, index) => (
+                <SwiperSlide
+                  className='select-none max-w-full'
+                  key={index}
+                >
                   <ItemTour className='h-[26rem]' />
                 </SwiperSlide>
               ))}

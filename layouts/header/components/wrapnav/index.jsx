@@ -12,17 +12,17 @@ const WrapNav = () => {
   const [openNav, setOpenNav] = useState(false)
 
   useEffect(() => {
-    const userAgent =
-      typeof navigator === 'undefined' ? '' : navigator.userAgent
-    const mobileCheck =
-      /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        userAgent,
-      )
+    // Breakpoints for mobile and tablet
+    const MOBILE_MAX_WIDTH = 767 // Maximum width for mobile devices
+    const TABLET_MAX_WIDTH = 1024 // Maximum width for tablet devices
 
+    // Check for tablets using window.innerWidth
     const tabletCheck =
-      /iPad|Tablet|PlayBook|Silk|Kindle|Nexus 7|Nexus 10|Nexus 9|KFAPWI/i.test(
-        userAgent,
-      )
+      window.innerWidth > MOBILE_MAX_WIDTH &&
+      window.innerWidth <= TABLET_MAX_WIDTH
+
+    // Check for mobile devices using window.innerWidth
+    const mobileCheck = window.innerWidth <= MOBILE_MAX_WIDTH
 
     setIsMobile(mobileCheck)
     setIsTablet(tabletCheck)

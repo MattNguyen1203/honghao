@@ -38,7 +38,10 @@ const SlideWelcome = () => {
         className='w-full h-full'
       >
         {listVideo.map((item, index) => (
-          <SwiperSlide className='relative'>
+          <SwiperSlide
+            className='relative'
+            key={index}
+          >
             <ItemVideo active={indexSlider === index} />
           </SwiperSlide>
         ))}

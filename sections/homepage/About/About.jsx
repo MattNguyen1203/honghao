@@ -3,14 +3,11 @@
 import {Button} from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 
 import MotoAnimate from './motoAnimate'
 import CloudAnimate from './CloudAnimate'
 import Welcome from '../Welcome/Welcome'
-import SlideWelcome from '../Welcome/SlideWelcome'
-import ItemVideo from '../Welcome/itemVideo'
-import useStore from '@/app/(store)/store'
 
 const aboutData = [
   '13 years experience',
@@ -44,7 +41,7 @@ const About = () => {
         className='w-full h-full absolute top-0 left-0 z-[-1] object-cover'
       />
 
-      <div class='w-full relative'>
+      <div className='w-full relative z-[100]'>
         <Image
           src='/imgs/home/moutain.svg'
           alt=''
@@ -75,7 +72,7 @@ const About = () => {
           className='absolute top-[3rem] left-0 opacity-100 hidden xmd:flex'
         />
 
-        <div className='relative z-10 w-[65.5rem] xmd:w-full pt-[10rem] xmd:pt-[3rem] mx-auto flex flex-col items-center'>
+        <div className='relative z-100 w-[65.5rem] xmd:w-full pt-[10rem] xmd:pt-[3rem] mx-auto flex flex-col items-center'>
           <Image
             src='/imgs/home/logo.png'
             alt='hong hao travel'

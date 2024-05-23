@@ -119,7 +119,7 @@ const Button = React.forwardRef(
                   <stop
                     offset='1'
                     stop-color='white'
-                    stop-opacity='0'
+                    stopOpacity='0'
                   />
                 </linearGradient>
               </defs>

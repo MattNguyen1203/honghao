@@ -61,11 +61,9 @@ export default function RootLayout({children}) {
         className={`${tripsans.className} ${tripsans.variable} ${londrina.variable}`}
         suppressHydrationWarning={true}
       >
-        <ResponsiveProvider>
-          <Header />
-          {children}
-          <Footer />
-        </ResponsiveProvider>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   )
