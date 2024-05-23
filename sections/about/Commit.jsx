@@ -19,7 +19,7 @@ export default function Commit() {
           width={377}
           height={468.44}
         />
-        <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-normal xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+        <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
           Explore the rugged beauty of Ha Giang on our thrilling motorcycle
           tours. Feel the wind in your hair as you navigate through twisting
           mountain roads and remote villages, soaking in the breathtaking
@@ -38,8 +38,8 @@ export default function Commit() {
           width={375}
           height={523}
         />
-        <div className='flex xmd:flex-col justify-between md:space-x-[9.25rem] xmd:mt-[7.19rem]'>
-          <div className='flex flex-col h-full justify-center pl-[5rem] xmd:px-[1rem] xmd:mb-[3.18rem]'>
+        <div className='flex container xmd:flex-col justify-between md:space-x-[9.25rem] xmd:mt-[7.19rem]'>
+          <div className='flex flex-col h-full justify-center xmd:mb-[3.18rem]'>
             <div className='flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.5rem] xmd:mb-[2rem]'>
               <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
                 HONG HA TRAVEL
