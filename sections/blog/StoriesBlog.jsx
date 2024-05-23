@@ -42,15 +42,31 @@ const TitleBeauty = ({ children }) => {
 
 const StoriesBlog = () => {
   const data = [
-    { title: 'All Blog', link: '/blog/categories/all-blog' },
-    { title: 'Article', link: '/blog/categories/article' },
-    { title: 'News', link: '/blog/categories/news' },
-    { title: 'Tips', link: '/blog/categories/tips' },
-    { title: 'Hagiang Friends', link: '/blog/categories/hangiang-friends' },
-    { title: 'destination', link: '/blog/categories/destination' },
-    { title: 'travel', link: '/blog/categories/travel' },
+    { title: 'All Blog', link: '/blog' },
+    { title: 'Article', link: '/blog/article' },
+    { title: 'News', link: '/blog/news' },
+    { title: 'Tips', link: '/blog/tips' },
+    { title: 'Hagiang Friends', link: '/blog/hangiang-friends' },
+    { title: 'destination', link: '/blog/destination' },
+    { title: 'travel', link: '/blog/travel' },
   ]
   const pathName = usePathname()
+  const router = useRouter()
+  const saveScrollPosition = () => {
+    const scrollContainer = document.querySelector('.saveposition');
+    if (scrollContainer) {
+      localStorage.setItem('scrollPosition', scrollContainer.scrollLeft);
+    }
+  };
+
+  useEffect(() => {
+    const scrollContainer = document.querySelector('.saveposition');
+    const savedPosition = localStorage.getItem('scrollPosition');
+    if (scrollContainer && savedPosition && pathName.localeCompare('/blog')) {
+      scrollContainer.scrollLeft = parseInt(savedPosition, 10);
+    }
+  }, []);
+
   return (
     <section>
       <div className="flex flex-col xmd:relative items-center gap-[3.9375rem]">
@@ -76,13 +92,13 @@ const StoriesBlog = () => {
             </TitleBeauty>
           </div>
           <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
-            <div className='xmd:w-screen xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
+            <div className='xmd:w-screen saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='flex items-start space-x-[0.94rem]'>
                 {data?.map((d, i) => (
 
-                  <Link href={`${d?.link}`} scroll={false} >
-                    <div key={i} value={d?.title} className={cn('flex duration-200 ease-linear justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
-                      !pathName?.includes(d?.link) || pathName.localeCompare(d?.link) ? 'bg-[#FCF8F7] text-black hover:bg-orange-normal hover:text-white' : ''
+                  <Link key={i} href={`${d?.link}`} prefetch={true} scroll={false} onClick={saveScrollPosition}>
+                    <div value={d?.title} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                      !pathName?.includes(d?.link) || pathName.localeCompare(d?.link) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                     )}>
                       {/* <div className=''> */}
                       <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">

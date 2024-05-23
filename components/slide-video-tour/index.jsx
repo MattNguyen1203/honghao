@@ -62,7 +62,7 @@ const SlideVideoTours
       const newIndex = swiper?.realIndex;
       setActiveIndex(newIndex);
     };
-
+    console.log({ isMobile })
     useEffect(() => {
       mainSwiper?.current?.slideTo(activeIndex);
     }, [activeIndex]);
@@ -82,7 +82,7 @@ const SlideVideoTours
             clickable: true,
           }}
           allowTouchMove={false}
-          speed={1500}
+          speed={3500}
           effect={'fade'}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
@@ -98,20 +98,26 @@ const SlideVideoTours
         </Swiper>
         <div className='md:absolute xmd:mt-[0.2rem] z-[100] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem]'>
           <Swiper
-            allowTouchMove={false}
-            direction={isMobile ? 'horizontal' : 'vertical'}
+            breakpoints={{
+              767: {
+                direction: 'vertical',
+                slidesPerView: 6
+              }
+            }}
+            allowTouchMove={true}
+            direction={'horizontal'}
             pagination={{
               clickable: true,
             }}
             loop
             autoplay={{
               delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: false,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true,
             }}
-            speed={1500}
+            speed={3500}
             centeredSlides
-            slidesPerView={isMobile ? 2.12 : 6}
+            slidesPerView={2.12}
             watchSlidesProgress={true}
             modules={[FreeMode, Autoplay, Navigation, Thumbs]}
             onSlideChange={handleSlideChange}

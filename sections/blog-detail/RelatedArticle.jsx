@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Button } from '@/components/customCn/button'
 import CardBlog from '@/sections/blog/CardBlog.jsx'
+import Link from 'next/link'
 const RelatedArticle = () => {
   return (
     <section className='relative md:mt-[4.5rem]  md:h-[60.18244rem] xmd:h-[31.1875rem]'>
@@ -41,7 +42,7 @@ const RelatedArticle = () => {
         </div>
         <div className="z-20 inline-flex items-center xmd:mt-[1.97rem] mt-[3rem] space-x-[1.3125rem]">
           <div className="xmd:hidden h-[0.0625rem] rounded-full bg-[rgba(255,255,255,0.60)]"></div>
-          <Button icon>see All blogs</Button>
+          <Button icon><Link href='/blog'>see All blogs</Link></Button>
           <div className="xmd:hidden h-[0.0625rem] rounded-full bg-[rgba(255,255,255,0.60)]"></div>
 
         </div>

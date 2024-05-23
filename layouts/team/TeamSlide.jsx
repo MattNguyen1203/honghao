@@ -33,24 +33,25 @@ const TeamSlide = () => {
     <Swiper
       breakpoints={{
         767: {
-          speed: 1100
+          speed: 1100,
         }
       }}
+      spaceBetween={0}
       ref={swiperRef}
-      slidesPerView={3.3}
+      slidesPerView={3.2}
       onSlideChange={handleSlideChange}
       onBeforeInit={(swiper) => {
         swiperRef.current = swiper
       }}
-      speed={1000}
+      speed={500}
       loop={'true'}
       modules={[Navigation]}
-      className=' w-[62.0625rem]'
+      className=' xmd:w-[60.0625rem] w-[62.0625rem] xmd:!pl-[1rem] md:!pl-[1rem]'
 
     >
       {new Array(5).fill(0)?.map((d, i) => (
 
-        <SwiperSlide key={i} className='!pb-[4rem] xmd:!pl-[0.8rem]'>
+        <SwiperSlide key={i} className='!pb-[4rem]'>
           < CardOurTeam />
         </SwiperSlide>
       ))}
