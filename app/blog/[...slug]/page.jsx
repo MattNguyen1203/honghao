@@ -1,9 +1,9 @@
-import BlogDetail from '@/sections/blog-detail'
+import Blog from '@/sections/blog'
 import React from 'react'
 import getData from '@/lib/getData'
 const page = async () => {
 
-  return <BlogDetail/>
+  return<Blog/>
 }
 
 export default page

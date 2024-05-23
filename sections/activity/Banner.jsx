@@ -31,6 +31,7 @@ const SheetCp = ({ children }) => {
       slidesPerView: 1.5
     },
   }
+  console.log({ isMobile })
   return (
     <Sheet>
       <SheetTrigger>
@@ -48,8 +49,8 @@ const SheetCp = ({ children }) => {
                   'md:pl-[8rem] md:pr-[4.5rem]': i === 2,
                   'md:pl-[9.5rem] md:pr-[4rem]': i === 3,
                   'md:bg-orange-normal md:text-white xmd:text-orange-normal': i === 0,
-                  'shadow-no': isMobile,
-                  'shadow-right': !isMobile
+                  'shadow-no': isMobile < 767,
+                  'shadow-right': isMobile > 767
                 })}>
                 <div className="xmd:flex xmd:flex-col xmd:items-start xmd:gap-y-[0.5rem]">
 
@@ -67,6 +68,7 @@ const SheetCp = ({ children }) => {
                   slidesPerView: 2.5
                 },
               }}
+              speed={500}
               slidesPerView={1.2}
               spaceBetween={20}
               className='!pl-10 xmd:!pl-2  !w-full '
@@ -75,14 +77,14 @@ const SheetCp = ({ children }) => {
 
             >
               {[0, 0, 0, 0, 0].map((d, i) => (
-                <SwiperSlide key={i} className='' >
-                  <Image priority alt="ảnh" src={'/imgs/activity/image-popup-banner.png'} width={1000} height={1000} className="xl:w-[98%] xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] md:h-[27.9375rem] rounded-[1.25rem]" />
+                <SwiperSlide key={i} className=' overflow-hidden' >
+                  <Image priority alt="ảnh" src={'/imgs/activity/image-popup-banner.png'} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </div>
-        <SheetFooter className={''}>
+        <SheetFooter className={'xmd:hidden'}>
           <SheetClose asChild className='absolute top-0 cursor-pointer right-5'>
             <div className=" flex items-center justify-center rounded-full size-[3.25rem] shrink-0 bg-[rgba(217,217,217,0.20)] backdrop-blur-[2px]">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -103,12 +105,12 @@ const Banner = () => {
       <Image priority alt="ảnh" src={'/imgs/activity/nature.png'} width={1600} height={1935} className=" xmd:hidden absolute h-full w-full" />
       <Image priority alt="ảnh" src={'/imgs/activity/nature-mobi.png'} width={1600} height={1935} className=" md:hidden absolute h-full w-full" />
 
-      <div className='xl:container relative xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
+      <div className='container relative xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
         {/* main title */}
         <Image priority alt="ảnh title web" src={'/imgs/activity/main_title.png'} width={840} height={355} className="absolute md:left-[3rem]  xl:left-[0rem]  left-[0rem] xmd:hidden top-[9rem] w-[52.3605rem] h-[22.1875rem]" />
-        <Image priority alt="ảnh title mobi" src={'/imgs/activity/main-title-mobi.png'} width={840} height={355} className=" left-[5rem] xmd:mx-auto top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]" />
+        <Image priority alt="ảnh title mobi" src={'/imgs/activity/main-title-mobi.png'} width={840} height={355} className=" top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]" />
         <div className="md:hidden"><Breadcrumb /></div>
-        <div className=' xmd:mx-[1rem]  md:absolute flex-col md:left-[3.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
+        <div className=' md:absolute flex-col md:left-[3.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
 
           <div className="md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]">
             Ha Giang, nestled in the rugged mountains of northern Vietnam, beckons adventurers with its breathtaking scenery and vibrant cultural tapestry. From the towering peaks of the Dong Van Karst Plateau to the winding roads of the Ma Pi Leng Pass, Ha Giang offers an unforgettable journey through some of Vietnam's most awe-inspiring landscapes.
@@ -122,59 +124,11 @@ const Banner = () => {
         <Image priority alt="map" src={'/imgs/activity/map.png'} width={9950} height={9950} className="w-[57rem] left-[35%] xmd:hidden h-[82rem] absolute bottom-0" />
 
         <Image priority alt="map mobi" src={'/imgs/activity/map-mobi.png'} width={9950} height={9950} className=" mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute top-[25.2rem] left-0 md:hidden" />
-        {/* <div className="absolute xmd:top-[49.5rem] xmd:left-[3.4rem] w-[4.75rem] h-[6.25rem] xl:right-[31.3rem]  md:right-[38.7rem] top-[43.5rem]">
-          <div className='relative border border-red-500 w-fit'>
-            <div className="inline-flex xmd:absolute left-0 xmd:top-0 relative flex-col items-center mt-[0.8rem]">
-              <SheetCp>
-                <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="cursor-pointer" />
-              </SheetCp>
-
-              <svg className='absolute left-[2.5rem] bottom-[2.5rem] circle size-[1.25rem] mr-[0.95rem]' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="3.5" fill="#E64827" stroke="#E64827" />
-                <circle cx="10" cy="10" r="9.5" stroke="#E64827" />
-              </svg>
-              <div className="absolute left-[2.5rem] bottom-[4.5rem] text-white bg-orange-normal 
-              text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
-              inline-flex justify-center items-center gap-2.5 p-2.5 rounded-[1.25rem]">
-                222
-              </div>
-            </div>
-            <div className="left-[5rem] top-[4.5rem] absolute flex flex-col items-start xmd:space-y-[0.625rem] space-y-[1.2rem]">
-              <div className=" text-linear text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative">Motobike
-                tour
-
-              </div>
-              <div className="flex md:w-[20.6875rem] items-start content-start gap-2 flex-wrap">
-                <button className="text-white text-center text-[0.78906rem] not-italic font-medium leading-4 tracking-[0.03125rem] uppercase flex justify-center items-center gap-2.5 border 
-                xmd:py-[0.4375rem] xmd:px-[1.1875rem] px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] border-solid border-[rgba(255,255,255,0.40)]">
-                  DU GIA
-                </button>
-                <button className="text-white text-center text-[0.78906rem] not-italic font-medium leading-4 tracking-[0.03125rem] uppercase flex justify-center items-center gap-2.5 border 
-                xmd:py-[0.4375rem] xmd:px-[1.1875rem] px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] border-solid border-[rgba(255,255,255,0.40)]">
-                  DU GIA
-                </button>
-                <button className="text-white text-center text-[0.78906rem] not-italic font-medium leading-4 tracking-[0.03125rem] uppercase flex justify-center items-center gap-2.5 border 
-                xmd:py-[0.4375rem] xmd:px-[1.1875rem] px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] border-solid border-[rgba(255,255,255,0.40)]">
-                  DU GIA
-                </button>
-              </div>
-            </div>
-            <div className="text-white bg-clip-border text-lg xmd:text-[0.52956rem] not-italic font-bold leading-[120%] flex flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4 
-            absolute backdrop-blur-lg px-3 xmd:px-[0.353rem] py-1.5 xmd:py-[0.1765rem] rounded-3xl
-            xmd:top-[9rem] xmd:left-[13rem] top-[14rem] left-[23rem]">
-              Experience
-            </div>
-
-
-
-
-          </div>
-        </div> */}
         {/* motobike */}
 
-        <div className="absolute w-[4.75rem] h-[6.25rem] xmd:top-[43.2rem] xl:left-[-1rem] left-[3.4rem] top-[43.5rem]">
+        <div className="absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] xl:left-[-1rem] md:left-[-1.05rem] left-[3.4rem] ">
           <div className=' relative'>
-            <div className=" absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center w-[8.75013rem]">
+            <div className=" absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center space-y-[0] w-[8.75013rem]">
               <SheetCp>
                 <Image priority alt="ảnh" src={'/imgs/activity/motobike-img-all.png'} width={120} height={200} className="w-[4.75rem] cursor-pointer h-[4.55rem]" />
               </SheetCp>
@@ -189,7 +143,7 @@ const Banner = () => {
                   Motobike
                   tour
                 </div>
-                <div className="absolute xmd:bottom-[0.5rem] xmd:left-[8rem] md:bottom-[.9rem] md:left-[17rem] text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
+                <div className="absolute xmd:bottom-[0.5rem] xmd:left-[8rem] md:bottom-[.9rem] md:left-[17rem] text-white w-fit bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
                 flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl">
 
                   Experience
@@ -224,7 +178,7 @@ const Banner = () => {
           </div>
         </div>
         {/* hiking */}
-        <div className="absolute w-[4.75rem] h-[6.25rem] xl:left-[-4.1rem]  left-[-0.2rem] top-[63.5rem]">
+        <div className="absolute w-[4.75rem] h-[6.25rem] xl:left-[-4.1rem] md:left-[-4.1rem]  left-[-0.5rem] top-[63.5rem]">
           <div className='relative '>
             <div className=" absolute top-[5rem] left-[14.2rem] md:left-[31rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]">
               <SheetCp>

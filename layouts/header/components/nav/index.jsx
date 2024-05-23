@@ -1,10 +1,10 @@
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 gsap.registerPlugin(ScrollTrigger)
-const Nav = ({setOpenNav}) => {
+const Nav = ({ setOpenNav }) => {
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)

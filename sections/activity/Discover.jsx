@@ -67,11 +67,11 @@ const DialogCp = ({ children }) => {
     mainSwiper?.current?.slideTo(activeIndex);
   }, [activeIndex]);
   return (
-    <Dialog className='Dialogclass'>
+    <Dialog className='Dialogclass '>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="">
+      <DialogContent className=''>
         <SlideVideoTours />
         <DialogClose className='absolute top-[0rem] -right-[4rem]'>
           <div className="w-[3.25rem] rounded-full flex items-center justify-center h-[3.25rem] shrink-0 bg-[rgba(217,217,217,0.40)] backdrop-blur-[2px]">
@@ -90,7 +90,7 @@ const SheetCp = ({ children }) => {
       <SheetTrigger>
         {children}
       </SheetTrigger>
-      <SheetContent side={'bottom'} className='!bg-white'>
+      <SheetContent side={'bottom'} className='!bg-white '>
         <div className='  flex flex-col w-full xmd:rounded-tl-xl xmd:rounded-tr-xl xmd:overflow-hidden  xmd:bg-white'>
           <div className="xmd:w-[23.4375rem] xmd:h-[16.5625rem] inline-flex z-10 justify-end items-center pr-0 pt-[2.4375rem] xmd:pt-[0.4375rem] xmd:pb-1 pb-10 bg-white">
             <Swiper
@@ -100,6 +100,7 @@ const SheetCp = ({ children }) => {
                   slidesPerView: 2.5
                 },
               }}
+              speed={500}
               slidesPerView={1.2}
               spaceBetween={20}
               className='!pl-10 xmd:!pl-2  !w-full '
@@ -206,7 +207,7 @@ const Discover = () => {
           trigger: imgRefMobi.current,
           pin: imgRefMobi.current,
           start: "5% 0%",
-          end: () => `+=${scrollRef.current.offsetWidth}`,
+          end: () => `+=${scrollRef.current.offsetWidth + '500px'}`,
           toggleActions: "restart reverse reverse reverse",
           // markers: true,
           scrub: 1,
@@ -337,7 +338,7 @@ const Discover = () => {
               modules={[Navigation]}
               className=''
               spaceBetween={0}
-              speed={1050}
+              speed={550}
               slidesPerView={1.2}
               loop={false}
             >
