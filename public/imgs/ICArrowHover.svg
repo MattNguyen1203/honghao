@@ -16,7 +16,7 @@
 </filter>
 <linearGradient id="paint0_linear_8904_18050" x1="4.53912" y1="5.29687" x2="4.53912" y2="6.18887" gradientUnits="userSpaceOnUse">
 <stop offset="0.31" stop-color="white"/>
-<stop offset="1" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white" stopOpacity="0"/>
 </linearGradient>
 </defs>
 </svg>
