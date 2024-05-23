@@ -129,7 +129,7 @@ const Banner = () => {
             />
 
             <Image
-              src='/imgs/home/bannerMap2.webp'
+              src='/imgs/home/BannerMap2.webp'
               alt='hong hao travel'
               width={2000}
               height={1000}
