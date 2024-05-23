@@ -3,7 +3,6 @@ import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
-import ResponsiveProvider from '@/components/provider/responsiveProivder'
 
 const londrina = Londrina_Solid({
   display: 'swap',
