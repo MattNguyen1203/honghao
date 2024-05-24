@@ -37,9 +37,15 @@ const data = {
   ],
   pickup: ['Hà Nội1', 'Hà Nội2', 'Hà Nội3'],
   droff: [
-    {title: 'Hà Nội11', address: ['Hà Nội111', 'Hà Nội112', 'Hà Nội112']},
-    {title: 'Hà Nội12', address: ['Hà Nội121', 'Hà Nội122', 'Hà Nội132']},
-    {title: 'Hà Nội13', address: ['Hà Nội131', 'Hà Nội132', 'Hà Nội132']},
+    {title: 'Hà Nội11', address: ['Hà Nội11131', 'Hà Nội11221', 'Hà Nội11233']},
+    {
+      title: 'Hà Nội12',
+      address: ['Hà Nội121312', 'Hà Nội12221', 'Hà Nội13223'],
+    },
+    {
+      title: 'Hà Nội13',
+      address: ['Hà Nội131312', 'Hà Nội1323123', 'Hà Nội133123'],
+    },
   ],
   paxValueSelf: 169,
   paxValueLocal: 199,
@@ -101,7 +107,6 @@ export default function HomeForm() {
       destination: '',
     },
   })
-  console.log(form)
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
 
@@ -126,9 +131,45 @@ export default function HomeForm() {
     setDataDestination(dataDestination)
   }, [dataForm?.droff])
 
+  async function postFile(newvalue) {
+    try {
+      const formdata = new FormData()
+
+      formdata?.append('entry.335637933', newvalue?.username)
+      formdata?.append('entry.1417657903', newvalue?.email)
+      formdata?.append('entry.516066790', newvalue?.phone)
+      formdata?.append('entry.513250024', newvalue?.typeoftour)
+      formdata?.append('entry.531591585', newvalue?.choosedays)
+      formdata?.append('entry.1318177335', newvalue?.message)
+      formdata?.append('entry.596297400', newvalue?.pickup)
+      formdata?.append('entry.737203426', newvalue?.droff)
+      formdata?.append('entry.1683072828', newvalue?.dob)
+      formdata?.append('entry.1967653042', newvalue?.enddate)
+      formdata?.append('entry.571877462', newvalue?.address)
+      formdata?.append('entry.1295571760', newvalue?.destination)
+      formdata?.append('entry.954465883', paxValueLocal + paxValueSelf)
+      console.log(formdata)
+      await fetch(
+        'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfqbLnJVPF8a7wRisEdbOUrpvDjwRIQN0_aMMY6-qgk_vKVFQ/formResponse',
+        {
+          method: 'POST',
+          body: formdata,
+          mode: 'no-cors',
+        },
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   function onSubmit(values) {
-    const newvalue = {paxValueDrinving: paxValueDrinving, ...values}
+    const newvalue = {
+      paxValueSelf: paxValueSelf,
+      paxValueLocal: paxValueLocal,
+      ...values,
+    }
     console.log(newvalue)
+    postFile(newvalue)
   }
   return (
     <section className='flex rounded-[1.5rem] w-fit relative'>
@@ -343,14 +384,16 @@ export default function HomeForm() {
                         <FormControl>
                           <Button
                             variant={'outline'}
-                            className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-[1rem] py-[0.75rem] font-normal text-0875 text-greyscale-60 ${
+                            className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${
                               !field?.value && 'text-muted-foreground'
                             }`}
                           >
                             {field?.value ? (
-                              format(field.value, 'dd/M/yyyy')
+                              <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                                {format(field.value, 'dd/M/yyyy')}
+                              </span>
                             ) : (
-                              <span className='font-normal text-0875 text-greyscale-60'>
+                              <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
                                 Pick a date
                               </span>
                             )}
@@ -466,22 +509,25 @@ export default function HomeForm() {
                           <Button
                             disabled
                             variant={'outline'}
-                            className={`flex justify-center items-center bg-greyscale-5 !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-[1rem] py-[0.75rem] text-left font-normal text-0875 text-greyscale-60 ${
+                            className={`flex justify-center items-center bg-greyscale-5 !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 text-left font-normal text-0875 text-greyscale-60 ${
                               !field?.value && 'text-muted-foreground'
                             }`}
                           >
                             {dataForm?.dob && endDate ? (
-                              format(endDate, 'dd/M/yyyy')
+                              <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                                {format(field.value, 'dd/M/yyyy')}
+                              </span>
                             ) : dataForm?.choosedays ? (
-                              <span className='font-normal text-0875 text-greyscale-60'>
+                              <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
                                 Pick a date
                               </span>
                             ) : (
-                              <span className='font-normal text-0875 text-greyscale-60'>
+                              <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
                                 Pick Choose
                               </span>
                             )}
                             <svg
+                              className='size-[1rem]'
                               xmlns='http://www.w3.org/2000/svg'
                               width='16'
                               height='16'
@@ -490,7 +536,7 @@ export default function HomeForm() {
                             >
                               <path
                                 d='M2.41836 16.0001H13.5828C14.7532 16.0001 15.7043 15.049 15.7043 13.8786V3.30667C15.7043 2.1363 14.7532 1.18517 13.5828 1.18517H12.7413V0.592585C12.7413 0.266653 12.4746 0 12.1487 0C11.8228 0 11.5561 0.266653 11.5561 0.592585V1.18517H4.44504V0.592585C4.44504 0.266653 4.17834 0 3.85241 0C3.52648 0 3.25983 0.266653 3.25983 0.592585V1.18517H2.41836C1.24799 1.18517 0.296875 2.1363 0.296875 3.30667V13.8786C0.296875 15.049 1.24799 16.0001 2.41836 16.0001ZM1.48209 3.30667C1.48209 2.79113 1.90282 2.37039 2.41836 2.37039H3.25983V2.96298C3.25983 3.28891 3.52648 3.55556 3.85241 3.55556C4.17834 3.55556 4.445 3.28891 4.445 2.96298V2.37039H11.5561V2.96298C11.5561 3.28891 11.8228 3.55556 12.1487 3.55556C12.4746 3.55556 12.7413 3.28891 12.7413 2.96298V2.37039H13.5828C14.0983 2.37039 14.519 2.79113 14.519 3.30667V5.03707H1.48209V3.30667ZM1.48209 6.22224H14.5191V13.8786C14.5191 14.3941 14.0984 14.8149 13.5829 14.8149H2.41836C1.90282 14.8149 1.48209 14.3941 1.48209 13.8786V6.22224Z'
-                                fill='#E64827'
+                                fill='#3F3F3F'
                               />
                             </svg>
                           </Button>
@@ -680,17 +726,19 @@ export default function HomeForm() {
           <div className='w-full flex justify-between items-center'>
             <span className='text-1 font-semibold text-[#551D0A]'>TOTAL</span>
             <span className='w-[10.5625rem] py-[0.25rem] px-[0.5rem] rounded-[0.25rem] bg-greyscale-5 flex justify-center items-center text-125 font-bold text-greyscale-80'>
+              $
               {paxValueSelf * data?.paxValueSelf +
                 paxValueLocal * data?.paxValueLocal}
             </span>
           </div>
           <div className='absolute bottom-[1.5rem] right-[1.75rem] w-[33.25rem] flex space-x-[0.5rem]'>
             <Button
-              className='text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal-hover'
+              className='hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal'
               type='submit'
             >
               BOOK NOW, Pay later
               <svg
+                className='ml-[0.5rem]'
                 xmlns='http://www.w3.org/2000/svg'
                 width='12'
                 height='12'
@@ -777,7 +825,7 @@ export default function HomeForm() {
               </svg>
             </Button>
             <Button
-              className='text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover'
+              className='hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover'
               type='submit'
             >
               PAY NOW
