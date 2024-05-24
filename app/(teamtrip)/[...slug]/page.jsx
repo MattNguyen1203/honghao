@@ -1,7 +1,7 @@
 
-
+import BlogDetail from "@/sections/blog-detail"
 const page = () => {
-  return <div className="">hahahaha</div>
+  return <BlogDetail/>
 }
 
 export default page

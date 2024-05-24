@@ -4,7 +4,7 @@ import PaginationCustom from '@/components/paginationcustom'
 import Link from 'next/link'
 const CardMain = () => {
   return (
-    <Link href='/blog/van-la-bo-ne'>
+    <Link href='/van-la-bo-ne'>
       <div className='xmd:hidden relative rounded-md overflow-hidden'>
         <Image priority alt="ảnh" src={'/imgs/blog/cardmain.jpg'} width={1500} height={800} className="w-[89.9375rem] h-[43.6875rem] shrink-0" />
         <div className="absolute z-10 bottom-0 left-0">

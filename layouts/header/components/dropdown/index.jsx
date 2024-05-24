@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useEffect, useState} from 'react'
-import {cn} from '@/lib/utils'
+import React, { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 import ICArrow from '@/components/icons/ICArrow'
 import ICArrowDown from '@/components/icons/ICArrowDown'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {Scrollbar} from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Scrollbar } from 'swiper/modules'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/scrollbar'
@@ -81,7 +81,7 @@ const dataHeader = [
   },
 ]
 
-const NavDropdown = ({openNav, setOpenNav}) => {
+const NavDropdown = ({ openNav, setOpenNav }) => {
   const [openChild, setOpenChild] = useState(false)
   const [activeKey, setActiveKey] = useState('home')
   const [sideRef, isOutSide, isClick] = useClickOutSide(false)
@@ -111,13 +111,13 @@ const NavDropdown = ({openNav, setOpenNav}) => {
     >
       <div className='absolute top-0 left-0 size-full bg-[rgba(66,96,72,0.9)] z-[1]'></div>
       <div className='absolute top-0 left-0 size-full bg-[linear-gradient(180deg,#122718_0%,rgba(18,39,24,0.00)_35%,rgba(18,39,24,0)_70%,#122718_100%)] z-[1]'></div>
-      <Image
+      {/* <Image
         src='/imgs/nav/bg.jpg'
         alt='Honghao Travel'
         width={1600}
         height={1600}
         className='w-full h-full object-cover absolute top-0 left-0'
-      />
+      /> */}
       <Image
         src='/imgs/nav/close.svg'
         alt='hong hao travel'
@@ -144,10 +144,10 @@ const NavDropdown = ({openNav, setOpenNav}) => {
               <div
                 className='overflow-hidden'
                 onMouseOver={() => handleHover(item?.key)}
+                key={index}
               >
                 {isTour ? (
                   <div
-                    key={index}
                     onClick={() => setOpenChild((prev) => !prev)}
                     className={cn(
                       'cursor-pointer flex items-center relative ',
@@ -165,7 +165,7 @@ const NavDropdown = ({openNav, setOpenNav}) => {
                       className={cn(
                         'group-hover:translate-x-[1rem] duration-500',
                         openChild &&
-                          'text-[#CF4124] translate-x-[1rem] mr-[1rem]',
+                        'text-[#CF4124] translate-x-[1rem] mr-[1rem]',
                       )}
                     >
                       {item.label}
@@ -178,7 +178,6 @@ const NavDropdown = ({openNav, setOpenNav}) => {
                 ) : (
                   <Link
                     href={item.link}
-                    key={index}
                     className='flex items-center relative group'
                     onClick={handleClose}
                   >
@@ -206,7 +205,7 @@ const NavDropdown = ({openNav, setOpenNav}) => {
                         className={cn(
                           'py-[0.5rem] pr-[1rem] w-fit mt-[1rem]',
                           subIndex !== children?.length - 1 &&
-                            'border-b border-solid border-greyscale-0/20',
+                          'border-b border-solid border-greyscale-0/20',
                         )}
                         onClick={handleClose}
                       >
@@ -249,14 +248,17 @@ const NavDropdown = ({openNav, setOpenNav}) => {
               Find your tour:
             </div>
             <Swiper
-              scrollbar={{hide: true}}
+              scrollbar={{ hide: true }}
               slidesPerView={2.2}
               spaceBetween={16}
               modules={[Scrollbar]}
               className='nav-slide w-full h-[28rem]'
             >
-              {new Array(5).fill(0).map((item) => (
-                <SwiperSlide className='select-none max-w-full'>
+              {new Array(5).fill(0).map((item, index) => (
+                <SwiperSlide
+                  className='select-none max-w-full'
+                  key={index}
+                >
                   <ItemTour className='h-[26rem]' />
                 </SwiperSlide>
               ))}

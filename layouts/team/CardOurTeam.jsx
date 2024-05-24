@@ -1,12 +1,16 @@
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
+import useStore from '@/app/(store)/store'
 const CardOurTeam = () => {
+  const isMobile = useStore((state) => state.isMobile)
   return (
     <div
-      className='relative cursor-pointer overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] h-[28.5rem] flex-col group items-center xmd:space-y-[0.75rem] space-y-[1rem]  pb-[0.6875rem] rounded-3xl 
-      shadow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]
-    '
+      className={cn(`relative bg-white cursor-pointer overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] 
+      h-[28.5rem] flex-col  items-center justify-between xmd:space-y-[0.75rem] space-y-[1rem] pb-[0.6875rem] rounded-3xl 
+      shadow-md
+    `, !isMobile ? 'group' : '')}
     >
-      <div className='w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-2xl overflow-hidden'>
+      <div className=' w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-2xl overflow-hidden'>
         <Image
           priority
           alt='ảnh'
@@ -36,7 +40,7 @@ const CardOurTeam = () => {
           />
         </div>
       </div>
-      <div className='ease-linear  flex flex-col items-center space-y-[0.25rem] self-stretch'>
+      <div className=' ease-linear  flex flex-col items-center justify-around space-y-[0.25rem] self-stretch'>
         <div className='text-orange-normal text-center text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
           Mr. Thanh Nguyen
         </div>
@@ -49,7 +53,7 @@ const CardOurTeam = () => {
             3 years EXP
           </div>
         </div>
-        <div className='w-[15.75rem] rotate-y group-hover:h-[3.5rem] group-hover:rotate-0 rotate-[180deg] group-hover:opacity-100 h-0 opacity-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
+        <div className='w-[15.75rem] group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[3.5rem]  overflow-hidden h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
           “As a tour guide, my greatest joy is witnessing the wonder and awe on
           travelers' faces as they discover the hidden gems and cultural
           treasures of our destination”
@@ -60,3 +64,4 @@ const CardOurTeam = () => {
 }
 
 export default CardOurTeam
+// z 
