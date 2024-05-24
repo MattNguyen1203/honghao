@@ -3,8 +3,10 @@ import {cn} from '@/lib/utils'
 import Image from 'next/image'
 import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
+import {useToast} from '@/components/ui/use-toast'
 
 export default function ContactForm() {
+  const {toast} = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const [name, setName] = useState('')
@@ -28,8 +30,16 @@ export default function ContactForm() {
       errorMessage.contactSubject
     ) {
       console.log('NGU')
+      toast({
+        title: 'Gửi thông tin không thành công',
+        description: 'Vui lòng kiểm tra lại thông tin đã điền. ( ͡° ͜ʖ ͡° )',
+      })
     } else {
-      console.log('Sending...')
+      toast({
+        title: 'Gửi thông tin thành công',
+        description:
+          'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể. (づ ◕‿◕ )づ',
+      })
     }
   }
   return (
@@ -115,11 +125,17 @@ export default function ContactForm() {
           <button
             ref={sideRef}
             type='button'
-            className='relative flex flex-row justify-center items-center text-[rgba(187,211,200,0.50)] font-tripsans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
+            className='relative flex flex-row justify-center items-center font-tripsans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
             style={{borderBottom: '1px solid rgba(187, 211, 200, 0.80)'}}
             onClick={() => setIsOpenDropdown(!isOpenDropdown)}
           >
-            {country ? country : 'Select country'}
+            {country ? (
+              <span className='text-greyscale-0'>{country}</span>
+            ) : (
+              <span className='text-[rgba(187,211,200,0.50)]'>
+                Select country
+              </span>
+            )}
             <Image
               src={'/imgs/contact-us/dropdown.svg'}
               alt='select country'

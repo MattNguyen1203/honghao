@@ -32,7 +32,7 @@ const ItemTour = ({className}) => {
               height={12}
               className='size-[1.5rem] xmd:size-[1rem] mr-[0.5rem]'
             />
-            <span className='text-1 xmd:text-075 tracking-[0.0125rem] text-greyscale-0/80'>
+            <span className='text-1 xmd:text-075 tracking-0.0125 text-greyscale-0/80'>
               4 Days 5 Nights
             </span>
 
