@@ -3,6 +3,7 @@ export default function InformationForm({
   data,
   paxValueLocal,
   paxValueSelf,
+  isTourDetail = false,
 }) {
   // console.log(dataForm)
   const formattedDate = (date) => {
@@ -14,8 +15,18 @@ export default function InformationForm({
   }
 
   return (
-    <div className='space-y-[0.75rem] w-[35.5rem] py-[1.5rem] pl-[0.75rem] pr-[1.5rem]'>
-      <span className='text-0875 font-bold text-greyscale-80 opacity-40'>
+    <div
+      className={`${
+        isTourDetail ? 'pl-[2rem] translate-y-[3.5rem]' : 'pl-[0.75rem]'
+      } space-y-[0.75rem] w-[35.5rem] py-[1.5rem] pr-[1.5rem]`}
+    >
+      <span
+        className={`${
+          isTourDetail
+            ? 'opacity-70 text-1 text-white'
+            : 'opacity-40 text-0875 text-greyscale-80'
+        } font-bold`}
+      >
         Confirmed tour booking
       </span>
       <div className='bg-[#F8F8F8] rounded-[0.5rem] border-[0.5px] border-solid border-[#eee]'>
