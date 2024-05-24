@@ -100,7 +100,10 @@ const Banner = () => {
     })
   }, [])
   return (
-    <section>
+    <section
+      className=''
+      id='homepage__banner'
+    >
       {isMobile ? (
         <div className='relative z-20 w-full h-full md:hidden flex'>
           <SlideImgs animationCompleted={true} />

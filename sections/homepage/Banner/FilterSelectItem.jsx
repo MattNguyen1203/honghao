@@ -19,7 +19,7 @@ const FilterSelectItem = ({data}) => {
         <SelectTrigger className='text-1 h-[1.5rem] font-bold text-greyscale-80 p-0 !outline-none !border-none capitalize'>
           <SelectValue className='' />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className='z-[100]'>
           {data?.content?.map((item, index) => (
             <SelectItem
               value={item?.slug}
