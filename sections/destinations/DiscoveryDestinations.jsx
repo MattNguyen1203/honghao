@@ -76,7 +76,7 @@ const DiscoveryDestinations = () => {
         </div>
         <div>
 
-          <div className="grid xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit xmd:w-full ">
+          <div id='destination-cards' className="grid  xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit xmd:w-full ">
             <CardDestination />
             <CardDestination />
             <CardDestination />
@@ -88,7 +88,7 @@ const DiscoveryDestinations = () => {
           </div>
           {/* <div className="z-1"> */}
 
-          <PaginationCustom />
+          <PaginationCustom href='#destination-cards' />
           {/* </div> */}
         </div>
       </div>

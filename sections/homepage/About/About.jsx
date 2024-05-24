@@ -90,10 +90,18 @@ const About = () => {
           <div className='flex space-x-[0.75rem] xmd:space-[0.5rem] tablet:space-[1.5rem] mb-[6.3rem] xmd:mb-[2.8rem] xmd:flex-wrap items-center justify-center'>
             {aboutData?.map((item, index) => (
               <div
-                className='rounded-full border border-dashed border-greyscale-0 size-[10.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:p-[1rem] xmd:tracking-[0] text-center'
+                className='group hover:bg-orange-normal overflow-hidden transition-all duration-500 rounded-full relative size-[10.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:p-[1rem] xmd:tracking-[0] text-center'
                 key={index}
               >
-                {item}
+                <div className='animate-spin flex size-full rounded-full border border-dashed border-greyscale-0 absolute top-0 left-0'></div>
+                <div className='relative overflow-hidden w-full h-[2.125rem]'>
+                  <span className='group-hover:translate-y-[-200%] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
+                    {item}
+                  </span>
+                  <span className='xlg:hidden translate-y-[100%] group-hover:-translate-y-1/2 xlg:!-translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
+                    {item}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

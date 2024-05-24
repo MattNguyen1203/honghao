@@ -44,7 +44,7 @@ const CardOurTeam = () => {
         <div className='text-orange-normal text-center text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
           Mr. Thanh Nguyen
         </div>
-        <div className='flex justify-center items-center gap-3 self-stretch'>
+        <div className='flex items-center self-stretch justify-center gap-3'>
           <div className='text-greyscale-80 text-center text-sm not-italic font-normal leading-[120%] tracking-[0.00875rem]'>
             Tour Leader
           </div>
