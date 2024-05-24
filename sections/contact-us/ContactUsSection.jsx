@@ -27,7 +27,7 @@ export default function ContactUsSection() {
                 width={120}
                 height={120}
               />
-              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-[0.0125rem]'>
+              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
                 +84 941556338
               </p>
             </div>
@@ -39,7 +39,7 @@ export default function ContactUsSection() {
                 width={120}
                 height={120}
               />
-              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-[0.0125rem]'>
+              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
                 honghaotravel@gmail.com
               </p>
             </div>
@@ -51,7 +51,7 @@ export default function ContactUsSection() {
                 width={120}
                 height={120}
               />
-              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-[0.0125rem]'>
+              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
                 No. 10 Pham Hong Thai, Minh Khai Ward, City. Ha Giang.
               </p>
             </div>
@@ -63,7 +63,7 @@ export default function ContactUsSection() {
                 width={120}
                 height={120}
               />
-              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-[0.0125rem]'>
+              <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
                 honghaotravel.com.vn
               </p>
             </div>

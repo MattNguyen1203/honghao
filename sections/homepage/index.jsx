@@ -4,22 +4,22 @@ import About from './About'
 import ClientSay from './ClientSay'
 import OurTeam from '@/layouts/team'
 import Season from './Season'
+import './styles.css'
 
 const Homepage = () => {
   return (
-    <div>
+    <main>
       <Banner />
       <About />
-      {/* TODO: DELETE ME */}
       <div className='h-[50vh]' />
       <ClientSay />
       <OurTeam
-        backgroundImage={'/imgs/home/bg-img-our-team.png'}
+        backgroundImage={'/imgs/home/bg-image-our-team-1.jpg'}
         darkTheme
         forHomePage
       />
       <Season />
-    </div>
+    </main>
   )
 }
 

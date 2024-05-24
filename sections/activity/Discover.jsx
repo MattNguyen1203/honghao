@@ -315,7 +315,7 @@ const Discover = () => {
         </div >
 
         <div ref={scrollRef} className='w-full'>
-          <h2 className="xmd:absolute top-[9rem] xmd:ml-[0rem] xxl:ml-[5rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] xl:mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem]">
+          <h2 className="xmd:absolute top-[9rem] xmd:ml-[0rem] xxl:ml-[5rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] xl:mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-0.00375 md:mt-[12.25rem]">
             Discover the raw beauty of Ha Giang through our immersive tours, where every twist of the road unveils a new panorama of awe-inspiring landscapes.
           </h2>
 

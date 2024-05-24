@@ -59,7 +59,7 @@ export default function RootLayout({children}) {
         />
       </head>
       <body
-        className={`${tripsans.className} ${tripsans.variable} ${londrina.variable}`}
+        className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <ResponsiveProvider>

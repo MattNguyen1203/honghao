@@ -154,6 +154,12 @@
   .transition-500 {
     @apply transition-all duration-500 ease-out;
   }
+  .transition-600 {
+    @apply transition-all duration-600 ease-out;
+  }
+  .transition-800 {
+    @apply transition-all duration-800 ease-out;
+  }
 }
 
 *,
@@ -303,7 +309,16 @@ input[type='password']::-ms-clear {
   font-weight: bold;
   background-color: #c24216;
 } */
+@media (min-width: 767px) {
+  html::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
 
-.cut-img {
-  mask-image: url('../public/imgs/home/1-buc-anh-co-hinh-giong-england-deco-1.png');
+  html::-webkit-scrollbar-track {
+    @apply bg-[#e6e6e6] my-1;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    @apply bg-orange-normal rounded-full transition-colors;
+  }
 }

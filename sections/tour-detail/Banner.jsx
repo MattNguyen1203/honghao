@@ -82,7 +82,7 @@ const Banner = () => {
 
               <div className="flex items-center space-x-[0.575rem]">
                 <div className="size-[0.28rem] bg-white rounded-full"></div>
-                <div className=" overflow-hidden xmd:text-greyscale-60 text-greyscale-5 text-ellipsis text-base not-italic font-normal leading-[120%] tracking-[0.0125rem]">
+                <div className=" overflow-hidden xmd:text-greyscale-60 text-greyscale-5 text-ellipsis text-base not-italic font-normal leading-[120%] tracking-0.0125">
                   3 Days / 4 Night
                 </div>
               </div>
@@ -105,7 +105,7 @@ const Banner = () => {
 
                         {d?.icon}
                       </div>
-                      <div className="text-greyscale-10 xmd:text-greyscale-30 text-base  not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-[0.0125rem]">
+                      <div className="text-greyscale-10 xmd:text-greyscale-30 text-base  not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-0.0125">
                         {d?.title}
                       </div>
                     </div>
@@ -141,7 +141,7 @@ const Banner = () => {
 
                         {d?.icon}
                       </div>
-                      <div className="text-greyscale-10 xmd:text-greyscale-30 text-base not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-[0.0125rem]">
+                      <div className="text-greyscale-10 xmd:text-greyscale-30 text-base not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-0.0125">
                         {d?.title}
                       </div>
                     </div>

@@ -4,9 +4,14 @@ import TeamSlide from './TeamSlide'
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import './team.css'
 import {cn} from '@/lib/utils'
+
 export default function OurTeam({backgroundImage, darkTheme, forHomePage}) {
   return (
-    <section className='relative flex items-center justify-center'>
+    <section
+      className={cn('relative flex items-center justify-center', {
+        'pb-[3.5rem] md:pb-[13.5rem]': forHomePage,
+      })}
+    >
       {backgroundImage && (
         <>
           <Image
@@ -14,7 +19,21 @@ export default function OurTeam({backgroundImage, darkTheme, forHomePage}) {
             alt='our team'
             width={1920}
             height={1080}
-            className='absolute top-0 left-0 object-cover w-full'
+            className='absolute top-0 left-0 hidden object-cover h-full md:block md:w-full'
+          />
+          <div
+            className='absolute top-0 left-0 hidden w-full h-full md:block opacity-90'
+            style={{
+              background:
+                'linear-gradient(180deg, #122718 7.6%, #122718 43.62%, #122718 79.64%)',
+            }}
+          />
+          <Image
+            src={'/imgs/home/bg-image-our-team-mobile.png'}
+            alt='our team'
+            width={390}
+            height={884}
+            className='absolute top-0 left-0 object-cover w-full h-full'
           />
         </>
       )}
@@ -32,7 +51,7 @@ export default function OurTeam({backgroundImage, darkTheme, forHomePage}) {
           </div>
           <h2
             className={cn('uppercase !mt-[0.75rem]', {
-              'text-greyscale-0': darkTheme,
+              'text-greyscale-0 h2': darkTheme,
             })}
           >
             OUR TEAM

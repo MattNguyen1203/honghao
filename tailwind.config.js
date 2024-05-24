@@ -85,6 +85,7 @@ module.exports = {
         'green-hover': '#206545',
         'green-dark': '#1A543A',
         'green-dark-active': '#103223',
+        'elevation-30': '#F0F0F0',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -119,6 +120,8 @@ module.exports = {
         0.875: '0.875rem',
         1: '1rem',
         1.125: '1.125rem',
+        1.23: '1.23rem',
+        1.25: '1.25rem',
         1.5: '1.5rem',
         2: '2rem',
         2.5: '2.5rem',
@@ -133,9 +136,14 @@ module.exports = {
       },
       transitionDuration: {
         400: '400ms',
+        600: '600ms',
+        800: '800ms',
       },
       letterSpacing: {
         0.00219: '0.00219rem',
+        0.00375: '0.00375rem',
+        0.00875: '0.00875rem',
+        0.0125: '0.0125rem',
       },
     },
   },

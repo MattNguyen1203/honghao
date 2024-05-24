@@ -46,7 +46,7 @@ const CardOurTeam = ({darkTheme}) => {
           'ease-linear flex flex-col items-center space-y-[0.25rem] self-stretch',
         )}
       >
-        <div className='text-orange-normal text-center text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
+        <div className='text-orange-normal text-center text-base not-italic font-bold leading-[120%] tracking-0.0125'>
           Mr. Thanh Nguyen
         </div>
         <div className='flex items-center self-stretch justify-center gap-3'>
@@ -58,7 +58,7 @@ const CardOurTeam = ({darkTheme}) => {
             3 years EXP
           </div>
         </div>
-        <div className='w-[15.75rem] rotate-y group-hover:h-[3.5rem] group-hover:rotate-0 rotate-[180deg] group-hover:opacity-100 h-0 opacity-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
+        <div className='w-[15.75rem] rotate-y group-hover:h-[3.5rem] group-hover:rotate-0 rotate-[180deg] group-hover:opacity-100 h-0 opacity-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-0.00375'>
           “As a tour guide, my greatest joy is witnessing the wonder and awe on
           travelers' faces as they discover the hidden gems and cultural
           treasures of our destination”

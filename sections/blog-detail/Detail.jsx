@@ -4,7 +4,7 @@ const Detail = () => {
   return (
     <section className='w-full md:border-b md:border-[#E5E5E5]'>
       <div className="md:container relative h-[50rem] md:border-l md:border-r md:border-[#E5E5E5] mx-auto">
-        <h2 className="w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]">
+        <h2 className="w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-0.00375 leading-[120%]">
           Tanzania is known for it world-class opportunities for big game spotting and stunning National Parks. But what don't you know about this wonderful destination?
         </h2>
         <div className='flex w-[65.8rem] xmd:w-[21.4375rem] mx-auto flex-col items-start bg-greyscale-5 xmd:space-y-[0.63rem] space-y-[1.875rem] xmd:py-[1.25rem] xmd:px-[0.62rem] md:p-5'>
@@ -23,7 +23,7 @@ const Detail = () => {
         </div>
         <div className="h-[5rem] xmd:h-[3.75rem] flex items-center xmd:pl-[1rem] pl-[7.41rem] absolute bottom-0 w-full border-t xmd:border-t border-[#E5E5E5]">
           <div className="flex items-center gap-4">
-            <div className='text-[#030922] text-base not-italic font-normal leading-[120%] tracking-[0.0125rem]'>
+            <div className='text-[#030922] text-base not-italic font-normal leading-[120%] tracking-0.0125'>
               <div className="w-max ">
                 Chia sẻ:
               </div>

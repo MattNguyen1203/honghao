@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cut-img {
+  mask-image: url('../../public/imgs/home/england-shape.png');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 100%;
+}
+
+.slide-season {
+  border-radius: 1.5rem !important;
+}
+.slide-season .swiper-wrapper {
+  position: relative;
+}
+
+.slide-season .swiper-slide {
+  position: relative;
+  height: 44rem !important;
+}
+
+@media (max-width: 768px) {
+  .slide-season {
+    border-radius: 0.5rem !important;
+  }
+  .slide-season .swiper-slide {
+    height: 12.88rem !important;
+  }
+}
+
+.content-container::-webkit-scrollbar {
+  @apply w-[0.1875rem];
+}
+
+.content-container::-webkit-scrollbar-track {
+  @apply bg-greyscale-20 my-1;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+  @apply bg-greyscale-5;
+}
+
+.swiper-client-say {
+  @apply -z-10 !important;
+}
+
+.swiper-client-say .swiper-slide {
+  @apply h-[29.875rem] !important;
+}
