@@ -49,7 +49,7 @@ export default function ClientSay() {
           >
             <SwiperSlide>
               <Image
-                src={'/imgs/home/demo-1.png'}
+                src={'/imgs/home/bannerBg.webp'}
                 alt='client say'
                 className='absolute top-0 left-0 object-cover size-full cut-img'
                 width={1920}
@@ -58,7 +58,7 @@ export default function ClientSay() {
             </SwiperSlide>
             <SwiperSlide>
               <Image
-                src={'/imgs/home/demo-2.jpeg'}
+                src={'/imgs/home/bannerBg2.jpg'}
                 alt='client say'
                 className='absolute top-0 left-0 object-cover size-full cut-img'
                 width={1920}
@@ -67,7 +67,7 @@ export default function ClientSay() {
             </SwiperSlide>
             <SwiperSlide>
               <Image
-                src={'/imgs/home/demo-3.webp'}
+                src={'/imgs/home/bannerBg3.webp'}
                 alt='client say'
                 className='absolute top-0 left-0 object-cover size-full cut-img'
                 width={1920}

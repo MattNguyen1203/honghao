@@ -129,7 +129,7 @@ export default function Season() {
                 return (
                   <SwiperSlide key={i}>
                     <Image
-                      src={'/imgs/home/demo-1.png'}
+                      src={'/imgs/home/bannerBg.webp'}
                       alt='season-1'
                       className='object-cover w-full h-full'
                       width={1920}

@@ -1,4 +1,4 @@
-import { Londrina_Solid } from 'next/font/google'
+import {Londrina_Solid} from 'next/font/google'
 import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
@@ -49,7 +49,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
 }
-export default function RootLayout({ children }) {
+export default function RootLayout({children}) {
   return (
     <html lang='en'>
       <head>
@@ -66,10 +66,6 @@ export default function RootLayout({ children }) {
         <Socials />
         {children}
         <Footer />
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
       </body>
     </html>
   )

@@ -25,7 +25,6 @@ const Homepage = () => {
     <main>
       <Banner />
       <About />
-      <div className='h-[50vh]' />
       <ClientSay />
       <OurTeam
         backgroundImage={'/imgs/home/backround-image-our-team.png'}
