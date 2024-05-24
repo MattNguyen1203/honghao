@@ -13,7 +13,7 @@ const CardMain = () => {
               <div className="inline-flex flex-col items-start space-y-[1.1875rem]">
                 <button className=' bd flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
                   <div className="text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase">
-  
+
                     ARTICLE
                   </div>
                 </button>
@@ -29,7 +29,7 @@ const CardMain = () => {
             <div className="absolute top-[1.85rem] right-[-4.4rem] bg-[#FAF1EE] rotate-90 inline-flex flex-col justify-center items-center pl-[1.31rem] pr-[1.17rem] pt-[0.9rem] pb-[0.62rem] rounded-[0.75rem_0.75rem_0rem_0rem] text-[#030922] text-[0.89356rem] not-italic font-light leading-[1.03125rem] tracking-[0.03125rem] uppercase">
               Article
             </div>
-  
+
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ const ListStories = () => {
         <CardBlog />
         <CardBlog />
       </div>
-      <PaginationCustom />
+      <PaginationCustom href={'#list-stories'} />
     </div>
   )
 }

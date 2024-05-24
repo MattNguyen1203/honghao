@@ -315,3 +315,17 @@ input[type='password']::-ms-clear {
   transform-origin: center center;
   animation: pingCall 0.9s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+@keyframes scrollUpKey {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.scrollUp {
+  animation: scrollUpKey 1s ease-in-out infinite;
+}
