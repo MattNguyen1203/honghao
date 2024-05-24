@@ -5,6 +5,8 @@ import React from 'react'
 import Banner from '@/sections/common/banner'
 import AccordionCustom from '@/sections/common/accordion'
 import Breadcrumb from '@/components/breadcrumb'
+import IndexHome from '@/components/form/IndexForm'
+import HomeForm from '@/components/form/HomeForm'
 
 const page = () => {
   const data = new Array(5).fill(0)
@@ -26,6 +28,9 @@ const page = () => {
 
       <BikeAnimation />
       <Breadcrumb divider />
+      <section className='container'>
+        <HomeForm />
+      </section>
     </div>
   )
 }
