@@ -28,8 +28,9 @@ const page = () => {
 
       <BikeAnimation />
       <Breadcrumb divider />
-      <section className='container'>
+      <section className='container bg-black space-y-[2rem]'>
         <HomeForm />
+        <HomeForm isTourDetail />
       </section>
     </div>
   )
