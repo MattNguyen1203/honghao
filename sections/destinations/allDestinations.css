@@ -9,7 +9,7 @@
     transform: translateX(0px);
   }
 }
- .arrowfr {
+.arrowfr {
   animation: keyArrow 1.5s ease-in-out infinite;
 }
 @keyframes slide-background {
@@ -23,7 +23,12 @@
 .animated-button {
   animation: slide-background 3s linear infinite;
 }
+.bg-card {
+  background: rgba(255, 255, 255, 0.15);
 
+  -webkit-backdrop-filter: blur(12.792327880859375px);
+  backdrop-filter: blur(12.792327880859375px);
+}
 /* @keyframes keyArrow {
   0% {
     transform: translateX(-3px);

@@ -1,4 +1,4 @@
-"use client"
+
 import ScrollUp from '@/components/scroll-to-top/ScrollUp';
 
 
@@ -8,17 +8,17 @@ const Socials = () => {
 
 
   return (
-    <div className=" fixed z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]">
+    <div className=" xmd:hidden fixed z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]">
 
 
-
+      {/* Bookk Now */}
       <div className="w-[3.125rem] animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]">
         <div className="text-[color:var(--Gray-Scale-0,#FFF)] text-center text-[0.625rem] not-italic font-black leading-[0.8125rem] tracking-[0.03125rem]">
           BOOK
           NOW
         </div>
       </div>
-
+      {/* Call me bb */}
       <div className="relative">
         <div className="w-[3.625rem] z-5 pingCall flex justify-center items-center h-[3.625rem] shrink-0 blur-none rounded-[6.25rem] bg-[rgba(255,255,255,0.15)]">
         </div>

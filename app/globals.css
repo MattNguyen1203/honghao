@@ -79,18 +79,6 @@
   .kKao4-container {
     @apply w-[87.5rem] mx-auto xmd:w-full xmd:px-[1rem];
   }
-  h1 {
-    @apply text-[6rem] leading-[1];
-  }
-  h2 {
-    @apply text-[3.5rem] tablet:text-[5rem] font-black leading-[1] font-londrina;
-  }
-  h4 {
-    @apply font-bold text-greyscale-80 font-tripsans leading-1 text-1.5;
-  }
-  h5 {
-    @apply text-greyscale-60 md:text-greyscale-80 font-tripsans text-0.875 leading-1.2 md:text-1.125 md:leading-1 font-extrabold opacity-40;
-  }
   .h1 {
     @apply text-[6rem] leading-[1];
   }
@@ -321,4 +309,18 @@ input[type='password']::-ms-clear {
 .pingCall {
   transform-origin: center center;
   animation: pingCall 0.9s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes scrollUpKey {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.scrollUp {
+  animation: scrollUpKey 1s ease-in-out infinite;
 }
