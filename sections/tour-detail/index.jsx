@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import './tour-detail.css'
 import Breadcrumb from '@/components/breadcrumb'
@@ -8,7 +7,9 @@ const TourDetail = () => {
   return (
     <main className='alldestinations '>
       <section><Banner /></section>
-      <section className='xmd:hidden'><Breadcrumb divider /></section>
+      <section className='xmd:hidden'>
+        <Breadcrumb type='section' divider />
+      </section>
       <section><FaqAboutTrip /></section>
     </main>
   )

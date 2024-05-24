@@ -1,9 +1,9 @@
-import {Londrina_Solid} from 'next/font/google'
+import { Londrina_Solid } from 'next/font/google'
 import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
-import ResponsiveProvider from '@/components/provider/responsiveProvider'
+import Socials from '@/sections/socials'
 import {Toaster} from '@/components/ui/toaster'
 
 const londrina = Londrina_Solid({
@@ -49,7 +49,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
 }
-export default function RootLayout({children}) {
+export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
@@ -62,6 +62,10 @@ export default function RootLayout({children}) {
         className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
+        <Header />
+        <Socials />
+        {children}
+        <Footer />
         <ResponsiveProvider>
           <Header />
           {children}

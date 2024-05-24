@@ -20,8 +20,8 @@ const DiscoveryDestinations = () => {
         ScrollTrigger.create({
           trigger: pinRef.current,
           pin: pinRef.current,
-          start: "top 0%",
-          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          start: "top 10%",
+          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
           toggleActions: "restart reverse reverse reverse",
           scrub: 1,
           // markers: true,
@@ -30,8 +30,8 @@ const DiscoveryDestinations = () => {
         ScrollTrigger.create({
           trigger: pin2Ref.current,
           pin: pin2Ref.current,
-          start: "-1% 0%",
-          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          start: "-1% 10%",
+          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
           toggleActions: "restart reverse reverse reverse",
           scrub: 1,
 
@@ -76,7 +76,7 @@ const DiscoveryDestinations = () => {
         </div>
         <div>
 
-          <div className="grid xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit xmd:w-full ">
+          <div id='destination-cards' className="grid  xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit xmd:w-full ">
             <CardDestination />
             <CardDestination />
             <CardDestination />
@@ -88,7 +88,7 @@ const DiscoveryDestinations = () => {
           </div>
           {/* <div className="z-1"> */}
 
-          <PaginationCustom />
+          <PaginationCustom href='#destination-cards' />
           {/* </div> */}
         </div>
       </div>

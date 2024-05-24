@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/customCn/button'
+import Link from 'next/link'
 const StartPlanning = () => {
   return (
     <div className='w-full md:h-[48.875rem] mt-[3rem] relative'>
@@ -24,7 +25,9 @@ const StartPlanning = () => {
 
             </div>
             <div className="inline-flex items-start space-x-[0.5625rem]">
-              <Button className='xmd:w-[8.9375rem]' variant='outline'>Our tours</Button>
+              <Button href={'/tours'} className='xmd:w-[8.9375rem]' variant='outline'>
+                <Link href="/tours">Our tours</Link>
+              </Button>
               <Button icon className='xmd:w-[8.9375rem]'>Call us</Button>
 
             </div>

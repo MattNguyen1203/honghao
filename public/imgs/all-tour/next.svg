@@ -19,7 +19,7 @@
     </filter>
     <linearGradient id="paint0_linear_8549_22053" x1="14" y1="20" x2="25" y2="20" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F2531C"/>
-      <stop offset="1" stop-color="#F2531C" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#F2531C" stopOpacity="0.7"/>
     </linearGradient>
     <clipPath id="clip0_8549_22053">
       <rect width="40" height="40" rx="20" fill="white"/>
