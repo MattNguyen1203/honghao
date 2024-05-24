@@ -1,9 +1,9 @@
 'use client'
 
-import { Navigation } from 'swiper/modules'
+import {Navigation} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import ItemTour from '@/components/itemtour'
 import Image from 'next/image'
 
@@ -13,9 +13,9 @@ export default function SliderTour() {
       <span className='xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
         EXPLORE
       </span>
-      <h1 className='text-3 xmd:text-25 font-black text-greyscale-80'>
+      <h2 className='text-3 xmd:text-25 font-black text-greyscale-80'>
         BEST TRIPS <br className='md:hidden' /> FOR YOU
-      </h1>
+      </h2>
       <div className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
           slidesPerView={'auto'}
