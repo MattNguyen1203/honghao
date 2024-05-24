@@ -5,7 +5,12 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import './team.css'
 import {cn} from '@/lib/utils'
 
-export default function OurTeam({backgroundImage, darkTheme, forHomePage}) {
+export default function OurTeam({
+  backgroundImage,
+  backgroundImageMobile,
+  darkTheme,
+  forHomePage,
+}) {
   return (
     <section
       className={cn('relative flex items-center justify-center', {
@@ -21,15 +26,8 @@ export default function OurTeam({backgroundImage, darkTheme, forHomePage}) {
             height={1080}
             className='absolute top-0 left-0 hidden object-cover h-full md:block md:w-full'
           />
-          <div
-            className='absolute top-0 left-0 hidden w-full h-full md:block opacity-90'
-            style={{
-              background:
-                'linear-gradient(180deg, #122718 7.6%, #122718 43.62%, #122718 79.64%)',
-            }}
-          />
           <Image
-            src={'/imgs/home/bg-image-our-team-mobile.png'}
+            src={backgroundImageMobile}
             alt='our team'
             width={390}
             height={884}

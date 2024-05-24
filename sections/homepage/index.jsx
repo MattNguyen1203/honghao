@@ -14,7 +14,8 @@ const Homepage = () => {
       <div className='h-[50vh]' />
       <ClientSay />
       <OurTeam
-        backgroundImage={'/imgs/home/bg-image-our-team-1.jpg'}
+        backgroundImage={'/imgs/home/backround-image-our-team.png'}
+        backgroundImageMobile={'/imgs/home/bg-image-our-team-mobile.png'}
         darkTheme
         forHomePage
       />
