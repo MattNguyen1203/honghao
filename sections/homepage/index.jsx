@@ -1,7 +1,5 @@
 'use client'
 
-import Banner from './Banner'
-import About from './About'
 import ClientSay from './ClientSay'
 import OurTeam from '@/layouts/team'
 import Season from './Season'

@@ -66,12 +66,10 @@ export default function RootLayout({ children }) {
         <Socials />
         {children}
         <Footer />
-        <ResponsiveProvider>
           <Header />
           {children}
           <Footer />
           <Toaster />
-        </ResponsiveProvider>
       </body>
     </html>
   )
