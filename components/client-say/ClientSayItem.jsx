@@ -56,7 +56,7 @@ const ClientSayItem = forwardRef(
         )}
         <div
           className={cn('absolute transition-400', {
-            'top-0 right-0 min-w-[10rem] min-h-[3rem] translate-x-[95%] -translate-y-full':
+            'top-0 right-0 min-w-[14.25rem] min-h-[4.125rem] translate-x-[95%] -translate-y-full':
               direction === 'right',
             'min-w-[7.8rem] min-h-[1.56rem] top-0 left-0 -translate-x-[95%] -translate-y-[82%]':
               direction === 'left',
