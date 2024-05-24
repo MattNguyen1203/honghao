@@ -21,7 +21,7 @@ const Welcome = () => {
         .to(
           '#box-text',
           {
-            top: '2rem',
+            top: '4rem',
           },
           '<',
         )
@@ -46,6 +46,7 @@ const Welcome = () => {
           {
             width: '100vw',
             height: '100vh',
+            translateY: '0',
             duration: 2,
           },
           '<',
@@ -63,11 +64,11 @@ const Welcome = () => {
 
   return (
     <div
-      className='flex flex-col items-center mt-[10rem] xmd:mt-[3rem] tablet:mt-[10rem] relative'
+      className='flex flex-col items-center mt-0 xmd:mt-[3rem] tablet:mt-[10rem] relative'
       ref={parentRef}
     >
       <div
-        className='w-fit flex flex-col items-center absolute -top-1/2 left-1/2 -translate-x-1/2 z-10 xlg:relative xlg:top-0 xlg:left-0 xlg:translate-x-0'
+        className='w-fit flex flex-col items-center absolute top-0 left-1/2 -translate-x-1/2 z-10 xlg:relative xlg:top-0 xlg:left-0 xlg:translate-x-0'
         id='box-text'
       >
         <div
@@ -90,7 +91,7 @@ const Welcome = () => {
       </div>
 
       <div
-        className='h-[29.8125rem] w-[53rem] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
+        className='h-[29.8125rem] w-[53rem] translate-y-[12rem] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
         id='box-img'
       >
         <SlideWelcome />
