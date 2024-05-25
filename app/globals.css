@@ -361,3 +361,11 @@ input[type='password']::-ms-clear {
 .scrollUp {
   animation: scrollUpKey 1s ease-in-out infinite;
 }
+.hidden_scrollbar {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+.hidden_scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
