@@ -59,12 +59,52 @@ export default function page() {
   return (
     <>
       <section className='h-[500px] bg-black'></section>
-      <div className='w-full h-screen'></div>
-      <section className='relative flex w-full h-screen bg-white pl-[2.25rem]'>
+      <div className='w-full h-fit bg-black px-[0.75rem]'>
+        <div className='flex items-center'>
+          <IconOclock className='size-[1.5rem] mr-[0.37rem] md:size-[2.5rem]' />
+          <span className='text-[1rem] font-bold leading-normal text-white md:text-[2rem]'>
+            Time
+          </span>
+          <span className='size-[0.2rem] md:size-[0.4rem] rounded-full block bg-greyscale-5 ml-[0.7rem] mr-[0.5rem]'></span>
+          <span className='text-greyscale-5 text-[1rem] font-normal leading-[1.2] tracking-[0.0125rem] md:text-[2rem]'>
+            3 Days / 4 Night
+          </span>
+        </div>
+        <h2 className='font-black text-white mt-[0.75rem] mb-[0.65rem] tracking-[0.00375rem] text-[1.5rem] md:text-[3rem] md:my-[1rem]'>
+          Schedule tour: 3 Days 4 Nights
+        </h2>
+        <div className='flex items-center space-x-[1.25rem]'>
+          <div className='flex items-center whitespace-nowrap'>
+            <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
+              $169
+            </span>
+            <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
+              Self - Driving
+            </span>
+          </div>
+          <div className='flex items-center whitespace-nowrap'>
+            <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
+              $199
+            </span>
+            <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
+              Local driver
+            </span>
+          </div>
+        </div>
+        <div className='flex flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
+          {dataSLides?.map((item, index) => (
+            <ItemCardInfo
+              key={index}
+              item={item}
+            />
+          ))}
+        </div>
+      </div>
+      <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
         {/* map */}
-        <div className='w-[33.75rem] flex items-center flex-shrink-0 '>
+        <div className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
           <Image
-            className='w-[33.75rem] h-[42rem] object-contain'
+            className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
             src={dataSLides?.[indexSlider]?.imgStep}
             alt='map2'
             width={300}
@@ -72,7 +112,7 @@ export default function page() {
           />
         </div>
         {/* map */}
-        <div className='ml-[3rem] flex items-center w-full'>
+        <div className='ml-[3rem] flex items-center w-full xlg:hidden'>
           <div className='bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
             <div className='flex items-center'>
               <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
@@ -85,16 +125,22 @@ export default function page() {
               </span>
             </div>
             <div className='flex items-center justify-between mt-[0.75rem] pr-[4.81rem]'>
-              <h4>Schedule tour: 3 Days 4 Nights</h4>
+              <h2 className='text-[2rem] font-black leading-[1] font-londrina text-greyscale-80'>
+                Schedule tour: 3 Days 4 Nights
+              </h2>
               <div className='flex items-center space-x-[1.25rem]'>
                 <div className='flex items-center whitespace-nowrap'>
-                  <h5 className='text-orange-normal mr-[0.44rem]'>$169</h5>
+                  <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
+                    $169
+                  </span>
                   <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                     Self - Driving
                   </span>
                 </div>
                 <div className='flex items-center whitespace-nowrap'>
-                  <h5 className='text-orange-normal mr-[0.44rem]'>$199</h5>
+                  <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
+                    $199
+                  </span>
                   <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                     Local driver
                   </span>
@@ -248,15 +294,20 @@ const IconOclock = ({className = ''}) => {
 
 const ItemCardInfo = ({item}) => {
   return (
-    <article className='min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem]'>
-      <h6 className='text-greyscale-50'>{item?.title}</h6>
+    <article className='min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative'>
+      <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
+        {item?.title}
+      </h3>
       {item?.descriptions?.map((des, idx) => (
         <div
-          className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem]'
+          className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
           key={idx}
           dangerouslySetInnerHTML={{__html: des}}
         />
       ))}
+      <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>
+        ( {item?.distance} )
+      </div>
     </article>
   )
 }

@@ -106,15 +106,6 @@
   .h5 {
     @apply text-greyscale-60 md:text-greyscale-80 font-tripsans text-0.875 leading-1.2 md:text-1.125 md:leading-1 font-extrabold opacity-40;
   }
-  h4 {
-    @apply text-[2rem] font-black leading-[1] font-londrina;
-  }
-  h5 {
-    @apply text-[1.5rem] font-bold leading-[1.2];
-  }
-  h6 {
-    @apply text-[1.25rem] font-extrabold leading-[1.2];
-  }
   .text-75 {
     @apply text-[7.5rem] leading-[1];
   }
@@ -158,16 +149,16 @@
     @apply transition-all duration-300 ease-out;
   }
   .transition-400 {
-    @apply transition-all duration-400 ease-out;
+    @apply transition-all ease-out duration-400;
   }
   .transition-500 {
     @apply transition-all duration-500 ease-out;
   }
   .transition-600 {
-    @apply transition-all duration-600 ease-out;
+    @apply transition-all ease-out duration-600;
   }
   .transition-800 {
-    @apply transition-all duration-800 ease-out;
+    @apply transition-all ease-out duration-800;
   }
 }
 
@@ -335,7 +326,7 @@ input[type='password']::-ms-clear {
   }
 
   html::-webkit-scrollbar-thumb {
-    @apply bg-orange-normal rounded-full transition-colors;
+    @apply transition-colors rounded-full bg-orange-normal;
   }
 }
 @keyframes pingCall {
