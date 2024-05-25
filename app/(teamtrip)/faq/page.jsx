@@ -1,5 +1,5 @@
-import React from 'react'
+import Faq from '@/sections/faq'
 
-export default function page() {
-  return <div>page</div>
+export default function Page() {
+  return <Faq />
 }

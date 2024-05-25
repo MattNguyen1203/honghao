@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/breadcrumb'
 import './blog.css'
 const Blog = () => {
   return (
-    <div className='blog'>
+    <main className='blog'>
       <section>
         <Banner />
       </section>
@@ -19,7 +19,7 @@ const Blog = () => {
       <section>
         <StartPlanning />
       </section>
-    </div>
+    </main>
   )
 }
 

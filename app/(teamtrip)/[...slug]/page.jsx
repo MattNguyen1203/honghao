@@ -1,5 +1,7 @@
-import React from 'react'
 
-export default function page() {
-  return <div>Tour detail</div>
+import BlogDetail from "@/sections/blog-detail"
+const page = () => {
+  return <BlogDetail/>
 }
+
+export default page
