@@ -8,13 +8,12 @@ import ReactPlayer from 'react-player'
 const ItemVideo = ({active, url}) => {
   const [isMute, setIsMute] = useState(true)
 
+  if (!url) return
+
   return (
     <>
       <ReactPlayer
-        url={
-          url ||
-          'https://cms-honghao.okhub-tech.com/wp-content/uploads/2024/05/plant_-_5635-Original.mp4'
-        }
+        url={url}
         loop
         muted={isMute}
         playing={active}

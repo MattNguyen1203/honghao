@@ -61,7 +61,14 @@ const TeamSlide = ({darkTheme}) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className='w-32 h-[28.5rem] z-10 absolute top-0 right-[0rem] shrink-0 bg-[linear-gradient(90deg,rgba(255,255,255,0)_1.95%,#fff_94.2%)]'></div>
+      <div
+        className={cn(
+          'w-32 h-[28.5rem] z-10 absolute top-0 right-0 ',
+          darkTheme
+            ? 'bg-[linear-gradient(90deg,rgba(19,40,25,0.00)_1.95%,#132819_94.2%)]'
+            : 'bg-[linear-gradient(90deg,rgba(255,255,255,0)_1.95%,#fff_94.2%)]',
+        )}
+      ></div>
     </div>
   )
 }

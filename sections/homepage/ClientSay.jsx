@@ -11,7 +11,7 @@ import Link from 'next/link'
 import SectionHeading from '../common/heading/SectionHeading'
 import ClientSayPopup from '@/components/client-say/ClientSayItemPopup'
 
-export default function ClientSay() {
+export default function ClientSay({dataReview}) {
   const [hoverRef, isHover] = useHover()
   return (
     <section className='relative md:h-[60rem]'>
@@ -31,8 +31,8 @@ export default function ClientSay() {
               'linear-gradient(180deg, #122718 7.6%, rgba(18, 39, 24, 0.71) 43.62%, #122718 79.64%)',
           }}
         />
-        <h2 className='h2 absolute top-[8rem] left-1/2 -translate-x-1/2 text-greyscale-0'>
-          CLIENTS SAY
+        <h2 className='absolute top-[8rem] left-1/2 -translate-x-1/2 text-greyscale-0'>
+          {dataReview?.heading}
         </h2>
         <div className='w-[30.04188rem] h-[29.875rem] absolute top-[16rem] -translate-x-1/2 left-1/2'>
           <Swiper
@@ -47,33 +47,17 @@ export default function ClientSay() {
             loop
             className='swiper-client-say'
           >
-            <SwiperSlide>
-              <Image
-                src={'/imgs/home/bannerBg.webp'}
-                alt='client say'
-                className='absolute top-0 left-0 object-cover size-full cut-img'
-                width={1920}
-                height={1080}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src={'/imgs/home/bannerBg2.jpg'}
-                alt='client say'
-                className='absolute top-0 left-0 object-cover size-full cut-img'
-                width={1920}
-                height={1080}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src={'/imgs/home/bannerBg3.webp'}
-                alt='client say'
-                className='absolute top-0 left-0 object-cover size-full cut-img'
-                width={1920}
-                height={1080}
-              />
-            </SwiperSlide>
+            {dataReview?.gallery?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  src={item?.url || ''}
+                  alt={item?.alt || 'hong hao travel'}
+                  className='absolute top-0 left-0 object-cover size-full cut-img'
+                  width={1920}
+                  height={1080}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
           <Image
             src={'/imgs/home/1-buc-anh-co-hinh-giong-england-deco-1.png'}
@@ -95,23 +79,23 @@ export default function ClientSay() {
             className='top-[7rem] left-[12.5rem]'
             direction='left'
             hidden={isHover}
-            img={'/imgs/home/season-1.jpg'}
             social='tripadvisor'
-            name='Athony Ng'
-            date='2024-03-20'
-            rate={5}
-            content='Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year!'
+            img={dataReview?.review?.[0]?.avatar?.url || ''}
+            name={dataReview?.review?.[0]?.name}
+            date={dataReview?.review?.[0]?.date}
+            rate={Number(dataReview?.review?.[0]?.rating || 5)}
+            content={dataReview?.review?.[0]?.content}
           />
           {/* dot 2 */}
           <ClientSayItem
             className='top-[15rem] right-[10rem]'
             direction='right'
             social='tripadvisor'
-            img={'/imgs/home/demo-2_.jpg'}
-            name='Athony Ng'
-            date='2024-03-20'
-            rate={5}
-            content='Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year! Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year!'
+            img={dataReview?.review?.[1]?.avatar?.url || ''}
+            name={dataReview?.review?.[1]?.name}
+            date={dataReview?.review?.[1]?.date}
+            rate={Number(dataReview?.review?.[1]?.rating || 5)}
+            content={dataReview?.review?.[1]?.content}
           />
           {/* dot 3 */}
           <ClientSayItem
@@ -119,12 +103,12 @@ export default function ClientSay() {
             className='bottom-[3.5rem] left-[7rem]'
             direction='left'
             social='tripadvisor'
-            img={'/imgs/home/demo-3_.png'}
-            name='Athony Ng'
-            date='2024-03-20'
-            rate={5}
             canHover
-            content='Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year! Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year!'
+            img={dataReview?.review?.[2]?.avatar?.url || ''}
+            name={dataReview?.review?.[2]?.name}
+            date={dataReview?.review?.[2]?.date}
+            rate={Number(dataReview?.review?.[2]?.rating || 5)}
+            content={dataReview?.review?.[2]?.content}
           />
         </div>
         <div className='absolute -translate-x-1/2 bottom-20 left-1/2'>
@@ -202,23 +186,21 @@ export default function ClientSay() {
           }}
         />
         <div className='flex flex-row items-center px-3 mt-8 -mx-3 space-x-3 overflow-x-auto'>
-          {Array(4)
-            .fill(0)
-            .map((item, i) => {
-              return (
-                <ClientSayPopup
-                  key={i}
-                  direction='none'
-                  img={'/imgs/home/demo-3.png'}
-                  social='tripadvisor'
-                  name='Athony Ng'
-                  date='2024-03-20'
-                  rate={5}
-                  canHover
-                  content='Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year! Blown away by our Tanzania safari, I never expected it to be that good — it totally exceeded my expectations and was all hassle free. Our guide was absolutely amazing too. Have re-booked and cannot wait for next year!'
-                />
-              )
-            })}
+          {dataReview?.review?.map((item, i) => {
+            return (
+              <ClientSayPopup
+                key={i}
+                direction='none'
+                canHover
+                social='tripadvisor'
+                img={item?.avatar?.url || ''}
+                name={item?.name}
+                date={item?.date}
+                rate={Number(item?.rating || 5)}
+                content={item?.content}
+              />
+            )
+          })}
         </div>
         <div className='absolute top-[15rem] left-0 w-full h-[15.4rem] overflow-hidden -z-10'>
           <Image
