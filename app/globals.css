@@ -82,6 +82,15 @@
   h2 {
     @apply text-[3.5rem] font-black leading-[1] font-londrina;
   }
+  h4 {
+    @apply text-[2rem] font-black leading-[1] font-londrina;
+  }
+  h5 {
+    @apply text-[1.5rem] font-bold leading-[1.2];
+  }
+  h6 {
+    @apply text-[1.25rem] font-extrabold leading-[1.2];
+  }
   .text-75 {
     @apply text-[7.5rem] leading-[1];
   }
