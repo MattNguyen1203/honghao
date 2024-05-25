@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Commit() {
   return (
     <section>
-      <div className='w-full h-[49.0625rem] xmd:h-[29.2775rem] relative pt-[6.88rem] pl-[5rem] xmd:pt-[6rem] xmd:pl-[1.7rem]'>
+      <div className='w-full h-[49.0625rem] xmd:h-[29.2775rem] relative pt-[6.88rem] xmd:pt-[6rem]'>
         <Image
           className='xmd:hidden size-full absolute top-0 left-0'
           alt='ảnh bg cam kết'
@@ -19,13 +19,15 @@ export default function Commit() {
           width={377}
           height={468.44}
         />
-        <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
-          Explore the rugged beauty of Ha Giang on our thrilling motorcycle
-          tours. Feel the wind in your hair as you navigate through twisting
-          mountain roads and remote villages, soaking in the breathtaking
-          scenery of towering peaks and lush valleys. Our experienced guides
-          will lead you on an unforgettable adventure
-        </p>
+        <div className='container'>
+          <p className=' flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+            Explore the rugged beauty of Ha Giang on our thrilling motorcycle
+            tours. Feel the wind in your hair as you navigate through twisting
+            mountain roads and remote villages, soaking in the breathtaking
+            scenery of towering peaks and lush valleys. Our experienced guides
+            will lead you on an unforgettable adventure
+          </p>
+        </div>
       </div>
       <div className='translate-y-[-3.81rem] relative h-[52.75rem] flex'>
         <div className='absolute size-full top-0 left-0'>
@@ -38,8 +40,8 @@ export default function Commit() {
           width={375}
           height={523}
         />
-        <div className='flex container xmd:flex-col justify-between md:space-x-[9.25rem] xmd:mt-[7.19rem]'>
-          <div className='flex flex-col h-full justify-center xmd:mb-[3.18rem]'>
+        <div className='flex container xmd:flex-col justify-between md:space-x-[9.25rem] md:pb-[6rem] xmd:mt-[7.19rem]'>
+          <div className='flex flex-col h-full justify-end xmd:mb-[3.18rem]'>
             <div className='flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.5rem] xmd:mb-[2rem]'>
               <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
                 HONG HA TRAVEL
@@ -85,7 +87,7 @@ export default function Commit() {
               </div>
             </div>
           </div>
-          <div className='h-full xmd:w-full flex items-center z-10'>
+          <div className='xmd:w-full flex items-end pb-[2.3rem] z-10'>
             <Image
               className='h-[26.375rem] w-[41.9375rem] xmd:h-[14.74013rem] xmd:w-[23.4375rem] md:rounded-[1.25rem] shadow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'
               alt='ảnh content cam kết'
