@@ -191,18 +191,18 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   return (
     <section
       className={`${
-        isTourDetail ? '' : 'bg-white'
-      } flex rounded-[1.5rem] w-fit relative`}
+        isTourDetail ? 'xmd:bg-white !pb-[3rem]' : 'bg-white !pb-[7.5rem]'
+      } flex xmd:flex-col xmd:w-full w-fit xmd:rounded-none rounded-[1.5rem] relative`}
     >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className={`${
             isTourDetail ? 'w-[54.1875rem]' : 'w-[34.75rem]'
-          } space-y-[0.75rem] rounded-[1.5rem] bg-white py-[1.5rem] pr-[0.75rem] pl-[1.5rem] flex flex-col`}
+          } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
         >
           {isTourDetail && (
-            <div className='order-1 flex justify-start items-center w-full space-x-[1.25rem]'>
+            <div className='xmd:hidden order-1 flex justify-start items-center w-full space-x-[1.25rem]'>
               <span className='text-0875 font-bold text-[#2E2E2E]'>
                 Type of tour:
               </span>
@@ -211,13 +211,17 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
               </span>
             </div>
           )}
-          <div className={`${isTourDetail && 'order-3'} space-y-[0.75rem]`}>
+          <div
+            className={`${
+              isTourDetail && 'order-3 xmd:order-1'
+            } space-y-[0.75rem]`}
+          >
             <FormField
               control={form.control}
               name='username'
               render={({field}) => (
                 <FormItem>
-                  <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
+                  <FormLabel className='text-0875 font-bold text-[#2E2E2E] mb-[0.5rem]'>
                     Customer information:
                   </FormLabel>
                   <FormControl>
@@ -367,7 +371,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
               </div>
             )}
 
-            <div className='flex w-full space-x-[0.75rem]'>
+            <div className='flex xmd:flex-col w-full md:space-x-[0.75rem]'>
               <div className='flex-1 flex space-x-[0.75rem]'>
                 <FormField
                   control={form.control}
@@ -491,7 +495,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                 )}
               />
             </div>
-            <div className='flex w-full space-x-[0.75rem]'>
+            <div className='flex w-full xmd:flex-col md:space-x-[0.75rem]'>
               <div className='flex-1 flex space-x-[0.75rem]'>
                 <FormField
                   control={form.control}
@@ -638,11 +642,10 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
               />
             </div>
           </div>
-
           <div
             className={`${isTourDetail && 'order-2'} w-full space-y-[0.75rem]`}
           >
-            <div className='flex flex-col py-[0.75rem] rounded-[0.5rem] bg-white'>
+            <div className='flex flex-col py-[0.75rem] xmd:pt-[1.75rem] rounded-[0.5rem] bg-white'>
               <div className='flex justify-between items-center'>
                 <span className='text-0875 text-greyscale-60 font-normal'>
                   4 days of self-driving
@@ -712,7 +715,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                 } h-[0.0625rem] my-[0.75rem]`}
               />
               <div className='flex justify-between items-center'>
-                <span className='text-0875 text-greyscale-60 font-normal'>
+                <span className='text-0875 text-greyscale-60 font-normal '>
                   4 days with local driver
                 </span>
                 <div className='flex items-center'>
@@ -789,13 +792,12 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
               </span>
             </div>
           </div>
-
           <div
             className={`${
               isTourDetail
-                ? 'static order-4'
-                : 'absolute top-[37.5rem] right-[1.5rem]'
-            } w-[33.25rem] flex space-x-[0.5rem]`}
+                ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:px-[0.75rem]'
+                : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-[0.75rem]'
+            } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem] md:space-x-[0.5rem]`}
           >
             <Button
               className='hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal'
@@ -889,12 +891,94 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                 </defs>
               </svg>
             </Button>
-            <Button
-              className='hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover'
-              type='submit'
-            >
-              PAY NOW
-            </Button>
+            <div className='flex w-full items-center'>
+              <Button
+                className='hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover'
+                type='submit'
+              >
+                PAY NOW
+              </Button>
+              {isTourDetail && (
+                <div className='ml-[0.5rem] flex'>
+                  <svg
+                    className='w-[2.1875rem] h-[1.37256rem]'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='35'
+                    height='22'
+                    viewBox='0 0 35 22'
+                    fill='none'
+                  >
+                    <g clipPath='url(#clip0_8629_27961)'>
+                      <path
+                        opacity='0.07'
+                        d='M32.2368 0.0195312H2.76316C1.19737 0.0195312 0 1.20907 0 2.76463V19.2352C0 20.7908 1.28947 21.9803 2.76316 21.9803H32.2368C33.8026 21.9803 35 20.7908 35 19.2352V2.76463C35 1.20907 33.7105 0.0195312 32.2368 0.0195312Z'
+                        fill='black'
+                      />
+                      <path
+                        d='M32.2377 0.933594C33.2508 0.933594 34.0798 1.75712 34.0798 2.76366V19.2342C34.0798 20.2408 33.2508 21.0643 32.2377 21.0643H2.76398C1.75082 21.0643 0.921875 20.2408 0.921875 19.2342V2.76366C0.921875 1.75712 1.75082 0.933594 2.76398 0.933594H32.2377Z'
+                        fill='white'
+                      />
+                      <path
+                        d='M26.066 9.26141H25.7897C25.4213 10.1764 25.1449 10.634 24.8686 12.0065H26.6186C26.3423 10.634 26.3423 9.99344 26.066 9.26141ZM28.737 14.6601H27.1713C27.0792 14.6601 27.0792 14.6601 26.987 14.5686L26.8028 13.7451L26.7107 13.5621H24.5002C24.4081 13.5621 24.316 13.5621 24.316 13.7451L24.0397 14.5686C24.0397 14.6601 23.9476 14.6601 23.9476 14.6601H22.0134L22.1976 14.2026L24.8686 7.98037C24.8686 7.52285 25.1449 7.33984 25.6055 7.33984H26.987C27.0792 7.33984 27.1713 7.33984 27.1713 7.52285L28.4607 13.4706C28.5528 13.8366 28.6449 14.1111 28.6449 14.4771C28.737 14.5686 28.737 14.5686 28.737 14.6601ZM16.3949 14.3856L16.7634 12.7385C16.8555 12.7385 16.9476 12.83 16.9476 12.83C17.5923 13.1045 18.237 13.2876 18.8818 13.1961C19.066 13.1961 19.3423 13.1045 19.5265 13.013C19.987 12.83 19.987 12.3725 19.6186 12.0065C19.4344 11.8235 19.1581 11.732 18.8818 11.549C18.5134 11.366 18.1449 11.183 17.8686 10.9085C16.7634 9.99344 17.1318 8.71239 17.7765 8.07187C18.3292 7.70586 18.6055 7.33984 19.3423 7.33984C20.4476 7.33984 21.6449 7.33984 22.1976 7.52285H22.2897C22.1976 8.07187 22.1055 8.52939 21.9213 9.07841C21.4607 8.8954 21.0002 8.71239 20.5397 8.71239C20.2634 8.71239 19.987 8.71239 19.7107 8.8039C19.5265 8.8039 19.4344 8.8954 19.3423 8.9869C19.1581 9.16991 19.1581 9.44442 19.3423 9.62743L19.8028 9.99344C20.1713 10.1764 20.5397 10.3595 20.816 10.5425C21.2765 10.817 21.737 11.2745 21.8292 11.8235C22.0134 12.647 21.737 13.3791 21.0002 13.9281C20.5397 14.2941 20.3555 14.4771 19.7107 14.4771C18.4213 14.4771 17.4081 14.5686 16.5792 14.2941C16.487 14.4771 16.487 14.4771 16.3949 14.3856ZM13.1713 14.6601C13.2634 14.0196 13.2634 14.0196 13.3555 13.7451C13.816 11.732 14.2765 9.62743 14.6449 7.61435C14.737 7.43135 14.737 7.33984 14.9213 7.33984H16.5792C16.3949 8.43788 16.2107 9.26141 15.9344 10.2679C15.6581 11.6405 15.3818 13.013 15.0134 14.3856C15.0134 14.5686 14.9213 14.5686 14.737 14.5686M4.60547 7.52285C4.60547 7.43135 4.78968 7.33984 4.88178 7.33984H8.01336C8.47389 7.33984 8.84231 7.61435 8.93442 8.07187L9.76336 12.098C9.76336 12.1895 9.76336 12.1895 9.85547 12.281C9.85547 12.1895 9.94757 12.1895 9.94757 12.1895L11.8818 7.52285C11.7897 7.43135 11.8818 7.33984 11.9739 7.33984H13.9081C13.9081 7.43135 13.9081 7.43135 13.816 7.52285L10.9607 14.2026C10.8686 14.3856 10.8686 14.4771 10.7765 14.5686C10.6844 14.6601 10.5002 14.5686 10.316 14.5686H8.93442C8.84231 14.5686 8.75021 14.5686 8.75021 14.3856L7.27652 8.71239C7.09231 8.52939 6.81599 8.25488 6.44757 8.16337C5.89494 7.88886 4.88178 7.70586 4.69757 7.70586L4.60547 7.52285Z'
+                        fill='#142688'
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id='clip0_8629_27961'>
+                        <rect
+                          width='35'
+                          height='21.9608'
+                          fill='white'
+                          transform='translate(0 0.0195312)'
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  <svg
+                    className='w-[2.1875rem] h-[1.37256rem]'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='35'
+                    height='22'
+                    viewBox='0 0 35 22'
+                    fill='none'
+                  >
+                    <g clipPath='url(#clip0_8629_27962)'>
+                      <path
+                        opacity='0.07'
+                        d='M32.2368 0.0195312H2.76316C1.19737 0.0195312 0 1.20907 0 2.76463V19.2352C0 20.7908 1.28947 21.9803 2.76316 21.9803H32.2368C33.8026 21.9803 35 20.7908 35 19.2352V2.76463C35 1.20907 33.7105 0.0195312 32.2368 0.0195312Z'
+                        fill='black'
+                      />
+                      <path
+                        d='M32.2377 0.933594C33.2508 0.933594 34.0798 1.75712 34.0798 2.76366V19.2342C34.0798 20.2408 33.2508 21.0643 32.2377 21.0643H2.76398C1.75082 21.0643 0.921875 20.2408 0.921875 19.2342V2.76366C0.921875 1.75712 1.75082 0.933594 2.76398 0.933594H32.2377Z'
+                        fill='white'
+                      />
+                      <path
+                        d='M13.8146 17.4042C17.3753 17.4042 20.2619 14.5365 20.2619 10.999C20.2619 7.46147 17.3753 4.59375 13.8146 4.59375C10.2538 4.59375 7.36719 7.46147 7.36719 10.999C7.36719 14.5365 10.2538 17.4042 13.8146 17.4042Z'
+                        fill='#EB001B'
+                      />
+                      <path
+                        d='M21.1856 17.4042C24.7464 17.4042 27.633 14.5365 27.633 10.999C27.633 7.46147 24.7464 4.59375 21.1856 4.59375C17.6249 4.59375 14.7383 7.46147 14.7383 10.999C14.7383 14.5365 17.6249 17.4042 21.1856 17.4042Z'
+                        fill='#F79E1B'
+                      />
+                      <path
+                        d='M20.2646 11.0008C20.2646 8.80476 19.1593 6.8832 17.5014 5.78516C15.8435 6.9747 14.7383 8.89627 14.7383 11.0008C14.7383 13.1054 15.8435 15.1185 17.5014 16.2165C19.1593 15.1185 20.2646 13.1969 20.2646 11.0008Z'
+                        fill='#FF5F00'
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id='clip0_8629_27962'>
+                        <rect
+                          width='35'
+                          height='21.9608'
+                          fill='white'
+                          transform='translate(0 0.0195312)'
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              )}
+            </div>
           </div>
         </form>
       </Form>

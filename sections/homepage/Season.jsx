@@ -421,7 +421,7 @@ export default function Season({data, dataWeather}) {
               slidesPerView={3}
               onSwiper={setThumbsSwiper}
               freeMode={true}
-              spaceBetween='12.5'
+              spaceBetween={12}
               className='swiper-thumb-mobile'
               onBeforeInit={(swiper) => {
                 swiperThumbMobileRef.current = swiper
