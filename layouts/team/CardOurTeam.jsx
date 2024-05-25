@@ -1,14 +1,17 @@
 import Image from 'next/image'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 import useStore from '@/app/(store)/store'
 const CardOurTeam = () => {
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div
-      className={cn(`relative bg-white cursor-pointer overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] 
+      className={cn(
+        `relative bg-white cursor-pointer overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] 
       h-[28.5rem] flex-col  items-center justify-between xmd:space-y-[0.75rem] space-y-[1rem] pb-[0.6875rem] rounded-3xl 
       shadow-md
-    `, !isMobile ? 'group' : '')}
+    `,
+        !isMobile ? 'group' : '',
+      )}
     >
       <div className=' w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-2xl overflow-hidden'>
         <Image
@@ -17,7 +20,7 @@ const CardOurTeam = () => {
           src={'/imgs/common/team.png'}
           width={300}
           height={400}
-          className='scale-x-[1.25] scale-y-110 md:group-hover:scale-x-100 md:group-hover:scale-y-100  duration-500 ease-linear rounded-2xl h-full w-full  shrink-0'
+          className='object-cover scale-110 md:group-hover:scale-100 duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
         />
       </div>
       <div className='absolute right-[1.1rem] top-[0.6rem] group-hover:opacity-100 opacity-0 duration-500 '>
@@ -64,4 +67,4 @@ const CardOurTeam = () => {
 }
 
 export default CardOurTeam
-// z 
+// z

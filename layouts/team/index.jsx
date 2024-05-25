@@ -6,15 +6,10 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import './team.css'
 import {cn} from '@/lib/utils'
 
-export default function OurTeam({
-  backgroundImage,
-  backgroundImageMobile,
-  darkTheme,
-  forHomePage,
-}) {
+export default function OurTeam({darkTheme}) {
   return (
-    <section className='flex items-center justify-center '>
-      <div className='team  subContainer md:mx-auto flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-start md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
+    <section className='flex items-center justify-between w-full'>
+      <div className='team w-full flex pl-[5rem] xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
         <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem]'>
           <div
             className={cn(
@@ -36,12 +31,18 @@ export default function OurTeam({
           </p>
 
           <div className='flex flex-start space-x-[1rem] '>
-
-            <Button icon className='!flex-1 !w-max shrink-0' >
-              <Link href="/tours/detail-abc"> BOOK NOW</Link>
+            <Button
+              icon
+              className='!flex-1 !w-max shrink-0'
+            >
+              <Link href='/tours/detail-abc'> BOOK NOW</Link>
             </Button>
-            <Button icon variant='outline' className='!flex-1 !w-max shrink-0'>
-              <Link href="/tours">All tour</Link>
+            <Button
+              icon
+              variant='outline'
+              className='!flex-1 !w-max shrink-0'
+            >
+              <Link href='/tours'>All tour</Link>
             </Button>
           </div>
         </div>

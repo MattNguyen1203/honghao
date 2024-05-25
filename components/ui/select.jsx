@@ -24,7 +24,19 @@ const SelectTrigger = React.forwardRef(
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className='h-4 w-4 opacity-50' />
+        <svg
+          className='w-[0.55894rem] h-[0.30388rem]'
+          xmlns='http://www.w3.org/2000/svg'
+          width='10'
+          height='6'
+          viewBox='0 0 10 6'
+          fill='none'
+        >
+          <path
+            d='M5.00063 5.33368C4.82556 5.33398 4.65215 5.29969 4.49038 5.23276C4.3286 5.16583 4.18165 5.06759 4.05796 4.94368L0.529297 1.41435L1.47196 0.47168L5.00063 4.00035L8.5293 0.47168L9.47196 1.41435L5.9433 4.94301C5.81967 5.06704 5.67274 5.1654 5.51096 5.23245C5.34919 5.29949 5.17575 5.3339 5.00063 5.33368Z'
+            fill='#E64827'
+          />
+        </svg>
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   ),

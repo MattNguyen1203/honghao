@@ -10,29 +10,36 @@ import About from './About/About'
 import './homepage.css'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
+import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
-const Homepage = () => {
+const Homepage = ({dataAcf}) => {
   useEffect(() => {
-    ScrollTrigger.create({
-      trigger: '#homepage__banner',
-      pin: true,
-      start: 'top top',
-      pinSpacing: false,
+    gsap.matchMedia().add('(min-width: 1024px)', () => {
+      ScrollTrigger.create({
+        trigger: '#homepage__banner',
+        pin: true,
+        start: 'top top',
+        pinSpacing: false,
+      })
     })
   }, [])
   return (
     <main>
-      <Banner />
-      <About />
-      <ClientSay />
-      <OurTeam
-        backgroundImage={'/imgs/home/backround-image-our-team.png'}
-        backgroundImageMobile={'/imgs/home/bg-image-our-team-mobile.png'}
-        darkTheme
-        forHomePage
-      />
-      <Season />
+      <Banner dataBanner={dataAcf?.banner} />
+      <About dataAbout={dataAcf} />
+      <ClientSay dataReview={dataAcf?.client_say} />
+      <div className='flex relative pb-[14.5rem] xmd:pb-[6rem] bg-[linear-gradient(180deg,#122718_7.6%,rgba(18,39,24,0.71)_43.62%,#122718_79.64%)] w-full h-fit'>
+        <Image
+          src='/imgs/home/bannerBg2.jpg'
+          alt='hong hao travel'
+          width={1920}
+          height={1080}
+          className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'
+        />
+        <OurTeam darkTheme />
+      </div>
+      <Season data={dataAcf?.weather} />
     </main>
   )
 }

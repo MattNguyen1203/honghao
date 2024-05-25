@@ -70,9 +70,10 @@ export default function ClientSayPopup({
           })}
       </div>
       <div className='h-[6rem] pr-[0.62rem] md:pr-4 overflow-y-auto content-container'>
-        <p className='text-greyscale-5 font-tripsans text-0.875 leading-1.2 tracking-0.00875 opacity-90'>
-          {content}
-        </p>
+        <div
+          dangerouslySetInnerHTML={{__html: content}}
+          className='text-greyscale-5 text-0.875 leading-1.2 tracking-0.00875 opacity-90'
+        ></div>
       </div>
     </div>
   )

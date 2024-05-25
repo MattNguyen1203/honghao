@@ -79,7 +79,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
     },
     {
       label: 'Contact',
-      link: '/contact',
+      link: '/contact-us',
       img: dataHeader?.header_imgs?.contact?.url || '',
       key: 'contact',
     },
