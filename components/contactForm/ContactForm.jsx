@@ -15,32 +15,61 @@ export default function ContactForm({data}) {
   const [country, setCountry] = useState('')
   const [contactSubject, setContactSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [isLoading, setIsLoading] = useStateI(false)
   const [errorMessage, setErrorMessage] = useState({
     name: '',
     phone: '',
     email: '',
     contactSubject: '',
   })
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     if (
       errorMessage.name ||
       errorMessage.email ||
       errorMessage.phone ||
       errorMessage.contactSubject
     ) {
-      console.log('NGU')
       toast({
         title: 'Sending information failed',
         description:
           'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
       })
     } else {
-      toast({
-        title: 'Sending information successfully',
-        description:
-          'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
-      })
+      const formData = new FormData()
+      formData.append('fullName', name)
+      formData.append('phone', phone)
+      formData.append('yourEmail', email)
+      formData.append('contactSubject', contactSubject)
+      formData.append('message', message)
+      formData.append('country', country)
+      formData.append('_wpcf7_unit_tag', '299')
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/299/feedback`,
+        {method: 'POST', body: formData},
+      )
+      const result = await res.json()
+      if (result.status === 'mail_sent') {
+        toast({
+          title: 'Sending information successfully',
+          description:
+            'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
+        })
+        setName('')
+        setPhone('')
+        setEmail('')
+        setCountry('')
+        setContactSubject('')
+        setMessage('')
+      } else {
+        toast({
+          title: 'Sending information failed',
+          description:
+            'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+        })
+      }
+      setIsLoading(false)
     }
   }
   return (
@@ -213,6 +242,27 @@ export default function ContactForm({data}) {
           className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
         >
           {data.submit_button_text}
+          {isLoading && (
+            <svg
+              className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+            >
+              <circle
+                className='opacity-25'
+                cx='12'
+                cy='12'
+                r='10'
+                stroke='currentColor'
+                strokeWidth='4'
+              ></circle>
+              <path
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+              ></path>
+            </svg>
+          )}
         </button>
       </form>
     </div>
