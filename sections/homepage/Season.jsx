@@ -10,7 +10,23 @@ import {useEffect, useRef, useState} from 'react'
 import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
 
-export default function Season() {
+const listMonth = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+]
+
+export default function Season({data}) {
+  console.log('data', data)
   const swiperRef = useRef(null)
   const myRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -114,30 +130,18 @@ export default function Season() {
               setActiveIndex(swiper.realIndex)
             }}
           >
-            <SwiperSlide>
-              <Image
-                src={'/imgs/home/season-1.jpg'}
-                alt='season-1'
-                className='object-cover w-full h-full'
-                width={1920}
-                height={1080}
-              />
-            </SwiperSlide>
-            {Array(11)
-              .fill(0)
-              .map((item, i) => {
-                return (
-                  <SwiperSlide key={i}>
-                    <Image
-                      src={'/imgs/home/bannerBg.webp'}
-                      alt='season-1'
-                      className='object-cover w-full h-full'
-                      width={1920}
-                      height={1080}
-                    />
-                  </SwiperSlide>
-                )
-              })}
+            {data?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  src={item?.image?.url}
+                  alt='hong hao travel'
+                  className='object-cover w-full h-full'
+                  width={1920}
+                  height={1080}
+                />
+              </SwiperSlide>
+            ))}
+
             <button className='hidden md:block absolute left-[4rem] top-1/2 -translate-y-1/2 z-10 prev-slide-season-btn group'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -339,9 +343,9 @@ export default function Season() {
               </svg>
             </button>
             <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] backdrop-blur-[5px] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
-              <h4 className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
+              <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
                 24°C
-              </h4>
+              </span>
               <Image
                 src={'/imgs/home/sun-with-cloud-1.svg'}
                 alt='sun with cloud'
@@ -353,6 +357,7 @@ export default function Season() {
                 19/3
               </p>
             </div>
+            {/* thumbs */}
             <div className='absolute bottom-[1.63rem] left-0 px-[2.5rem] w-full z-10 xmd:hidden'>
               <div className='relative w-full h-px mb-6 bg-greyscale-0/80'>
                 <div
@@ -372,34 +377,34 @@ export default function Season() {
                 </div>
               </div>
               <div className='flex flex-row space-x-3.5'>
-                {Array(12)
-                  .fill(0)
-                  .map((item, i) => {
-                    return (
-                      <SeasonThumbItem
-                        key={i}
-                        handleOnClick={() => swiperRef.current.slideTo(i)}
-                        active={activeIndex === i}
-                        isMobile={isMobile}
-                      />
-                    )
-                  })}
+                {data?.map((item, i) => {
+                  return (
+                    <SeasonThumbItem
+                      key={i}
+                      handleOnClick={() => swiperRef.current.slideTo(i)}
+                      active={activeIndex === i}
+                      isMobile={isMobile}
+                      item={item}
+                      title={listMonth?.[i]}
+                    />
+                  )
+                })}
               </div>
             </div>
           </Swiper>
           <div className='z-10 flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
-            {Array(11)
-              .fill(0)
-              .map((item, i) => {
-                return (
-                  <SeasonThumbItem
-                    key={i}
-                    handleOnClick={() => swiperRef.current.slideTo(i)}
-                    active={activeIndex === i}
-                    isMobile={isMobile}
-                  />
-                )
-              })}
+            {data?.map((item, i) => {
+              return (
+                <SeasonThumbItem
+                  item={item}
+                  key={i}
+                  handleOnClick={() => swiperRef.current.slideTo(i)}
+                  active={activeIndex === i}
+                  isMobile={isMobile}
+                  title={listMonth?.[i]}
+                />
+              )
+            })}
           </div>
         </div>
       </section>

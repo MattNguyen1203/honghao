@@ -13,8 +13,8 @@ export const useHover = () => {
     hoverRef.current.addEventListener('mouseenter', handleMouseEnter)
     hoverRef.current.addEventListener('mouseleave', handleMouseLeave)
     return () => {
-      hoverRef.current.removeEventListener('mouseenter', handleMouseEnter)
-      hoverRef.current.removeEventListener('mouseleave', handleMouseLeave)
+      hoverRef.current?.removeEventListener('mouseenter', handleMouseEnter)
+      hoverRef.current?.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
   return [hoverRef, isHover]

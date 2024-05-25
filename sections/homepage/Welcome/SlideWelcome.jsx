@@ -7,8 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import Image from 'next/image'
 
-const listVideo = ['tgbNymZ7vqY', '3Jr50aCJ5BA']
-const SlideWelcome = () => {
+const SlideWelcome = ({listVid}) => {
   const [indexSlider, setIndexSlider] = useState(0)
   const swiperRef = useRef(null)
 
@@ -37,17 +36,20 @@ const SlideWelcome = () => {
         modules={[EffectFade]}
         className='w-full h-full'
       >
-        {listVideo.map((item, index) => (
+        {listVid.map((item, index) => (
           <SwiperSlide
             className='relative'
             key={index}
           >
-            <ItemVideo active={indexSlider === index} />
+            <ItemVideo
+              active={indexSlider === index}
+              url={item?.upload_video?.url}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {listVideo?.length > 1 && (
+      {listVid?.length > 1 && (
         <>
           <button
             onClick={handlePrevSlide}
