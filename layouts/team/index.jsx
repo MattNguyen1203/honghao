@@ -9,7 +9,7 @@ import {cn} from '@/lib/utils'
 export default function OurTeam({darkTheme}) {
   return (
     <section className='flex items-center justify-between w-full'>
-      <div className='team w-full flex pl-[5rem] xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
+      <div className='team subContainer flex pl-0 ml-auto xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
         <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem]'>
           <div
             className={cn(
@@ -21,8 +21,20 @@ export default function OurTeam({darkTheme}) {
           >
             HONG HAO TRAVEL
           </div>
-          <h2 className='uppercase !mt-[0.75rem]'>OUR TEAM</h2>
-          <p className='text-1 z-[1000] tracking-[0.005rem] text-greyscale-40'>
+          <h2
+            className={cn(
+              'uppercase !mt-[0.75rem]',
+              darkTheme && 'text-greyscale-0',
+            )}
+          >
+            OUR TEAM
+          </h2>
+          <p
+            className={cn(
+              'text-1 z-[1000] tracking-[0.005rem] text-greyscale-40',
+              darkTheme && 'text-greyscale-5/50',
+            )}
+          >
             We pride ourselves on having a team of dedicated and passionate
             individuals who are committed to providing exceptional service and
             unforgettable experiences to our guests. Our team is comprised of

@@ -11,7 +11,7 @@ import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
 import 'swiper/css/thumbs'
 import 'swiper/css/free-mode'
-  
+
 const listMonth = [
   'jan',
   'feb',
@@ -400,7 +400,7 @@ export default function Season({data}) {
               slidesPerView={3}
               onSwiper={setThumbsSwiper}
               freeMode={true}
-              spaceBetween={(window.innerWidth / 100) * 4.267 * 0.75}
+              spaceBetween={12}
               className='swiper-thumb-mobile'
               onBeforeInit={(swiper) => {
                 swiperThumbMobileRef.current = swiper
@@ -408,17 +408,17 @@ export default function Season({data}) {
               modules={[FreeMode, Thumbs]}
             >
               {data.map((item, i) => {
-                  return (
-                    <SwiperSlide key={i}>
-                      <SeasonThumbItem
-                        item={item}
-                        active={activeIndex === i}
-                        isMobile={isMobile}
-                        title={listMonth?.[i]}
-                      />
-                    </SwiperSlide>
-                  )
-                })}
+                return (
+                  <SwiperSlide key={i}>
+                    <SeasonThumbItem
+                      item={item}
+                      active={activeIndex === i}
+                      isMobile={isMobile}
+                      title={listMonth?.[i]}
+                    />
+                  </SwiperSlide>
+                )
+              })}
             </Swiper>
           </div>
         </div>
