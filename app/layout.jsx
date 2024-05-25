@@ -66,6 +66,7 @@ export default function RootLayout({children}) {
         <Socials />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   )

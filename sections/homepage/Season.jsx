@@ -11,6 +11,7 @@ import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
 import 'swiper/css/thumbs'
 import 'swiper/css/free-mode'
+import {getCurrentDate} from '@/lib/getCurrentDate'
 
 const listMonth = [
   'jan',
@@ -26,7 +27,8 @@ const listMonth = [
   'nov',
   'dec',
 ]
-export default function Season({data}) {
+
+export default function Season({data, dataWeather}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const swiperRef = useRef(null)
   const swiperThumbMobileRef = useRef(null)
@@ -347,17 +349,36 @@ export default function Season({data}) {
             </button>
             <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] backdrop-blur-[5px] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
               <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
-                24°C
+                {parseInt(dataWeather?.main.temp) - 273}°C
               </span>
-              <Image
-                src={'/imgs/home/sun-with-cloud-1.svg'}
-                alt='sun with cloud'
-                className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
-                width={120}
-                height={120}
-              />
+              {dataWeather.weather.main === 'Clear' ||
+              dataWeather.weather.id === 801 ? (
+                <Image
+                  src={'/imgs/home/sun.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              ) : dataWeather.weather.main === 'Clouds' ? (
+                <Image
+                  src={'/imgs/home/cloudy.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              ) : (
+                <Image
+                  src={'/imgs/home/raining.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              )}
               <p className='hidden md:block font-tripsans text-1.125 text-center text-greyscale-0'>
-                19/3
+                {getCurrentDate()}
               </p>
             </div>
             {/* thumbs */}

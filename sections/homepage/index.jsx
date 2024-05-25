@@ -13,7 +13,7 @@ import gsap from 'gsap'
 import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
-const Homepage = ({dataAcf}) => {
+const Homepage = ({dataAcf, dataWeather}) => {
   useEffect(() => {
     gsap.matchMedia().add('(min-width: 1024px)', () => {
       ScrollTrigger.create({
@@ -39,7 +39,7 @@ const Homepage = ({dataAcf}) => {
         />
         <OurTeam darkTheme />
       </div>
-      <Season data={dataAcf?.weather} />
+      <Season data={dataAcf?.weather} dataWeather={dataWeather} />
     </main>
   )
 }
