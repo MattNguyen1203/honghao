@@ -32,7 +32,7 @@ const page = () => {
 
       <BikeAnimation />
       <Breadcrumb divider />
-      <section className='container bg-black space-y-[2rem]'>
+      <section className='container !p-0 bg-black space-y-[2rem]'>
         <HomeForm />
         <HomeForm
           isTourDetail
