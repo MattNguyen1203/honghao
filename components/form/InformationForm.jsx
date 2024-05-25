@@ -27,7 +27,7 @@ export default function InformationForm({
     <div
       className={`${
         isTourDetail
-          ? 'pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:px-[0.75rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
+          ? '!w-[34.0625rem] pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:px-[0.75rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
           : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
       } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
     >
