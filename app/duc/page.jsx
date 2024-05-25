@@ -178,7 +178,7 @@ export default function page() {
           {/* writing-mode: vertical-lr; */}
         </button>
       </section>
-      <div className='h-[1500px] bg-black'></div>
+      <div className='h-[1500px] bg-black update'></div>
     </>
   )
 }
