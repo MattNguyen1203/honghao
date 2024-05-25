@@ -5,13 +5,17 @@ import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css/navigation'
-import {Navigation} from 'swiper/modules'
+import {Navigation, Thumbs, FreeMode} from 'swiper/modules'
 import {useEffect, useRef, useState} from 'react'
 import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
+import 'swiper/css/thumbs'
+import 'swiper/css/free-mode'
 
 export default function Season() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const swiperRef = useRef(null)
+  const swiperThumbMobileRef = useRef(null)
   const myRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const isMobile = useStore((state) => state.isMobile)
@@ -58,7 +62,7 @@ export default function Season() {
   }, [activeIndex, isMobile])
   return (
     <>
-      <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full'>
+      <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full demo'>
         <Image
           src={'/imgs/home/cloud-flying-1.png'}
           alt='cloud flying (づ ◕‿◕ )づ'
@@ -105,7 +109,7 @@ export default function Season() {
               prevEl: '.prev-slide-season-btn',
               nextEl: '.next-slide-season-btn',
             }}
-            modules={[Navigation]}
+            modules={[Navigation, Thumbs]}
             className='slide-season'
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper
@@ -113,6 +117,7 @@ export default function Season() {
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.realIndex)
             }}
+            thumbs={{swiper: thumbsSwiper}}
           >
             <SwiperSlide>
               <Image
@@ -388,18 +393,30 @@ export default function Season() {
             </div>
           </Swiper>
           <div className='z-10 flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
-            {Array(11)
-              .fill(0)
-              .map((item, i) => {
-                return (
-                  <SeasonThumbItem
-                    key={i}
-                    handleOnClick={() => swiperRef.current.slideTo(i)}
-                    active={activeIndex === i}
-                    isMobile={isMobile}
-                  />
-                )
-              })}
+            <Swiper
+              slidesPerView={3}
+              onSwiper={setThumbsSwiper}
+              freeMode={true}
+              spaceBetween={(window.innerWidth / 100) * 4.267 * 0.75}
+              className='swiper-thumb-mobile'
+              onBeforeInit={(swiper) => {
+                swiperThumbMobileRef.current = swiper
+              }}
+              modules={[FreeMode, Thumbs]}
+            >
+              {Array(12)
+                .fill(0)
+                .map((item, i) => {
+                  return (
+                    <SwiperSlide key={i}>
+                      <SeasonThumbItem
+                        active={activeIndex === i}
+                        isMobile={isMobile}
+                      />
+                    </SwiperSlide>
+                  )
+                })}
+            </Swiper>
           </div>
         </div>
       </section>

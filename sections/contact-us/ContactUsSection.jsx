@@ -2,21 +2,19 @@ import Image from 'next/image'
 import SectionHeading from '../common/heading/SectionHeading'
 import Link from 'next/link'
 
-export default function ContactUsSection() {
+export default function ContactUsSection({data}) {
   return (
     <section className='kKao4-container relative pt-8 md:pt-[2.94rem]'>
       <div className='flex flex-col items-start md:flex-row'>
         <div className='flex-none md:pr-24 md:basis-1/2'>
           <div className='mb-[1.12rem] md:mb-14'>
             <SectionHeading
-              h5='HONG HAO TRAVEL'
+              h5={data.heading}
               h2='CONTACT US'
             />
           </div>
           <p className='text-greyscale-40 font-tripsans text-1 font-bold leading-1.5 mb-6'>
-            Experience the raw beauty of Hà Giang with our immersive travel
-            adventures. From rugged mountain landscapes to vibrant ethnic
-            cultures, Hà Giang offers a truly unique and authentic experience.
+            {data.description}
           </p>
           <div className='grid grid-cols-1 gap-4'>
             <div className='flex flex-row items-start space-x-2'>
@@ -28,7 +26,7 @@ export default function ContactUsSection() {
                 height={120}
               />
               <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
-                +84 941556338
+                {data.tel}
               </p>
             </div>
             <div className='flex flex-row items-start space-x-2'>
@@ -40,7 +38,7 @@ export default function ContactUsSection() {
                 height={120}
               />
               <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
-                honghaotravel@gmail.com
+                {data.email}
               </p>
             </div>
             <div className='flex flex-row items-start space-x-2'>
@@ -52,7 +50,7 @@ export default function ContactUsSection() {
                 height={120}
               />
               <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
-                No. 10 Pham Hong Thai, Minh Khai Ward, City. Ha Giang.
+                {data.location}
               </p>
             </div>
             <div className='flex flex-row items-start space-x-2'>
@@ -64,19 +62,16 @@ export default function ContactUsSection() {
                 height={120}
               />
               <p className='text-greyscale-40 font-tripsans text-1 leading-1.2 tracking-0.0125'>
-                honghaotravel.com.vn
+                {data.website}
               </p>
             </div>
           </div>
         </div>
         <div className='relative xmd:h-[35.25rem] flex-none xmd:-mx-4 md:basis-1/2 xmd:mt-12'>
-          <iframe
-            src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.4154471293386!2d104.9869549745339!3d22.824114223706495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36cc784c691466c1%3A0x9ec124689672e05!2zMTAgUGjhuqFtIEjhu5NuZyBUaMOhaSwgUC4gTWluaCBLaGFpLCBXYXJkLCBIw6AgR2lhbmcgMzEwMDAsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1716345562977!5m2!1sen!2s'
-            allowfullscreen=''
-            loading='lazy'
-            referrerpolicy='no-referrer-when-downgrade'
-            className='hidden md:block w-full aspect-[1.1732] h-[28rem] rounded-[2rem] border-none'
-          ></iframe>
+          <div
+            className='map-container'
+            dangerouslySetInnerHTML={{__html: data.google_map}}
+          />
           <Image
             src={'/imgs/contact-us/bg-contact-us-mobile.jpg'}
             alt='background image'
