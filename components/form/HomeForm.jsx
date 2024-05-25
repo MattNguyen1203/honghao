@@ -27,6 +27,7 @@ import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
 import {useEffect, useState} from 'react'
 import InformationForm from './InformationForm'
+import {FORM_API} from '@/lib/constants'
 
 const data = {
   typeoftour: ['Best Budget', 'Standard', 'Premium'],
@@ -66,10 +67,7 @@ const formSchema = z.object({
       /^(999|998|997|996|995|994|993|992|991|990|979|978|977|976|975|974|973|972|971|970|969|968|967|966|965|964|963|962|961|960|899|898|897|896|895|894|893|892|891|890|889|888|887|886|885|884|883|882|881|880|879|878|877|876|875|874|873|872|871|870|859|858|857|856|855|854|853|852|851|850|839|838|837|836|835|834|833|832|831|830|809|808|807|806|805|804|803|802|801|800|699|698|697|696|695|694|693|692|691|690|689|688|687|686|685|684|683|682|681|680|679|678|677|676|675|674|673|672|671|670|599|598|597|596|595|594|593|592|591|590|509|508|507|506|505|504|503|502|501|500|429|428|427|426|425|424|423|422|421|420|389|388|387|386|385|384|383|382|381|380|379|378|377|376|375|374|373|372|371|370|359|358|357|356|355|354|353|352|351|350|299|298|297|296|295|294|293|292|291|290|289|288|287|286|285|284|283|282|281|280|269|268|267|266|265|264|263|262|261|260|259|258|257|256|255|254|253|252|251|250|249|248|247|246|245|244|243|242|241|240|239|238|237|236|235|234|233|232|231|230|229|228|227|226|225|224|223|222|221|220|219|218|217|216|215|214|213|212|211|210|98|95|94|93|92|91|90|86|84|0|82|81|66|65|64|63|62|61|60|58|57|56|55|54|53|52|51|49|48|47|46|45|44|43|41|40|39|36|34|33|32|31|30|27|20|7|1)[0-9]{0,14}$/,
       {message: 'Invalid format!'},
     ),
-  message: z.string().max(160, {
-    message: 'Bio must not be longer than 30 characters.',
-  }),
-
+  message: z.string(),
   typeoftour: z.string().min(1, 'Please fill out this field'),
   choosedays: z.string().min(1, 'Please fill out this field'),
   pickup: z.string().min(1, 'Please fill out this field'),
@@ -86,7 +84,7 @@ const formSchema = z.object({
   }),
 })
 
-export default function HomeForm({isTourDetail = false}) {
+export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   const [paxValueSelf, setPaxValueSelf] = useState(1)
   const [paxValueLocal, setPaxValueLocal] = useState(1)
   const [dataDestination, setDataDestination] = useState(1)
@@ -109,6 +107,12 @@ export default function HomeForm({isTourDetail = false}) {
   })
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
+  useEffect(() => {
+    if (isTourDetail) {
+      form.setValue('typeoftour', dataTourDetail?.typeoftour)
+      form.setValue('choosedays', dataTourDetail?.choosedays?.title)
+    }
+  }, [dataTourDetail])
 
   useEffect(() => {
     let startDate = dataForm?.dob
@@ -117,11 +121,22 @@ export default function HomeForm({isTourDetail = false}) {
       const dayValue = data?.choosedays.find(
         (item) => item.title === dataForm?.choosedays,
       )
+
       endDateUse.setDate(startDate?.getDate() + dayValue?.day || 0)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
   }, [dataForm?.choosedays, dataForm?.dob])
+
+  useEffect(() => {
+    if (isTourDetail && dataForm?.dob) {
+      let startDate = dataForm?.dob
+      let endDateUse = new Date(startDate)
+      endDateUse.setDate(startDate?.getDate() + dataTourDetail?.choosedays?.day)
+      setEndDate(endDateUse)
+      form.setValue('enddate', endDateUse)
+    }
+  }, [dataForm?.dob])
 
   useEffect(() => {
     form.setValue('destination', '')
@@ -138,8 +153,14 @@ export default function HomeForm({isTourDetail = false}) {
       formdata?.append('entry.335637933', newvalue?.username)
       formdata?.append('entry.1417657903', newvalue?.email)
       formdata?.append('entry.516066790', newvalue?.phone)
-      formdata?.append('entry.513250024', newvalue?.typeoftour)
-      formdata?.append('entry.531591585', newvalue?.choosedays)
+      formdata?.append(
+        'entry.513250024',
+        newvalue?.typeoftour || dataTourDetail?.typeoftour,
+      )
+      formdata?.append(
+        'entry.531591585',
+        newvalue?.choosedays || dataTourDetail?.choosedays?.title,
+      )
       formdata?.append('entry.1318177335', newvalue?.message)
       formdata?.append('entry.596297400', newvalue?.pickup)
       formdata?.append('entry.737203426', newvalue?.droff)
@@ -148,15 +169,11 @@ export default function HomeForm({isTourDetail = false}) {
       formdata?.append('entry.571877462', newvalue?.address)
       formdata?.append('entry.1295571760', newvalue?.destination)
       formdata?.append('entry.954465883', paxValueLocal + paxValueSelf)
-      console.log(formdata)
-      await fetch(
-        'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfqbLnJVPF8a7wRisEdbOUrpvDjwRIQN0_aMMY6-qgk_vKVFQ/formResponse',
-        {
-          method: 'POST',
-          body: formdata,
-          mode: 'no-cors',
-        },
-      )
+      await fetch(`${FORM_API}`, {
+        method: 'POST',
+        body: formdata,
+        mode: 'no-cors',
+      })
     } catch (error) {
       console.log(error)
     }
@@ -294,12 +311,12 @@ export default function HomeForm({isTourDetail = false}) {
                             <>
                               <SelectItem
                                 key={index}
-                                className='*:text-[1rem] *:font-bold *:text-greyscale-80'
+                                className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
                                 value={e}
                               >
                                 {e}
                               </SelectItem>
-                              <hr className='last:hidden w-full h-[0.0625rem] my-[1.12rem] bg-[#f1f1f1]' />
+                              <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                             </>
                           ))}
                         </SelectContent>
@@ -333,12 +350,12 @@ export default function HomeForm({isTourDetail = false}) {
                             <>
                               <SelectItem
                                 key={index}
-                                className='*:text-[1rem] *:font-bold *:text-greyscale-80'
+                                className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
                                 value={e?.title}
                               >
                                 {e?.title}
                               </SelectItem>
-                              <hr className='last:hidden w-full h-[0.0625rem] my-[1.12rem] bg-[#f1f1f1]' />
+                              <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                             </>
                           ))}
                         </SelectContent>
@@ -368,7 +385,7 @@ export default function HomeForm({isTourDetail = false}) {
                           <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                             <SelectValue
                               className='text-greyscale-10 text-0875 flex-1'
-                              placeholder='Hanoi'
+                              placeholder='Select Pick up'
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -377,12 +394,12 @@ export default function HomeForm({isTourDetail = false}) {
                             <>
                               <SelectItem
                                 key={index}
-                                className='*:text-[1rem] *:font-bold *:text-greyscale-80'
+                                className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
                                 value={e}
                               >
                                 {e}
                               </SelectItem>
-                              <hr className='last:hidden w-full h-[0.0625rem] my-[1.12rem] bg-[#f1f1f1]' />
+                              <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                             </>
                           ))}
                         </SelectContent>
@@ -492,7 +509,7 @@ export default function HomeForm({isTourDetail = false}) {
                           <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                             <SelectValue
                               className='text-greyscale-10 text-0875 flex-1'
-                              placeholder='Hanoi'
+                              placeholder='Select Droff'
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -501,12 +518,12 @@ export default function HomeForm({isTourDetail = false}) {
                             <>
                               <SelectItem
                                 key={index}
-                                className='*:text-[1rem] *:font-bold *:text-greyscale-80'
+                                className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
                                 value={e?.title}
                               >
                                 {e?.title}
                               </SelectItem>
-                              <hr className='last:hidden w-full h-[0.0625rem] my-[1.12rem] bg-[#f1f1f1]' />
+                              <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                             </>
                           ))}
                         </SelectContent>
@@ -592,7 +609,10 @@ export default function HomeForm({isTourDetail = false}) {
                         <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                           <SelectValue
                             className='text-greyscale-10 text-0875 flex-1'
-                            placeholder='Hanoi'
+                            placeholder={
+                              dataForm?.destination === '' &&
+                              'Please Select Droff'
+                            }
                           />
                         </SelectTrigger>
                       </FormControl>
@@ -602,12 +622,12 @@ export default function HomeForm({isTourDetail = false}) {
                             <>
                               <SelectItem
                                 key={index}
-                                className='*:text-[1rem] *:font-bold *:text-greyscale-80'
+                                className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
                                 value={e}
                               >
                                 {e}
                               </SelectItem>
-                              <hr className='w-full h-[0.0625rem] my-[1.12rem] bg-[#f1f1f1]' />
+                              <hr className='w-full h-[0.0625rem] bg-[#f1f1f1]' />
                             </>
                           ))}
                       </SelectContent>
@@ -637,7 +657,7 @@ export default function HomeForm({isTourDetail = false}) {
                     <span className='w-[1.25rem] text-0875 font-bold text-right text-orange-normal-hover'>
                       {paxValueSelf}
                     </span>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col ml-[0.375rem]'>
                       <div
                         onClick={() => {
                           setPaxValueSelf(paxValueSelf + 1)
@@ -645,6 +665,7 @@ export default function HomeForm({isTourDetail = false}) {
                         className=''
                       >
                         <svg
+                          className='w-[0.75rem]'
                           xmlns='http://www.w3.org/2000/svg'
                           width='12'
                           height='8'
@@ -668,6 +689,7 @@ export default function HomeForm({isTourDetail = false}) {
                         className=''
                       >
                         <svg
+                          className='w-[0.75rem]'
                           xmlns='http://www.w3.org/2000/svg'
                           width='12'
                           height='8'
@@ -701,9 +723,9 @@ export default function HomeForm({isTourDetail = false}) {
                   <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
                     <span className='text-0875 text-greyscale-60'>Pax</span>
                     <span className='w-[1.25rem] text-0875 font-bold text-right text-orange-normal-hover'>
-                      ${paxValueLocal}
+                      {paxValueLocal}
                     </span>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col ml-[0.375rem]'>
                       <div
                         onClick={() => {
                           setPaxValueLocal(paxValueLocal + 1)
@@ -711,6 +733,7 @@ export default function HomeForm({isTourDetail = false}) {
                         className=''
                       >
                         <svg
+                          className='w-[0.75rem]'
                           xmlns='http://www.w3.org/2000/svg'
                           width='12'
                           height='8'
@@ -734,6 +757,7 @@ export default function HomeForm({isTourDetail = false}) {
                         className=''
                       >
                         <svg
+                          className='w-[0.75rem]'
                           xmlns='http://www.w3.org/2000/svg'
                           width='12'
                           height='8'
@@ -770,7 +794,7 @@ export default function HomeForm({isTourDetail = false}) {
             className={`${
               isTourDetail
                 ? 'static order-4'
-                : 'absolute bottom-[1.5rem] right-[1.5rem]'
+                : 'absolute top-[37.5rem] right-[1.5rem]'
             } w-[33.25rem] flex space-x-[0.5rem]`}
           >
             <Button
