@@ -1,13 +1,19 @@
 import {cn} from '@/lib/utils'
 import Image from 'next/image'
 
-export default function SeasonThumbItem({handleOnClick, active, isMobile}) {
+export default function SeasonThumbItem({
+  handleOnClick,
+  active,
+  isMobile,
+  item,
+  title,
+}) {
   return (
     <div
       className={cn(
-        'min-w-[5.25rem] pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] backdrop-blur-[5px] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item flex-none px-4 md:px-3.5 transition-400 border',
+        'min-w-fit pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] backdrop-blur-[5px] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item flex-none px-4 md:px-3.5 transition-400 border',
         {
-          'bg-elevation-30': isMobile,
+          'bg-elevation-30 thumb-item-mobile': isMobile,
           'border-greyscale-0/20': !isMobile,
           'border-[#ED1C24]': active && isMobile,
         },
@@ -56,17 +62,17 @@ export default function SeasonThumbItem({handleOnClick, active, isMobile}) {
           }}
         />
       )}
-      <h5
+      <div
         className={cn(
-          'text-center text-1 font-extrabold leading-1.2 tracking-0.0125 font-tripsans opacity-90',
+          'text-center text-1 font-extrabold leading-1.2 tracking-0.0125 font-tripsans opacity-90 uppercase',
           {
             'text-greyscale-80': isMobile,
             'text-greyscale-0': !isMobile,
           },
         )}
       >
-        JAN
-      </h5>
+        {title}
+      </div>
       <p
         className={cn(
           'text-0.75 text-center font-tripsans leading-1.2 tracking-0.00375 opacity-70 font-normal',
@@ -87,7 +93,7 @@ export default function SeasonThumbItem({handleOnClick, active, isMobile}) {
           },
         )}
       >
-        27-32
+        {item?.temp}
       </strong>
       {!isMobile ? (
         <Image
@@ -115,7 +121,7 @@ export default function SeasonThumbItem({handleOnClick, active, isMobile}) {
           },
         )}
       >
-        65-80 mm
+        {item?.rain} mm
       </p>
     </div>
   )

@@ -7,7 +7,7 @@ import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
 
-const Banner = () => {
+const Banner = ({dataBanner}) => {
   const isMobile = useStore((state) => state.isMobile)
 
   const [animationCompleted, setAnimationCompleted] = useState(false)
@@ -101,12 +101,15 @@ const Banner = () => {
   }, [])
   return (
     <section
-      className=''
+      className='xmd:min-h-[30rem] xlg:bg-green-normal'
       id='homepage__banner'
     >
       {isMobile ? (
-        <div className='relative z-20 w-full h-full md:hidden flex'>
-          <SlideImgs animationCompleted={true} />
+        <div className='relative z-20 w-full h-[30rem] md:hidden flex '>
+          <SlideImgs
+            animationCompleted={true}
+            listImg={dataBanner?.banner_gallery}
+          />
         </div>
       ) : (
         <div className='w-screen h-screen bg-[#206545]/90 flex relative overflow-hidden xlg:hidden'>
@@ -165,15 +168,19 @@ const Banner = () => {
             <span className='text-1125 font-bold text-greyscale-0/40'>
               GET READY
             </span>
-            <h1 className='homepage_heading font-black w-[44.125rem] text-center'>
-              DISCOVER <br /> HA GIANG LOOP
-            </h1>
+            <h1
+              dangerouslySetInnerHTML={{__html: dataBanner?.heading_h1}}
+              className='homepage_heading font-black w-[44.125rem] text-center'
+            ></h1>
           </div>
 
           <Filter />
 
           <div className='absolute top-0 left-0 z-20 w-full h-full'>
-            <SlideImgs animationCompleted={animationCompleted} />
+            <SlideImgs
+              animationCompleted={animationCompleted}
+              listImg={dataBanner?.banner_gallery}
+            />
           </div>
         </div>
       )}

@@ -6,7 +6,7 @@ import {regName, regPhone, regEmail} from '@/lib/reg'
 import {useToast} from '@/components/ui/use-toast'
 import {questionData} from '@/data/faq/question'
 
-export default function FrequentlyAskedQuestions() {
+export default function FrequentlyAskedQuestions({data}) {
   const {toast} = useToast()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -20,27 +20,26 @@ export default function FrequentlyAskedQuestions() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     if (errorMessage.name || errorMessage.phone || errorMessage.email) {
-      console.log('Ngu')
       toast({
-        title: 'Gửi thông tin không thành công',
-        description: 'Vui lòng kiểm tra lại thông tin đã điền. ( ͡° ͜ʖ ͡° )',
+        title: 'Sending information failed',
+        description:
+          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
       })
     } else {
-      console.log('Sending...')
       toast({
-        title: 'Gửi thông tin thành công',
+        title: 'Sending information successfully',
         description:
-          'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể. (づ ◕‿◕ )づ',
+          'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
       })
     }
   }
   return (
     <section className='kKao4-container'>
-      <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
+      <h3 className='h3 mb-6 md:mb-[2.8rem]'>{data.heading}</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
-        <AccordionCustom data={questionData} />
+        <AccordionCustom data={data.questions} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
-          <h4 className='mb-6 h4 md:mb-8'>Ask a different question</h4>
+          <h4 className='mb-6 h4 md:mb-8'>{data.form.heading}</h4>
           <form
             className='grid grid-cols-2 gap-4'
             onSubmit={(e) => handleOnSubmit(e)}
@@ -57,7 +56,7 @@ export default function FrequentlyAskedQuestions() {
                 onBlur={() => {
                   setErrorMessage({
                     ...errorMessage,
-                    name: regName.test(name) ? '' : 'Tên không hợp lệ',
+                    name: regName.test(name) ? '' : 'Invalid name',
                   })
                 }}
               />
@@ -77,9 +76,7 @@ export default function FrequentlyAskedQuestions() {
                 onBlur={() => {
                   setErrorMessage({
                     ...errorMessage,
-                    phone: regPhone.test(phone)
-                      ? ''
-                      : 'Số điện thoại không hợp lệ',
+                    phone: regPhone.test(phone) ? '' : 'Invalid phone number',
                   })
                 }}
               />
@@ -99,7 +96,7 @@ export default function FrequentlyAskedQuestions() {
                 onBlur={() => {
                   setErrorMessage({
                     ...errorMessage,
-                    email: regEmail.test(email) ? '' : 'Email không hợp lệ',
+                    email: regEmail.test(email) ? '' : 'Invalid email',
                   })
                 }}
               />
@@ -118,7 +115,7 @@ export default function FrequentlyAskedQuestions() {
               type='submit'
               className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
             >
-              Send a message
+              {data.form.submit_button_text}
             </button>
           </form>
         </div>
