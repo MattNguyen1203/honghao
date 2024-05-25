@@ -4,13 +4,20 @@ import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import QuestionLookHere from './QuestionLookHere'
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions'
 import './styles.css'
+import getData from '@/lib/getData'
 
-export default function Faq() {
+const pageId = 155
+const getFaqData = async () => {
+  return getData(`/pages/${pageId}`, 'acf')
+}
+
+export default async function Faq() {
+  const data = (await getFaqData()).acf
   return (
     <main>
       <section>
         <Banner
-          mainImg={'/imgs/faq/background-image.jpg'}
+          mainImg={data.banner.background_image.url}
           mainTextMb={'/imgs/faq/banner-title-mb.png'}
           mainText={'/imgs/faq/banner-title.png'}
         />
@@ -20,8 +27,8 @@ export default function Faq() {
           <BreadcrumbLink href='/faq'>FAQs</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      <QuestionLookHere />
-      <FrequentlyAskedQuestions />
+      <QuestionLookHere data={data.section_questions_look_here} />
+      <FrequentlyAskedQuestions data={data.section_frequently_asked_questions} />
     </main>
   )
 }

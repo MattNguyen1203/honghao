@@ -47,3 +47,7 @@
 .swiper-client-say .swiper-slide {
   height: 29.875rem !important;
 }
+
+.swiper-thumb-mobile .swiper-slide {
+  min-width: fit-content !important;
+}

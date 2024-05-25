@@ -5,7 +5,7 @@ import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import {useToast} from '@/components/ui/use-toast'
 
-export default function ContactForm() {
+export default function ContactForm({data}) {
   const {toast} = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
@@ -31,14 +31,15 @@ export default function ContactForm() {
     ) {
       console.log('NGU')
       toast({
-        title: 'Gửi thông tin không thành công',
-        description: 'Vui lòng kiểm tra lại thông tin đã điền. ( ͡° ͜ʖ ͡° )',
+        title: 'Sending information failed',
+        description:
+          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
       })
     } else {
       toast({
-        title: 'Gửi thông tin thành công',
+        title: 'Sending information successfully',
         description:
-          'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể. (づ ◕‿◕ )づ',
+          'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
       })
     }
   }
@@ -55,7 +56,7 @@ export default function ContactForm() {
         <h5 className='mb-3 text-center h5 text-greyscale-0 opacity-40'>
           CONTACT
         </h5>
-        <h2 className='text-center h2 text-greyscale-0'>GET IN TOUCH</h2>
+        <h2 className='text-center h2 text-greyscale-0'>{data.heading}</h2>
       </div>
       <form
         className='grid grid-cols-2 gap-4'
@@ -73,7 +74,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                name: regName.test(name) ? '' : 'Tên không hợp lệ',
+                name: regName.test(name) ? '' : 'Invalid name',
               })
             }}
           />
@@ -93,7 +94,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                phone: regPhone.test(phone) ? '' : 'Số điện thoại không hợp lệ',
+                phone: regPhone.test(phone) ? '' : 'Invalid phone number',
               })
             }}
           />
@@ -113,7 +114,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                email: regEmail.test(email) ? '' : 'Email không hợp lệ',
+                email: regEmail.test(email) ? '' : 'Invalid email',
               })
             }}
           />
@@ -192,7 +193,7 @@ export default function ContactForm() {
                 ...errorMessage,
                 contactSubject: regContactSubject.test(contactSubject)
                   ? ''
-                  : 'Đối tượng liên lạc không hợp lệ',
+                  : 'Invalid contact object',
               })
             }}
           />
@@ -211,7 +212,7 @@ export default function ContactForm() {
           type='submit'
           className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
         >
-          Send a message
+          {data.submit_button_text}
         </button>
       </form>
     </div>
