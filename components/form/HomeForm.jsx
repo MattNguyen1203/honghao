@@ -715,7 +715,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                 } h-[0.0625rem] my-[0.75rem]`}
               />
               <div className='flex justify-between items-center'>
-                <span className='text-0875 text-greyscale-60 font-normal'>
+                <span className='text-0875 text-greyscale-60 font-normal '>
                   4 days with local driver
                 </span>
                 <div className='flex items-center'>
