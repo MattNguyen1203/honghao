@@ -1,3 +1,12 @@
+'use client'
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+
 export default function InformationForm({
   dataForm = {},
   data,
@@ -17,7 +26,7 @@ export default function InformationForm({
   return (
     <div
       className={`${
-        isTourDetail ? 'pl-[2rem] translate-y-[3.5rem]' : 'pl-[0.75rem]'
+        isTourDetail ? 'pl-[2rem] translate-y-[-3.5rem]' : 'pl-[0.75rem]'
       } space-y-[0.75rem] w-[35.5rem] py-[1.5rem] pr-[1.5rem]`}
     >
       <span
@@ -66,14 +75,28 @@ export default function InformationForm({
           <div className='h-[3.5rem] flex items-center w-[12.1875rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-r-[0.5px] border-solid border-[#eee] font-extrabold text-0875 text-[#2E2E2E]'>
             Pick up
           </div>
-          <div className='max-w-[20rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
-            <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
-              <span className='text-0875 font-semibold text-greyscale-80'>
-                {formattedDate(dataForm?.dob)}
-              </span>
-              {dataForm?.address && ' from '} {dataForm?.address}
-            </p>
-          </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className='max-w-[20rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
+                  <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
+                    <span className='text-0875 font-semibold text-greyscale-80'>
+                      {formattedDate(dataForm?.dob)}
+                    </span>
+                    {dataForm?.address && ' from '} {dataForm?.address}
+                  </p>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent className='max-w-[20rem] h-fit'>
+                <p className='text-075 text-[#727272]'>
+                  <span className='text-0875 font-semibold text-greyscale-80'>
+                    {formattedDate(dataForm?.dob)}
+                  </span>
+                  {dataForm?.address && ' from '} {dataForm?.address}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <div className='w-full flex'>
           <div className='h-[2.5rem] flex items-center w-[12.1875rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-r-[0.5px] border-solid border-[#eee] font-extrabold text-0875 text-[#2E2E2E]'>
@@ -121,11 +144,20 @@ export default function InformationForm({
           <div className='h-[3.5rem] flex items-center w-[12.1875rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-r-[0.5px] border-solid border-[#eee] font-extrabold text-0875 text-[#2E2E2E]'>
             Message
           </div>
-          <div className='max-w-[20rem] w-[20rem] flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
-            <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
-              {dataForm?.message}
-            </p>
-          </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className='max-w-[20rem] w-[20rem] flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
+                  <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
+                    {dataForm?.message}
+                  </p>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent className='max-w-[20rem]'>
+                <p className='text-075 text-[#727272]'>{dataForm?.message}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
       <div className='w-full py-[0.75rem] px-[1rem] rounded-[0.5rem] bg-[#23704D] mb-[0.5rem]'>
