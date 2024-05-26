@@ -31,7 +31,7 @@ export default function PaginationCustom({ href }) {
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationEllipsis />
+          <PaginationEllipsis/>
         </PaginationItem>
 
         <PaginationItem className={className.base}>

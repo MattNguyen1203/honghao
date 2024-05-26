@@ -9,22 +9,7 @@ import MotoAnimate from './motoAnimate'
 import CloudAnimate from './CloudAnimate'
 import Welcome from '../Welcome/Welcome'
 
-const aboutData = [
-  '13 years experience',
-  'personalization',
-  'tour guide with good english',
-  '10.000 customers',
-  'unique experiences',
-]
-
-const about2Data = [
-  'Tours accommodate a maximum of 10 guests',
-  'Flexible cancellation policy',
-  'Book now, pay later',
-  'Fluent English-speaking guides',
-  'Creating job opportunities for the Vietnamese community',
-]
-const About = () => {
+const About = ({dataAbout}) => {
   const nextSectionRef = useRef()
 
   const handleScrollDown = () => {
@@ -81,14 +66,15 @@ const About = () => {
             className='w-[7rem] h-[8.3125rem] xmd:w-[4.5rem] xmd:h-[5.35rem] mb-[4rem] object-contain tablet:w-[14rem] tablet:h-[16rem]'
           />
 
-          <p className='px-[1.5rem] text-35 xmd:text-15 font-black font-londrina text-greyscale-0/80 mb-[4rem] xmd:mb-[1.56rem] text-center leading-[100%]'>
-            Hong Hao Travel is a travel company in Ha Giang, we specialize in
-            organizing unforgettable tours to explore Ha Giang loop but still
-            focus on the pristine nature of nature.
-          </p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: dataAbout?.about_us?.content || '',
+            }}
+            className='px-[1.5rem] text-35 xmd:text-15 font-black font-londrina text-greyscale-0/80 mb-[4rem] xmd:mb-[1.56rem] text-center leading-[100%]'
+          ></div>
 
           <div className='flex space-x-[0.75rem] xmd:space-[0.5rem] tablet:space-[1.5rem] mb-[6.3rem] xmd:mb-[2.8rem] xmd:flex-wrap items-center justify-center'>
-            {aboutData?.map((item, index) => (
+            {dataAbout?.about_us?.infos?.map((item, index) => (
               <div
                 className='group hover:bg-orange-normal overflow-hidden transition-all duration-500 rounded-full relative size-[10.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:p-[1rem] xmd:tracking-[0] text-center'
                 key={index}
@@ -96,10 +82,10 @@ const About = () => {
                 <div className='animate-spin flex size-full rounded-full border border-dashed border-greyscale-0 absolute top-0 left-0'></div>
                 <div className='relative overflow-hidden w-full h-[2.125rem]'>
                   <span className='group-hover:translate-y-[-200%] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
-                    {item}
+                    {item?.text}
                   </span>
                   <span className='xlg:hidden translate-y-[100%] group-hover:-translate-y-1/2 xlg:!-translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
-                    {item}
+                    {item?.text}
                   </span>
                 </div>
               </div>
@@ -131,18 +117,18 @@ const About = () => {
             START WITH
           </div>
           <h2 className='text-greyscale-0 mb-[3.5rem] xmd:mb-[2rem] xmd:text-25 xmd:w-3/4'>
-            HONG HAO MOTORBIKE TOUR
+            {dataAbout?.section_3?.heading || ''}
           </h2>
 
-          <p className='text-greyscale-10 text-1 tablet:text-175 tablet:mb-[2rem] tablet:leading-normal tablet:tracking-0 xmd:text-0875 tracking-[0.005rem] mb-[1rem] xmd:tracking-[0.00219rem] xmd:leading-normal'>
-            Experience the raw beauty of Hà Giang with our immersive travel
-            adventures. From rugged mountain landscapes to vibrant ethnic
-            cultures, Hà Giang offers a truly unique and authentic experience.
-            Explore remote villages.
-          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: dataAbout?.section_3?.description,
+            }}
+            className='text-greyscale-10 text-1 tablet:text-175 tablet:mb-[2rem] tablet:leading-normal tablet:tracking-0 xmd:text-0875 tracking-[0.005rem] mb-[1rem] xmd:tracking-[0.00219rem] xmd:leading-normal'
+          ></p>
 
           <ul className='mb-[2rem]'>
-            {about2Data?.map((item, index) => (
+            {dataAbout?.section_3?.list_strength?.map((item, index) => (
               <li
                 key={index}
                 className='flex items-center mb-[0.75rem]'
@@ -155,7 +141,7 @@ const About = () => {
                   className='size-[1rem] object-contain'
                 />
                 <span className='text-1 tablet:text-15 tablet:tracking-0 xmd:text-0875 tablet:leading-normal text-greyscale-5 font-bold ml-[0.5rem]'>
-                  {item}
+                  {item?.text || ''}
                 </span>
               </li>
             ))}
@@ -185,7 +171,7 @@ const About = () => {
         <CloudAnimate />
         <MotoAnimate />
       </div>
-      <Welcome />
+      <Welcome data={dataAbout?.section_video} />
     </section>
   )
 }

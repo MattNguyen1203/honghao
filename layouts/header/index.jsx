@@ -9,7 +9,7 @@ export default async function Header() {
 
   const dataHeader = dataAcf?.acf?.header
   return (
-    <header className='w-full fixed top-0 left-0 z-[10000]'>
+    <header className='w-full fixed top-0 left-0 z-[99]'>
       <WrapNav dataHeader={dataHeader} />
     </header>
   )

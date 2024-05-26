@@ -102,7 +102,7 @@ const SlideVideoTours
             </SwiperSlide>
           ))}
         </Swiper>}
-        <div className='md:absolute xmd:mt-[0.2rem] z-[100] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem]'>
+        <div className='md:absolute xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem]'>
 
           <Swiper
             breakpoints={{

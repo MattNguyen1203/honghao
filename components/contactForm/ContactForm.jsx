@@ -3,8 +3,10 @@ import {cn} from '@/lib/utils'
 import Image from 'next/image'
 import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
+import {useToast} from '@/components/ui/use-toast'
 
-export default function ContactForm() {
+export default function ContactForm({data}) {
+  const {toast} = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const [name, setName] = useState('')
@@ -13,23 +15,61 @@ export default function ContactForm() {
   const [country, setCountry] = useState('')
   const [contactSubject, setContactSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [isLoading, setIsLoading] = useStateI(false)
   const [errorMessage, setErrorMessage] = useState({
     name: '',
     phone: '',
     email: '',
     contactSubject: '',
   })
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     if (
       errorMessage.name ||
       errorMessage.email ||
       errorMessage.phone ||
       errorMessage.contactSubject
     ) {
-      console.log('NGU')
+      toast({
+        title: 'Sending information failed',
+        description:
+          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+      })
     } else {
-      console.log('Sending...')
+      const formData = new FormData()
+      formData.append('fullName', name)
+      formData.append('phone', phone)
+      formData.append('yourEmail', email)
+      formData.append('contactSubject', contactSubject)
+      formData.append('message', message)
+      formData.append('country', country)
+      formData.append('_wpcf7_unit_tag', '299')
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/299/feedback`,
+        {method: 'POST', body: formData},
+      )
+      const result = await res.json()
+      if (result.status === 'mail_sent') {
+        toast({
+          title: 'Sending information successfully',
+          description:
+            'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
+        })
+        setName('')
+        setPhone('')
+        setEmail('')
+        setCountry('')
+        setContactSubject('')
+        setMessage('')
+      } else {
+        toast({
+          title: 'Sending information failed',
+          description:
+            'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+        })
+      }
+      setIsLoading(false)
     }
   }
   return (
@@ -45,7 +85,7 @@ export default function ContactForm() {
         <h5 className='mb-3 text-center h5 text-greyscale-0 opacity-40'>
           CONTACT
         </h5>
-        <h2 className='text-center h2 text-greyscale-0'>GET IN TOUCH</h2>
+        <h2 className='text-center h2 text-greyscale-0'>{data.heading}</h2>
       </div>
       <form
         className='grid grid-cols-2 gap-4'
@@ -63,7 +103,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                name: regName.test(name) ? '' : 'Tên không hợp lệ',
+                name: regName.test(name) ? '' : 'Invalid name',
               })
             }}
           />
@@ -83,7 +123,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                phone: regPhone.test(phone) ? '' : 'Số điện thoại không hợp lệ',
+                phone: regPhone.test(phone) ? '' : 'Invalid phone number',
               })
             }}
           />
@@ -103,7 +143,7 @@ export default function ContactForm() {
             onBlur={() => {
               setErrorMessage({
                 ...errorMessage,
-                email: regEmail.test(email) ? '' : 'Email không hợp lệ',
+                email: regEmail.test(email) ? '' : 'Invalid email',
               })
             }}
           />
@@ -115,11 +155,17 @@ export default function ContactForm() {
           <button
             ref={sideRef}
             type='button'
-            className='relative flex flex-row justify-center items-center text-[rgba(187,211,200,0.50)] font-tripsans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
+            className='relative flex flex-row justify-center items-center font-tripsans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
             style={{borderBottom: '1px solid rgba(187, 211, 200, 0.80)'}}
             onClick={() => setIsOpenDropdown(!isOpenDropdown)}
           >
-            {country ? country : 'Select country'}
+            {country ? (
+              <span className='text-greyscale-0'>{country}</span>
+            ) : (
+              <span className='text-[rgba(187,211,200,0.50)]'>
+                Select country
+              </span>
+            )}
             <Image
               src={'/imgs/contact-us/dropdown.svg'}
               alt='select country'
@@ -176,7 +222,7 @@ export default function ContactForm() {
                 ...errorMessage,
                 contactSubject: regContactSubject.test(contactSubject)
                   ? ''
-                  : 'Đối tượng liên lạc không hợp lệ',
+                  : 'Invalid contact object',
               })
             }}
           />
@@ -195,7 +241,28 @@ export default function ContactForm() {
           type='submit'
           className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
         >
-          Send a message
+          {data.submit_button_text}
+          {isLoading && (
+            <svg
+              className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+            >
+              <circle
+                className='opacity-25'
+                cx='12'
+                cy='12'
+                r='10'
+                stroke='currentColor'
+                strokeWidth='4'
+              ></circle>
+              <path
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+              ></path>
+            </svg>
+          )}
         </button>
       </form>
     </div>

@@ -4,6 +4,7 @@ import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
 import WrapSocials from '@/components/socials'
+import { Toaster } from '@/components/ui/toaster'
 
 const londrina = Londrina_Solid({
   display: 'swap',
@@ -58,13 +59,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${tripsans.className} ${tripsans.variable} ${londrina.variable}`}
+        className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <Header />
         <WrapSocials />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   )

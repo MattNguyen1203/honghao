@@ -9,7 +9,7 @@ import useStore from '@/app/(store)/store'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const Welcome = () => {
+const Welcome = ({data}) => {
   const parentRef = useRef()
 
   const isMobile = useStore((state) => state.isMobile)
@@ -75,10 +75,10 @@ const Welcome = () => {
           className='text-1125 xmd:text-0875 tablet:text-[2rem] font-bold leading-[1] text-greyscale-0/40 mb-[0.5rem]'
           id='welcome_subText'
         >
-          Welcome To
+          {data?.subHeading}
         </div>
         <h2 className='text-green-light font-black xmd:text-[1.45rem]  tablet:text-[5rem]'>
-          HA GIANG NATURALLY
+          {data?.heading}
         </h2>
         <Image
           src='/imgs/home/beautiful.png'
@@ -91,10 +91,10 @@ const Welcome = () => {
       </div>
 
       <div
-        className='h-[29.8125rem] w-[53rem] translate-y-[12rem] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
+        className='h-[29.8125rem] w-[53rem] translate-y-[12rem] xlg:translate-y-[0] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
         id='box-img'
       >
-        <SlideWelcome />
+        <SlideWelcome listVid={data?.list_video} />
       </div>
     </div>
   )

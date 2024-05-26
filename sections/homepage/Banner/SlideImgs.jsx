@@ -8,12 +8,6 @@ import 'swiper/css/effect-fade'
 import {cn} from '@/lib/utils'
 import {useEffect, useRef, useState} from 'react'
 
-const listImgs = [
-  '/imgs/home/bannerBg1.webp',
-  '/imgs/home/bannerBg3.webp',
-  '/imgs/home/bannerBg2.jpg',
-]
-
 const listDotPosition = [
   {
     top: '16rem',
@@ -29,7 +23,7 @@ const listDotPosition = [
   },
 ]
 
-const SlideImgs = ({animationCompleted}) => {
+const SlideImgs = ({animationCompleted, listImg = []}) => {
   const slideImgRef = useRef()
 
   const [dotPositionIndex, setDotPositionIndex] = useState(0)
@@ -61,15 +55,15 @@ const SlideImgs = ({animationCompleted}) => {
         className='w-[71rem] h-[35rem] relative translate-y-[100vh] xlg:w-full xmd:h-[30rem] xlg:translate-y-[0]'
         id='homepage_banner-swiper'
       >
-        {listImgs?.map((item, index) => (
+        {listImg?.map((item, index) => (
           <SwiperSlide
             key={index}
             className='select-none'
           >
             <Image
               priority
-              alt='hong hao travel'
-              src={item}
+              alt={item?.alt || 'hong hao travel'}
+              src={item?.url}
               width={1920}
               height={1080}
               className='w-full h-full object-cover'

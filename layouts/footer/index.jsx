@@ -104,7 +104,7 @@ export default async function Footer() {
                 key={index}
                 className='w-max xmd:w-full first:mr-[7.5rem] xmd:first:mr-0 xmd:last:mb-[3rem]'
               >
-                <div className='text-1 text-greyscale-80 font-bold tracking-[0.0125rem] mb-[1rem] uppercase'>
+                <div className='text-1 text-greyscale-80 font-bold tracking-0.0125 mb-[1rem] uppercase'>
                   {item.heading}
                 </div>
 
@@ -129,7 +129,7 @@ export default async function Footer() {
                           height={20}
                           className='size-[1rem] object-contain mr-[0.5rem]'
                         />
-                        <span className='text-1 tracking-[0.0125rem] text-greyscale-40 xmd:text-greyscale-80 xmd:font-medium'>
+                        <span className='text-1 tracking-0.0125 text-greyscale-40 xmd:text-greyscale-80 xmd:font-medium'>
                           {child.label}
                         </span>
                       </li>
@@ -141,7 +141,7 @@ export default async function Footer() {
           </div>
 
           <div>
-            <div className='text-1 text-greyscale-80 font-bold tracking-[0.0125rem] mb-[1rem] uppercase'>
+            <div className='text-1 text-greyscale-80 font-bold tracking-0.0125 mb-[1rem] uppercase'>
               FOLLOW US
             </div>
 

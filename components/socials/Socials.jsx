@@ -8,7 +8,7 @@ const Socials = () => {
 
 
   return (
-    <div className=" xmd:hidden fixed z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]">
+    <div className=" xmd:hidden fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]">
 
 
       {/* Bookk Now */}
