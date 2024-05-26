@@ -42,7 +42,7 @@ const DiscoveryDestinations = () => {
           trigger: pinRefMobi.current,
           pin: pinRefMobi.current,
           start: "-210% 0%",
-          end: () => `+=${scrollRef.current.offsetHeight} 80%`,
+          end: () => `+=${scrollRef.current.offsetHeight} 120%`,
           toggleActions: "restart reverse reverse reverse",
           scrub: 1,
           markers: true,
@@ -57,7 +57,7 @@ const DiscoveryDestinations = () => {
 
   return (
     <section className='relative mt-[2.63rem]'>
-      <Image ref={pinRef} priority alt="ảnh" src={'/imgs/all-destinations/discover-desti.png'} width={1600} height={900} className="absolute xmd:hidden z-[-1] w-full h-screen" />
+      <Image ref={pinRef} priority alt="ảnh" src={'/imgs/all-destinations/discover-desti.png'} width={1600} height={900} className="absolute xmd:hidden z-[-1] w-full h-[90vh]" />
       <Image ref={pinRefMobi} priority alt="ảnh" src={'/imgs/all-destinations/discover-desti-mobi.png'} width={1600} height={900} className="absolute md:hidden top-[41.53rem] z-[-1] w-full" />
       <Image priority alt="ảnh" src={'/imgs/all-destinations/sun-mobi.png'} width={1600} height={900} className="absolute size-[6.75181rem] top-[-1.6rem] left-[1.5rem] md:hidden z-[-1]" />
       <div ref={scrollRef} className='xmd:mx-[1rem] xmd:mt-[3.4rem] xl:w-[93rem] mx-auto xmd:space-y-[1.7rem] flex xmd:flex-col justify-around'>

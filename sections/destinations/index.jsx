@@ -5,10 +5,11 @@ import DiscoveryDestinations from './DiscoveryDestinations'
 import Banner from './Banner'
 import BannerMobile from '../common/banner'
 import Breadcrumb from '@/components/breadcrumb'
-const Destinations = () => {
+const Destinations = ({dataAcf}) => {
+  const dataBanner=dataAcf?.acf?.banner
   return (
-    <main csName='alldestinations'>
-      <section className='xmd:hidden'><Banner /></section>
+    <main csName='alldestinations bd'>
+      <section className='xmd:hidden'><Banner dataBanner={dataBanner} /></section>
       <section className='md:hidden'>
 
         <BannerMobile

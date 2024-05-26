@@ -361,3 +361,6 @@ input[type='password']::-ms-clear {
 .scrollUp {
   animation: scrollUpKey 1s ease-in-out infinite;
 }
+.paginationcustom svg{
+stroke:#c24216 !important
+}

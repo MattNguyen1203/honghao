@@ -1,12 +1,12 @@
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import TeamSlide from './TeamSlide'
-import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './team.css'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
-export default function OurTeam({darkTheme}) {
+export default function OurTeam({ darkTheme }) {
   return (
     <section className='flex items-center justify-between w-full'>
       <div className='team subContainer flex pl-0 ml-auto xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
