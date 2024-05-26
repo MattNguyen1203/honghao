@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './team.css'
 export default function OurTeam() {
   return (
-    <section className=' flex items-center justify-center'>
+    <section className=' flex items-center justify-center pt-[4rem]'>
       <div className='team  subContainer md:mx-auto flex xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-start md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
         <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem]'>
           <div className='text-1125 uppercase font-bold text-greyscale-80/40'>

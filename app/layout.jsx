@@ -3,7 +3,7 @@ import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
-import Socials from '@/sections/socials'
+import WrapSocials from '@/components/socials'
 
 const londrina = Londrina_Solid({
   display: 'swap',
@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning={true}
       >
         <Header />
-        <Socials />
+        <WrapSocials />
         {children}
         <Footer />
       </body>

@@ -52,7 +52,7 @@ const images2 = [
   { img: '/imgs/common/slidevideotour.png' },
 ]
 const SlideVideoTours
-  = ({ type }) => {
+  = ({ type, data, mainImage }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const isMobile = useStore((state) => state.isMobile)
@@ -76,7 +76,7 @@ const SlideVideoTours
           <path d="M38 27L22 37L27 27L22 17L38 27Z" fill="white" />
         </svg>
 
-        {checkIsBanner && <Image priority alt="ảnh" src={'/imgs/common/slidevideotour.png'} width={1500} height={1500} className={cn(" w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
+        {checkIsBanner && <Image priority alt="ảnh" src={mainImage} width={1500} height={1500} className={cn(" w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
           checkIsBanner ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none' : ''
         )} />}
         {!checkIsBanner && <Swiper
@@ -94,9 +94,9 @@ const SlideVideoTours
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
-          {imagesToUse?.map((d, i) => (
+          {data?.map((d, i) => (
             <SwiperSlide key={i} className='!flex !justify-center !items-center'>
-              <Image priority alt="ảnh" src={d?.img} width={1500} height={1500} className={cn(" w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
+              <Image priority alt="ảnh" src={d?.image} width={1500} height={1500} className={cn(" w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ",
                 checkIsBanner ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none' : ''
               )} />
             </SwiperSlide>
@@ -113,7 +113,7 @@ const SlideVideoTours
             }}
             allowTouchMove={true}
             direction={'horizontal'}
-            loop
+            loop={true}
             centeredSlides={true}
             autoplay={!checkIsBanner ? false : {
               delay: 0,
@@ -124,20 +124,20 @@ const SlideVideoTours
             speed={checkIsBanner ? 1500 : 500}
             initialSlide={3}
             slidesPerView={2.12}
-            // watchSlidesProgress={true}
+            watchSlidesProgress={true}
             modules={[Navigation, Autoplay, Thumbs, Pagination, Mousewheel]}
             onSlideChange={handleSlideChange}
             // onSwiper={setThumbsSwiper}
-            className={cn("slide-video-tour mySwiper !pb-[3rem]  h-[41.75rem] ", checkIsBanner ? 'h-[43.75rem]' : '!pb-[6rem]')}
+            className={cn("slide-video-tour mySwiper   h-[41.75rem] ", checkIsBanner ? 'h-[43.75rem] !pb-[5rem]' : '!pb-[5rem]')}
             id="swiper_discover"
           >
-            {imagesToUse?.map((d, i) => (
+            {data?.map((d, i) => (
               <SwiperSlide key={i} className={cn(' ', checkIsBanner ? '' : '!mt-[0.6rem]')}>
                 <div className={cn('relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
                   i === activeIndex ? 'opacity-1 border-white' : 'border-transparent'
                 )}>
                   {/* <div>{i}{activeIndex}</div> */}
-                  <Image priority alt="ảnh" src={d?.img} width={500} height={500} className={cn("  rounded-[0.75rem] duration-500 ease-linear size-full ",
+                  <Image priority alt="ảnh" src={d?.image} width={500} height={500} className={cn("  rounded-[0.75rem] duration-500 ease-linear size-full ",
                   )
                   } />
                   <div className={(i === activeIndex ? " bg-opacity-0" : " bg-opacity-40 ") + ' rounded-[0.75rem] bg-black absolute  duration-500 ease-linear top-0 left-0 size-full'}>
