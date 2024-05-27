@@ -1,10 +1,13 @@
 import OurTeam from '@/layouts/team'
+import {Suspense} from 'react'
 
-export default function TeamLayout({ children }) {
+export default function TeamLayout({children}) {
   return (
-    <main className=''>
-      {children}
-      <OurTeam />
-    </main>
+    <Suspense>
+      <main className=''>
+        {children}
+        <OurTeam />
+      </main>
+    </Suspense>
   )
 }

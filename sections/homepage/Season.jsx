@@ -351,8 +351,8 @@ export default function Season({data, dataWeather}) {
               <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
                 {parseInt(dataWeather?.main.temp) - 273}°C
               </span>
-              {dataWeather.weather.main === 'Clear' ||
-              dataWeather.weather.id === 801 ? (
+              {dataWeather?.weather?.main === 'Clear' ||
+              dataWeather?.weather?.id === 801 ? (
                 <Image
                   src={'/imgs/home/sun.svg'}
                   alt='sun with cloud'
@@ -360,7 +360,7 @@ export default function Season({data, dataWeather}) {
                   width={120}
                   height={120}
                 />
-              ) : dataWeather.weather.main === 'Clouds' ? (
+              ) : dataWeather?.weather?.main === 'Clouds' ? (
                 <Image
                   src={'/imgs/home/cloudy.svg'}
                   alt='sun with cloud'
@@ -405,7 +405,7 @@ export default function Season({data, dataWeather}) {
                   return (
                     <SeasonThumbItem
                       key={i}
-                      handleOnClick={() => swiperRef.current.slideTo(i)}
+                      handleOnClick={() => swiperRef.current?.slideTo(i)}
                       active={activeIndex === i}
                       isMobile={isMobile}
                       item={item}
@@ -421,7 +421,7 @@ export default function Season({data, dataWeather}) {
               slidesPerView={3}
               onSwiper={setThumbsSwiper}
               freeMode={true}
-              spaceBetween='12.5'
+              spaceBetween={12}
               className='swiper-thumb-mobile'
               onBeforeInit={(swiper) => {
                 swiperThumbMobileRef.current = swiper
