@@ -10,6 +10,7 @@ import ItemCard from './ItemCard'
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
+const data = Array(5).fill(0)
 
 export default function page() {
   const container = useRef(null)
@@ -20,41 +21,21 @@ export default function page() {
     () => {
       let mm = gsap.matchMedia()
       mm.add('(min-width: 1025px)', () => {
+        const lengthTour = data.length
+        const percent = 100 - 100 / lengthTour
         ScrollTrigger.create({
           trigger: container.current,
           start: 'top top',
-          end: '+=1800',
-          scrub: true,
+          end: `+=${lengthTour * ((window.innerWidth / 100) * 23.33) * 2}`,
           pin: true,
-          markers: true,
-          anticipatePin: 1,
+          scrub: true,
           onUpdate: (self) => {
-            listTourHome.current.style.transform = `translateY(-${
-              Number(self.progress.toFixed(3)) * 80
-            }%)`
-            if (Number(self.progress.toFixed(3)) <= 0.15) {
-              setIndex(0)
-            }
+            let precentCurrent = Number(self.progress.toFixed(3)) * percent
+            listTourHome.current.style.transform = `translateY(-${precentCurrent}%)`
             if (
-              Number(self.progress.toFixed(3)) > 0.15 &&
-              Number(self.progress.toFixed(3)) < 0.4
+              Math.floor(precentCurrent / (percent / lengthTour)) < lengthTour
             ) {
-              setIndex(1)
-            }
-            if (
-              Number(self.progress.toFixed(3)) >= 0.4 &&
-              Number(self.progress.toFixed(3)) < 0.6
-            ) {
-              setIndex(2)
-            }
-            if (
-              Number(self.progress.toFixed(3)) >= 0.6 &&
-              Number(self.progress.toFixed(3)) < 0.8
-            ) {
-              setIndex(3)
-            }
-            if (Number(self.progress.toFixed(3)) >= 0.8) {
-              setIndex(4)
+              setIndex(Math.floor(precentCurrent / (percent / lengthTour)))
             }
           },
         })
@@ -76,28 +57,25 @@ export default function page() {
               EXPLORE
             </h3>
             <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem]'>
-              BEST TRIPS <br className='md:hidden' /> FOR YOU
+              BEST TRIPS <br className='md:hidden' /> FOR YOU {index}
             </h2>
             <Image
               className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
-              src={'/home/map.png'}
+              src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
               alt='map'
               width={500}
               height={500}
             />
-            <div>{index}</div>
           </div>
           <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-[50rem] w-full lg:h-auto h-[23.33956rem] tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
             <div
               ref={listTourHome}
               id='list_tour_home'
-              className='flex lg:flex-col lg:w-full w-fit h-fit lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem] lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem]'
+              className='flex lg:flex-col lg:w-full w-fit h-fit lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem] xmd:pr-[0.75rem] lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem]'
             >
-              {Array(5)
-                .fill(0)
-                .map((_, index) => (
-                  <ItemCard />
-                ))}
+              {data.map((_, index) => (
+                <ItemCard key={index} />
+              ))}
             </div>
           </div>
         </div>

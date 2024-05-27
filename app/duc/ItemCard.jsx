@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function ItemCard() {
   return (
-    <div className='rounded-[0.75rem] group h-[23.33956rem] w-[16.8755rem] tablet:h-[43.33956rem] tablet:w-[36rem] lg:h-[34.375rem] lg:w-[47.3125rem] relative flex xmd:flex-col-reverse tablet:flex-col-reverse lg:items-end lg:justify-between justify-start items-start lg:p-[1.5rem] p-[1rem] overflow-hidden'>
+    <div className='rounded-[0.75rem] group h-[23.33956rem] w-[16.8755rem] tablet:h-[43.33956rem] tablet:w-[36rem] lg:h-[34.375rem] lg:w-[47.3125rem] relative flex xmd:flex-col-reverse tablet:flex-col-reverse lg:items-end lg:justify-between justify-start items-start lg:p-[1.5rem] p-[1rem] overflow-hidden item_tour_home'>
       <div className='z-10 size-full absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
         className='absolute top-0 left-0 size-full rounded-[0.75rem]'
@@ -12,7 +12,7 @@ export default function ItemCard() {
         height={550}
       />
       <div className='z-10 flex flex-col space-y-[0.66rem] lg:w-[33.9375rem] w-full'>
-        <span className='lg:text-15 text-1 font-black text-white'>
+        <span className='font-black text-white lg:text-15 text-1'>
           Ha Giang Loop tour: Itinerary in 4 Days 5 Nights
         </span>
         <div className='hidden lg:block space-y-[0.66rem]'>
@@ -145,13 +145,13 @@ export default function ItemCard() {
       </div>
       <div className='flex-col flex items-end justify-center z-10 mt-[1.13rem] mb-[0.5rem] lg:my-0'>
         <div className='lg:group-hover:translate-y-[-1rem] transition-all duration-500 lg:translate-y-[50%] flex lg:flex-col lg:items-end items-center'>
-          <span className='hidden lg:block text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem]'>
+          <span className='block text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem] xmd:mr-[0.5rem] xmd:ml-0'>
             From to
           </span>
-          <span className='lg:hidden text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem]'>
+          {/* <span className='lg:hidden text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem]'>
             Up to
-          </span>
-          <span className='lg:text-3 text-1125 font-extrabold text-white'>
+          </span> */}
+          <span className='font-extrabold text-white lg:text-3 text-1125'>
             $199
           </span>
         </div>
