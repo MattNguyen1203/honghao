@@ -36,8 +36,8 @@ export default function Commit({dataCommit}) {
           width={375}
           height={523}
         />
-        <div className='flex container xmd:flex-col justify-between md:space-x-[9.25rem] md:pb-[6rem] xmd:mt-[7.19rem]'>
-          <div className='flex flex-col h-full justify-end xmd:mb-[3.18rem]'>
+        <div className='flex container xmd:!px-0 xmd:flex-col justify-between md:space-x-[9.25rem] md:pb-[6rem] xmd:mt-[7.19rem]'>
+          <div className='xmd:container flex flex-col h-full justify-end xmd:mb-[3.18rem]'>
             <div className='flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.5rem] xmd:mb-[2rem]'>
               <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
                 HONG HA TRAVEL
