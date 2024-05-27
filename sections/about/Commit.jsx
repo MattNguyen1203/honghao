@@ -1,27 +1,29 @@
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 
-export default function Commit({ dataCommit }) {
+export default function Commit({dataCommit}) {
   return (
     <section>
       <div className='w-full h-[49.0625rem] xmd:h-[29.2775rem] relative pt-[6.88rem] xmd:pt-[6rem]'>
         <Image
-          className='xmd:hidden size-full absolute top-0 left-0'
+          className='xmd:hidden size-full absolute top-0 left-0 object-cover'
           alt='ảnh bg cam kết'
           src={'/imgs/about/Pattern-white.png'}
           width={1600}
           height={785}
         />
         <Image
-          className='md:hidden w-[23.5625rem] h-[29.2775rem] absolute top-0 left-0'
+          className='md:hidden w-[23.5625rem] h-[29.2775rem] absolute top-0 left-0 object-cover'
           alt='ảnh bg cam kết'
           src={'/imgs/about/pattern-mb.png'}
           width={377}
           height={468.44}
         />
-        <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
-          {dataCommit?.main_desc_test}
-        </p>
+        <div className='container'>
+          <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+            {dataCommit?.main_desc_test}
+          </p>
+        </div>
       </div>
       <div className='translate-y-[-3.81rem] relative h-[52.75rem] flex'>
         <div className='absolute size-full top-0 left-0'>
