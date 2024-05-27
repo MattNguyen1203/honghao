@@ -228,6 +228,10 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       formdata?.append('paxValueLocal', paxValueLocal)
       formdata?.append('paxValueSelf', paxValueSelf)
       formdata?.append('titleTour', dataTourDetail?.titleTour)
+      formdata?.append(
+        'TOTAL',
+        paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal,
+      )
       formdata?.append('_wpcf7_unit_tag', '294')
       console.log(formdata)
       const reqOption = {
