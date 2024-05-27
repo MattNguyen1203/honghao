@@ -19,7 +19,7 @@ const Socials = () => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className='sm:max-w-fit'>
+          <DialogContent className='sm:max-w-fit z-[999]'>
             <HomeForm dataTourDetail={dataTourDetail} />
           </DialogContent>
         </Dialog>
