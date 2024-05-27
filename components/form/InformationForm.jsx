@@ -28,14 +28,14 @@ export default function InformationForm({
     <div
       className={`${
         isTourDetail
-          ? '!w-[34.0625rem] pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:px-[0.75rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
+          ? '!w-[34.0625rem] xmd:!w-full pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:!p-0 xmd:mt-[5rem]'
           : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
       } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
     >
       <span
         className={`${
           isTourDetail
-            ? 'opacity-70 text-1 text-white'
+            ? 'opacity-70 text-1 xmd:text-0875 text-white xmd:text-greyscale-80 xmd:font-extrabold'
             : 'opacity-40 text-0875 text-greyscale-80'
         } font-bold`}
       >
@@ -188,7 +188,7 @@ export default function InformationForm({
             ).toFixed(2)}
           </span>
         </div>
-        <hr className='w-[31.25rem] h-[0.0625rem] my-[0.5rem] bg-[#d9d9d9]/20 opacity-40' />
+        <hr className='w-full h-[0.0625rem] my-[0.5rem] bg-[#d9d9d9]/20 opacity-40' />
         <div className='flex justify-between items-center w-full'>
           <span className='text-0875 font-bold text-greyscale-5'>
             Total amount:
