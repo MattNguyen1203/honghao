@@ -1,7 +1,13 @@
 import Image from 'next/image'
 import CardBlog from './CardBlog'
 import PaginationCustom from '@/components/paginationcustom'
+import useSWR from 'swr'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import useStore from '@/app/(store)/store'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { Skeleton } from "@/components/ui/skeleton"
+
 const CardMain = () => {
   return (
     <Link href='/van-la-bo-ne'>
@@ -36,21 +42,66 @@ const CardMain = () => {
     </Link>
   )
 }
-const ListStories = () => {
+const ListStories = ({ dataGetAllPostsByCategories, currentCategories }) => {
+  const listPost = dataGetAllPostsByCategories?.posts
+  const pagination = dataGetAllPostsByCategories?.pagination
+  const pathname = usePathname()
+  const searchParams = useSearchParams();
+  const search = searchParams.get('page')
+  const [dataBlogClient, setDataBlogClient] = useState([])
+  const [paginationClient, setPaginationClient] = useState({})
+  const [loading, setLoading] = useState(false)
+  const fetcher = url => fetch(url).then(r => r.json())
+  const { data, error, isLoading } = useSWR(
+    // shouldFetch ? (
+    pathname !== '/blog'
+      ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=2`
+      : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=4`
+    // ) : null
+    ,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false
+    }
+  );
+
+  console.log({ paginationClient, search });
+
+  useEffect(() => {
+    setLoading(isLoading)
+    if (data) {
+      setPaginationClient(data?.pagination)
+      setDataBlogClient(data?.posts);
+    }
+    if (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, [data, error, isLoading]);
+
+
   return (
     <div id='list-stories' className="flex flex-col items-start md:space-y-[2.62rem]">
       <CardMain />
-      <div className="grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]">
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-        <CardBlog />
-      </div>
-      <PaginationCustom href={'#list-stories'} />
+      {!loading ? <div className="grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]">
+        {(dataBlogClient?.length > 0 ? dataBlogClient : listPost)?.map((d, i) => (
+          <div key={i}>
+            <CardBlog singlePost={d} />
+          </div>
+        ))}
+
+      </div> :
+
+        <div className="grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]">
+          {new Array(8).fill(0).map((d, i) => (
+
+            <Skeleton className='rounded-2xl  xmd:w-[21.4375rem] xmd:h-[15.3125rem] w-[44.25rem] h-[25.8125rem]' key={i} />
+          ))}
+
+        </div>
+      }
+      <PaginationCustom pagination={paginationClient && Object.keys(paginationClient).length === 0 ? pagination : paginationClient} href={'#list-stories'} />
     </div>
   )
 }

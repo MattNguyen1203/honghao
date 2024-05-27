@@ -6,6 +6,7 @@ import CardBlog from './CardBlog'
 import ListStories from './ListStories'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import useStore from '@/app/(store)/store'
 import { usePathname, useRouter } from 'next/navigation'
 const Button = ({ children }) => {
   return (
@@ -40,19 +41,14 @@ const TitleBeauty = ({ children }) => {
   )
 }
 
-const StoriesBlog = () => {
-  const data = [
-    { title: 'All Blog', link: '/blog' },
-    { title: 'Article', link: '/blog/article' },
-    { title: 'News', link: '/blog/news' },
-    { title: 'Tips', link: '/blog/tips' },
-    { title: 'Hagiang Friends', link: '/blog/hangiang-friends' },
-    { title: 'destination', link: '/blog/destination' },
-    { title: 'travel', link: '/blog/travel' },
-  ]
+const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost }) => {
+  const categories = dataCategorisAndFirstpost?.categories
+  const firstPost = dataCategorisAndFirstpost?.posts
   const pathName = usePathname()
+  const [currentCategories, setCurrentCategories] = useState(null)
   const router = useRouter()
-  const saveScrollPosition = () => {
+  const [currentTab, setCurrentTab] = useState('')
+  const saveScrollPosition = (id) => {
     const scrollContainer = document.querySelector('.saveposition');
     if (scrollContainer) {
       localStorage.setItem('scrollPosition', scrollContainer.scrollLeft);
@@ -66,7 +62,21 @@ const StoriesBlog = () => {
       scrollContainer.scrollLeft = parseInt(savedPosition, 10);
     }
   }, []);
+  useEffect(() => {
+    const current = categories?.find((c) => pathName.includes(c?.slug))
+    setCurrentCategories(current?.id)
+  }, [pathName])
 
+
+  useEffect(() => {
+    if (pathName === '/blog') {
+      setCurrentTab('all')
+    } else {
+      setCurrentTab(pathName)
+
+    }
+  }, [pathName])
+  console.log({ pathName, currentTab })
   return (
     <section>
       <div className="flex flex-col xmd:relative items-center gap-[3.9375rem]">
@@ -94,16 +104,28 @@ const StoriesBlog = () => {
           <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
             <div className='xmd:w-screen saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='flex items-start space-x-[0.94rem]'>
-                {data?.map((d, i) => (
+                <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(null)}>
+                  <div className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                    currentTab !== `all` ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
+                  )}>
+                    {/* <div className=''> */}
+                    <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
-                  <Link key={i} href={`${d?.link}`} prefetch={true} scroll={false} onClick={saveScrollPosition}>
-                    <div value={d?.title} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
-                      !pathName?.includes(d?.link) || pathName.localeCompare(d?.link) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
+                      All
+                    </div>
+                    {/* </div> */}
+                  </div>
+                </Link>
+                {categories?.map((d, i) => (
+
+                  <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(d?.id)}>
+                    <div value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                      !currentTab?.includes(`/blog/${d?.slug}`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                     )}>
                       {/* <div className=''> */}
                       <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
-                        {d?.title}
+                        {d?.name}
                       </div>
                       {/* </div> */}
                     </div>
@@ -111,7 +133,7 @@ const StoriesBlog = () => {
                 ))}
               </div>
             </div>
-            <ListStories />
+            <ListStories currentCategories={currentCategories} dataGetAllPostsByCategories={pathName === '/blog' ? dataCategorisAndFirstpost : dataGetAllPostsByCategories} />
           </div>
 
         </div>
