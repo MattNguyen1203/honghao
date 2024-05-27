@@ -1,7 +1,6 @@
-
-import BlogDetail from "@/sections/blog-detail"
+import BlogDetail from '@/sections/blog-detail'
 const page = () => {
-  return <BlogDetail/>
+  return <BlogDetail />
 }
 
 export default page

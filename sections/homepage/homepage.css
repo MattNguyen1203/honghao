@@ -33,3 +33,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.custom-select svg {
+  display: none !important;
+}

@@ -1,7 +1,7 @@
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 
-export default function Commit({ dataCommit }) {
+export default function Commit({dataCommit}) {
   return (
     <section>
       <div className='w-full h-[49.0625rem] xmd:h-[29.2775rem] relative pt-[6.88rem] xmd:pt-[6rem]'>
@@ -24,7 +24,7 @@ export default function Commit({ dataCommit }) {
         </p>
       </div>
       <div className='translate-y-[-3.81rem] relative h-[52.75rem] flex'>
-        <div className='absolute size-full top-0 left-0'>
+        <div className='absolute size-full top-0 left-0 overflow-hidden'>
           <BikeAnimation />
         </div>
         <Image
