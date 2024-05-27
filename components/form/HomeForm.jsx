@@ -209,58 +209,6 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
     }
   }
 
-  // post lên contact form wp
-  async function postFileWP(newvalue) {
-    try {
-      const formdata = new FormData()
-      const formattedDob = formattedDate(newvalue?.dob)
-      const formattedEnddate = formattedDate(newvalue?.enddate)
-      formdata?.append('username', newvalue?.username)
-      formdata?.append('email', newvalue?.email)
-      formdata?.append('phone', newvalue?.phone)
-      formdata?.append(
-        'typeoftour',
-        newvalue?.typeoftour || dataTourDetail?.typeoftour,
-      )
-      formdata?.append(
-        'choosedays',
-        newvalue?.choosedays || dataTourDetail?.choosedays?.title,
-      )
-      formdata?.append('message', newvalue?.message)
-      formdata?.append('pickup', newvalue?.pickup)
-      formdata?.append('droff', newvalue?.droff)
-      formdata?.append('dob', formattedDob)
-      formdata?.append('enddate', formattedEnddate)
-      formdata?.append('address', newvalue?.address)
-      formdata?.append('destination', newvalue?.destination)
-      formdata?.append('pax', paxValueLocal + paxValueSelf)
-      formdata?.append('paxValueLocal', paxValueLocal)
-      formdata?.append('paxValueSelf', paxValueSelf)
-      formdata?.append('titleTour', dataTourDetail?.titleTour)
-      formdata?.append(
-        'TOTAL',
-        paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal,
-      )
-      formdata?.append('_wpcf7_unit_tag', '294')
-      console.log(formdata)
-      const reqOption = {
-        method: 'POST',
-        body: formdata,
-      }
-      await fetch(
-        `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/294/feedback`,
-        reqOption,
-      )
-    } catch (error) {
-      toast({
-        title: 'Sending information failed',
-        description:
-          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
-      })
-      console.log(error)
-    }
-  }
-
   function onSubmit(values) {
     if (paxValueSelf === 0 && paxValueLocal === 0) {
       toast({
@@ -275,7 +223,6 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       ...values,
     }
     postFile(newvalue)
-    postFileWP(newvalue)
   }
   // click out cho pupup thông báo thành công
   const handleClickOutside = (event) => {
