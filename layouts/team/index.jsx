@@ -11,7 +11,6 @@ import {GLOBAL_PAGE_ID} from '@/lib/constants'
 export default async function OurTeam({darkTheme}) {
   const dataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
   const dataTeam = dataAcf?.acf?.team
-
   return (
     <section className='flex items-center justify-between w-full'>
       <div className='team subContainer flex pl-0 ml-auto xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>

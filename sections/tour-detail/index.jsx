@@ -6,6 +6,7 @@ import FaqAboutTrip from './FaqAboutTrip'
 import StepByStep from '../blog-detail/StepByStep'
 import StepByStepRes from '../blog-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
+import Booking from './Booking'
 const TourDetail = () => {
   return (
     <main className='alldestinations '>
@@ -20,6 +21,9 @@ const TourDetail = () => {
       </section>
       <StepByStep />
       <StepByStepRes />
+      <section>
+        <Booking />
+      </section>
       <section>
         <FaqAboutTrip />
       </section>
