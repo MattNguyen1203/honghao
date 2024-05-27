@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/breadcrumb'
 import HomeForm from '@/components/form/HomeForm'
 
 const dataTourDetail = {
+  titleTour: 'Ha Giang Loop tour',
   typeoftour: 'Itinerary',
   choosedays: {title: '3 days 2 night', day: 3},
 }
@@ -33,7 +34,7 @@ const page = () => {
       <BikeAnimation />
       <Breadcrumb divider />
       <section className='container !p-0 bg-black space-y-[2rem]'>
-        <HomeForm />
+        <HomeForm dataTourDetail={dataTourDetail} />
         <HomeForm
           isTourDetail
           dataTourDetail={dataTourDetail}
