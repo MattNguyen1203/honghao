@@ -9,6 +9,7 @@ import {
 
 export default function InformationForm({
   dataForm = {},
+  dataTourDetail,
   data,
   paxValueLocal,
   paxValueSelf,
@@ -27,7 +28,7 @@ export default function InformationForm({
     <div
       className={`${
         isTourDetail
-          ? 'pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:px-[0.75rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
+          ? '!w-[34.0625rem] pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:px-[0.75rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
           : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem]'
       } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
     >
@@ -46,7 +47,7 @@ export default function InformationForm({
             Type of tour
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
-            Ha Giang Loop tour: {dataForm?.typeoftour}{' '}
+            {dataTourDetail?.titleTour}: {dataForm?.typeoftour}{' '}
             {dataForm?.typeoftour && dataForm?.choosedays && 'in '}
             {dataForm?.choosedays}
           </div>
