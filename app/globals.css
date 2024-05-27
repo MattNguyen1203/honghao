@@ -149,16 +149,16 @@
     @apply transition-all duration-300 ease-out;
   }
   .transition-400 {
-    @apply transition-all duration-400 ease-out;
+    @apply transition-all ease-out duration-400;
   }
   .transition-500 {
     @apply transition-all duration-500 ease-out;
   }
   .transition-600 {
-    @apply transition-all duration-600 ease-out;
+    @apply transition-all ease-out duration-600;
   }
   .transition-800 {
-    @apply transition-all duration-800 ease-out;
+    @apply transition-all ease-out duration-800;
   }
 }
 
@@ -326,7 +326,7 @@ input[type='password']::-ms-clear {
   }
 
   html::-webkit-scrollbar-thumb {
-    @apply bg-orange-normal rounded-full transition-colors;
+    @apply transition-colors rounded-full bg-orange-normal;
   }
 }
 @keyframes pingCall {
@@ -361,6 +361,15 @@ input[type='password']::-ms-clear {
 .scrollUp {
   animation: scrollUpKey 1s ease-in-out infinite;
 }
-.paginationcustom svg{
-stroke:#c24216 !important
+.hidden_scrollbar {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+.hidden_scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+.paginationcustom svg {
+  stroke: #c24216 !important;
 }

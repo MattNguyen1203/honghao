@@ -1,3 +1,4 @@
+'use client'
 import {cn} from '@/lib/utils'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
@@ -34,9 +35,9 @@ const Nav = ({setOpenNav}) => {
   return (
     <div
       className={cn(
-        'py-[1.5rem] px-[5rem] xmd:px-[1.25rem] xmd:py-[1rem] flex w-full justify-between items-center transtion-all duration-500',
+        'py-[1.5rem] px-[5rem] xmd:px-[1.25rem] xmd:py-[0.5rem] flex w-full justify-between items-center transtion-all duration-500',
         isHidden ? '-translate-y-[100%]' : 'translate-y-0',
-        isTransparent ? 'bg-transparent' : ' bg-greyscale-0',
+        isTransparent ? 'bg-transparent' : ' bg-greyscale-0 shadow-md',
       )}
       ref={headerRef}
     >
@@ -57,7 +58,7 @@ const Nav = ({setOpenNav}) => {
 
       <div
         className={cn(
-          'w-fit p-[0.5rem] pr-[1rem] rounded-[1.5rem] md:bg-orange-normal xmd:border border-solid border-greyscale-0 flex items-center cursor-pointer',
+          'w-fit p-[0.5rem] xmd:py-[0.25rem] pr-[1rem] rounded-[1.5rem] md:bg-orange-normal xmd:border border-solid border-greyscale-0 flex items-center cursor-pointer',
           isTransparent ? 'md:bg-orange-normal' : 'bg-orange-normal',
         )}
         onClick={() => setOpenNav(true)}

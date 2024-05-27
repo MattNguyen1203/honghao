@@ -31,14 +31,14 @@ export default function SliderTour() {
             },
           }}
           modules={[Navigation]}
-          className='mySwiper'
+          className='mySwiper xmd:pr-[0.75rem]'
         >
           {new Array(10).fill(0).map((e, index) => (
             <SwiperSlide
-              className='xmd:!w-[16.8755rem] xmd:!h-[23.33956rem] !h-[34.375rem]'
+              className='xmd:!w-[16.8755rem] xmd:!h-[23.33956rem]'
               key={index}
             >
-              <ItemTour className={'xmd:!h-[23.33956rem] !h-[34.375rem]'} />
+              <ItemTour className={'xmd:!h-[23.33956rem]'} />
             </SwiperSlide>
           ))}
         </Swiper>

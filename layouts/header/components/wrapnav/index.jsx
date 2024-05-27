@@ -1,6 +1,6 @@
 'use client'
 import useStore from '@/app/(store)/store'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import Nav from '../nav'
 import NavDropdown from '../dropdown'
 

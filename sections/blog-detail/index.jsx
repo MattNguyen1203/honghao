@@ -3,8 +3,8 @@ import Banner from './Banner'
 import Breadcrumb from '@/components/breadcrumb'
 
 import RelatedArticle from './RelatedArticle'
-import Detail from './Detail';
-import StartPlanning from '@/sections/blog/StartPlanning.jsx';
+import Detail from './Detail'
+import StartPlanning from '@/sections/blog/StartPlanning.jsx'
 import './blogdetail.css'
 const BlogDetail = ({ dataDetailPost }) => {
   return (
