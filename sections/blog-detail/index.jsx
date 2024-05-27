@@ -6,7 +6,7 @@ import RelatedArticle from './RelatedArticle'
 import Detail from './Detail';
 import StartPlanning from '@/sections/blog/StartPlanning.jsx';
 import './blogdetail.css'
-const BlogDetail = () => {
+const BlogDetail = ({ dataDetailPost }) => {
   return (
     <main className='blog-detail'>
       <section>
@@ -16,7 +16,7 @@ const BlogDetail = () => {
         <Breadcrumb divider />
       </section>
       <section>
-        <Detail />
+        <Detail dataDetailPost={dataDetailPost} />
       </section>
       <section>
         <StartPlanning />
