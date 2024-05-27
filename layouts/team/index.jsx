@@ -5,8 +5,12 @@ import TeamSlide from './TeamSlide'
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import './team.css'
 import {cn} from '@/lib/utils'
+import getData from '@/lib/getData'
+import {GLOBAL_PAGE_ID} from '@/lib/constants'
 
-export default function OurTeam({darkTheme}) {
+export default async function OurTeam({darkTheme}) {
+  const dataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
+  const dataTeam = dataAcf?.acf?.team
   return (
     <section className='flex items-center justify-between w-full'>
       <div className='team subContainer flex pl-0 ml-auto xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
@@ -27,20 +31,15 @@ export default function OurTeam({darkTheme}) {
               darkTheme && 'text-greyscale-0',
             )}
           >
-            OUR TEAM
+            {dataTeam?.heading}
           </h2>
-          <p
+          <span
+            dangerouslySetInnerHTML={{__html: dataTeam?.content}}
             className={cn(
               'relative text-[1rem] xmd:text-[0.875rem] z-[1000] tracking-[0.005rem] text-greyscale-40',
               darkTheme && 'text-greyscale-5/50',
             )}
-          >
-            We pride ourselves on having a team of dedicated and passionate
-            individuals who are committed to providing exceptional service and
-            unforgettable experiences to our guests. Our team is comprised of
-            knowledgeable professionals with diverse backgrounds and expertise
-            in various aspects of the tourism industry.
-          </p>
+          ></span>
 
           <div className='flex flex-start space-x-[1rem] '>
             <Button
@@ -60,41 +59,39 @@ export default function OurTeam({darkTheme}) {
         </div>
 
         <Tabs
-          defaultValue='guide'
+          defaultValue='team-0'
           className='flex flex-col items-end justify-end w-fit'
         >
           <TabsList className='w-fit xmd:hidden md:!mr-[4rem] md:!mb-[1rem]'>
-            <TabsTrigger
-              value='guide'
-              className={cn(
-                'uppercase flex flex-col items-start text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal',
-                {
-                  '!bg-transparent': darkTheme,
-                },
-              )}
-            >
-              TOUR GUIDE
-              <div className='h-[0.1rem] bg-orange-normal w-full mt-[0.4rem] rounded-full'></div>
-            </TabsTrigger>
-            <TabsTrigger
-              value='rider'
-              className={cn(
-                'uppercase flex flex-col items-start text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal',
-                {
-                  '!bg-transparent': darkTheme,
-                },
-              )}
-            >
-              rider team
-              <div className='h-[0.1rem] bg-orange-normal w-full mt-[0.4rem] rounded-full'></div>
-            </TabsTrigger>
+            {dataTeam?.list_team?.map((item, index) => (
+              <TabsTrigger
+                value={`team-${index}`}
+                className={cn(
+                  'uppercase flex flex-col items-start text-0875 font-bold text-greyscale-10 data-[state=active]:text-orange-normal',
+                  {
+                    '!bg-transparent': darkTheme,
+                  },
+                )}
+              >
+                {item?.title}
+                <div className='h-[0.1rem] bg-orange-normal w-full mt-[0.4rem] rounded-full'></div>
+              </TabsTrigger>
+            ))}
           </TabsList>
-          <TabsContent value='guide'>
-            <TeamSlide darkTheme={darkTheme} />
-          </TabsContent>
-          <TabsContent value='rider'>
-            <TeamSlide darkTheme={darkTheme} />
-          </TabsContent>
+
+          {dataTeam?.list_team?.map((item, index) => {
+            return (
+              <TabsContent
+                value={`team-${index}`}
+                key={index}
+              >
+                <TeamSlide
+                  darkTheme={darkTheme}
+                  data={item?.thanh_vien}
+                />
+              </TabsContent>
+            )
+          })}
         </Tabs>
       </div>
     </section>

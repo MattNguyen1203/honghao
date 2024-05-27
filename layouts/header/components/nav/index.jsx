@@ -1,3 +1,4 @@
+'use client'
 import {cn} from '@/lib/utils'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'

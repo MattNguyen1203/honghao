@@ -8,7 +8,7 @@ import 'swiper/css'
 import CardOurTeam from './CardOurTeam'
 import {cn} from '@/lib/utils'
 
-const TeamSlide = ({darkTheme}) => {
+const TeamSlide = ({darkTheme, data}) => {
   const swiperRef = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
 
@@ -22,6 +22,7 @@ const TeamSlide = ({darkTheme}) => {
   const handlePrevSlide = () => {
     swiperRef.current?.slidePrev()
   }
+
   return (
     <div className='relative flex items-center justify-center w-full'>
       <div className=' xmd:hidden w-[58rem] absolute top-[12rem]'>
@@ -52,12 +53,12 @@ const TeamSlide = ({darkTheme}) => {
         modules={[Navigation]}
         className=' xmd:w-[60.0625rem] w-[62.0625rem] xmd:!pl-[1rem] md:!pl-[1rem]'
       >
-        {new Array(5).fill(0)?.map((d, i) => (
+        {data?.map((item, i) => (
           <SwiperSlide
             key={i}
             className='!pb-[4rem]'
           >
-            <CardOurTeam />
+            <CardOurTeam data={item} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -6,8 +6,7 @@ import RelatedArticle from './RelatedArticle'
 import Detail from './Detail'
 import StartPlanning from '@/sections/blog/StartPlanning.jsx'
 import './blogdetail.css'
-import StepByStep from './StepByStep'
-import StepByStepRes from './StepByStepRes'
+
 const BlogDetail = () => {
   return (
     <main className='blog-detail'>
@@ -17,8 +16,6 @@ const BlogDetail = () => {
       <section className='xmd:hidden'>
         <Breadcrumb divider />
       </section>
-      <StepByStep />
-      <StepByStepRes />
       <section>
         <Detail />
       </section>
