@@ -1,7 +1,8 @@
 'use client'
+import './slideInfinity.css'
 import ICMapSmall from '@/components/icons/ICMapSmall'
 
-export default function SlideInfinity3() {
+export default function SlideInfinityText() {
   return (
     <div
       id='slide_infinity'

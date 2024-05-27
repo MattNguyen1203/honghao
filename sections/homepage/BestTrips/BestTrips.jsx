@@ -5,22 +5,23 @@ import {useGSAP} from '@gsap/react'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {useRef, useState} from 'react'
 import Image from 'next/image'
-import ItemCard from './ItemCard'
+import ItemCardBestTrip from './ItemCardBestTrip'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
 const data = Array(5).fill(0)
 
-export default function page() {
+export default function BestTrips() {
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
 
   useGSAP(
     () => {
+      if (!container.current) return
       let mm = gsap.matchMedia()
-      mm.add('(min-width: 1025px)', () => {
+      mm.add('(min-width: 1024px)', () => {
         const lengthTour = data.length
         const percent = 100 - 100 / lengthTour
         ScrollTrigger.create({
@@ -45,51 +46,47 @@ export default function page() {
   )
 
   return (
-    <>
-      <div className='h-[500px] bg-black'></div>
-      <section
-        ref={container}
-        className='relative w-full bg-white lg:h-screen'
-      >
-        <div className='lg:container subContainer xmd:!px-0 tablet:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
-          <div className='xmd:mb-[2rem] xmd:pl-[0.75rem]'>
-            <h3 className='font-extrabold text-1125 xmd:text-0875 xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
-              EXPLORE
-            </h3>
-            <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem]'>
-              BEST TRIPS <br className='md:hidden' /> FOR YOU {index}
-            </h2>
-            <Image
-              className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
-              src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
-              alt='map'
-              width={500}
-              height={500}
-            />
-          </div>
-          <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-[50rem] w-full lg:h-auto h-[23.33956rem] tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
-            <div
-              ref={listTourHome}
-              id='list_tour_home'
-              className='flex lg:flex-col lg:w-full w-fit h-fit lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem] xmd:pr-[0.75rem] lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem]'
-            >
-              {data.map((_, index) => (
-                <ItemCard key={index} />
-              ))}
-            </div>
+    <section
+      ref={container}
+      className='relative w-full bg-white lg:h-screen'
+    >
+      <div className='lg:container subContainer xmd:!px-0 tablet:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
+        <div className='xmd:mb-[2rem] xmd:pl-[0.75rem]'>
+          <h3 className='font-extrabold text-1125 xmd:text-0875 xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
+            EXPLORE
+          </h3>
+          <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem]'>
+            BEST TRIPS <br className='md:hidden' /> FOR YOU {index}
+          </h2>
+          <Image
+            className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
+            src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
+            alt='map'
+            width={500}
+            height={500}
+          />
+        </div>
+        <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-[50rem] w-full lg:h-auto h-[23.33956rem] tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
+          <div
+            ref={listTourHome}
+            id='list_tour_home'
+            className='flex lg:flex-col lg:w-full w-fit h-fit lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem] xmd:pr-[0.75rem] lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem]'
+          >
+            {data.map((_, index) => (
+              <ItemCardBestTrip key={index} />
+            ))}
           </div>
         </div>
-        <button
-          style={{writingMode: 'vertical-rl'}}
-          className='top-0 translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
-        >
-          All tour
-          <IconArrowRight />
-          {/* writing-mode: vertical-lr; */}
-        </button>
-      </section>
-      <div className='h-[1500px] bg-black'></div>
-    </>
+      </div>
+      <button
+        style={{writingMode: 'vertical-rl'}}
+        className='top-0 translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
+      >
+        All tour
+        <IconArrowRight />
+        {/* writing-mode: vertical-lr; */}
+      </button>
+    </section>
   )
 }
 

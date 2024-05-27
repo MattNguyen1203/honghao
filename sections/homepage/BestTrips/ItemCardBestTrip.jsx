@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function ItemCard() {
+export default function ItemCardBestTrip() {
   return (
     <div className='rounded-[0.75rem] group h-[23.33956rem] w-[16.8755rem] tablet:h-[43.33956rem] tablet:w-[36rem] lg:h-[34.375rem] lg:w-[47.3125rem] relative flex xmd:flex-col-reverse tablet:flex-col-reverse lg:items-end lg:justify-between justify-start items-start lg:p-[1.5rem] p-[1rem] overflow-hidden item_tour_home'>
       <div className='z-10 size-full absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>

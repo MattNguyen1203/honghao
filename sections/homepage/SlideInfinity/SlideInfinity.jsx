@@ -1,14 +1,18 @@
 'use client'
-import ICMapSmall from '@/components/icons/ICMapSmall'
+import './slideInfinity.css'
 import Image from 'next/image'
 
-export default function SlideInfinity2() {
+export default function SlideInfinity({type = ''}) {
   return (
     <div
       id='slide_infinity'
-      className='relative overflow-hidden w-full h-[14.18094rem]'
+      className='relative overflow-hidden w-full h-[14.18094rem] md:h-[20.18094rem]'
     >
-      <div className='absolute top-0 -left-[11.9rem] flex items-center h-[14.18094rem] w-full'>
+      <div
+        className={`${
+          type ? '-left-[11.9rem]' : 'left-0'
+        } absolute top-0 flex items-center w-full h-[14.18094rem] md:h-[20.18094rem]`}
+      >
         <div
           id='wrapper_infinity'
           className='flex space-x-[0.5rem] w-fit'
@@ -28,7 +32,7 @@ export default function SlideInfinity2() {
 }
 const ItemGallery = ({index}) => {
   return (
-    <div className='item_slide w-[23.83063rem] flex-shrink-0 h-[14.18094rem] relative group'>
+    <div className='item_slide w-[23.83063rem] flex-shrink-0 h-[14.18094rem] relative group md:w-[31.83063rem] md:h-[20.18094rem]'>
       <Image
         className='object-cover size-full rounded-[0.67131rem]'
         src={
