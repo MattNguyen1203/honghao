@@ -15,7 +15,7 @@ export default function ContactForm({data}) {
   const [country, setCountry] = useState('')
   const [contactSubject, setContactSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [isLoading, setIsLoading] = useStateI(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState({
     name: '',
     phone: '',
