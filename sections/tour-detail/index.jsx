@@ -3,6 +3,9 @@ import './tour-detail.css'
 import Breadcrumb from '@/components/breadcrumb'
 import Banner from './Banner'
 import FaqAboutTrip from './FaqAboutTrip'
+import StepByStep from '../blog-detail/StepByStep'
+import StepByStepRes from '../blog-detail/StepByStepRes'
+import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 const TourDetail = () => {
   return (
@@ -16,12 +19,16 @@ const TourDetail = () => {
           divider
         />
       </section>
+      <StepByStep />
+      <StepByStepRes />
       <section>
         <Booking />
       </section>
       <section>
         <FaqAboutTrip />
       </section>
+
+      <OurTeam />
     </main>
   )
 }
