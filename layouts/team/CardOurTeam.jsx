@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import {cn} from '@/lib/utils'
 import useStore from '@/app/(store)/store'
-const CardOurTeam = () => {
+const CardOurTeam = ({data}) => {
   const isMobile = useStore((state) => state.isMobile)
+  console.log('data', data)
   return (
     <div
       className={cn(
@@ -17,7 +18,7 @@ const CardOurTeam = () => {
         <Image
           priority
           alt='ảnh'
-          src={'/imgs/common/team.png'}
+          src={data?.img?.url || ''}
           width={300}
           height={400}
           className='object-cover scale-110 md:group-hover:scale-100 duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
@@ -45,21 +46,19 @@ const CardOurTeam = () => {
       </div>
       <div className=' ease-linear  flex flex-col items-center justify-around space-y-[0.25rem] self-stretch'>
         <div className='text-orange-normal text-center text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
-          Mr. Thanh Nguyen
+          {data?.name}
         </div>
         <div className='flex items-center self-stretch justify-center gap-3'>
           <div className='text-greyscale-80 text-center text-sm not-italic font-normal leading-[120%] tracking-[0.00875rem]'>
-            Tour Leader
+            {data?.position}
           </div>
           <div className='rounded-full size-[0.25rem] bg-greyscale-80'></div>
           <div className='text-greyscale-80 text-center text-sm not-italic font-normal leading-[120%] tracking-[0.00875rem]'>
-            3 years EXP
+            {data?.exp}
           </div>
         </div>
         <div className='w-[15.75rem] group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[3.5rem]  overflow-hidden h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
-          “As a tour guide, my greatest joy is witnessing the wonder and awe on
-          travelers' faces as they discover the hidden gems and cultural
-          treasures of our destination”
+          {data?.content}
         </div>
       </div>
     </div>
@@ -67,4 +66,3 @@ const CardOurTeam = () => {
 }
 
 export default CardOurTeam
-// z

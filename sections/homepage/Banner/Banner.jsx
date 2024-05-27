@@ -6,7 +6,8 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
-
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 const Banner = ({dataBanner}) => {
   const isMobile = useStore((state) => state.isMobile)
 
@@ -14,6 +15,13 @@ const Banner = ({dataBanner}) => {
 
   useEffect(() => {
     gsap.matchMedia().add('(min-width: 1024px)', () => {
+      ScrollTrigger.create({
+        trigger: '#homepage__banner',
+        pin: true,
+        start: 'top top',
+        pinSpacing: false,
+      })
+
       const tl = gsap.timeline({
         onComplete: () => {
           setAnimationCompleted(true) // Thay đổi state khi animation hoàn thành

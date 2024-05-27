@@ -1,32 +1,18 @@
-'use client'
-
 import ClientSay from './ClientSay'
 import OurTeam from '@/layouts/team'
 import Season from './Season'
 import './styles.css'
-import React, {useEffect} from 'react'
+import React from 'react'
 import Banner from './Banner/Banner'
 import About from './About/About'
 import './homepage.css'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import gsap from 'gsap'
+
 import Image from 'next/image'
 import BestTrips from './BestTrips/BestTrips'
 import GladdestMoment from './GladdestMomment/GladdestMoment'
 import GladdestMomentRes from './GladdestMomment/GladdestMomentRes'
 
-gsap.registerPlugin(ScrollTrigger)
 const Homepage = ({dataAcf, dataWeather}) => {
-  useEffect(() => {
-    gsap.matchMedia().add('(min-width: 1024px)', () => {
-      ScrollTrigger.create({
-        trigger: '#homepage__banner',
-        pin: true,
-        start: 'top top',
-        pinSpacing: false,
-      })
-    })
-  }, [])
   return (
     <main>
       <Banner dataBanner={dataAcf?.banner} />
