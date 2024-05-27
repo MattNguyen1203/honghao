@@ -1,7 +1,8 @@
 import {HOME_PAGE_ID, haGiangLat, haGiangLon} from '@/lib/constants'
 import getData from '@/lib/getData'
 import Homepage from '@/sections/homepage'
-import React from 'react'
+import {fetchMetaData} from '@/lib/fetchMetadata'
+import {getMeta} from '@/lib/getMeta'
 
 const getHomepageData = async () => {
   return getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)
@@ -11,6 +12,11 @@ const getWeatherHaGiang = async () => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${haGiangLat}6&lon=${haGiangLon}&appid=${process.env.OPEN_WEATHER_API_KEY}`,
     'custom',
   )
+}
+
+export async function generateMetadata() {
+  const result = await fetchMetaData('homepage/')
+  return getMeta(result, '')
 }
 
 const page = async () => {
