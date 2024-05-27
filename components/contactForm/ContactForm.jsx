@@ -34,7 +34,7 @@ export default function ContactForm({data}) {
       toast({
         title: 'Sending information failed',
         description:
-          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+          'Please check the information you have filled in again.',
       })
     } else {
       const formData = new FormData()
@@ -54,7 +54,7 @@ export default function ContactForm({data}) {
         toast({
           title: 'Sending information successfully',
           description:
-            'Thank you for submitting the information. We will contact you as soon as possible. (づ ◕‿◕ )づ',
+            'Thank you for submitting the information. We will contact you as soon as possible.',
         })
         setName('')
         setPhone('')
@@ -66,7 +66,7 @@ export default function ContactForm({data}) {
         toast({
           title: 'Sending information failed',
           description:
-            'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+            'Please check the information you have filled in again.',
         })
       }
       setIsLoading(false)
