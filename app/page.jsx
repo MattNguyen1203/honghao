@@ -1,10 +1,29 @@
-import {HOME_PAGE_ID} from '@/lib/constants'
+import {HOME_PAGE_ID, haGiangLat, haGiangLon} from '@/lib/constants'
 import getData from '@/lib/getData'
 import Homepage from '@/sections/homepage'
 import React from 'react'
+
+const getHomepageData = async () => {
+  return getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)
+}
+const getWeatherHaGiang = async () => {
+  return getData(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${haGiangLat}6&lon=${haGiangLon}&appid=${process.env.OPEN_WEATHER_API_KEY}`,
+    'custom',
+  )
+}
+
 const page = async () => {
-  const dataAcf = await getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)
-  return <Homepage dataAcf={dataAcf?.acf} />
+  const [dataAcf, dataWeather] = await Promise.all([
+    getHomepageData(),
+    getWeatherHaGiang(),
+  ])
+  return (
+    <Homepage
+      dataAcf={dataAcf?.acf}
+      dataWeather={dataWeather}
+    />
+  )
 }
 
 export default page

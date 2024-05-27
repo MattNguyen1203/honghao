@@ -4,12 +4,15 @@ import Banner from './Banner'
 import Discover from './Discover'
 import Breadcrumb from '@/components/breadcrumb'
 import './activity.css'
-const index = () => {
+const index = ({ data }) => {
+  const dataBaner = data?.acf?.banner
+  const dataDiscover = data?.acf?.discover
+  const dataBanerMobi = data?.acf?.['banner-mobi']
   return (
     <main className='activity overflow-hidden'>
-      <Banner />
+      <Banner dataBaner={dataBaner} dataBanerMobi={dataBanerMobi} />
       <div className='xmd:hidden'><Breadcrumb divider /></div>
-      <Discover />
+      <Discover dataDiscover={dataDiscover} />
     </main>
   )
 }

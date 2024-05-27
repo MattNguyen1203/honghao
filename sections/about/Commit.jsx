@@ -1,7 +1,7 @@
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 
-export default function Commit() {
+export default function Commit({ dataCommit }) {
   return (
     <section>
       <div className='w-full h-[49.0625rem] xmd:h-[29.2775rem] relative pt-[6.88rem] xmd:pt-[6rem]'>
@@ -19,15 +19,9 @@ export default function Commit() {
           width={377}
           height={468.44}
         />
-        <div className='container'>
-          <p className=' flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
-            Explore the rugged beauty of Ha Giang on our thrilling motorcycle
-            tours. Feel the wind in your hair as you navigate through twisting
-            mountain roads and remote villages, soaking in the breathtaking
-            scenery of towering peaks and lush valleys. Our experienced guides
-            will lead you on an unforgettable adventure
-          </p>
-        </div>
+        <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+          {dataCommit?.main_desc_test}
+        </p>
       </div>
       <div className='translate-y-[-3.81rem] relative h-[52.75rem] flex'>
         <div className='absolute size-full top-0 left-0'>
@@ -52,22 +46,10 @@ export default function Commit() {
             </div>
             <div className='z-10 flex flex-col items-start space-y-[1rem]'>
               <p className='xmd:hidden w-[38.8125rem] xmd:w-[20.9375rem] text-1 font-normal text-greyscale-5'>
-                At our Ha Giang tourism company, we adhere to a set of ethical
-                guidelines that guide our operations and define our commitment
-                to responsible tourism. Our foremost principle is to respect and
-                preserve the natural environment and cultural heritage of Ha
-                Giang. We prioritize sustainable practices to minimize our
-                ecological footprint and actively engage in conservation
-                efforts. Furthermore, we deeply value the communities we operate
-                in and strive to foster positive relationships with local
-                residents. We prioritize their well-being and economic
-                empowerment through fair employment practices and community
-                development initiatives. Additionally, we prioritize the safety
-                and satisfaction of our guests, ensuring that every experience
-                with us is both enjoyable and enriching
+                {dataCommit?.desc_text}
               </p>
               <div className='flex flex-col space-y-[0.75rem]'>
-                {new Array(5).fill(0).map((e, index) => (
+                {dataCommit?.lists_commitment?.map((e, index) => (
                   <div
                     key={index}
                     className='flex items-center space-x-[0.5rem]'
@@ -80,7 +62,7 @@ export default function Commit() {
                       height={16}
                     />
                     <span className='text-1 font-bold text-greyscale-5'>
-                      Tours accommodate a maximum of 10 guests
+                      {e?.title}
                     </span>
                   </div>
                 ))}

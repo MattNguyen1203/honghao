@@ -56,10 +56,12 @@ const data = [
     ]
   },
 ]
-const Banner = () => {
+const Banner = ({dataBanner}) => {
+  const listsImage=dataBanner?.lists_image
+  const mainImage=dataBanner?.main_image
   return (
     <div className='relative'>
-      <div><SlideVideoTours type='banner' /></div>
+      <div><SlideVideoTours type='banner' mainImage={mainImage} data={listsImage}/></div>
       <Image priority alt="ảnh" src={'/imgs/all-destinations/map.png'} width={401} height={401}
         className="w-[24.4375rem] h-[24.75rem] shrink-0 absolute bottom-[13rem] z-10 right-[18.72rem]" />
       <div className='absolute xl:container border-red-500 left-1/2 z-50 h-full w-full -translate-x-1/2 top-0'>
