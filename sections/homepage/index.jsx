@@ -11,6 +11,9 @@ import './homepage.css'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import Image from 'next/image'
+import BestTrips from './BestTrips/BestTrips'
+import GladdestMoment from './GladdestMomment/GladdestMoment'
+import GladdestMomentRes from './GladdestMomment/GladdestMomentRes'
 
 gsap.registerPlugin(ScrollTrigger)
 const Homepage = ({dataAcf, dataWeather}) => {
@@ -28,6 +31,9 @@ const Homepage = ({dataAcf, dataWeather}) => {
     <main>
       <Banner dataBanner={dataAcf?.banner} />
       <About dataAbout={dataAcf} />
+      <BestTrips />
+      <GladdestMoment />
+      <GladdestMomentRes />
       <ClientSay dataReview={dataAcf?.client_say} />
       <div className='flex relative pb-[14.5rem] xmd:pb-[6rem] bg-[linear-gradient(180deg,#122718_7.6%,rgba(18,39,24,0.71)_43.62%,#122718_79.64%)] w-full h-fit'>
         <Image
@@ -39,7 +45,10 @@ const Homepage = ({dataAcf, dataWeather}) => {
         />
         <OurTeam darkTheme />
       </div>
-      <Season data={dataAcf?.weather} dataWeather={dataWeather} />
+      <Season
+        data={dataAcf?.weather}
+        dataWeather={dataWeather}
+      />
     </main>
   )
 }

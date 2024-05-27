@@ -3,7 +3,7 @@ import React from 'react'
 import {Button} from '../customCn/button'
 import {cn} from '@/lib/utils'
 
-const ItemTour = ({className}) => {
+const ItemTour = ({className, type}) => {
   return (
     <div
       className={cn(
@@ -36,7 +36,7 @@ const ItemTour = ({className}) => {
               4 Days 5 Nights
             </span>
 
-            <div className='flex h-[5.10919rem] w-[3.80475rem] rotate-[-24.824deg] bg-custom-gradient opacity-10 absolute top-[-1.28494rem] right-[-1.27806rem] animate-leftToRight'></div>
+            <div className='flex h-[5.10919rem] w-[3.80475rem] rotate-[-24.824deg] bg-custom-gradient opacity-80 absolute top-[-1.28494rem] right-[-1.27806rem] animate-leftToRight'></div>
           </div>
 
           <div className='flex items-center text-greyscale-0'>
@@ -106,7 +106,7 @@ const ItemTour = ({className}) => {
                 height={12}
                 className='size-[1rem] mr-[0.38rem]'
               />
-              <span className='text-0875 font-bold text-greyscale-0 mx-[0.25rem] w-[5rem] flex'>
+              <span className='text-0875 font-bold text-greyscale-0 mx-[0.25rem] w-[6rem] flex'>
                 Tour guide:
               </span>
               <span className='text-0875 tracking-[0.00875rem] text-greyscale-0 line-clamp-1'>

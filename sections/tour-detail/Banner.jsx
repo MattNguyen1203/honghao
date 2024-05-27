@@ -1,6 +1,5 @@
 import SlideVideoTours from '@/components/slide-video-tour'
 import React from 'react'
-
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 
@@ -132,7 +131,10 @@ const data = [
 const Banner = () => {
   return (
     <div className='relative'>
-      <SlideVideoTours type='banner' />
+      <SlideVideoTours
+        type='banner'
+        mainImage={'/imgs/home/bannerBg2.jpg'}
+      />
       <div className='md:hidden'>
         <Breadcrumb
           divider
