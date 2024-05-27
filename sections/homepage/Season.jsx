@@ -5,13 +5,33 @@ import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css/navigation'
-import {Navigation} from 'swiper/modules'
+import {Navigation, Thumbs, FreeMode} from 'swiper/modules'
 import {useEffect, useRef, useState} from 'react'
 import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
+import 'swiper/css/thumbs'
+import 'swiper/css/free-mode'
+import {getCurrentDate} from '@/lib/getCurrentDate'
 
-export default function Season() {
+const listMonth = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+]
+
+export default function Season({data, dataWeather}) {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const swiperRef = useRef(null)
+  const swiperThumbMobileRef = useRef(null)
   const myRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const isMobile = useStore((state) => state.isMobile)
@@ -58,7 +78,7 @@ export default function Season() {
   }, [activeIndex, isMobile])
   return (
     <>
-      <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full'>
+      <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full demo'>
         <Image
           src={'/imgs/home/cloud-flying-1.png'}
           alt='cloud flying (づ ◕‿◕ )づ'
@@ -105,7 +125,7 @@ export default function Season() {
               prevEl: '.prev-slide-season-btn',
               nextEl: '.next-slide-season-btn',
             }}
-            modules={[Navigation]}
+            modules={[Navigation, Thumbs]}
             className='slide-season'
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper
@@ -113,31 +133,20 @@ export default function Season() {
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.realIndex)
             }}
+            thumbs={{swiper: thumbsSwiper}}
           >
-            <SwiperSlide>
-              <Image
-                src={'/imgs/home/season-1.jpg'}
-                alt='season-1'
-                className='object-cover w-full h-full'
-                width={1920}
-                height={1080}
-              />
-            </SwiperSlide>
-            {Array(11)
-              .fill(0)
-              .map((item, i) => {
-                return (
-                  <SwiperSlide key={i}>
-                    <Image
-                      src={'/imgs/home/bannerBg.webp'}
-                      alt='season-1'
-                      className='object-cover w-full h-full'
-                      width={1920}
-                      height={1080}
-                    />
-                  </SwiperSlide>
-                )
-              })}
+            {data?.map((item, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  src={item?.image?.url}
+                  alt='hong hao travel'
+                  className='object-cover w-full h-full'
+                  width={1920}
+                  height={1080}
+                />
+              </SwiperSlide>
+            ))}
+
             <button className='hidden md:block absolute left-[4rem] top-1/2 -translate-y-1/2 z-10 prev-slide-season-btn group'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -339,20 +348,40 @@ export default function Season() {
               </svg>
             </button>
             <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] backdrop-blur-[5px] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
-              <h4 className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
-                24°C
-              </h4>
-              <Image
-                src={'/imgs/home/sun-with-cloud-1.svg'}
-                alt='sun with cloud'
-                className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
-                width={120}
-                height={120}
-              />
+              <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
+                {parseInt(dataWeather?.main.temp) - 273}°C
+              </span>
+              {dataWeather?.weather?.main === 'Clear' ||
+              dataWeather?.weather?.id === 801 ? (
+                <Image
+                  src={'/imgs/home/sun.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              ) : dataWeather?.weather?.main === 'Clouds' ? (
+                <Image
+                  src={'/imgs/home/cloudy.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              ) : (
+                <Image
+                  src={'/imgs/home/raining.svg'}
+                  alt='sun with cloud'
+                  className='w-[2.3rem] h-[1.667rem] md:w-[3.73rem] md:h-[2.687rem] xmd:order-first'
+                  width={120}
+                  height={120}
+                />
+              )}
               <p className='hidden md:block font-tripsans text-1.125 text-center text-greyscale-0'>
-                19/3
+                {getCurrentDate()}
               </p>
             </div>
+            {/* thumbs */}
             <div className='absolute bottom-[1.63rem] left-0 px-[2.5rem] w-full z-10 xmd:hidden'>
               <div className='relative w-full h-px mb-6 bg-greyscale-0/80'>
                 <div
@@ -372,34 +401,46 @@ export default function Season() {
                 </div>
               </div>
               <div className='flex flex-row space-x-3.5'>
-                {Array(12)
-                  .fill(0)
-                  .map((item, i) => {
-                    return (
-                      <SeasonThumbItem
-                        key={i}
-                        handleOnClick={() => swiperRef.current.slideTo(i)}
-                        active={activeIndex === i}
-                        isMobile={isMobile}
-                      />
-                    )
-                  })}
+                {data?.map((item, i) => {
+                  return (
+                    <SeasonThumbItem
+                      key={i}
+                      handleOnClick={() => swiperRef.current?.slideTo(i)}
+                      active={activeIndex === i}
+                      isMobile={isMobile}
+                      item={item}
+                      title={listMonth?.[i]}
+                    />
+                  )
+                })}
               </div>
             </div>
           </Swiper>
           <div className='z-10 flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
-            {Array(11)
-              .fill(0)
-              .map((item, i) => {
+            <Swiper
+              slidesPerView={3}
+              onSwiper={setThumbsSwiper}
+              freeMode={true}
+              spaceBetween={12}
+              className='swiper-thumb-mobile'
+              onBeforeInit={(swiper) => {
+                swiperThumbMobileRef.current = swiper
+              }}
+              modules={[FreeMode, Thumbs]}
+            >
+              {data.map((item, i) => {
                 return (
-                  <SeasonThumbItem
-                    key={i}
-                    handleOnClick={() => swiperRef.current.slideTo(i)}
-                    active={activeIndex === i}
-                    isMobile={isMobile}
-                  />
+                  <SwiperSlide key={i}>
+                    <SeasonThumbItem
+                      item={item}
+                      active={activeIndex === i}
+                      isMobile={isMobile}
+                      title={listMonth?.[i]}
+                    />
+                  </SwiperSlide>
                 )
               })}
+            </Swiper>
           </div>
         </div>
       </section>

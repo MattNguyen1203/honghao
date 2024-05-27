@@ -3,13 +3,21 @@ import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import ContactUsSection from './ContactUsSection'
 import GetInTouch from './GetInTouch'
+import './styles.css'
+import getData from '@/lib/getData'
 
-export default function ContactUs() {
+const pageId = 178
+const getContactUsData = async () => {
+  return getData(`/pages/${pageId}`, 'acf')
+}
+
+export default async function ContactUs() {
+  const data = (await getContactUsData()).acf
   return (
     <main>
       <section>
         <Banner
-          mainImg={'/imgs/contact-us/background-image.jpg'}
+          mainImg={data.banner.background_image.url}
           mainTextMb={'/imgs/contact-us/banner-title-mb.png'}
           mainText={'/imgs/contact-us/banner-title.png'}
         />
@@ -19,8 +27,8 @@ export default function ContactUs() {
           <BreadcrumbLink href='/contact-us'>Contact Us</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      <ContactUsSection />
-      <GetInTouch />
+      <ContactUsSection data={data.contact_us} />
+      <GetInTouch data={data.get_in_touch} />
     </main>
   )
 }

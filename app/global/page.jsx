@@ -5,8 +5,13 @@ import React from 'react'
 import Banner from '@/sections/common/banner'
 import AccordionCustom from '@/sections/common/accordion'
 import Breadcrumb from '@/components/breadcrumb'
-import IndexHome from '@/components/form/IndexForm'
 import HomeForm from '@/components/form/HomeForm'
+
+const dataTourDetail = {
+  titleTour: 'Ha Giang Loop tour',
+  typeoftour: 'Itinerary',
+  choosedays: {title: '3 days 2 night', day: 3},
+}
 
 const page = () => {
   const data = new Array(5).fill(0)
@@ -28,9 +33,12 @@ const page = () => {
 
       <BikeAnimation />
       <Breadcrumb divider />
-      <section className='container bg-black space-y-[2rem]'>
-        <HomeForm />
-        <HomeForm isTourDetail />
+      <section className='container !p-0 bg-black space-y-[2rem]'>
+        <HomeForm dataTourDetail={dataTourDetail} />
+        <HomeForm
+          isTourDetail
+          dataTourDetail={dataTourDetail}
+        />
       </section>
     </div>
   )

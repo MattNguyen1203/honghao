@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/select'
 
 const FilterSelectItem = ({data}) => {
-  console.log('data', data?.content?.[0]?.slug)
   return (
     <div className='w-fit min-w-[8.75rem] flex-col'>
       <span className='text-075 tracking-[0.00375rem] text-greyscale-50 uppercase'>

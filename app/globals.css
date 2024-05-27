@@ -386,3 +386,6 @@ input[type='password']::-ms-clear {
     transform: translateX(-75%);
   }
 }
+.paginationcustom svg {
+  stroke: #c24216 !important;
+}
