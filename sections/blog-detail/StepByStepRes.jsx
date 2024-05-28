@@ -1,9 +1,11 @@
 'use client'
 
-import {dataSLides} from './data'
+// import {dataSLides} from './data'
 
-export default function StepByStepRes() {
+export default function StepByStepRes({dataAcf}) {
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
+  const dataSLides = dataAcf?.dataSLides
+  console.log(dataSLides)
   return (
     <div className='w-full h-fit px-[0.75rem] lg:hidden'>
       <div className='flex items-center'>
@@ -13,16 +15,17 @@ export default function StepByStepRes() {
         </span>
         <span className='size-[0.2rem] md:size-[0.4rem] rounded-full block bg-greyscale-5 ml-[0.7rem] mr-[0.5rem]'></span>
         <span className='text-greyscale-5 text-[1rem] font-normal leading-[1.2] tracking-[0.0125rem] md:text-[2rem]'>
-          3 Days / 4 Night
+          {dataAcf?.intermediate}
         </span>
       </div>
       <h2 className='font-black text-white mt-[0.75rem] mb-[0.65rem] tracking-[0.00375rem] text-[1.5rem] md:text-[3rem] md:my-[1rem]'>
-        Schedule tour: 3 Days 4 Nights
+        {dataAcf?.name_tour}
       </h2>
       <div className='flex items-center space-x-[1.25rem]'>
         <div className='flex items-center whitespace-nowrap'>
           <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-            $169
+            {dataAcf?.don_vi}
+            {dataAcf?.gia?.self_driving}
           </span>
           <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
             Self - Driving
@@ -30,7 +33,8 @@ export default function StepByStepRes() {
         </div>
         <div className='flex items-center whitespace-nowrap'>
           <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-            $199
+            {dataAcf?.don_vi}
+            {dataAcf?.gia?.self_driving}
           </span>
           <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
             Local driver
@@ -58,7 +62,7 @@ const ItemCardInfo = ({item}) => {
         <div
           className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
           key={idx}
-          dangerouslySetInnerHTML={{__html: des}}
+          dangerouslySetInnerHTML={{__html: des?.descriptions_text}}
         />
       ))}
       <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>

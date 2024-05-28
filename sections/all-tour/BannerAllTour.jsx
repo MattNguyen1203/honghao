@@ -20,6 +20,7 @@ export default function BannerAllTour() {
         height={396}
       />
       <Image
+        draggable='false'
         className='xmd:hidden absolute left-[8.31rem] object-cover top-1/2 -translate-y-1/2 h-[19.6875rem] w-[52.1105rem]'
         alt='image title'
         src={'/imgs/all-tour/title.png'}
@@ -27,6 +28,7 @@ export default function BannerAllTour() {
         height={315}
       />
       <Image
+        draggable='false'
         className='md:hidden absolute left-[1.25rem] object-cover top-1/2 -translate-y-1/2 h-[7.42925rem] w-[19.1605rem]'
         alt='image title'
         src={'/imgs/all-tour/title-mb.png'}

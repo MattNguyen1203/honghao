@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-const AccordionCustom = ({ data }) => {
+const AccordionCustom = ({data}) => {
   return (
     <Accordion
       type='single'
@@ -25,7 +25,10 @@ const AccordionCustom = ({ data }) => {
               {item?.title}
             </AccordionTrigger>
             <AccordionContent className='!text-1 xmd:!text-0875 tracking-0.0125 text-greyscale-40 pt-[1rem]'>
-              {item?.content}
+              <div
+                className='*:!text-1 xmd:*:!text-0875 *:tracking-0.0125 *:text-greyscale-40'
+                dangerouslySetInnerHTML={{__html: item?.descriptions}}
+              />
             </AccordionContent>
           </AccordionItem>
         )
