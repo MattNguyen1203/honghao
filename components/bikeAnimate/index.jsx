@@ -58,7 +58,7 @@ const BikeAnimation = ({children}) => {
           }
         })
 
-        return () => window.removeEventListener('scroll')
+        return () => window?.removeEventListener('scroll')
       },
     )
   }, [])

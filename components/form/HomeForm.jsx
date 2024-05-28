@@ -27,10 +27,14 @@ import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
 import {useEffect, useState} from 'react'
 import InformationForm from './InformationForm'
-import {FORM_API} from '@/lib/constants'
+import {FORM_API, paymentOnepay} from '@/lib/constants'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import Link from 'next/link'
+import {generateParamsPayment} from '@/lib/payment'
+import CryptoJS from 'crypto-js'
+import {generateRandom4DigitNumber} from '@/lib/utils'
+import {useRouter} from 'next/navigation'
 
 const data = {
   typeoftour: ['Best Budget', 'Standard', 'Premium'],
@@ -94,6 +98,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   const [dataDestination, setDataDestination] = useState(1)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDialogText, setIsDialogText] = useState('')
+  const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -113,6 +118,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   })
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
+  const router = useRouter()
   // set data typeoftour, choosedays form TourDetail
   useEffect(() => {
     if (isTourDetail) {
@@ -191,6 +197,12 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       formdata?.append('entry.1295571760', newvalue?.destination)
       formdata?.append('entry.954465883', paxValueLocal + paxValueSelf)
       formdata?.append('entry.681687580', dataTourDetail?.titleTour)
+      formdata?.append(
+        'entry.842974294',
+        paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal,
+      )
+      formdata?.append('entry.750534916', paxValueLocal)
+      formdata?.append('entry.1182103187', paxValueSelf)
       await fetch(`${FORM_API}`, {
         method: 'POST',
         body: formdata,
@@ -209,7 +221,8 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
     }
   }
 
-  function onSubmit(values) {
+  function onSubmit(values, type) {
+    const randomIDOrder = generateRandom4DigitNumber()
     if (paxValueSelf === 0 && paxValueLocal === 0) {
       toast({
         title: 'Sending information failed',
@@ -223,6 +236,35 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       ...values,
     }
     postFile(newvalue)
+
+    const totalPrice =
+      paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal
+
+    if (type === 'onepay') {
+      const params = generateParamsPayment(
+        newvalue,
+        ip,
+        randomIDOrder,
+        totalPrice,
+        true,
+      )
+
+      const secretWordArray = CryptoJS.enc.Hex.parse(
+        paymentOnepay.SECRET_KEY_HASH,
+      )
+      const hash = CryptoJS.HmacSHA256(params, secretWordArray)
+      // eslint-disable-next-line camelcase
+      const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+
+      const url = `${paymentOnepay.ONEPAY_HOST}?${generateParamsPayment(
+        newvalue,
+        ip,
+        randomIDOrder,
+        totalPrice,
+        false,
+      )}&vpc_SecureHash=${vpc_SecureHash}`
+      router.push(url)
+    }
   }
   // click out cho pupup thông báo thành công
   const handleClickOutside = (event) => {
@@ -230,6 +272,22 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       setIsDialogOpen(false)
     }
   }
+
+  const getIp = async () => {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json')
+      const data = await response.json()
+      if (data) {
+        setIp(data.ip)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    getIp()
+  }, [])
   return (
     <>
       <section
@@ -241,7 +299,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       >
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            // onSubmit={}
             className={`${
               isTourDetail
                 ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
@@ -869,6 +927,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                   isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
                 } hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
                 type='submit'
+                onClick={form.handleSubmit((values) => onSubmit(values, 'cod'))}
               >
                 BOOK NOW, Pay later
                 <svg
@@ -963,6 +1022,9 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                   isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
                 } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
                 type='submit'
+                onClick={form.handleSubmit((values) =>
+                  onSubmit(values, 'onepay'),
+                )}
               >
                 PAY NOW
               </Button>

@@ -3,7 +3,6 @@ import {cn} from '@/lib/utils'
 import useStore from '@/app/(store)/store'
 const CardOurTeam = ({data}) => {
   const isMobile = useStore((state) => state.isMobile)
-  console.log('data', data)
   return (
     <div
       className={cn(
