@@ -1,27 +1,54 @@
-import React from 'react'
+"use client"
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+const Detail = ({ dataDetailPost }) => {
 
-const Detail = ({ data }) => {
+  const [headingTexts, setHeadingTexts] = useState([])
+  const handleScrollToContent = (e) => {
+    const indexOfSectionToScroll = parseInt(e.target.id)
+    const h2Elements = document.querySelectorAll('.detail h3')
+    Array.from(h2Elements)[indexOfSectionToScroll].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
+  }
+
+  useEffect(() => {
+    const h2Elements = document.querySelectorAll('.detail h3')
+    const headings = []
+    h2Elements.forEach((element) => {
+      // console.log(element.textContent)
+      headings.push(element.textContent)
+    })
+    setHeadingTexts(headings)
+  }, [])
   return (
-    <section className='w-full md:border-b md:border-[#E5E5E5]'>
-      <div className="md:container relative h-[50rem] md:border-l md:border-r md:border-[#E5E5E5] mx-auto">
-        <h2 className="w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-0.00375 leading-[120%]">
-          Tanzania is known for it world-class opportunities for big game spotting and stunning National Parks. But what don't you know about this wonderful destination?
+    <section className=' w-full md:border-b md:border-[#E5E5E5]'>
+      <Image priority alt="ảnh" src={dataDetailPost?.thumbnail} width={1600} height={1000} className="xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] " />
+      <div className="container detail relative md:border-l md:border-r md:border-[#E5E5E5] mx-auto">
+        <h2 className="w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]">
+          {dataDetailPost?.title}
         </h2>
         <div className='flex w-[65.8rem] xmd:w-[21.4375rem] mx-auto flex-col items-start bg-greyscale-5 xmd:space-y-[0.63rem] space-y-[1.875rem] xmd:py-[1.25rem] xmd:px-[0.62rem] md:p-5'>
           <div className="text-greyscale-80 xmd:text-greyscale-30 text-[2rem] xmd:text-[1.125rem] xmd:font-medium not-italic font-normal leading-[1.2]">Table of Contents</div>
-          <ul className='flex flex-col ml-[1.25rem]'>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
-              Tanzanians are passionate about soccer (football). The sport is a significant part of the culture, and you'll often find
-            </li>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
-              Locals engaging in lively discussions about their favorite teams and players.
-            </li>
-            <li className='list-disc text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
-              Traditional dance forms like "Ngoma" are also cherished, often performed during cultural festivals
-            </li>
+          <ul className='flex flex-col ml-[1.25rem] space-y-[0.62rem]'>
+
+
+            {headingTexts.map((headingItem, index) => (
+              <li
+                onClick={handleScrollToContent}
+                key={index}
+                id={`${index}`}
+                className='list-disc cursor-pointer text-greyscale-80 text-sm not-italic font-bold xmd:leading-[1.5] leading-[120%] xmd:tracking-0.00219 tracking-[0.00875rem]'>
+                {headingItem}
+              </li>
+            ))}
+
           </ul>
         </div>
-        <div className="h-[5rem] xmd:h-[3.75rem] flex items-center xmd:pl-[1rem] pl-[7.41rem] absolute bottom-0 w-full border-t xmd:border-t border-[#E5E5E5]">
+        <div className='paragraph mt-[2.5rem] xmd:pb-[1rem] pb-[5rem] mx-auto w-[65.6875rem] flex flex-col space-y-[1.87rem]' dangerouslySetInnerHTML={{ __html: dataDetailPost?.content }} />
+        <div className="h-[5rem] xmd:h-[3.75rem] flex items-center xmd:pl-[1rem] pl-[7.41rem] w-full border-t xmd:border-t border-[#E5E5E5]">
           <div className="flex items-center gap-4">
             <div className='text-[#030922] text-base not-italic font-normal leading-[120%] tracking-0.0125'>
               <div className="w-max ">

@@ -4,7 +4,7 @@ import StoriesBlog from './StoriesBlog'
 import StartPlanning from './StartPlanning'
 import Breadcrumb from '@/components/breadcrumb'
 import './blog.css'
-const Blog = ({ data }) => {
+const Blog = ({ data, dataCategorisAndFirstpost, dataGetAllPostsByCategories }) => {
   const dataStartPlanning = data?.acf?.start_planning
   const dataBanner = data?.acf?.banner
   const dataBannerMobi = data?.acf?.['banner-mobi']
@@ -17,7 +17,9 @@ const Blog = ({ data }) => {
         <Breadcrumb divider />
       </section>
       <section>
-        <StoriesBlog />
+        <StoriesBlog
+          dataCategorisAndFirstpost={dataCategorisAndFirstpost}
+          dataGetAllPostsByCategories={dataGetAllPostsByCategories} />
       </section>
       <section>
         <StartPlanning dataStartPlanning={dataStartPlanning} />
