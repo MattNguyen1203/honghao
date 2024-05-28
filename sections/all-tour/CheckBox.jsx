@@ -14,9 +14,13 @@ export default function CheckBox({item, length, setIsAllTour}) {
 
   useEffect(() => {
     if (device?.length === length) {
+      console.log('//', device?.length)
       setIsAllTour(true)
+    } else {
+      setIsAllTour(false)
     }
     if (!device) {
+      setIsAllTour(true)
       setIsCheck(false)
     }
   }, [device])
