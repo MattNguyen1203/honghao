@@ -62,9 +62,9 @@ const DialogCp = ({children, data}) => {
               <path
                 d='M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18'
                 stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
               />
             </svg>
           </div>
@@ -245,6 +245,7 @@ const Banner = ({dataBaner, dataBanerMobi}) => {
           height={9950}
           className=' mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute top-[25.2rem] left-0 md:hidden'
         />
+
         {/* motobike */}
 
         <div className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] xl:left-[-1rem] md:left-[-1.05rem] left-[2.8rem] '>
@@ -424,7 +425,7 @@ const Banner = ({dataBaner, dataBanerMobi}) => {
             </div>
           </div>
         </div>
-        <div className='absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+        <div className='xmd:pr-[0.75rem] absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>

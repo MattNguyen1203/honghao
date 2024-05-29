@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '../customCn/button'
-import { cn } from '@/lib/utils'
+import {Button} from '../customCn/button'
+import {cn} from '@/lib/utils'
 import Link from 'next/link'
-const ItemTour = ({ className, type, data }) => {
+const ItemTour = ({className, type, data}) => {
   return (
     <Link href={`/tours/${data?.detail_link}`}>
       <div
@@ -41,7 +41,7 @@ const ItemTour = ({ className, type, data }) => {
             </div>
 
             <div className='flex items-center text-greyscale-0'>
-              <div className='flex items-center mr-[1.25rem]'>
+              <div className='flex items-center mr-[0.5rem]'>
                 <span className='text-15 xmd:text-1125 font-medium mr-[0.44rem]'>
                   $199
                 </span>
