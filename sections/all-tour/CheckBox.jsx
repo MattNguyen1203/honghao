@@ -1,12 +1,17 @@
 'use client'
 
-import { usePathname, useRouter, useSearchParams, useCallback } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+  useCallback,
+} from 'next/navigation'
+import {useEffect, useState} from 'react'
 import useStore from '@/app/(store)/store'
-export default function CheckBox({ item, length, setIsAllTour }) {
+export default function CheckBox({item, length, setIsAllTour}) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { shouldFetch, setShouldFetch } = useStore((state) => state)
+  const {shouldFetch, setShouldFetch} = useStore((state) => state)
   const pathName = usePathname()
   const device = searchParams.get('device')?.split('--')
   const [isCheck, setIsCheck] = useState(
@@ -16,8 +21,11 @@ export default function CheckBox({ item, length, setIsAllTour }) {
   useEffect(() => {
     if (device?.length === length) {
       setIsAllTour(true)
+    } else {
+      setIsAllTour(false)
     }
     if (!device) {
+      setIsAllTour(true)
       setIsCheck(false)
     }
   }, [device])
@@ -25,7 +33,7 @@ export default function CheckBox({ item, length, setIsAllTour }) {
     setShouldFetch(true)
     if (isCheck) {
       const paramNew = new URLSearchParams(searchParams)
-      console.log({ paramNew })
+      console.log({paramNew})
       const dataNew = device?.length > 0 && [...device]
       dataNew?.splice(
         dataNew?.findIndex((e) => e === item?.slug),
@@ -36,7 +44,6 @@ export default function CheckBox({ item, length, setIsAllTour }) {
       if (dataNew?.length > 0) {
         paramNew.set('device', searchParamsNew)
         paramNew.set('page', 1)
-
       } else {
         paramNew.delete('device', searchParamsNew)
       }
