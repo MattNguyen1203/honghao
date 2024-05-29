@@ -20,12 +20,12 @@ export default function Commit({dataCommit}) {
           height={468.44}
         />
         <div className='container'>
-          <p className='flex justify-start xmd:w-[20.03781rem] w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+          <p className='flex justify-start xmd:w-full xmd:text-center w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
             {dataCommit?.main_desc_test}
           </p>
         </div>
       </div>
-      <div className='translate-y-[-3.81rem] relative h-[52.75rem] flex'>
+      <div className='md:translate-y-[-3.81rem] relative h-[52.75rem] flex'>
         <div className='absolute size-full top-0 left-0 overflow-hidden'>
           <BikeAnimation />
         </div>

@@ -36,7 +36,7 @@ export default async function OurTeam({darkTheme}) {
           <span
             dangerouslySetInnerHTML={{__html: dataTeam?.content}}
             className={cn(
-              'relative text-[1rem] xmd:text-[0.875rem] z-[1000] tracking-[0.005rem] text-greyscale-40',
+              'relative text-[1rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40',
               darkTheme && 'text-greyscale-5/50',
             )}
           ></span>
@@ -44,14 +44,14 @@ export default async function OurTeam({darkTheme}) {
           <div className='flex flex-start space-x-[1rem] '>
             <Button
               icon
-              className='!flex-1 !w-max shrink-0'
+              className='!flex-1 tablet:w-1/2 !w-max shrink-0'
             >
               <Link href='/tours/detail-abc'> BOOK NOW</Link>
             </Button>
             <Button
               icon
               variant='outline'
-              className='!flex-1 !w-max shrink-0'
+              className='!flex-1 tablet:w-1/2 !w-max shrink-0'
             >
               <Link href='/tours'>All tour</Link>
             </Button>
