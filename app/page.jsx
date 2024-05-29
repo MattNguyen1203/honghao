@@ -14,20 +14,36 @@ const getWeatherHaGiang = async () => {
   )
 }
 
+const getTypeofTour = async () => {
+  return getData(`wp-json/okhub/v1/get-list-tax-by-slug?slug=type-of-tour`)
+}
+const getListTime = async () => {
+  return getData(`wp-json/okhub/v1/get-list-tax-by-slug?slug=time`)
+}
+const getListTours = async () => {
+  return getData(`wp-json/okhub/v1/tours`)
+}
 export async function generateMetadata() {
   const result = await fetchMetaData('homepage/')
   return getMeta(result, '')
 }
 
 const page = async () => {
-  const [dataAcf, dataWeather] = await Promise.all([
-    getHomepageData(),
-    getWeatherHaGiang(),
-  ])
+  const [dataAcf, dataWeather, listTypeofTour, listTime, listTours] =
+    await Promise.all([
+      getHomepageData(),
+      getWeatherHaGiang(),
+      getTypeofTour(),
+      getListTime(),
+      getListTours(),
+    ])
   return (
     <Homepage
       dataAcf={dataAcf?.acf}
       dataWeather={dataWeather}
+      listTypeofTour={listTypeofTour}
+      listTime={listTime}
+      listTours={listTours}
     />
   )
 }

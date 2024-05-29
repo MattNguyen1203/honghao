@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '../customCn/button'
-import { cn } from '@/lib/utils'
+import {Button} from '../customCn/button'
+import {cn} from '@/lib/utils'
 
-const ItemTour = ({ className, type, data }) => {
+const ItemTour = ({className, type, data}) => {
   return (
     <div
       className={cn(
@@ -61,9 +61,9 @@ const ItemTour = ({ className, type, data }) => {
         </div>
         {/* bottom */}
         <div>
-          <h4 className='text-125 xmd:text-1 font-black text-greyscale-0 h-[3rem] line-clamp-2 px-[1rem] xmd:p-0'>
+          <div className='text-125 xmd:text-1 font-black text-greyscale-0 h-[3rem] line-clamp-2 px-[1rem] xmd:p-0'>
             {data?.title}
-          </h4>
+          </div>
 
           <div className='px-[1rem] py-[1.5rem] xmd:hidden'>
             <div className='flex items-center mb-[0.5rem]'>
