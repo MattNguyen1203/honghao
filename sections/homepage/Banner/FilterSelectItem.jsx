@@ -28,7 +28,7 @@ const FilterSelectItem = ({data}) => {
               key={index}
               className='custom-select text-1 font-bold text-greyscale-80 capitalize p-[1rem] border-b border-solid border-greyscale-5'
             >
-              {item?.value}
+              {item?.name}
             </SelectItem>
           ))}
         </SelectContent>

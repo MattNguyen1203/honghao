@@ -8,9 +8,8 @@ import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
-const Banner = ({dataBanner}) => {
+const Banner = ({dataBanner, listTypeofTour, listTime, listTours}) => {
   const isMobile = useStore((state) => state.isMobile)
-
   const [animationCompleted, setAnimationCompleted] = useState(false)
 
   useEffect(() => {
@@ -182,7 +181,11 @@ const Banner = ({dataBanner}) => {
             ></h1>
           </div>
 
-          <Filter />
+          <Filter
+            listTypeofTour={listTypeofTour}
+            listTime={listTime}
+            listTours={listTours}
+          />
 
           <div className='absolute top-0 left-0 z-20 w-full h-full'>
             <SlideImgs
