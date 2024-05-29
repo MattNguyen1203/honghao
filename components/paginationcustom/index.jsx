@@ -42,7 +42,7 @@ export default function PaginationCustom({ href, pagination }) {
   const handlePushParam = (d) => {
     setShouldFetch(true)
     setCurrentPaggiBlog(d)
-    router.push(`${pathName}?${createQueryString("page", d)}`, { scroll: false });
+    router.push(`${pathName}?${createQueryString("page", d)}`, { scroll: false })
   }
   return (
     <Pagination className={'mt-[2rem] paginationcustom'}>
@@ -54,23 +54,7 @@ export default function PaginationCustom({ href, pagination }) {
             </PaginationLink>
           </PaginationItem>
         ))}
-        {/* <PaginationItem className={className.base}>
-          <PaginationLink isActive={false} className={'!border-none rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'} href={href}>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem className={className.base}>
-          <PaginationLink isActive={false} className={'!border-none rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'} href={href}>
-            3
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
 
-        <PaginationItem className={className.base}>
-          <PaginationLink isActive={false} className={'!border-none rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'} href={href}>10</PaginationLink>
-        </PaginationItem> */}
 
       </PaginationContent>
     </Pagination >

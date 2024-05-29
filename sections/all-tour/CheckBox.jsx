@@ -6,7 +6,7 @@ import useStore from '@/app/(store)/store'
 export default function CheckBox({ item, length, setIsAllTour }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-    const { shouldFetch, setShouldFetch } = useStore((state) => state)
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
   const pathName = usePathname()
   const device = searchParams.get('device')?.split('--')
   const [isCheck, setIsCheck] = useState(
@@ -15,13 +15,9 @@ export default function CheckBox({ item, length, setIsAllTour }) {
 
   useEffect(() => {
     if (device?.length === length) {
-      console.log('//', device?.length)
       setIsAllTour(true)
-    } else {
-      setIsAllTour(false)
     }
     if (!device) {
-      setIsAllTour(true)
       setIsCheck(false)
     }
   }, [device])
@@ -56,6 +52,8 @@ export default function CheckBox({ item, length, setIsAllTour }) {
         ? device?.join('--') + '--' + item?.slug
         : item?.slug
       paramNew.set('device', searchParamsNew)
+      paramNew.set('page', 1)
+
       router.push(pathName + '?' + paramNew.toString(), {
         scroll: false,
       })
