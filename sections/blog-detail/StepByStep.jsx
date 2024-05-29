@@ -6,13 +6,13 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {Mousewheel} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import {dataSLides} from './data'
+// import {dataSLides} from './data'
 
-export default function StepByStep() {
+export default function StepByStep({dataAcf}) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
-
+  const dataSLides = dataAcf?.dataSLides
   useEffect(() => {
     const medium = Math.ceil(dataSLides?.length / 2)
     if (swiperRef.current) {
@@ -59,7 +59,7 @@ export default function StepByStep() {
       <div className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
-          src={dataSLides?.[indexSlider]?.imgStep}
+          src={dataSLides?.[indexSlider]?.imgStep?.url}
           alt='map2'
           width={300}
           height={400}
@@ -67,7 +67,7 @@ export default function StepByStep() {
       </div>
       {/* map */}
       <div className='ml-[3rem] flex items-center w-full xlg:hidden'>
-        <div className='bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
+        <div className='overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
           <div className='flex items-center'>
             <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
             <span className='text-[1rem] font-bold leading-normal text-greyscale-80'>
@@ -75,17 +75,18 @@ export default function StepByStep() {
             </span>
             <span className='size-[0.3rem] rounded-full block bg-greyscale-20 ml-[0.7rem] mr-[0.5rem]'></span>
             <span className='text-greyscale-20 text-[1rem] font-normal leading-[1.2] tracking-[0.0125rem]'>
-              3 Days / 4 Night
+              {dataAcf?.intermediate}
             </span>
           </div>
           <div className='flex items-center justify-between mt-[0.75rem] pr-[4.81rem]'>
             <h2 className='text-[2rem] font-black leading-[1] font-londrina text-greyscale-80'>
-              Schedule tour: 3 Days 4 Nights
+              {dataAcf?.name_tour}
             </h2>
             <div className='flex items-center space-x-[1.25rem]'>
               <div className='flex items-center whitespace-nowrap'>
                 <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
-                  $169
+                  {dataAcf?.don_vi}
+                  {dataAcf?.gia?.self_driving}
                 </span>
                 <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                   Self - Driving
@@ -93,7 +94,8 @@ export default function StepByStep() {
               </div>
               <div className='flex items-center whitespace-nowrap'>
                 <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
-                  $199
+                  {dataAcf?.don_vi}
+                  {dataAcf?.gia?.local_driver}
                 </span>
                 <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                   Local driver
@@ -254,7 +256,7 @@ const ItemCardInfo = ({item}) => {
         <div
           className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
           key={idx}
-          dangerouslySetInnerHTML={{__html: des}}
+          dangerouslySetInnerHTML={{__html: des?.descriptions_text}}
         />
       ))}
       <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>

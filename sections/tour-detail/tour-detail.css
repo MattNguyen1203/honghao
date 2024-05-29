@@ -38,3 +38,22 @@
 .arrowfr {
   animation: keyArrow 1s ease-in-out infinite;
 }
+
+.tour_infor ul {
+  padding-left: 1.6rem;
+  width: 19rem;
+}
+.tour_infor ul li {
+  color: white;
+  line-height: 150%;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.875rem;
+  list-style-type: disc;
+}
+
+@media (max-width: 767px) {
+  .tour_infor ul li {
+    color: #262626;
+  }
+}
