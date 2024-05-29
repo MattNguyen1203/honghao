@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
-import {Button} from '../customCn/button'
-import {cn} from '@/lib/utils'
+import { Button } from '../customCn/button'
+import { cn } from '@/lib/utils'
 
-const ItemTour = ({className, type}) => {
+const ItemTour = ({ className, type, data }) => {
   return (
     <div
       className={cn(
-        'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden group',
+        'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden group cursor-pointer',
         className,
       )}
     >
@@ -17,14 +17,14 @@ const ItemTour = ({className, type}) => {
           alt=''
           width={400}
           height={500}
-          className='w-full h-full cover'
+          className='w-full h-full object-cover '
         />
       </div>
 
-      <div className='flex flex-col h-[11rem] xmd:h-full xmd:p-[1rem] group-hover:h-full transition-all duration-500 justify-between xmd:justify-end absolute bottom-0 left-0 w-full '>
+      <div className='flex flex-col h-[11rem] xmd:h-full xmd:p-[1rem] group-hover:h-full ease-linear transition-all duration-300 justify-between xmd:justify-end absolute bottom-0 left-0 w-full '>
         {/* top */}
-        <div className='mb-[0.8rem] px-[1rem] pt-[1.5rem] xmd:p-0'>
-          <div className='relative overflow-hidden group-hover:hidden group-hover:opacity-0 opacity-100 pointer-events-none transition-all duration-300 flex mb-[1rem] items-center px-[0.75rem] py-[0.38rem] xmd:py-[0.25rem] xmd:px-[0.5rem] rounded-[1.5rem] border border-solid border-[rgba(255, 255, 255, 0.52)] bg-[rgba(255,255,255,0.20)] backdrop-blur-sm w-fit h-[2.25rem] xmd:h-fit'>
+        <div className='mb-[0.8rem] px-[1rem] ease-linear transition-all duration-300 group-hover:pt-[0rem] pt-[1.5rem] xmd:p-0'>
+          <div className='relative overflow-hidden  group-hover:opacity-0 opacity-100 pointer-events-none ease-linear transition-all duration-300 flex mb-[1rem] items-center px-[0.75rem] py-[0.38rem] xmd:py-[0.25rem] xmd:px-[0.5rem] rounded-[1.5rem] border border-solid border-[rgba(255, 255, 255, 0.52)] bg-[rgba(255,255,255,0.20)] backdrop-blur-sm w-fit group-hover:h-0 h-[2.25rem] xmd:h-fit'>
             <Image
               src='/imgs/itemTour/icon.svg'
               alt=''
@@ -36,7 +36,7 @@ const ItemTour = ({className, type}) => {
               4 Days 5 Nights
             </span>
 
-            <div className='flex h-[5.10919rem] w-[3.80475rem] rotate-[-24.824deg] bg-custom-gradient opacity-80 absolute top-[-1.28494rem] right-[-1.27806rem] animate-leftToRight'></div>
+            <div className='flex group-hover:h-0 h-[5.10919rem] w-[3.80475rem] rotate-[-24.824deg] bg-custom-gradient opacity-80 absolute top-[-1.28494rem] right-[-1.27806rem] animate-leftToRight'></div>
           </div>
 
           <div className='flex items-center text-greyscale-0'>
@@ -62,7 +62,7 @@ const ItemTour = ({className, type}) => {
         {/* bottom */}
         <div>
           <h4 className='text-125 xmd:text-1 font-black text-greyscale-0 h-[3rem] line-clamp-2 px-[1rem] xmd:p-0'>
-            Ha Giang Loop tour: Itinerary in 4 Days 5 Nights
+            {data?.title}
           </h4>
 
           <div className='px-[1rem] py-[1.5rem] xmd:hidden'>

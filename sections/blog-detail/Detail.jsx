@@ -1,8 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import useStore from '@/app/(store)/store'
 const Detail = ({ dataDetailPost }) => {
-
+  const { currentCategories, setCurrentCategories } = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
   const handleScrollToContent = (e) => {
     const indexOfSectionToScroll = parseInt(e.target.id)
@@ -13,12 +14,17 @@ const Detail = ({ dataDetailPost }) => {
       inline: 'nearest',
     })
   }
+  useEffect(() => {
+    if(dataDetailPost){
+      setCurrentCategories(dataDetailPost?.categories[0]?.slug)
+    }
+  }, [dataDetailPost])
+
 
   useEffect(() => {
     const h2Elements = document.querySelectorAll('.detail h3')
     const headings = []
     h2Elements.forEach((element) => {
-      // console.log(element.textContent)
       headings.push(element.textContent)
     })
     setHeadingTexts(headings)

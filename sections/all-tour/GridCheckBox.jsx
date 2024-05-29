@@ -1,31 +1,81 @@
 'use client'
 
 import useStore from '@/app/(store)/store'
-import {useState} from 'react'
-
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
 import CheckBox from './CheckBox'
-import {usePathname, useRouter} from 'next/navigation'
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
-
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Skeleton } from "@/components/ui/skeleton"
 const dataFiter = [
-  {title: 'PREMIUM', slug: 'premium'},
-  {title: 'BEST BUDGET', slug: 'best-budget'},
-  {title: 'STANDARD', slug: 'standard'},
+  { title: 'PREMIUM', slug: 'premium' },
+  { title: 'BEST BUDGET', slug: 'best-budget' },
+  { title: 'STANDARD', slug: 'standard' },
 ]
 
-export default function GridCheckBox() {
-  const isMobile = useStore((state) => state.isMobile)
-  const [isAllTour, setIsAllTour] = useState(true)
+export default function GridCheckBox({ dataTours, typeOfTours }) {
+  const tours = dataTours?.tours
+  const pagination = dataTours?.pagination
+  const typeTours = typeOfTours?.terms
+  const searchParams = useSearchParams();
   const router = useRouter()
   const pathName = usePathname()
+  const { isMobile } = useStore((state) => state)
+  const pageCurrent = searchParams.get('page')
+  const deviceCurrent = searchParams.get('device')
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
+
+  const [isActive, setIsActive] = useState(true)
+  const [isAllTour, setIsAllTour] = useState(true)
+  const [dataToursClient, setDataToursClient] = useState([])
+  const [paginationClient, setPaginationClient] = useState({})
+  const [loading, setLoading] = useState(false)
+
+  const [selectedTypes, setSelectedTypes] = useState('');
+
+  // Extract device parameter from URL and set selectedTypes
+  console.log({ deviceCurrent, selectedTypes, typeTours: typeTours });
+  useEffect(() => {
+    if (deviceCurrent) {
+      setSelectedTypes(deviceCurrent.replace(/--/g, ','));
+
+      setShouldFetch(true);
+    }
+  }, [deviceCurrent]);
+
   const handleFilterAll = () => {
     setIsAllTour(true)
     router.push(pathName, {
       scroll: false,
     })
   }
+  const fetcher = url => fetch(url).then(r => r.json())
+  const { data, error, isLoading } = useSWR(
+    shouldFetch ? (
+      deviceCurrent !== null
+        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9&type-of-tour=${selectedTypes}`
+        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9`
+    ) : null,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false
+    }
+  );
+  useEffect(() => {
+    setLoading(isLoading)
+    if (data) {
+      setPaginationClient(data?.pagination)
+      setDataToursClient(data?.tours);
+    }
+    if (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, [data, error, isLoading]);
+
   return (
     <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] mb-[4rem]'>
       {!isMobile && (
@@ -50,15 +100,17 @@ export default function GridCheckBox() {
                 ALL TOUR
               </span>
             </div>
-            {dataFiter?.map((e, index) => (
+            {typeTours?.map((e, index) => (
               <CheckBox
-                length={dataFiter?.length}
+
+                length={typeTours?.length}
                 setIsAllTour={setIsAllTour}
                 item={e}
                 key={index}
               />
             ))}
           </div>
+
         </div>
       )}
 
@@ -133,7 +185,7 @@ export default function GridCheckBox() {
                     ALL TOUR
                   </span>
                 </div>
-                {dataFiter?.map((e, index) => (
+                {typeTours?.map((e, index) => (
                   <CheckBox
                     length={dataFiter?.length}
                     setIsAllTour={setIsAllTour}
@@ -142,17 +194,24 @@ export default function GridCheckBox() {
                   />
                 ))}
               </div>
+
             </DialogContent>
           </Dialog>
-        </div>
-      )}
-      <div className='mb-[2rem] xmd:w-full'>
-        <div className='grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[1.25rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
-          {new Array(9).fill(0).map((e, index) => (
-            <ItemTour key={index} />
-          ))}
-        </div>
-        <PaginationCustom />
+        </div>)}
+      <div className=' mb-[2rem] xmd:w-full'>
+        {!loading ?
+          <div className='grid-tours grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[1.25rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
+            {(dataToursClient?.length > 0 ? dataToursClient : tours)?.map((e, index) => (
+              <ItemTour key={index} data={e} />
+            ))}
+          </div> :
+          <div className='grid-tours grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[1.25rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
+            {new Array(6).fill(0)?.map((e, index) => (
+              <Skeleton className='rounded-2xl   xmd:w-[21.4375rem] xmd:h-[15.3125rem] w-[21.4375rem] h-[29.5625rem]' key={index} />
+            ))}
+          </div>
+        }
+        <PaginationCustom pagination={paginationClient && Object.keys(paginationClient).length === 0 ? pagination : paginationClient} href={'#grid-tours'} />
       </div>
     </div>
   )
