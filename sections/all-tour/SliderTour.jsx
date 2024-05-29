@@ -12,8 +12,8 @@ export default function SliderTour({type, dataBestTrip}) {
 
   console.log('dataBestTrip', dataBestTrip)
   return (
-    <div className='container mt-[4.38rem] xmd:mt-[2rem] xmd:!pr-0'>
-      <span className='xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
+    <div className='container mt-[4.38rem] xmd:mt-[2rem] xmd:!px-0'>
+      <span className='xmd:container xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
         EXPLORE
       </span>
       {isAllTourPage ? (
@@ -41,11 +41,11 @@ export default function SliderTour({type, dataBestTrip}) {
             },
           }}
           modules={[Navigation]}
-          className='mySwiper xmd:pr-[0.75rem]'
+          className='mySwiper xmd:!px-[0.75rem]'
         >
           {dataBestTrip?.map((e, index) => (
             <SwiperSlide
-              className='xmd:!w-[16.8755rem] xmd:!h-[23.33956rem]'
+              className='xmd:!w-[16.0175rem] xmd:!h-[23.33956rem]'
               key={index}
             >
               <ItemTour

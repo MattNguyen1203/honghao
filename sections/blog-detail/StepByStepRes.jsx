@@ -1,5 +1,7 @@
 'use client'
 
+import BikeAnimationMb from '@/components/bikeAnimateMb'
+
 // import {dataSLides} from './data'
 
 export default function StepByStepRes({dataAcf}) {
@@ -7,49 +9,55 @@ export default function StepByStepRes({dataAcf}) {
   const dataSLides = dataAcf?.dataSLides
   // console.log(dataSLides)
   return (
-    <div className='w-full h-fit px-[0.75rem] lg:hidden'>
-      <div className='flex items-center'>
-        <IconOclock className='size-[1.5rem] mr-[0.37rem] md:size-[2.5rem]' />
-        <span className='text-[1rem] font-bold leading-normal text-white md:text-[2rem]'>
-          Time
-        </span>
-        <span className='size-[0.2rem] md:size-[0.4rem] rounded-full block bg-greyscale-5 ml-[0.7rem] mr-[0.5rem]'></span>
-        <span className='text-greyscale-5 text-[1rem] font-normal leading-[1.2] tracking-[0.0125rem] md:text-[2rem]'>
-          {dataAcf?.intermediate}
-        </span>
+    <>
+      <div className='absolute'>
+        <BikeAnimationMb />
       </div>
-      <h2 className='font-black text-white mt-[0.75rem] mb-[0.65rem] tracking-[0.00375rem] text-[1.5rem] md:text-[3rem] md:my-[1rem]'>
-        {dataAcf?.name_tour}
-      </h2>
-      <div className='flex items-center space-x-[1.25rem]'>
-        <div className='flex items-center whitespace-nowrap'>
-          <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-            {dataAcf?.don_vi}
-            {dataAcf?.gia?.self_driving}
+      <div className='w-full pt-[6rem] relative z-10 pb-[0.94rem] h-fit px-[0.75rem] lg:hidden'>
+        <div className='absolute bottom-0 bg-[#13341c] h-[70%] w-full left-0'></div>
+        <div className='flex items-center'>
+          <IconOclock className='size-[1.5rem] mr-[0.37rem] md:size-[2.5rem]' />
+          <span className='text-[1rem] font-bold leading-normal text-white md:text-[2rem]'>
+            Time
           </span>
-          <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
-            Self - Driving
+          <span className='size-[0.2rem] md:size-[0.4rem] rounded-full block bg-greyscale-5 ml-[0.7rem] mr-[0.5rem]'></span>
+          <span className='text-greyscale-5 text-[1rem] font-normal leading-[1.2] tracking-[0.0125rem] md:text-[2rem]'>
+            {dataAcf?.intermediate}
           </span>
         </div>
-        <div className='flex items-center whitespace-nowrap'>
-          <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-            {dataAcf?.don_vi}
-            {dataAcf?.gia?.self_driving}
-          </span>
-          <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
-            Local driver
-          </span>
+        <h2 className='font-black text-white mt-[0.75rem] mb-[0.65rem] tracking-[0.00375rem] text-[1.5rem] md:text-[3rem] md:my-[1rem]'>
+          {dataAcf?.name_tour}
+        </h2>
+        <div className='flex items-center space-x-[1.25rem]'>
+          <div className='flex items-center whitespace-nowrap'>
+            <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
+              {dataAcf?.don_vi}
+              {dataAcf?.gia?.self_driving}
+            </span>
+            <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
+              Self - Driving
+            </span>
+          </div>
+          <div className='flex items-center whitespace-nowrap'>
+            <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
+              {dataAcf?.don_vi}
+              {dataAcf?.gia?.self_driving}
+            </span>
+            <span className='block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
+              Local driver
+            </span>
+          </div>
+        </div>
+        <div className='flex flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
+          {dataSLides?.map((item, index) => (
+            <ItemCardInfo
+              key={index}
+              item={item}
+            />
+          ))}
         </div>
       </div>
-      <div className='flex flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
-        {dataSLides?.map((item, index) => (
-          <ItemCardInfo
-            key={index}
-            item={item}
-          />
-        ))}
-      </div>
-    </div>
+    </>
   )
 }
 const ItemCardInfo = ({item}) => {

@@ -9,6 +9,7 @@ import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 const TourDetail = ({data, dataPage, dataBestTrip}) => {
+
   return (
     <main className='alldestinations '>
       <section>
@@ -26,7 +27,7 @@ const TourDetail = ({data, dataPage, dataBestTrip}) => {
         <Booking />
       </section>
       <section>
-        <FaqAboutTrip dataAcfPage={dataPage?.faq} />
+        <FaqAboutTrip dataAcfPage={dataPage?.faq} videoAndImage={dataPage?.video_and_image} />
       </section>
 
       <OurTeam />

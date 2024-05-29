@@ -1,11 +1,11 @@
 'use client'
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image'
-import {Button} from '@/components/customCn/button'
-import {cn} from '@/lib/utils'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {FreeMode} from 'swiper/modules'
+import { Button } from '@/components/customCn/button'
+import { cn } from '@/lib/utils'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
@@ -26,24 +26,12 @@ import {
 } from '@/components/customCn/sheet'
 import Link from 'next/link'
 const data1 = [
-  {title: 'Experience'},
-  {title: 'Food'},
-  {title: 'Treaking'},
-  {title: 'People'},
+  { title: 'Experience' },
+  { title: 'Food' },
+  { title: 'Treaking' },
+  { title: 'People' },
 ]
-const DialogCp = ({children, data}) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(-1)
-  const mainSwiper = useRef()
-  const handleSlideChange = (swiper) => {
-    const newIndex = swiper?.realIndex
-    setActiveIndex(newIndex)
-  }
-
-  useEffect(() => {
-    mainSwiper?.current?.slideTo(activeIndex)
-  }, [activeIndex])
-
+const DialogCp = ({ children, data }) => {
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -62,9 +50,9 @@ const DialogCp = ({children, data}) => {
               <path
                 d='M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18'
                 stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
               />
             </svg>
           </div>
@@ -74,7 +62,7 @@ const DialogCp = ({children, data}) => {
   )
 }
 
-const SheetCp = ({children, dataMoto}) => {
+const SheetCp = ({ children, data }) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -82,6 +70,7 @@ const SheetCp = ({children, dataMoto}) => {
       slidesPerView: 1.5,
     },
   }
+
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>
@@ -105,19 +94,9 @@ const SheetCp = ({children, dataMoto}) => {
               loop={false}
               modules={[FreeMode]}
             >
-              {[0, 0, 0, 0, 0].map((d, i) => (
-                <SwiperSlide
-                  key={i}
-                  className=' overflow-hidden'
-                >
-                  <Image
-                    priority
-                    alt='ảnh'
-                    src={'/imgs/activity/image-popup-banner.png'}
-                    width={1500}
-                    height={1500}
-                    className='xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]'
-                  />
+              {data?.lists_image?.map((d, i) => (
+                <SwiperSlide key={i} className=' overflow-hidden' >
+                  <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -151,7 +130,7 @@ const SheetCp = ({children, dataMoto}) => {
     </Sheet>
   )
 }
-const Banner = ({dataBaner, dataBanerMobi}) => {
+const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (
@@ -244,6 +223,7 @@ const Banner = ({dataBaner, dataBanerMobi}) => {
           height={9950}
           className=' mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute top-[25.2rem] left-0 md:hidden'
         />
+
         {/* motobike */}
 
         <div className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] xl:left-[-1rem] md:left-[-1.05rem] left-[2.8rem] '>
@@ -423,7 +403,7 @@ const Banner = ({dataBaner, dataBanerMobi}) => {
             </div>
           </div>
         </div>
-        <div className='absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+        <div className='xmd:pr-[0.75rem] absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>

@@ -129,26 +129,30 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
-          {data?.map((d, i) => (
-            <SwiperSlide
-              key={i}
-              className='!flex !justify-center !items-center'
-            >
-              <Image
-                priority
-                alt='ảnh'
-                src={d?.url}
-                width={1500}
-                height={1500}
-                className={cn(
-                  ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
-                  checkIsBanner
-                    ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
-                    : '',
-                )}
-              />
-            </SwiperSlide>
-          ))}
+
+          {data?.map((d, i) => {
+            const img1 = d?.url
+            return (
+              <SwiperSlide
+                key={i}
+                className='!flex !justify-center !items-center'
+              >
+                <Image
+                  priority
+                  alt='ảnh'
+                  src={img1}
+                  width={1500}
+                  height={1500}
+                  className={cn(
+                    ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
+                    checkIsBanner
+                      ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
+                      : '',
+                  )}
+                />
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       )}
       <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-0'>
@@ -181,8 +185,8 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           onSlideChange={handleSlideChange}
           // onSwiper={setThumbsSwiper}
           className={cn(
-            'slide-video-tour mySwiper   h-[41.75rem] ',
-            checkIsBanner ? 'h-[43.75rem] ' : '',
+            'slide-video-tour mySwiper    ',
+            checkIsBanner ? 'md:h-[43.75rem] ' : 'h-[41.75rem]',
           )}
           id='swiper_discover'
         >
