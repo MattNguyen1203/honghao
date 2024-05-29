@@ -128,7 +128,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
           {data?.map((d, i) => {
-            const img1 = d?.image?.url
+            const img1 = d?.url
             return (
               <SwiperSlide
                 key={i}
@@ -182,13 +182,13 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           onSlideChange={handleSlideChange}
           // onSwiper={setThumbsSwiper}
           className={cn(
-            'slide-video-tour mySwiper   h-[41.75rem] ',
-            checkIsBanner ? 'h-[43.75rem] ' : '',
+            'slide-video-tour mySwiper    ',
+            checkIsBanner ? 'md:h-[43.75rem] ' : 'h-[41.75rem]',
           )}
           id='swiper_discover'
         >
           {data?.map((d, i) => {
-            const img1 = d?.image?.url
+            const img1 = d?.url
             return (
               <SwiperSlide
                 key={i}

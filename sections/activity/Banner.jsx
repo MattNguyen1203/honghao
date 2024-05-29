@@ -32,18 +32,6 @@ const data1 = [
   { title: 'People', },
 ]
 const DialogCp = ({ children, data }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const mainSwiper = useRef()
-  const handleSlideChange = (swiper) => {
-    const newIndex = swiper?.realIndex;
-    setActiveIndex(newIndex);
-  };
-
-  useEffect(() => {
-    mainSwiper?.current?.slideTo(activeIndex);
-  }, [activeIndex]);
-
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>
@@ -63,7 +51,7 @@ const DialogCp = ({ children, data }) => {
   )
 }
 
-const SheetCp = ({ children, dataMoto }) => {
+const SheetCp = ({ children, data }) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -95,9 +83,9 @@ const SheetCp = ({ children, dataMoto }) => {
               modules={[FreeMode]}
 
             >
-              {[0, 0, 0, 0, 0].map((d, i) => (
+              {data?.lists_image?.map((d, i) => (
                 <SwiperSlide key={i} className=' overflow-hidden' >
-                  <Image priority alt="ảnh" src={'/imgs/activity/image-popup-banner.png'} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
+                  <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
