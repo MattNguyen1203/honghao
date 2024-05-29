@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-const FilterSelectItem = ({data}) => {
+const FilterSelectItem = ({data, setOptionSelected}) => {
   return (
     <div className='w-fit min-w-[8.75rem] flex-col'>
       <span className='text-075 tracking-[0.00375rem] text-greyscale-50 uppercase'>
@@ -16,6 +16,14 @@ const FilterSelectItem = ({data}) => {
       </span>
       <Select
         defaultValue={data?.content?.[0]?.slug}
+        onValueChange={(value) => {
+          setOptionSelected((prev) => {
+            return {
+              ...prev,
+              [data?.key]: value,
+            }
+          })
+        }}
         className=''
       >
         <SelectTrigger className='text-1 h-[1.5rem] focus:ring-offset-0 focus:ring-0 font-bold text-greyscale-80 p-0 !outline-none !border-none capitalize'>

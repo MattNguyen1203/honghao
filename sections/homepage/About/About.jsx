@@ -26,13 +26,13 @@ const About = ({dataAbout}) => {
         className='w-full h-full absolute top-0 left-0 z-[-1] object-cover'
       />
 
-      <div className='w-full relative z-[100]'>
+      <div className='w-full relative z-[40]'>
         <Image
           src='/imgs/home/moutain.svg'
           alt=''
           width={2000}
           height={500}
-          className='absolute top-[-2rem] left-0'
+          className='absolute top-[-2rem] xmd:top-[-1rem] left-0'
         />
         <Image
           src='/imgs/home/moto.svg'

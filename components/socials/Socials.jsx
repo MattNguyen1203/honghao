@@ -19,19 +19,11 @@ const Socials = () => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className='sm:max-w-fit z-[999]'>
+          <DialogContent className='sm:max-w-fit'>
             <HomeForm dataTourDetail={dataTourDetail} />
           </DialogContent>
         </Dialog>
       </div>
-
-      {/* Bookk Now */}
-      {/* <div className="w-[3.125rem] animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]">
-        <div className="text-[color:var(--Gray-Scale-0,#FFF)] text-center text-[0.625rem] not-italic font-black leading-[0.8125rem] tracking-[0.03125rem]">
-          BOOK
-          NOW
-        </div>
-      </div> */}
       {/* Call me bb */}
       <div className='relative'>
         <div className='w-[3.625rem] z-5 pingCall flex justify-center items-center h-[3.625rem] shrink-0 blur-none rounded-[6.25rem] bg-[rgba(255,255,255,0.15)]'></div>
@@ -71,10 +63,10 @@ const Socials = () => {
               width='32'
               height='32'
               filterUnits='userSpaceOnUse'
-              color-interpolation-filters='sRGB'
+              colorInterpolationFilters='sRGB'
             >
               <feFlood
-                flood-opacity='0'
+                floodOpacity='0'
                 result='BackgroundImageFix'
               />
               <feColorMatrix

@@ -66,6 +66,8 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
   const subSwiper = useRef()
   const checkIsBanner = type === 'banner'
   const imagesToUse = checkIsBanner ? images2 : images
+
+  console.log('data', data)
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
     setActiveIndex(newIndex)
@@ -152,7 +154,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           })}
         </Swiper>
       )}
-      <div className='md:absolute xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem]'>
+      <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-0'>
         <Swiper
           breakpoints={{
             767: {
@@ -194,6 +196,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                 key={i}
                 className={cn(' ', checkIsBanner ? '' : '')}
               >
+
                 <div
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
