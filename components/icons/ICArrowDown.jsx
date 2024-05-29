@@ -13,9 +13,9 @@ const ICArrowDown = ({color, className}) => {
       <path
         d='M16 14L12 10L8 14'
         stroke={color}
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   )

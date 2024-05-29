@@ -48,7 +48,7 @@ const Button = React.forwardRef(
                 className='group-hover:stroke-white '
                 d='M10.125 6H0'
                 stroke={iconColor}
-                stroke-width='2'
+                strokeWidth='2'
               />
               <g filter='url(#filter0_i_10201_23415)'>
                 <path
@@ -65,10 +65,10 @@ const Button = React.forwardRef(
                   width='26'
                   height='14.5'
                   filterUnits='userSpaceOnUse'
-                  color-interpolation-filters='sRGB'
+                  colorInterpolationFilters='sRGB'
                 >
                   <feFlood
-                    flood-opacity='0'
+                    floodOpacity='0'
                     result='BackgroundImageFix'
                   />
                   <feBlend
@@ -114,11 +114,11 @@ const Button = React.forwardRef(
                 >
                   <stop
                     offset='0.31'
-                    stop-color='white'
+                    stopColor='white'
                   />
                   <stop
                     offset='1'
-                    stop-color='white'
+                    stopColor='white'
                     stopOpacity='0'
                   />
                 </linearGradient>
