@@ -349,13 +349,13 @@ input[type='password']::-ms-clear {
 }
 @keyframes scrollUpKey {
   0% {
-    transform: translateY(0px);
+    transform: translateY(calc(-50% - 2.5px));
   }
   50% {
-    transform: translateY(5px);
+    transform: translateY(calc(-50% + 2.5px));
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(calc(-50% - 2.5px));
   }
 }
 .scrollUp {

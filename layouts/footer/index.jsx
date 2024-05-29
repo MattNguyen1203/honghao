@@ -86,7 +86,7 @@ export default async function Footer() {
         className='w-full h-full object-contain absolute top-0 left-0'
       />
       <div className='container'>
-        <div className='w-[59.6875rem] xmd:w-full h-full relative z-20'>
+        <div className='w-[59.6875rem] xmd:w-full h-full relative z-40'>
           <Link href={'/'}>
             <Image
               src={'/imgs/footer/logoBlack.png'}
