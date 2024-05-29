@@ -16,7 +16,7 @@ export default function PaginationCustom({ href, pagination }) {
     active: 'flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-lg bg-orange-normal-active text-white text-sm hover:none not-italic font-medium leading-[120%] tracking-[0.00875rem] ',
     base: 'flex w-10 h-10 flex-col justify-center items-center gap-2.5 hover:text-white text-orange-normal-active text-sm not-italic font-medium leading-[120%] tracking-[0.00875rem]'
   }
-  const { setCurrentPaggiBlog, currentPaggiBlog, setShouldFetch } = useStore((state) => state)
+  const { setCurrentPaggiBlog, currentPaggiBlog, shouldFetch, setShouldFetch } = useStore((state) => state)
   const router = useRouter();
   const pathName = usePathname()
   const searchParams = useSearchParams();
@@ -39,7 +39,6 @@ export default function PaginationCustom({ href, pagination }) {
     },
     [searchParams]
   );
-  console.log({ currentPaggiBlog, search, paginaytion: pagination?.total_pages })
   const handlePushParam = (d) => {
     setShouldFetch(true)
     setCurrentPaggiBlog(d)
