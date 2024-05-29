@@ -34,7 +34,7 @@ import Link from 'next/link'
 import {generateParamsPayment} from '@/lib/payment'
 import CryptoJS from 'crypto-js'
 import {generateRandom4DigitNumber} from '@/lib/utils'
-import {useRouter} from 'next/navigation'
+import {usePathname, useRouter, useSearchParams} from 'next/navigation'
 
 const data = {
   typeoftour: ['Best Budget', 'Standard', 'Premium'],
@@ -98,6 +98,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   const [dataDestination, setDataDestination] = useState(1)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDialogText, setIsDialogText] = useState('')
+  // const [dataFormState, setDataFormState] = useState({})
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -119,13 +120,86 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  // useEffect(() => {
+  //   // const vpcMerchTxnRef = searchParams.get('vpc_MerchTxnRef')
+  //   // const vpcTxnResponseCode = searchParams.get('vpc_TxnResponseCode')
+  //   // console.log(vpcMerchTxnRef)
+  //   // if (vpcMerchTxnRef) {
+  //   //   // const totalPrice =
+  //   //   //   paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal
+  //   //   // const randomIDOrder = generateRandom4DigitNumber()
+  //   //   // let jsonObject = localStorage.getItem('myDataForm')
+  //   //   // console.log(jsonObject)
+  //   //   // let retrievedObject = JSON.parse(jsonObject)
+  //   //   // console.log(retrievedObject)
+  //   //   // console.log(ip)
+  //   //   // const params = generateParamsPayment(
+  //   //   //   retrievedObject,
+  //   //   //   ip,
+  //   //   //   randomIDOrder,
+  //   //   //   totalPrice,
+  //   //   //   true,
+  //   //   //   pathname,
+  //   //   // )
+  //   //   // const secretWordArray = CryptoJS.enc.Hex.parse(
+  //   //   //   paymentOnepay.SECRET_KEY_HASH,
+  //   //   // )
+  //   //   // const hash = CryptoJS.HmacSHA256(params, secretWordArray)
+  //   //   // // eslint-disable-next-line camelcase
+  //   //   // const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+  //   //   let vpcSecureHash = localStorage.getItem('vpcSecureHash')
+  //   //   console.log(vpcSecureHash)
+  //   //   const callApi = async () => {
+  //   //     const res = await fetch('/api/payment', {
+  //   //       method: 'POST',
+  //   //       body: JSON.stringify({
+  //   //         vpc_AccessCode: paymentOnepay.ACCESS_CODE,
+  //   //         vpc_Command: 'queryDR',
+  //   //         vpc_MerchTxnRef: vpcMerchTxnRef,
+  //   //         vpc_Merchant: paymentOnepay.MERCHANT_ID,
+  //   //         vpc_Password: 'op123456',
+  //   //         vpc_User: 'op01',
+  //   //         vpc_Version: '2',
+  //   //         vpc_SecureHash: vpcSecureHash,
+  //   //       }),
+  //   //     })
+  //   //     const data = await res.json()
+  //   //     console.log(data)
+  //   //     return data
+  //   //   }
+  //   //   callApi().then((res) => {
+  //   //     console.log(res)
+  //   //     const list = res.toString().split('&')
+  //   //     console.log(list)
+  //   //     let code
+  //   //     list?.forEach((e) => {
+  //   //       if (e?.includes('vpc_TxnResponseCode')) {
+  //   //         code = Number(e?.slice(e.length - 1))
+  //   //         console.log(code)
+  //   //       }
+  //   //     })
+  //   //     return code
+  //   //   })
+  //   // }
+  //   // if (vpcMerchTxnRef && vpcTxnResponseCode === '0') {
+  //   //   setIsDialogText('Successfully booked the tour')
+  //   //   setIsDialogOpen(true)
+  //   //   router.push(pathname)
+  //   // } else {
+  //   //   router.push(pathname)
+  //   // }
+  // }, [])
+  // console.log(dataFormState)
   // set data typeoftour, choosedays form TourDetail
   useEffect(() => {
     if (isTourDetail) {
       form.setValue('typeoftour', dataTourDetail?.typeoftour)
       form.setValue('choosedays', dataTourDetail?.choosedays?.title)
     }
-  }, [dataTourDetail])
+  }, [])
 
   // tính ngày enddate theo tour
   useEffect(() => {
@@ -172,7 +246,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   }
 
   // post gg form + gg sheet
-  async function postFile(newvalue) {
+  async function postFile(newvalue, type) {
     try {
       const formdata = new FormData()
       const formattedDob = formattedDate(newvalue?.dob)
@@ -203,19 +277,19 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       )
       formdata?.append('entry.750534916', paxValueLocal)
       formdata?.append('entry.1182103187', paxValueSelf)
+      formdata?.append('entry.477674361', type)
       await fetch(`${FORM_API}`, {
         method: 'POST',
         body: formdata,
         mode: 'no-cors',
       })
-      setIsDialogOpen(true)
-      setIsDialogText('Successfully booked the tour')
+      // setIsDialogOpen(true)
+      // setIsDialogText('Successfully booked the tour')
     } catch (error) {
       setIsDialogText('fail booked the tour')
       toast({
         title: 'Sending information failed',
-        description:
-          'Please check the information you have filled in again. ( ͡° ͜ʖ ͡° )',
+        description: 'Please check the information you have filled in again.',
       })
       console.log(error)
     }
@@ -235,7 +309,9 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       paxValueLocal: paxValueLocal,
       ...values,
     }
-    postFile(newvalue)
+    localStorage.setItem('myDataForm', JSON.stringify(newvalue))
+    const status = type === 'onepay' ? 'Processing' : 'COD'
+    postFile(newvalue, status)
 
     const totalPrice =
       paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal
@@ -247,14 +323,16 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
         randomIDOrder,
         totalPrice,
         true,
+        pathname,
       )
-
+      console.log('params', params)
       const secretWordArray = CryptoJS.enc.Hex.parse(
         paymentOnepay.SECRET_KEY_HASH,
       )
       const hash = CryptoJS.HmacSHA256(params, secretWordArray)
       // eslint-disable-next-line camelcase
       const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+      localStorage.setItem('vpcSecureHash', vpc_SecureHash)
 
       const url = `${paymentOnepay.ONEPAY_HOST}?${generateParamsPayment(
         newvalue,
@@ -262,6 +340,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
         randomIDOrder,
         totalPrice,
         false,
+        pathname,
       )}&vpc_SecureHash=${vpc_SecureHash}`
       router.push(url)
     }
@@ -445,6 +524,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
+                          className='aa'
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>

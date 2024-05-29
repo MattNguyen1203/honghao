@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 
-const Banner = ({dataAcf}) => {
+const Banner = ({ dataAcf }) => {
   const data = [
     {
       icon: (
@@ -127,7 +127,8 @@ const Banner = ({dataAcf}) => {
     <div className='relative'>
       <SlideVideoTours
         type='banner'
-        mainImage={'/imgs/home/bannerBg2.jpg'}
+        mainImage={dataAcf?.main_image?.url}
+        data={dataAcf?.lists_anh_banner}
       />
       <div className='md:hidden'>
         <Breadcrumb
@@ -186,7 +187,7 @@ const Banner = ({dataAcf}) => {
 
           <div className='grid grid-cols-2 xmd:grid-cols-1  md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
             <div className='space-y-[1.5rem]'>
-              {data.slice(0, 2).map((d, i) => (
+              {data?.slice(0, 2)?.map((d, i) => (
                 <div
                   key={i}
                   className='flex flex-col items-start space-y-[0.75rem]'
@@ -232,7 +233,7 @@ const Banner = ({dataAcf}) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -284,7 +285,7 @@ const Banner = ({dataAcf}) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -320,6 +321,10 @@ const Banner = ({dataAcf}) => {
               height={400}
               className='z-10 w-[7.71775rem]'
             />
+            <div className="absolute top-[2.4rem] left-[2rem] flex items-center flex-col">
+              <div className='text-white text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>From</div>
+              <div className='text-[color:var(--greyscaletext-0,#FFF)] font-londrina text-[2rem] not-italic font-black leading-[100%]'>{dataAcf?.gia?.self_driving}{dataAcf?.don_vi}</div>
+            </div>
             <Image
               priority
               alt='ảnh'

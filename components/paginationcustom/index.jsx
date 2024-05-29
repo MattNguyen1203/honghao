@@ -44,7 +44,7 @@ export default function PaginationCustom({href, pagination}) {
   const handlePushParam = (d) => {
     setShouldFetch(true)
     setCurrentPaggiBlog(d)
-    router.push(`${pathName}?${createQueryString('page', d)}`, {scroll: false})
+    router.push(`${pathName}?${createQueryString("page", d)}`, { scroll: false })
   }
   return (
     <Pagination className={'mt-[2rem] paginationcustom'}>
