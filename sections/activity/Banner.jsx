@@ -82,7 +82,6 @@ const SheetCp = ({children, dataMoto}) => {
       slidesPerView: 1.5,
     },
   }
-  console.log({isMobile})
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>

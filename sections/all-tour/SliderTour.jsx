@@ -7,15 +7,25 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import ItemTour from '@/components/itemtour'
 import Image from 'next/image'
 
-export default function SliderTour() {
+export default function SliderTour({type, dataBestTrip}) {
+  const isAllTourPage = type === 'alltour'
+
+  console.log('dataBestTrip', dataBestTrip)
   return (
     <div className='container mt-[4.38rem] xmd:mt-[2rem] xmd:!pr-0'>
       <span className='xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
         EXPLORE
       </span>
-      <h2 className='text-3 xmd:text-25 font-black text-greyscale-80'>
-        BEST TRIPS <br className='md:hidden' /> FOR YOU
-      </h2>
+      {isAllTourPage ? (
+        <h2 className='text-3 xmd:text-25 font-black text-greyscale-80'>
+          BEST TRIPS <br className='md:hidden' /> FOR YOU
+        </h2>
+      ) : (
+        <h2 className='text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
+          TRIPS FOR YOU
+        </h2>
+      )}
+
       <div className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
           slidesPerView={'auto'}
@@ -33,12 +43,15 @@ export default function SliderTour() {
           modules={[Navigation]}
           className='mySwiper xmd:pr-[0.75rem]'
         >
-          {new Array(10).fill(0).map((e, index) => (
+          {dataBestTrip?.map((e, index) => (
             <SwiperSlide
               className='xmd:!w-[16.8755rem] xmd:!h-[23.33956rem]'
               key={index}
             >
-              <ItemTour className={'xmd:!h-[23.33956rem]'} />
+              <ItemTour
+                className={'xmd:!h-[23.33956rem]'}
+                data={e}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

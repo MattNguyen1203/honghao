@@ -67,11 +67,11 @@ function ScrollUp() {
           cy='27'
           r='25.5'
           stroke='#E64827'
-         strokeWidth='3'
+          strokeWidth='3'
         />
       </svg>
       <svg
-        className='scrollUp absolute cursor-pointer md:top-[50%] xl:top-0 left-0 '
+        className='scrollUp absolute cursor-pointer md:top-[50%] xl:top-0 left-0'
         xmlns='http://www.w3.org/2000/svg'
         width='54'
         height='54'

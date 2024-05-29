@@ -12,7 +12,7 @@ const BikeAnimationMb = ({children}) => {
 
   useEffect(() => {
     let isStart = false
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       const scrollPosition = window.scrollY || window.pageYOffset
       const sectionTop = sectionRef.current?.getBoundingClientRect()?.top
 
@@ -30,9 +30,10 @@ const BikeAnimationMb = ({children}) => {
         })
         return
       }
-    })
+    }
+    window.addEventListener('scroll', handleScroll)
 
-    return () => window?.removeEventListener('scroll')
+    return () => window?.removeEventListener('scroll', handleScroll)
   }, [])
   return (
     <div

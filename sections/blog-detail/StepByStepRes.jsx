@@ -5,7 +5,7 @@
 export default function StepByStepRes({dataAcf}) {
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides
-  console.log(dataSLides)
+  // console.log(dataSLides)
   return (
     <div className='w-full h-fit px-[0.75rem] lg:hidden'>
       <div className='flex items-center'>

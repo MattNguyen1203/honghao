@@ -26,6 +26,6 @@ export async function POST(req) {
   const responsive = await fetch(paymentOnepay.REQUEST_API, requestOptions)
   console.log(responsive)
   const data = await responsive.text()
-  console.log(data)
+  // console.log(data)
   return Response.json(data)
 }

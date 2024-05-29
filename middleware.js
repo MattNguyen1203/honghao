@@ -1,10 +1,15 @@
 import {NextResponse, userAgent} from 'next/server'
 
 export function middleware(request) {
-  const url = request.nextUrl
-  if (url.pathname.includes('undefined')) {
-    return NextResponse.redirect(new URL('/404', request.url))
-  }
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-next-pathname', request.nextUrl.pathname)
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  })
+}
 
-  return NextResponse.rewrite(url)
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
