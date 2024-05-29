@@ -67,7 +67,7 @@ function ScrollUp() {
           cy='27'
           r='25.5'
           stroke='#E64827'
-          stroke-width='3'
+         strokeWidth='3'
         />
       </svg>
       <svg

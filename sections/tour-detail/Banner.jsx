@@ -210,7 +210,7 @@ const Banner = ({ dataAcf }) => {
                       <path
                         d='M1 1H273'
                         stroke='url(#paint0_linear_8549_24325)'
-                        stroke-linecap='round'
+                        strokeLinecap='round'
                       />
                       <defs>
                         <linearGradient
@@ -221,10 +221,10 @@ const Banner = ({ dataAcf }) => {
                           y2='1.49976'
                           gradientUnits='userSpaceOnUse'
                         >
-                          <stop stop-color='#D9D9D9' />
+                          <stop stopColor='#D9D9D9' />
                           <stop
                             offset='1'
-                            stop-color='#D9D9D9'
+                            stopColor='#D9D9D9'
                             stopOpacity='0'
                           />
                         </linearGradient>
@@ -262,7 +262,7 @@ const Banner = ({ dataAcf }) => {
                       <path
                         d='M1 1H273'
                         stroke='url(#paint0_linear_8549_24325)'
-                        stroke-linecap='round'
+                        strokeLinecap='round'
                       />
                       <defs>
                         <linearGradient
@@ -273,10 +273,10 @@ const Banner = ({ dataAcf }) => {
                           y2='1.49976'
                           gradientUnits='userSpaceOnUse'
                         >
-                          <stop stop-color='#D9D9D9' />
+                          <stop stopColor='#D9D9D9' />
                           <stop
                             offset='1'
-                            stop-color='#D9D9D9'
+                            stopColor='#D9D9D9'
                             stopOpacity='0'
                           />
                         </linearGradient>

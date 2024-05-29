@@ -156,7 +156,7 @@ export default function Season({data, dataWeather}) {
                 fill='none'
                 className='group-hover:fill-orange-normal-hover transition-400'
               >
-                <g clip-path='url(#clip0_8549_23525)'>
+                <g clipPath='url(#clip0_8549_23525)'>
                   <circle
                     cx='20'
                     cy='20'
@@ -167,7 +167,7 @@ export default function Season({data, dataWeather}) {
                   <path
                     d='M13.5 20H27'
                     stroke='url(#paint0_linear_8549_23525)'
-                    stroke-width='2'
+                    strokeWidth='2'
                   />
                   <g filter='url(#filter0_i_8549_23525)'>
                     <path
@@ -184,7 +184,7 @@ export default function Season({data, dataWeather}) {
                     width='28'
                     height='18'
                     filterUnits='userSpaceOnUse'
-                    color-interpolation-filters='sRGB'
+                    colorInterpolationFilters='sRGB'
                   >
                     <feBlend
                       mode='normal'
@@ -227,10 +227,10 @@ export default function Season({data, dataWeather}) {
                     y2='20'
                     gradientUnits='userSpaceOnUse'
                   >
-                    <stop stop-color='white' />
+                    <stop stopColor='white' />
                     <stop
                       offset='1'
-                      stop-color='white'
+                      stopColor='white'
                       stop-opacity='0'
                     />
                   </linearGradient>
@@ -255,7 +255,7 @@ export default function Season({data, dataWeather}) {
                 fill='none'
                 className='group-hover:fill-orange-normal-hover transition-400'
               >
-                <g clip-path='url(#clip0_8549_23524)'>
+                <g clipPath='url(#clip0_8549_23524)'>
                   <circle
                     cx='20'
                     cy='20'
@@ -265,7 +265,7 @@ export default function Season({data, dataWeather}) {
                   <path
                     d='M26.5 20H13'
                     stroke='url(#paint0_linear_8549_23524)'
-                    stroke-width='2'
+                    strokeWidth='2'
                   />
                   <g filter='url(#filter0_i_8549_23524)'>
                     <path
@@ -282,10 +282,10 @@ export default function Season({data, dataWeather}) {
                     width='28'
                     height='18'
                     filterUnits='userSpaceOnUse'
-                    color-interpolation-filters='sRGB'
+                    colorInterpolationFilters='sRGB'
                   >
                     <feFlood
-                      flood-opacity='0'
+                      floodOpacity='0'
                       result='BackgroundImageFix'
                     />
                     <feBlend
@@ -329,10 +329,10 @@ export default function Season({data, dataWeather}) {
                     y2='20'
                     gradientUnits='userSpaceOnUse'
                   >
-                    <stop stop-color='white' />
+                    <stop stopColor='white' />
                     <stop
                       offset='1'
-                      stop-color='white'
+                      stopColor='white'
                       stop-opacity='0'
                     />
                   </linearGradient>

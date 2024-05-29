@@ -1,10 +1,10 @@
 'use client'
 
 import ICQtyDown from '@/components/icons/ICQtyDown'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-const FilterPriceItem = ({data}) => {
-  const [qty, setQty] = useState(1)
+const FilterPriceItem = ({data, setOptionSelected}) => {
+  const [qty, setQty] = useState(0)
   const handleInc = () => {
     setQty((prev) => prev + 1)
   }
@@ -12,6 +12,13 @@ const FilterPriceItem = ({data}) => {
     if (qty < 2) return
     setQty((prev) => prev - 1)
   }
+
+  useEffect(() => {
+    setOptionSelected((prev) => ({
+      ...prev,
+      [data?.key]: qty,
+    }))
+  }, [qty])
 
   return (
     <div className='w-fit min-w-[8.75rem] flex-col'>

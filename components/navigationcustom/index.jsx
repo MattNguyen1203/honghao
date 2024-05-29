@@ -26,7 +26,7 @@ export default function NavigationCustom({
             className={
               'group-hover:fill-[#E64827] fill-transparent duration-300 ease-linear'
             }
-            clip-path='url(#clip0_7452_38196)'
+            clipPath='url(#clip0_7452_38196)'
           >
             <circle
               className={white ? 'stroke-white' : 'stroke-[#E64827]'}
@@ -44,7 +44,7 @@ export default function NavigationCustom({
               }
               d='M14.5 20L28 20'
               stroke='url(#paint0_linear_7452_38196)'
-              stroke-width='2'
+              strokeWidth='2'
             />
             <g filter='url(#filter0_i_7452_38196)'>
               {/* mui ten */}
@@ -66,10 +66,10 @@ export default function NavigationCustom({
               width='28'
               height='18'
               filterUnits='userSpaceOnUse'
-              color-interpolation-filters='sRGB'
+              colorInterpolationFilters='sRGB'
             >
               <feFlood
-                flood-opacity='0'
+                floodOpacity='0'
                 result='BackgroundImageFix'
               />
               <feBlend
@@ -113,10 +113,10 @@ export default function NavigationCustom({
               y2='20'
               gradientUnits='userSpaceOnUse'
             >
-              <stop stop-color='#F2531C' />
+              <stop stopColor='#F2531C' />
               <stop
                 offset='1'
-                stop-color='#F2531C'
+                stopColor='#F2531C'
                 stopOpacity='0'
               />
             </linearGradient>
@@ -153,7 +153,7 @@ export default function NavigationCustom({
             className={
               'group-hover:fill-[#E64827] fill-transparent duration-300 ease-linear'
             }
-            clip-path='url(#clip0_7452_38196)'
+            clipPath='url(#clip0_7452_38196)'
           >
             <circle
               className={white ? 'stroke-white' : 'stroke-[#E64827]'}
@@ -171,7 +171,7 @@ export default function NavigationCustom({
               }
               d='M14.5 20L28 20'
               stroke='url(#paint0_linear_7452_38196)'
-              stroke-width='2'
+              strokeWidth='2'
             />
             <g filter='url(#filter0_i_7452_38196)'>
               {/* mui ten */}
@@ -193,10 +193,10 @@ export default function NavigationCustom({
               width='28'
               height='18'
               filterUnits='userSpaceOnUse'
-              color-interpolation-filters='sRGB'
+              colorInterpolationFilters='sRGB'
             >
               <feFlood
-                flood-opacity='0'
+                floodOpacity='0'
                 result='BackgroundImageFix'
               />
               <feBlend
@@ -240,10 +240,10 @@ export default function NavigationCustom({
               y2='20'
               gradientUnits='userSpaceOnUse'
             >
-              <stop stop-color='#F2531C' />
+              <stop stopColor='#F2531C' />
               <stop
                 offset='1'
-                stop-color='#F2531C'
+                stopColor='#F2531C'
                 stopOpacity='0'
               />
             </linearGradient>
