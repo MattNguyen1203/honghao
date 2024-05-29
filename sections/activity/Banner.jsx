@@ -1,11 +1,11 @@
 'use client'
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image'
-import {Button} from '@/components/customCn/button'
-import {cn} from '@/lib/utils'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {FreeMode} from 'swiper/modules'
+import { Button } from '@/components/customCn/button'
+import { cn } from '@/lib/utils'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
@@ -26,24 +26,12 @@ import {
 } from '@/components/customCn/sheet'
 import Link from 'next/link'
 const data1 = [
-  {title: 'Experience'},
-  {title: 'Food'},
-  {title: 'Treaking'},
-  {title: 'People'},
+  { title: 'Experience' },
+  { title: 'Food' },
+  { title: 'Treaking' },
+  { title: 'People' },
 ]
-const DialogCp = ({children, data}) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(-1)
-  const mainSwiper = useRef()
-  const handleSlideChange = (swiper) => {
-    const newIndex = swiper?.realIndex
-    setActiveIndex(newIndex)
-  }
-
-  useEffect(() => {
-    mainSwiper?.current?.slideTo(activeIndex)
-  }, [activeIndex])
-
+const DialogCp = ({ children, data }) => {
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -74,7 +62,7 @@ const DialogCp = ({children, data}) => {
   )
 }
 
-const SheetCp = ({children, dataMoto}) => {
+const SheetCp = ({ children, data }) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -82,7 +70,7 @@ const SheetCp = ({children, dataMoto}) => {
       slidesPerView: 1.5,
     },
   }
-  console.log({isMobile})
+  console.log({ isMobile })
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>
@@ -106,19 +94,9 @@ const SheetCp = ({children, dataMoto}) => {
               loop={false}
               modules={[FreeMode]}
             >
-              {[0, 0, 0, 0, 0].map((d, i) => (
-                <SwiperSlide
-                  key={i}
-                  className=' overflow-hidden'
-                >
-                  <Image
-                    priority
-                    alt='ảnh'
-                    src={'/imgs/activity/image-popup-banner.png'}
-                    width={1500}
-                    height={1500}
-                    className='xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]'
-                  />
+              {data?.lists_image?.map((d, i) => (
+                <SwiperSlide key={i} className=' overflow-hidden' >
+                  <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -152,7 +130,7 @@ const SheetCp = ({children, dataMoto}) => {
     </Sheet>
   )
 }
-const Banner = ({dataBaner, dataBanerMobi}) => {
+const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (

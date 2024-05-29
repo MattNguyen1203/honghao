@@ -7,7 +7,7 @@ import StepByStep from '../blog-detail/StepByStep'
 import StepByStepRes from '../blog-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
 import Booking from './Booking'
-const TourDetail = ({data, dataPage}) => {
+const TourDetail = ({ data, dataPage }) => {
   return (
     <main className='alldestinations '>
       <section>
@@ -25,7 +25,7 @@ const TourDetail = ({data, dataPage}) => {
         <Booking />
       </section>
       <section>
-        <FaqAboutTrip dataAcfPage={dataPage?.faq} />
+        <FaqAboutTrip dataAcfPage={dataPage?.faq} videoAndImage={dataPage?.video_and_image} />
       </section>
 
       <OurTeam />

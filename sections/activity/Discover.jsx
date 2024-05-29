@@ -1,10 +1,10 @@
 'use client'
-import React, {useRef, useState, useEffect, useCallback} from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import gsap from 'gsap'
-import {cn} from '@/lib/utils'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {FreeMode, Navigation} from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { cn } from '@/lib/utils'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { FreeMode, Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
-import {useSearchParams, useRouter} from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 gsap.registerPlugin(ScrollTrigger)
 
 import {
@@ -24,13 +24,13 @@ import {
   SheetTrigger,
 } from '@/components/customCn/sheet'
 const data2 = [
-  {param: 'Experience', title: 'Experience'},
-  {param: 'Food', title: 'Food'},
-  {param: 'Treaking', title: 'Treaking'},
-  {param: '', title: 'People'},
+  { param: 'Experience', title: 'Experience' },
+  { param: 'Food', title: 'Food' },
+  { param: 'Treaking', title: 'Treaking' },
+  { param: '', title: 'People' },
 ]
 
-const SheetCp = ({children, listsImageCurrent, dataMenu}) => {
+const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
   const isMobile = useStore((state) => state.isMobile)
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -63,10 +63,10 @@ const SheetCp = ({children, listsImageCurrent, dataMenu}) => {
     if (d !== '') {
       router.push(
         `/activity/?${createQueryString('tabs', d?.toString().toLowerCase())}`,
-        {scroll: false},
+        { scroll: false },
       )
     } else {
-      router.push(`/activity`, {scroll: false})
+      router.push(`/activity`, { scroll: false })
     }
     // const element = imagesRef.current;
     // if (element && !isMobile) {
@@ -109,14 +109,7 @@ const SheetCp = ({children, listsImageCurrent, dataMenu}) => {
               >
                 <div className='xmd:flex xmd:flex-col xmd:items-start xmd:gap-y-[0.5rem]'>
                   {d?.label}
-                  <div
-                    className={
-                      (!search?.includes(d?.param)
-                        ? 'bg-transparent w-0'
-                        : 'w-full bg-orange-normal') +
-                      ' md:hidden  h-[0.08rem] ease-linear duration-300 rounded-full  '
-                    }
-                  ></div>
+                  <div className={((activeTab !== (d?.param)) ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " md:hidden  h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
                 </div>
               </div>
             ))}
@@ -137,18 +130,8 @@ const SheetCp = ({children, listsImageCurrent, dataMenu}) => {
               modules={[FreeMode]}
             >
               {listsImageCurrent?.map((d, i) => (
-                <SwiperSlide
-                  key={i}
-                  className=' overflow-hidden'
-                >
-                  <Image
-                    priority
-                    alt='ảnh'
-                    src={d?.image}
-                    width={1500}
-                    height={1500}
-                    className='xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]'
-                  />
+                <SwiperSlide key={i} className=' overflow-hidden' >
+                  <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -182,7 +165,7 @@ const SheetCp = ({children, listsImageCurrent, dataMenu}) => {
     </Sheet>
   )
 }
-const Video = ({children, listsImageCurrent, dataMenu}) => {
+const Video = ({ children, listsImageCurrent, dataMenu }) => {
   return (
     <div className='relative  xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       <SheetCp
@@ -242,28 +225,28 @@ const Video = ({children, listsImageCurrent, dataMenu}) => {
     </div>
   )
 }
-const ImageBig = ({children}) => {
+const ImageBig = ({ children }) => {
   return (
     <div className='relative w-[35.6875rem] h-[23.8125rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
-const ImageNormal = ({children}) => {
+const ImageNormal = ({ children }) => {
   return (
     <div className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
-const ImageSmall = ({children}) => {
+const ImageSmall = ({ children }) => {
   return (
     <div className='relative w-[18.375rem] h-[12.25rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
-const Discover = ({dataDiscover}) => {
+const Discover = ({ dataDiscover }) => {
   const isMobile = useStore((state) => state.isMobile)
   const [currenImages, setCurrenImages] = useState('')
   const searchParams = useSearchParams()
@@ -402,11 +385,11 @@ const Discover = ({dataDiscover}) => {
       setCurrenImages(search)
       router.push(
         `/activity/?${createQueryString('tabs', d?.toString().toLowerCase())}`,
-        {scroll: false},
+        { scroll: false },
       )
     } else {
       setCurrenImages('')
-      router.push(`/activity`, {scroll: false})
+      router.push(`/activity`, { scroll: false })
     }
     const element = imagesRef.current
     if (element && !isMobile) {
@@ -467,11 +450,8 @@ const Discover = ({dataDiscover}) => {
             {dataDiscover?.main_desc}
           </h2>
 
-          <div
-            ref={menuRef}
-            className=' xmd:mt-[5rem] md:z-[10000] mt-[1.75rem] w-full h-[6.25rem] flex justify-center items-center shrink-0'
-          >
-            <div className='inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0'>
+          <div ref={menuRef} className=" xmd:mt-[5rem] md:z-[1000] mt-[1.75rem] w-full h-[6.25rem] flex justify-center items-center shrink-0">
+            <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">
               {dataDiscover?.lists_tabs?.map((d, i) => (
                 <div
                   onClick={() => scrollToElement(d?.param)}
@@ -512,12 +492,14 @@ const Discover = ({dataDiscover}) => {
               loop={false}
             >
               {listsImageCurrent?.map((d, i) => (
-                <SwiperSlide
-                  className={
-                    (i === 0 ? '!pl-[0.7rem]' : '!pl-[0.3rem]') +
-                    ' !flex  !items-end !justify-end'
+                <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
+                  {i === 0 && !isMobile &&
+                    <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
+                      <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
+                        className=" !h-full absolute top-0 bottom-0 left-0 " />
+                    </Video>
                   }
-                >
+
                   {i === 0 && !isMobile && (
                     <Video
                       dataMenu={dataDiscover?.lists_tabs}
@@ -535,190 +517,64 @@ const Discover = ({dataDiscover}) => {
                   )}
                   {i !== 0 && !isMobile && (
                     <ImageNormal>
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={d?.image}
-                        width={1600}
-                        height={1400}
-                        className=' w-full h-full'
-                      />
-                    </ImageNormal>
-                  )}
-                  {isMobile && (
+
+                      <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
+                        className=" w-full h-full" />
+                    </ImageNormal>)}
+                  {isMobile &&
                     <ImageNormal>
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={d?.image}
-                        width={1600}
-                        height={1400}
-                        className=' w-full h-full'
-                      />
-                    </ImageNormal>
-                  )}
+
+                      <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
+                        className=" w-full h-full" />
+                    </ImageNormal>}
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-          <div
-            id='acivity_lists_image'
-            ref={imagesRef}
-            className='z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center'
-          >
-            <div className='mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer'>
-              <div className='space-y-[4.69rem] flex flex-col justify-end items-end'>
-                <Video
-                  dataMenu={dataDiscover?.lists_tabs}
-                  listsImageCurrent={listsImageCurrent}
-                >
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[0]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+          <div id='acivity_lists_image' ref={imagesRef} className="z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center">
+
+            <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
+              <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
+                <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={500} height={500} className=" group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 ease-linear  cursor-pointer " />}
                 </Video>
                 <ImageBig>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[1]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[1]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <ImageNormal>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[2]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[2]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[3]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[3]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <ImageSmall>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[4]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[4]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageSmall>
               </div>
               <div className='space-y-[4.62rem] mt-[5.8rem]'>
                 <ImageNormal>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[5]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[5]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[6]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[6]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent && (
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={listsImageCurrent[7]?.image}
-                        width={500}
-                        height={500}
-                        className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                      />
-                    )}
+                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[7]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent && (
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={listsImageCurrent[8]?.image}
-                        width={500}
-                        height={500}
-                        className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                      />
-                    )}
+                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[8]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                 </div>
                 <ImageBig>
-                  {listsImageCurrent && (
-                    <Image
-                      priority
-                      alt='ảnh'
-                      src={listsImageCurrent[9]?.image}
-                      width={500}
-                      height={500}
-                      className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                    />
-                  )}
+                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[9]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent && (
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={listsImageCurrent[10]?.image}
-                        width={500}
-                        height={500}
-                        className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                      />
-                    )}
+                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[10]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent && (
-                      <Image
-                        priority
-                        alt='ảnh'
-                        src={listsImageCurrent[11]?.image}
-                        width={500}
-                        height={500}
-                        className=' group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer '
-                      />
-                    )}
+                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[11]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                 </div>
               </div>
