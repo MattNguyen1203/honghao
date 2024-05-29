@@ -34,7 +34,7 @@ const ItemTour = ({className, type, data}) => {
                 className='size-[1.5rem] xmd:size-[1rem] mr-[0.5rem]'
               />
               <span className='text-1 xmd:text-075 tracking-0.0125 text-greyscale-0/80'>
-                4 Days 5 Nights
+                {data?.time_data?.[0]?.name}
               </span>
 
               <div className='flex group-hover:h-0 h-[5.10919rem] w-[3.80475rem] rotate-[-24.824deg] bg-custom-gradient opacity-80 absolute top-[-1.28494rem] right-[-1.27806rem] animate-leftToRight'></div>
@@ -79,7 +79,7 @@ const ItemTour = ({className, type, data}) => {
                   Accomodation:
                 </span>
                 <span className='text-0875 tracking-[0.00875rem] text-greyscale-0 line-clamp-1'>
-                  Phòng Doom
+                  {data?.infos?.accomodation}
                 </span>
               </div>
 
@@ -95,7 +95,7 @@ const ItemTour = ({className, type, data}) => {
                   Motorbike:
                 </span>
                 <span className='text-0875 tracking-[0.00875rem] text-greyscale-0 line-clamp-1'>
-                  Xe Wave, Vision
+                  {data?.infos?.motorbike}
                 </span>
               </div>
 
@@ -111,7 +111,7 @@ const ItemTour = ({className, type, data}) => {
                   Tour guide:
                 </span>
                 <span className='text-0875 tracking-[0.00875rem] text-greyscale-0 line-clamp-1'>
-                  01 local tour guide with good English
+                  {data?.infos?.tour_guide}
                 </span>
               </div>
 
@@ -127,7 +127,7 @@ const ItemTour = ({className, type, data}) => {
                   Transport:
                 </span>
                 <span className='text-0875 tracking-[0.00875rem] text-greyscale-0 line-clamp-1'>
-                  Xe VIP, có trung chuyển sdhhhhhhhhhhhhhhhhhhhh
+                  {data?.infos?.transport}
                 </span>
               </div>
             </div>

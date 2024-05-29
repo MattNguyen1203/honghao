@@ -25,7 +25,7 @@ const Destinations = ({dataAcf, dataListCat}) => {
           divider
         />
       </section>
-      <section className='min-h-screen xmd:min-h-[130vh]'>
+      <section className='min-h-screen xmd:min-h-[130vh] md:mb-[5rem]'>
         <DiscoveryDestinations
           dataListCat={dataListCat}
           dataAcf={dataAcf?.acf}

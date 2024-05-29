@@ -25,7 +25,7 @@ const BikeAnimation = ({children}) => {
       (context) => {
         let {isDesktop, isMobile} = context.conditions
 
-        window.addEventListener('scroll', () => {
+        const handleScroll = () => {
           const scrollPosition = window.scrollY || window.pageYOffset
           const sectionTop = sectionRef.current?.getBoundingClientRect()?.top
 
@@ -56,9 +56,11 @@ const BikeAnimation = ({children}) => {
 
             return
           }
-        })
+        }
 
-        return () => window?.removeEventListener('scroll')
+        window.addEventListener('scroll', handleScroll)
+
+        return () => window?.removeEventListener('scroll', handleScroll)
       },
     )
   }, [])

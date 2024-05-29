@@ -7,7 +7,7 @@ import BikeAnimationMb from '@/components/bikeAnimateMb'
 export default function StepByStepRes({dataAcf}) {
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides
-  console.log(dataSLides)
+  // console.log(dataSLides)
   return (
     <>
       <div className='absolute'>

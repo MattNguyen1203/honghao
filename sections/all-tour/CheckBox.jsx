@@ -33,7 +33,6 @@ export default function CheckBox({item, length, setIsAllTour}) {
     setShouldFetch(true)
     if (isCheck) {
       const paramNew = new URLSearchParams(searchParams)
-      console.log({paramNew})
       const dataNew = device?.length > 0 && [...device]
       dataNew?.splice(
         dataNew?.findIndex((e) => e === item?.slug),
