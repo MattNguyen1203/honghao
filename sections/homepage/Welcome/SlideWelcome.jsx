@@ -36,7 +36,7 @@ const SlideWelcome = ({listVid}) => {
         modules={[EffectFade]}
         className='w-full h-full'
       >
-        {listVid.map((item, index) => (
+        {listVid?.map((item, index) => (
           <SwiperSlide
             className='relative'
             key={index}

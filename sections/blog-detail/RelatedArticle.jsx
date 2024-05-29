@@ -1,8 +1,14 @@
+"use client"
 import Image from 'next/image'
 import { Button } from '@/components/customCn/button'
 import CardBlog from '@/sections/blog/CardBlog.jsx'
 import Link from 'next/link'
-const RelatedArticle = () => {
+import useStore from '@/app/(store)/store'
+const RelatedArticle = ({ dataRelate }) => {
+  const { currentCategories, setCurrentCategories } = useStore((state) => state)
+
+
+
   return (
     <section className='relative md:mt-[4.5rem]  md:h-[60.18244rem] xmd:h-[31.1875rem]'>
       <Image priority alt="ảnh" src={'/imgs/blogDetail/mountain.png'} width={1600} height={1000} className="z-[-1] xmd:hidden absolute w-full h-full" />
@@ -36,13 +42,21 @@ const RelatedArticle = () => {
         </div>
         <div className="z-20 xmd:mt-[1.89rem] mt-[3.8rem] xmd:container xmd:overflow-auto no-scrollbar xmd:w-full">
           <div className=" flex items-start w-max xmd:space-x-[0.88rem] space-x-[1.4rem]">
-            <CardBlog />
-            <CardBlog />
+            {dataRelate?.map((p, i) => (
+              <div key={i} >
+
+                <CardBlog singlePost={p} />
+              </div>
+            ))}
           </div>
         </div>
         <div className="z-20 inline-flex items-center xmd:mt-[1.97rem] mt-[3rem] space-x-[1.3125rem]">
           <div className="xmd:hidden h-[0.0625rem] rounded-full bg-[rgba(255,255,255,0.60)]"></div>
-          <Button icon><Link href='/blog'>see All blogs</Link></Button>
+          <Link href={`/blog/${currentCategories}`}>
+            <Button icon>
+              see All blogs
+            </Button>
+          </Link>
           <div className="xmd:hidden h-[0.0625rem] rounded-full bg-[rgba(255,255,255,0.60)]"></div>
 
         </div>

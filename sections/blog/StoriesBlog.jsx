@@ -116,7 +116,7 @@ const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost })
                     {/* </div> */}
                   </div>
                 </Link>
-                {categories?.map((d, i) => (
+                {categories?.filter((c) => c?.slug !== 'uncategorized')?.map((d, i) => (
 
                   <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(d?.id)}>
                     <div value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
@@ -133,7 +133,10 @@ const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost })
                 ))}
               </div>
             </div>
-            <ListStories currentCategories={currentCategories} dataGetAllPostsByCategories={pathName === '/blog' ? dataCategorisAndFirstpost : dataGetAllPostsByCategories} />
+            <ListStories
+              currentCategories={currentCategories}
+              dataMainCard={dataCategorisAndFirstpost && dataCategorisAndFirstpost?.posts[0]}
+              dataGetAllPostsByCategories={pathName === '/blog' ? dataCategorisAndFirstpost : dataGetAllPostsByCategories} />
           </div>
 
         </div>

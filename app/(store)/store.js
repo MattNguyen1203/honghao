@@ -3,8 +3,17 @@ import {create} from 'zustand'
 const useStore = create((set) => ({
   isMobile: false,
   isTablet: false,
+  currentCategories: '',
+  setCurrentCategories: (data) => {
+    set((state) => {
+      return {
+        ...state,
+        currentCategories: data,
+      }
+    })
+  },
+
   shouldFetch: false,
-  currentPaggiBlog: 1,
   setShouldFetch: (data) => {
     set((state) => {
       return {
@@ -13,6 +22,7 @@ const useStore = create((set) => ({
       }
     })
   },
+  currentPaggiBlog: 1,
   setCurrentPaggiBlog: (data) => {
     set((state) => {
       return {

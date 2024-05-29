@@ -27,7 +27,7 @@ const CardBlog = ({ singlePost }) => {
           </div>
         </div>
         <div className="absolute bottom-[1.87rem] xmd:bottom-[1.12rem] xmd:left-[1.12rem] left-[1.87rem] flex flex-col space-y-[0.5rem]">
-          <div className="flex flex-col justify-center text-greyscale-5 text-xl xmd:text-[1rem] not-italic font-extrabold leading-[120%]">
+          <div className="flex xmd:line-clamp-2 flex-col justify-center text-greyscale-5 text-xl xmd:text-[1rem] not-italic font-extrabold leading-[120%]">
             {singlePost?.title}
           </div>
           <div className="flex  flex-col justify-center text-greyscale-5 text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]">

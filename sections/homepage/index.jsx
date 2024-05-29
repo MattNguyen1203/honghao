@@ -12,10 +12,21 @@ import BestTrips from './BestTrips/BestTrips'
 import GladdestMoment from './GladdestMomment/GladdestMoment'
 import GladdestMomentRes from './GladdestMomment/GladdestMomentRes'
 
-const Homepage = ({dataAcf, dataWeather}) => {
+const Homepage = ({
+  dataAcf,
+  dataWeather,
+  listTypeofTour,
+  listTime,
+  listTours,
+}) => {
   return (
     <main>
-      <Banner dataBanner={dataAcf?.banner} />
+      <Banner
+        dataBanner={dataAcf?.banner}
+        listTypeofTour={listTypeofTour}
+        listTime={listTime}
+        listTours={listTours}
+      />
       <About dataAbout={dataAcf} />
       <BestTrips />
       <GladdestMoment />
