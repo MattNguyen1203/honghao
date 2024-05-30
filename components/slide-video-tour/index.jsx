@@ -59,6 +59,9 @@ const images2 = [
   {img: '/imgs/common/slidevideotour.png'},
 ]
 const SlideVideoTours = ({type, data, mainImage}) => {
+  if (!data) {
+    return
+  }
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(-1)
   const isMobile = useStore((state) => state.isMobile)
@@ -99,19 +102,22 @@ const SlideVideoTours = ({type, data, mainImage}) => {
       </svg>
 
       {checkIsBanner && (
-        <Image
-          priority
-          alt='ảnh'
-          src={mainImage}
-          width={1500}
-          height={1500}
-          className={cn(
-            ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
-            checkIsBanner
-              ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
-              : '',
-          )}
-        />
+        <>
+          <div className='absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+          <Image
+            priority
+            alt='ảnh'
+            src={mainImage}
+            width={1500}
+            height={1500}
+            className={cn(
+              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
+              checkIsBanner
+                ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
+                : '',
+            )}
+          />
+        </>
       )}
       {!checkIsBanner && (
         <Swiper
@@ -129,7 +135,6 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
-
           {data?.map((d, i) => {
             const img1 = d?.url
             return (

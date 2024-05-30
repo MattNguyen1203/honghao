@@ -54,7 +54,7 @@ export default function StepByStep({dataAcf}) {
     swiper.slideTo(index + 1, 500)
   }
   return (
-    <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
+    <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit xmd:hidden'>
       {/* map */}
       <div className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
@@ -67,7 +67,7 @@ export default function StepByStep({dataAcf}) {
       </div>
       {/* map */}
       <div className='ml-[3rem] flex items-center w-full xlg:hidden'>
-        <div className='overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
+        <div className='!overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
           <div className='flex items-center'>
             <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
             <span className='text-[1rem] font-bold leading-normal text-greyscale-80'>
@@ -252,13 +252,10 @@ const ItemCardInfo = ({item}) => {
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
         {item?.title}
       </h3>
-      {item?.descriptions?.map((des, idx) => (
-        <div
-          className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
-          key={idx}
-          dangerouslySetInnerHTML={{__html: des?.descriptions_text}}
-        />
-      ))}
+      <div
+        className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
+        dangerouslySetInnerHTML={{__html: item?.descriptions_text}}
+      />
       <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>
         ( {item?.distance} )
       </div>

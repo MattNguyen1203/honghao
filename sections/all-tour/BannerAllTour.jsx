@@ -5,8 +5,9 @@ import Image from 'next/image'
 export default function BannerAllTour() {
   return (
     <section className='w-full h-[43.75rem] xmd:h-[21.04713rem] relative'>
+      <div className='absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
-        className='size-full object-cover absolute top-0 left-0'
+        className='size-full object-cover absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'
         alt='ảnh banner all tour'
         src={'/imgs/all-tour/Banners.jpg'}
         width={1600}

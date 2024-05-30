@@ -76,7 +76,7 @@ const Filter = ({listTypeofTour, listTime, listTours}) => {
             </span>
           </div>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-fit z-[999]'>
+        <DialogContent className='sm:max-w-fit'>
           <HomeForm />
         </DialogContent>
       </Dialog>
