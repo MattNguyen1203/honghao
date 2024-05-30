@@ -8,16 +8,23 @@ import {
 } from 'next/navigation'
 import {useEffect, useState} from 'react'
 import useStore from '@/app/(store)/store'
-export default function CheckBox({item, length, setIsAllTour}) {
-  const router = useRouter()
+export default function CheckBox({
+  item,
+  length,
+  setIsAllTour,
+  isAllTour,
+  loading,
+  setLoading,
+  handleFilterDevicePc1,
+}) {
   const searchParams = useSearchParams()
   const {shouldFetch, setShouldFetch} = useStore((state) => state)
-  const pathName = usePathname()
   const device = searchParams.get('device')?.split('--')
-  const [isCheck, setIsCheck] = useState(
-    device?.includes(item?.slug) ? true : false,
-  )
+  const [isCheck, setIsCheck] = useState(false)
 
+  useEffect(() => {
+    setIsCheck(searchParams.get('device')?.includes(item?.slug) || false)
+  }, [searchParams.get('device'), isAllTour])
   useEffect(() => {
     if (device?.length === length) {
       setIsAllTour(true)
@@ -26,51 +33,20 @@ export default function CheckBox({item, length, setIsAllTour}) {
     }
     if (!device) {
       setIsAllTour(true)
-      setIsCheck(false)
     }
   }, [device])
-  const handleFilterDevicePc = () => {
+  const handClick = () => {
+    setLoading(true)
     setShouldFetch(true)
-    if (isCheck) {
-      const paramNew = new URLSearchParams(searchParams)
-      const dataNew = device?.length > 0 && [...device]
-      dataNew?.splice(
-        dataNew?.findIndex((e) => e === item?.slug),
-        1,
-      )
-      const searchParamsNew =
-        dataNew?.length > 1 ? dataNew?.join('--') : dataNew?.[0]
-      if (dataNew?.length > 0) {
-        paramNew.set('device', searchParamsNew)
-        paramNew.set('page', 1)
-      } else {
-        paramNew.delete('device', searchParamsNew)
-      }
-      router.push(pathName + '?' + paramNew, {
-        scroll: false,
-      })
-
-      return setIsCheck(false)
-    } else {
-      setIsAllTour(false)
-      const paramNew = new URLSearchParams(searchParams)
-      const searchParamsNew = device
-        ? device?.join('--') + '--' + item?.slug
-        : item?.slug
-      paramNew.set('device', searchParamsNew)
-      paramNew.set('page', 1)
-
-      router.push(pathName + '?' + paramNew.toString(), {
-        scroll: false,
-      })
-      return setIsCheck(true)
-    }
+    handleFilterDevicePc1(item)
   }
-
   return (
-    <div
-      onClick={handleFilterDevicePc}
-      className='flex justify-start items-center space-x-[0.375rem]'
+    <button
+      disabled={loading}
+      onClick={handClick}
+      className={`${
+        loading && 'opacity-30'
+      } flex justify-start items-center space-x-[0.375rem]`}
     >
       <input
         checked={isCheck}
@@ -80,6 +56,6 @@ export default function CheckBox({item, length, setIsAllTour}) {
       <span className='uppercase text-0875 font-medium text-greyscale-80'>
         {item?.name}
       </span>
-    </div>
+    </button>
   )
 }

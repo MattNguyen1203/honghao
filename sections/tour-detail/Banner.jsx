@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 
-const Banner = ({ dataAcf }) => {
+const Banner = ({dataAcf}) => {
   const data = [
     {
       icon: (
@@ -185,7 +185,7 @@ const Banner = ({ dataAcf }) => {
             </div>
           </div>
 
-          <div className='grid grid-cols-2 xmd:grid-cols-1  md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
+          <div className='grid grid-cols-2 xmd:grid-cols-1 md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
             <div className='space-y-[1.5rem]'>
               {data?.slice(0, 2)?.map((d, i) => (
                 <div
@@ -233,7 +233,7 @@ const Banner = ({ dataAcf }) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{ __html: d?.children }}
+                    dangerouslySetInnerHTML={{__html: d?.children}}
                   />
                 </div>
               ))}
@@ -285,30 +285,12 @@ const Banner = ({ dataAcf }) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{ __html: d?.children }}
+                    dangerouslySetInnerHTML={{__html: d?.children}}
                   />
                 </div>
               ))}
             </div>
           </div>
-        </div>
-        <div className='flex xmd:mt-[1.5rem] md:hidden justify-center items-center gap-[0.25rem]'>
-          <div className='text-[color:var(--Orange-Normal,#E64827)] text-sm not-italic font-extrabold leading-[150%] tracking-[0.00219rem]'>
-            SEE LESS
-          </div>
-          <svg
-            className='w-[0.49956rem] h-[0.83356rem] shrink-0'
-            xmlns='http://www.w3.org/2000/svg'
-            width='12'
-            height='8'
-            viewBox='0 0 12 8'
-            fill='none'
-          >
-            <path
-              d='M6.02485 3.65534L2.86071 6.81934C2.70011 6.9801 2.50368 7.0603 2.27145 7.0603C2.03924 7.0603 1.8429 6.98008 1.68232 6.81934L1.19395 6.33113C1.03342 6.17062 0.953125 5.97417 0.953125 5.74203C0.953125 5.50989 1.03342 5.31352 1.19395 5.15276L5.43232 0.907935C5.59293 0.747307 5.78934 0.666992 6.02159 0.666992C6.25385 0.666992 6.45009 0.747284 6.61077 0.907935L10.8491 5.15274C11.0097 5.3135 11.09 5.50984 11.09 5.742C11.09 5.97417 11.0097 6.1706 10.8491 6.33111L10.3609 6.81931C10.2004 6.98008 10.005 7.06028 9.77488 7.06028C9.54491 7.06028 9.34741 6.98006 9.18249 6.81931L6.02485 3.65534Z'
-              fill='#E64827'
-            />
-          </svg>
         </div>
 
         <div className=' absolute z-10 xmd:left-[13.5rem]  bottom-[3rem] md:left-1/2 md:-translate-x-1/2 md:bottom-[6rem] opacity-100 duration-500 '>
@@ -321,9 +303,14 @@ const Banner = ({ dataAcf }) => {
               height={400}
               className='z-10 w-[7.71775rem]'
             />
-            <div className="absolute top-[2.4rem] left-[2rem] flex items-center flex-col">
-              <div className='text-white text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>From</div>
-              <div className='text-[color:var(--greyscaletext-0,#FFF)] font-londrina text-[2rem] not-italic font-black leading-[100%]'>{dataAcf?.gia?.self_driving}{dataAcf?.don_vi}</div>
+            <div className='absolute top-[2.4rem] left-[2rem] flex items-center flex-col'>
+              <div className='text-white text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
+                From
+              </div>
+              <div className='text-[color:var(--greyscaletext-0,#FFF)] font-londrina text-[2rem] not-italic font-black leading-[100%]'>
+                {dataAcf?.gia?.self_driving}
+                {dataAcf?.don_vi}
+              </div>
             </div>
             <Image
               priority
