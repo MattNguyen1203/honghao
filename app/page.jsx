@@ -1,8 +1,8 @@
-import {HOME_PAGE_ID, haGiangLat, haGiangLon} from '@/lib/constants'
+import { HOME_PAGE_ID, haGiangLat, haGiangLon } from '@/lib/constants'
 import getData from '@/lib/getData'
 import Homepage from '@/sections/homepage'
-import {fetchMetaData} from '@/lib/fetchMetadata'
-import {getMeta} from '@/lib/getMeta'
+import { fetchMetaData } from '@/lib/fetchMetadata'
+import { getMeta } from '@/lib/getMeta'
 
 const getHomepageData = async () => {
   return getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)

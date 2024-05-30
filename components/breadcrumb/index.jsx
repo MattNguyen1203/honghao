@@ -3,16 +3,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const Breadcrumb = ({ divider, className, children }) => {
+const Breadcrumb = ({ divider, className, isBanner, children }) => {
   return (
     <>
       <div
         className={cn(
-          'flex flex-col items-start gap-5 mx-auto md:h-14 kKao4-container xmd:pb-2 pt-2 md:pt-5',
-          className,
+          'flex flex-col items-start gap-5 mx-auto md:h-14 kKao4-container  xmd:pb-2 pt-2 md:pt-5',
+          className
         )}
       >
-        <div className='flex flex-row items-center w-full space-x-2'>
+        <div className={cn('flex flex-row items-center w-full space-x-2', isBanner ? '!pl-0 !justify-center' : '')}>
           <Link
             href='/'
             className='flex items-center space-x-[0.25rem]'

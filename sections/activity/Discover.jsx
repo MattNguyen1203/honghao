@@ -30,52 +30,28 @@ const data2 = [
   { param: '', title: 'People' },
 ]
 
-const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
+const SheetCp = ({ children, dataMenu,isLearnMore }) => {
   const isMobile = useStore((state) => state.isMobile)
+   const [currenImages, setCurrenImages] = useState('')
+  const listsImageCurrent = dataMenu.find(
+    (l, i) => l?.param === currenImages
+  )?.lists_image
+  const listsImageMoreCurrent = dataMenu.find(
+    (l, i) => l?.param === currenImages)?.lists_more_image
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const search = searchParams.get('tabs')
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams)
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams],
-  )
   const breakpoints = {
     767: {
       spaceBetween: 0,
       slidesPerView: 1.5,
     },
   }
-  const [activeTab, setActiveTab] = useState('')
-
-  useEffect(() => {
-    if (search) {
-      setActiveTab(search)
-    } else {
-      setActiveTab('')
-    }
-  }, [search])
   const scrollToElement = (d) => {
     if (d !== '') {
-      router.push(
-        `/activity/?${createQueryString('tabs', d?.toString().toLowerCase())}`,
-        { scroll: false },
-      )
+      setCurrenImages(d)
     } else {
-      router.push(`/activity`, { scroll: false })
+      setCurrenImages('')
+
     }
-    // const element = imagesRef.current;
-    // if (element && !isMobile) {
-    //   const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 200;
-    //   window.scrollTo({
-    //     top: offsetTop,
-    //     behavior: 'smooth',
-    //   });
-    // }
   }
   return (
     <Sheet>
@@ -101,7 +77,7 @@ const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
                     'md:pl-[8rem] md:pr-[4.5rem]': i === 2,
                     'md:pl-[9.5rem] md:pr-[4rem]': i === 3,
                     'md:bg-orange-normal md:text-white xmd:text-orange-normal':
-                      activeTab === d?.param,
+                      currenImages === d?.param,
                     'shadow-no': isMobile,
                     'shadow-right': !isMobile,
                   },
@@ -109,7 +85,7 @@ const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
               >
                 <div className='xmd:flex xmd:flex-col xmd:items-start xmd:gap-y-[0.5rem]'>
                   {d?.label}
-                  <div className={((activeTab !== (d?.param)) ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " md:hidden  h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
+                  <div className={((currenImages !== (d?.param)) ? 'bg-transparent w-0' : 'w-full bg-orange-normal') + " md:hidden  h-[0.08rem] ease-linear duration-300 rounded-full  "}></div>
                 </div>
               </div>
             ))}
@@ -129,7 +105,7 @@ const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
               loop={false}
               modules={[FreeMode]}
             >
-              {listsImageCurrent?.map((d, i) => (
+              {(isLearnMore?listsImageMoreCurrent:listsImageCurrent)?.map((d, i) => (
                 <SwiperSlide key={i} className=' overflow-hidden' >
                   <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
@@ -165,12 +141,12 @@ const SheetCp = ({ children, listsImageCurrent, dataMenu }) => {
     </Sheet>
   )
 }
-const Video = ({ children, listsImageCurrent, dataMenu }) => {
+const Video = ({ children, dataMenu}) => {
   return (
     <div className='relative  xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       <SheetCp
+
         dataMenu={dataMenu}
-        listsImageCurrent={listsImageCurrent}
       >
         {children}
         <div className='w-full h-full absolute top-0 left-0 duration-200 transition-all group-hover:bg-black bg-transparent group-hover:bg-opacity-30 z-50'></div>
@@ -250,8 +226,6 @@ const Discover = ({ dataDiscover }) => {
   const isMobile = useStore((state) => state.isMobile)
   const [currenImages, setCurrenImages] = useState('')
   const searchParams = useSearchParams()
-  const router = useRouter()
-  const search = searchParams.get('tabs')
 
   const listsImageCurrent = dataDiscover?.lists_tabs?.find(
     (l, i) => l?.param === currenImages,
@@ -259,27 +233,11 @@ const Discover = ({ dataDiscover }) => {
   const listsImageMoreCurrent = dataDiscover?.lists_tabs?.find(
     (l, i) => l?.param === currenImages,
   )?.lists_more_image
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams)
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams],
-  )
   const imgRef = useRef()
   const scrollRef = useRef()
   const menuRef = useRef()
   const imagesRef = useRef()
   const imgRefMobi = useRef()
-  useEffect(() => {
-    if (search) {
-      setCurrenImages(search)
-    } else {
-      setCurrenImages('')
-    }
-  }, [search])
   // img mobi
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -320,76 +278,12 @@ const Discover = ({ dataDiscover }) => {
     }, imgRef)
     return () => ctx.revert()
   }, [])
-  // menu
-  useEffect(() => {
-    if (window.innerWidth > 768) {
-      gsap.set(menuRef.current, {
-        boxShadow: '0px 0px 0px 0px rgba(0, 0, 0, 0)',
-        backgroundColor: 'transparent',
-      })
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          repeat: 0,
-          repeatDelay: 0,
-          scrollTrigger: {
-            trigger: menuRef.current,
-            pin: true,
-            pinSpacing: false,
-            start: '0% -0.001%',
-            // markers: true,
-            end: () => `+=${scrollRef.current.offsetWidth}`,
-            // toggleActions: "restart reverse reverse reverse",
-            scrub: 1,
-            // onToggle: self => {
-
-            //   if (self.isActive) {
-            //     gsap.to(menuRef.current, {
-            //       boxShadow: "90px 128px 44px 0px rgba(66, 72, 66, 0.00), 57px 82px 40px 0px rgba(66, 72, 66, 0.01), 32px 46px 34px 0px rgba(66, 72, 66, 0.05), 14px 20px 25px 0px rgba(66, 72, 66, 0.09), 4px 5px 14px 0px rgba(66, 72, 66, 0.10)",
-            //       backgroundColor: 'white', duration: 1,
-            //       transitionTimingFunction: 'linear'
-            //     });
-            //   } else {
-            //     gsap.to(menuRef.current, {
-            //       boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)",duration: 1,
-            //       backgroundColor: 'transparent',
-            //       transitionTimingFunction: 'linear'
-            //     });
-            //   }
-            // },
-            onUpdate: (self) => {
-              if (self.progress > 0) {
-                gsap.to(menuRef.current, {
-                  boxShadow:
-                    '90px 128px 44px 0px rgba(66, 72, 66, 0.00), 57px 82px 40px 0px rgba(66, 72, 66, 0.01), 32px 46px 34px 0px rgba(66, 72, 66, 0.05), 14px 20px 25px 0px rgba(66, 72, 66, 0.09), 4px 5px 14px 0px rgba(66, 72, 66, 0.10)',
-                  backgroundColor: 'white',
-                  duration: 0.7,
-                  transitionTimingFunction: 'linear',
-                })
-              } else {
-                gsap.to(menuRef.current, {
-                  boxShadow: '0px 0px 0px 0px rgba(0, 0, 0, 0)',
-                  duration: 0.7,
-                  backgroundColor: 'transparent',
-                  transitionTimingFunction: 'linear',
-                })
-              }
-            },
-          },
-        })
-      }, menuRef)
-      return () => ctx.revert()
-    }
-  }, [])
   const scrollToElement = (d) => {
     if (d !== '') {
-      setCurrenImages(search)
-      router.push(
-        `/activity/?${createQueryString('tabs', d?.toString().toLowerCase())}`,
-        { scroll: false },
-      )
+      setCurrenImages(d)
     } else {
       setCurrenImages('')
-      router.push(`/activity`, { scroll: false })
+
     }
     const element = imagesRef.current
     if (element && !isMobile) {
@@ -401,15 +295,6 @@ const Discover = ({ dataDiscover }) => {
       })
     }
   }
-  const [activeTab, setActiveTab] = useState('')
-
-  useEffect(() => {
-    if (search) {
-      setActiveTab(search)
-    } else {
-      setActiveTab('')
-    }
-  }, [search])
   return (
     <section className='relative w-full'>
       <Image
@@ -431,7 +316,7 @@ const Discover = ({ dataDiscover }) => {
           height={1400}
           className='absolute image md:hidden top-[5rem] '
         />
-        <div className='w-full md:hidden flex justify-center items-center mt-[2.87rem]'>
+        <div className='w-full container md:hidden flex justify-center items-center mt-[2.87rem]'>
           <Image
             priority
             alt='ảnh'
@@ -460,7 +345,7 @@ const Discover = ({ dataDiscover }) => {
                 >
                   <div
                     className={
-                      (activeTab === d?.param
+                      (currenImages === d?.param
                         ? 'text-orange-normal'
                         : 'text-greyscale-10 ') +
                       ' group-hover:text-orange-normal text-[0.875rem] font-bold leading-[1.2] uppercase ease-linear duration-300'
@@ -470,7 +355,7 @@ const Discover = ({ dataDiscover }) => {
                   </div>
                   <div
                     className={
-                      (activeTab === d?.param
+                      (currenImages === d?.param
                         ? ' w-full bg-orange-normal'
                         : 'bg-transparent w-0') +
                       ' group-hover:bg-orange-normal group-hover:w-full h-[0.08rem] ease-linear duration-300 rounded-full  '
@@ -494,7 +379,11 @@ const Discover = ({ dataDiscover }) => {
               {listsImageCurrent?.map((d, i) => (
                 <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
                   {i === 0 && !isMobile &&
-                    <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
+                    <Video
+                    setCurrenImages={setCurrenImages}
+                    currenImages={currenImages} 
+                    dataMenu={dataDiscover?.lists_tabs} 
+                    listsImageCurrent={listsImageCurrent}>
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
                         className=" !h-full absolute top-0 bottom-0 left-0 " />
                     </Video>
@@ -536,51 +425,52 @@ const Discover = ({ dataDiscover }) => {
             <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
               <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
                 <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={500} height={500} className=" group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 ease-linear  cursor-pointer " />}
                 </Video>
                 <ImageBig>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[1]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[1] && <Image priority alt="ảnh" src={listsImageCurrent[1]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <ImageNormal>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[2]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[2] && <Image priority alt="ảnh" src={listsImageCurrent[2]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[3]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[3] && <Image priority alt="ảnh" src={listsImageCurrent[3]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <ImageSmall>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[4]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[4] && <Image priority alt="ảnh" src={listsImageCurrent[4]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageSmall>
               </div>
               <div className='space-y-[4.62rem] mt-[5.8rem]'>
                 <ImageNormal>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[5]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[5] && <Image priority alt="ảnh" src={listsImageCurrent[5]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[6]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[6] && <Image priority alt="ảnh" src={listsImageCurrent[6]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[7]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[7] && <Image priority alt="ảnh" src={listsImageCurrent[7]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[8]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[8] && <Image priority alt="ảnh" src={listsImageCurrent[8]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                 </div>
                 <ImageBig>
-                  {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[9]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[9] && <Image priority alt="ảnh" src={listsImageCurrent[9]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[10]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[10] && <Image priority alt="ảnh" src={listsImageCurrent[10]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent && <Image priority alt="ảnh" src={listsImageCurrent[11]?.url} width={500} height={500} className=" group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[11] && <Image priority alt="ảnh" src={listsImageCurrent[11]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
                   </ImageSmall>
                 </div>
               </div>
             </div>
 
             <SheetCp
+            isLearnMore={true}
               dataMenu={dataDiscover?.lists_tabs}
               listsImageCurrent={listsImageMoreCurrent}
             >
