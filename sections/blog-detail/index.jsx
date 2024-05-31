@@ -17,7 +17,7 @@ const BlogDetail = async ({ dataDetailPost, data, slugCompare }) => {
   return (
     <main className='blog-detail'>
       <section>
-        <Banner />
+        <Banner dataDetailPost={dataDetailPost}/>
       </section>
       <section>
         <Detail dataDetailPost={dataDetailPost} />
