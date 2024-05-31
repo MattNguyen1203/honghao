@@ -78,17 +78,17 @@ const Detail = ({ dataDetailPost }) => {
   }
   return (
     <section className=' w-full md:border-b md:border-[#E5E5E5]'>
-      <Image
+      {dataDetailPost?.thumbnail&&<Image
         priority
         alt='ảnh'
         src={dataDetailPost?.thumbnail}
         width={1600}
         height={1000}
         className='xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] '
-      />
+      />}
       <div className='xmd:hidden '>
-        <Breadcrumb className="!pl-0">
-          <BreadcrumbLink subLink href='/blog'>blog</BreadcrumbLink>
+        <Breadcrumb divider className="!pl-0">
+          <BreadcrumbLink subLink href='/blog'>Blog</BreadcrumbLink>
           <BreadcrumbLink href={`/blog/${dataDetailPost?.post_slug}`}>{dataDetailPost?.title}</BreadcrumbLink>
         </Breadcrumb>
       </div>

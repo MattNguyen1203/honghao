@@ -2,6 +2,7 @@ import SlideVideoTours from '@/components/slide-video-tour'
 import React from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 
 const Banner = ({ dataAcf, dataTourDetail }) => {
   const data = [
@@ -131,10 +132,17 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
         data={dataAcf?.lists_anh_banner}
       />
       <div className='md:hidden'>
-        <Breadcrumb
-          divider
-          type='section'
-        />
+        <Breadcrumb divider className=''>
+          <BreadcrumbLink
+            subLink
+            href='/tour'
+          >
+            Tour
+          </BreadcrumbLink>
+          <BreadcrumbLink href={`/tours/${dataTourDetail?.detail_link}`}>
+            {dataTourDetail?.title}
+          </BreadcrumbLink>
+        </Breadcrumb>
       </div>
       <Image
         priority
@@ -195,7 +203,7 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
                   <div className='flex flex-col items-start justify-center gap-2 w-72'>
                     <div className='flex items-center gap-1'>
                       <div className='size-[1.5rem]'>{d?.icon}</div>
-                      <div className='text-greyscale-10 xmd:text-greyscale-30 text-base  not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-[0.0125rem]'>
+                      <div className='text-greyscale-10 xmd:text-greyscale-30 text-base not-italic font-bold xmd:font-normal xmd:leading-[1.5] xmd:tracking-[0.00219rem] leading-[120%] tracking-[0.0125rem]'>
                         {d?.title}
                       </div>
                     </div>
@@ -232,8 +240,10 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
                     </svg>
                   </div>
                   <div
-                    className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{ __html: d?.children }}
+                    className={`${
+                      i === 1 && 'xmd:pl-[0.5rem]'
+                    } tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]`}
+                    dangerouslySetInnerHTML={{__html: d?.children}}
                   />
                 </div>
               ))}
@@ -303,7 +313,7 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
               height={400}
               className='z-10 w-[7.71775rem]'
             />
-            <div className='absolute top-[2.4rem] left-[2rem] flex items-center flex-col'>
+            <div className='absolute top-[2.4rem] left-[2.4rem] flex items-center flex-col'>
               <div className='text-white text-base not-italic font-bold leading-[120%] tracking-[0.0125rem]'>
                 From
               </div>
