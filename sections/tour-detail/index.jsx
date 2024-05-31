@@ -8,12 +8,14 @@ import StepByStepRes from '../blog-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
-const TourDetail = ({data, dataPage, dataBestTrip}) => {
-
+const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail}) => {
   return (
     <main className='alldestinations '>
       <section>
-        <Banner dataAcf={data} />
+        <Banner
+          dataAcf={data}
+          dataTourDetail={dataTourDetail}
+        />
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb
@@ -21,13 +23,26 @@ const TourDetail = ({data, dataPage, dataBestTrip}) => {
           divider
         />
       </section>
-      <StepByStep dataAcf={data} />
-      <StepByStepRes dataAcf={data} />
+      <StepByStep
+        dataAcf={data}
+        dataTourDetail={dataTourDetail}
+      />
+      <StepByStepRes
+        dataAcf={data}
+        dataTourDetail={dataTourDetail}
+      />
       <section>
-        <Booking />
+        <Booking
+          data={data}
+          dataTourDetail={dataTourDetail}
+          dataPage={dataPage}
+        />
       </section>
       <section>
-        <FaqAboutTrip dataAcfPage={dataPage?.faq} videoAndImage={dataPage?.video_and_image} />
+        <FaqAboutTrip
+          dataAcfPage={dataPage?.faq}
+          videoAndImage={dataPage?.video_and_image}
+        />
       </section>
 
       <OurTeam />

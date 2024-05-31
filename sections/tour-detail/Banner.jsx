@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 
-const Banner = ({dataAcf}) => {
+const Banner = ({dataAcf, dataTourDetail}) => {
   const data = [
     {
       icon: (
@@ -181,7 +181,7 @@ const Banner = ({dataAcf}) => {
               </div>
             </div>
             <div className=' font-londrina xmd:text-greyscale-80 text-white text-[2rem] not-italic font-black leading-[100%]'>
-              {dataAcf?.name_tour}
+              {dataTourDetail?.title}
             </div>
           </div>
 

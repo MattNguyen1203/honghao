@@ -86,7 +86,11 @@ export default function InformationForm({
                     <span className='text-0875 font-semibold text-greyscale-80'>
                       {formattedDate(dataForm?.dob)}
                     </span>
-                    {dataForm?.address && ' from '} {dataForm?.address}
+                    {dataForm?.pickup && ' from '}
+                    <span className='text-0875 font-semibold text-greyscale-80'>
+                      {dataForm?.pickup}
+                    </span>
+                    {dataForm?.address && ' at '} {dataForm?.address}
                   </p>
                 </div>
               </TooltipTrigger>
@@ -95,7 +99,11 @@ export default function InformationForm({
                   <span className='text-0875 font-semibold text-greyscale-80'>
                     {formattedDate(dataForm?.dob)}
                   </span>
-                  {dataForm?.address && ' from '} {dataForm?.address}
+                  {dataForm?.pickup && ' from '}
+                  <span className='text-0875 font-semibold text-greyscale-80'>
+                    {dataForm?.pickup}
+                  </span>
+                  {dataForm?.address && ' at '} {dataForm?.address}
                 </p>
               </TooltipContent>
             </Tooltip>
@@ -129,7 +137,7 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${paxValueSelf} x {data?.paxValueSelf}
+              ${data?.priceSelf} x {paxValueSelf}
             </p>
           </div>
         </div>
@@ -139,7 +147,7 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${paxValueLocal} x {data?.paxValueLocal}
+              ${data?.priceLocal} x {paxValueLocal}
             </p>
           </div>
         </div>
@@ -169,9 +177,7 @@ export default function InformationForm({
             Provisional:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
-            $
-            {paxValueSelf * data?.paxValueSelf +
-              paxValueLocal * data?.paxValueLocal}
+            ${paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal}
           </span>
         </div>
         <div className='flex justify-between items-center w-full'>
@@ -181,8 +187,8 @@ export default function InformationForm({
           <span className='text-1 font-bold text-greyscale-5'>
             $
             {(
-              ((paxValueSelf * data?.paxValueSelf +
-                paxValueLocal * data?.paxValueLocal) /
+              ((paxValueSelf * data?.priceSelf +
+                paxValueLocal * data?.priceLocal) /
                 100) *
               3
             ).toFixed(2)}
@@ -195,12 +201,12 @@ export default function InformationForm({
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
             $
-            {((paxValueSelf * data?.paxValueSelf +
-              paxValueLocal * data?.paxValueLocal) /
+            {((paxValueSelf * data?.priceSelf +
+              paxValueLocal * data?.priceLocal) /
               100) *
               3 +
-              (paxValueSelf * data?.paxValueSelf +
-                paxValueLocal * data?.paxValueLocal)}
+              (paxValueSelf * data?.priceSelf +
+                paxValueLocal * data?.priceLocal)}
           </span>
         </div>
       </div>
