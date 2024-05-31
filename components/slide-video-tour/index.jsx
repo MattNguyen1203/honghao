@@ -20,6 +20,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 import { cn } from '@/lib/utils'
+
 const SlideVideoTours = ({ type, data, mainImage }) => {
   if (!data) {
     return
@@ -31,27 +32,59 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
   const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
 
+  const div1Ref = useRef(null);
+  const div2Refs = useRef([]);
+  const div3Ref = useRef(null);
+  const [distance, setDistance] = useState({ top: 0, left: 0 });
+
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
     setActiveIndex(newIndex)
   }
-  const handleSlide = (i) => {
-    // subSwiper?.current?.slideTo(i)
-    setActiveIndex(i)
+  const handleSlide = (index) => {
+    const div3 = div3Ref.current;
+    const div1 = div1Ref.current;
+    const div2 = div2Refs.current[index];
+    if (div1 && div2 && div3) {
+      const rect1 = div1.getBoundingClientRect();
+      const rect2 = div2.getBoundingClientRect();
+
+      const distanceTop = (rect2.top - rect1.top);
+      const distanceLeft = (rect2.left - rect1.left);
+      setDistance({ top: distanceTop, left: distanceLeft });
+      div3.style.top = window.innerWidth < 1024 ? `${distanceTop +10}px` : `${distanceTop + 20}px`;
+      // div3.style.left = `${distanceLeft - 100}px`;
+    }
+    setActiveIndex(index)
   }
   useEffect(() => {
     mainSwiper?.current?.slideTo(activeIndex)
   }, [activeIndex])
+
+
+
+  const handleMouseLeave = () => {
+    const div3 = div3Ref.current;
+    if (div3) {
+      div3.style.top = '20%';
+    }
+  };
+
+
+
   return (
     <div
+      ref={div1Ref}
       className={cn(
         'xmd:w-[23.40656rem] xmd:h-fit relative w-[86.875rem] h-[44.75rem] bg-white flex xmd:flex-col justify-center items-center rounded-3xl',
         checkIsBanner ? 'w-full h-[43.75rem] rounded-none' : '',
       )}
     >
       <svg
+        ref={div3Ref}
         className={cn(
-          'xmd:hidden activity arrowfr size-[3.3rem]  absolute right-[17rem] z-[100] -translate-y-1/2',
+
+          ' xmd:hidden activity arrowfr size-[3.3rem] duration-300 transition-all  absolute right-[17rem] z-[100] -translate-y-1/2',
           checkIsBanner ? ' top-[55%]' : ' top-[20%]',
         )}
         xmlns='http://www.w3.org/2000/svg'
@@ -122,7 +155,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           })}
         </Swiper>
       )}
-      <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
+      <div
+        onMouseLeave={handleMouseLeave}
+        className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
         <Swiper
           ref={subSwiper}
           onBeforeInit={(swiper) => {
@@ -168,6 +203,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                 className={cn(' ', checkIsBanner ? '' : 'cursor-pointer')}
               >
                 <div
+                  ref={el => div2Refs.current[i] = el}
                   onClick={() => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
