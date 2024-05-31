@@ -6,8 +6,8 @@ import getData from '@/lib/getData'
 import {GLOBAL_PAGE_ID} from '@/lib/constants'
 
 export async function generateMetadata(params) {
-  const result = await fetchMetaData(`tours/${params.slug}/`)
-  return getMeta(result, `/tours/${params.slug}`)
+  const result = await fetchMetaData(`tours/${params.params.slug?.[0]}/`)
+  return getMeta(result, `/tours/${params.params.slug?.[0]}`)
 }
 
 export default async function page({params: {slug}}) {
