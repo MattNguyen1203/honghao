@@ -67,7 +67,7 @@ export default function StepByStep({dataAcf}) {
       </div>
       {/* map */}
       <div className='ml-[3rem] flex items-center w-full xlg:hidden'>
-        <div className='!overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
+        <div className='bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-33px_51px_61px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
           <div className='flex items-center'>
             <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
             <span className='text-[1rem] font-bold leading-normal text-greyscale-80'>

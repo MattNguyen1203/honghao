@@ -37,15 +37,15 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
       children: [
         {
           label: 'Best Budget',
-          link: '/tours',
+          link: '/tours?device=best-budget',
         },
         {
           label: 'Standard',
-          link: '/tours',
+          link: '/tours?device=standard',
         },
         {
           label: 'Premium',
-          link: '/tours',
+          link: '/tours?device=premium',
         },
         {
           label: 'All Tours',
@@ -214,6 +214,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
                           onClick={handleClose}
                         >
                           {subItem?.label}
+                          {console.log(subItem)}
                         </Link>
                       ))}
                     </div>
