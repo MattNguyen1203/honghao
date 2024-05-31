@@ -4,13 +4,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
 import Link from 'next/link'
 
-const dataTourDetail = {
-  titleTour: 'Ha Giang Loop tour',
-  typeoftour: 'Itinerary',
-  choosedays: { title: '3 days 2 night', day: 3 },
-}
-
-const Socials = () => {
+const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
   const phoneNumber = '0941556338'
   return (
     <div className=' xmd:hidden fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
@@ -22,7 +16,12 @@ const Socials = () => {
             </div>
           </DialogTrigger>
           <DialogContent className='sm:max-w-fit'>
-            <HomeForm dataTourDetail={dataTourDetail} />
+            <HomeForm
+              listLocation={dataAcf}
+              listTypeofTour={listTypeofTour}
+              listTime={listTime}
+              listTours={listTours}
+            />
           </DialogContent>
         </Dialog>
       </div>

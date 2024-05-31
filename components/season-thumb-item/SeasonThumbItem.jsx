@@ -64,7 +64,7 @@ export default function SeasonThumbItem({
       )}
       <div
         className={cn(
-          'text-center text-1 font-extrabold leading-1.2 tracking-0.0125 font-tripsans opacity-90 uppercase',
+          'text-center text-1 tablet:text-15 font-extrabold leading-1.2 tracking-0.0125 font-tripsans opacity-90 uppercase',
           {
             'text-greyscale-80': isMobile,
             'text-greyscale-0': !isMobile,
@@ -75,7 +75,7 @@ export default function SeasonThumbItem({
       </div>
       <p
         className={cn(
-          'text-0.75 text-center font-tripsans leading-1.2 tracking-0.00375 opacity-70 font-normal',
+          'text-0.75 tablet:text-1125 text-center font-tripsans leading-1.2 tracking-0.00375 opacity-70 font-normal',
           {
             'text-greyscale-80': isMobile,
             'text-greyscale-0': !isMobile,
@@ -86,7 +86,7 @@ export default function SeasonThumbItem({
       </p>
       <strong
         className={cn(
-          'font-tripsans text-0.75 font-extrabold leading-1.2 tracking-0.00375 opacity-80',
+          'font-tripsans text-0.75 tablet:text-15 font-extrabold leading-1.2 tracking-0.00375 opacity-80',
           {
             'text-greyscale-80': isMobile,
             'text-greyscale-0': !isMobile,
@@ -99,7 +99,7 @@ export default function SeasonThumbItem({
         <Image
           src={'/imgs/home/cloud-with-raining.svg'}
           alt='cloud with raining'
-          className='size-[0.875rem]'
+          className='size-[0.875rem] tablet:size-[1.5rem]'
           width={120}
           height={120}
         />
@@ -107,14 +107,14 @@ export default function SeasonThumbItem({
         <Image
           src={'/imgs/home/cloud-with-raining-mobile.svg'}
           alt='cloud with raining'
-          className='size-[0.875rem]'
+          className='size-[0.875rem] tablet:size-[1.5rem]'
           width={120}
           height={120}
         />
       )}
       <p
         className={cn(
-          'font-tripsans text-0.75 font-extrabold leading-1.2 tracking-0.00375 opacity-80',
+          'font-tripsans text-0.75 tablet:text-125 font-extrabold leading-1.2 tracking-0.00375 opacity-80',
           {
             'text-greyscale-80': isMobile,
             'text-greyscale-0': !isMobile,

@@ -9,7 +9,7 @@ import {
 
 export default function InformationForm({
   dataForm = {},
-  dataTourDetail,
+  titleTour,
   data,
   paxValueLocal,
   paxValueSelf,
@@ -47,7 +47,7 @@ export default function InformationForm({
             Type of tour
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
-            {dataTourDetail?.titleTour}: {dataForm?.typeoftour}{' '}
+            {titleTour}: {dataForm?.typeoftour}{' '}
             {dataForm?.typeoftour && dataForm?.choosedays && 'in '}
             {dataForm?.choosedays}
           </div>
