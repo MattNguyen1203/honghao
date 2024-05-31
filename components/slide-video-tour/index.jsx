@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {
   FreeMode,
   Navigation,
@@ -9,7 +9,7 @@ import {
   Thumbs,
   EffectFade,
 } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -19,11 +19,8 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import { cn } from '@/lib/utils'
-const SlideVideoTours = ({ type, data, mainImage }) => {
-  if (!data) {
-    return
-  }
+import {cn} from '@/lib/utils'
+const SlideVideoTours = ({type, data, mainImage}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
@@ -67,19 +64,22 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
       </svg>
 
       {checkIsBanner && (
-        <Image
-          priority
-          alt='ảnh'
-          src={mainImage}
-          width={1500}
-          height={1500}
-          className={cn(
-            ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
-            checkIsBanner
-              ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
-              : '',
-          )}
-        />
+        <>
+          <div className='xmd:hidden absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+          <Image
+            priority
+            alt='ảnh'
+            src={mainImage}
+            width={1500}
+            height={1500}
+            className={cn(
+              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
+              checkIsBanner
+                ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
+                : '',
+            )}
+          />
+        </>
       )}
       {!checkIsBanner && (
         <Swiper
@@ -93,7 +93,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           freemode={true}
           onSlidesChange={handleSlideChange}
           navigation={false}
-          thumbs={{ swiper: thumbsSwiper }}
+          thumbs={{swiper: thumbsSwiper}}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
@@ -141,8 +141,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
             delay: 0,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
-          }
-          }
+          }}
           centeredSlides={checkIsBanner ? true : false}
           mousewheel={true}
           speed={checkIsBanner ? 1500 : 1500}
@@ -156,7 +155,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           modules={[Navigation, Thumbs, Autoplay, Mousewheel]}
           className={cn(
             'slide-video-tour mySwiper',
-            checkIsBanner ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]' : 'h-[41.75rem] ',
+            checkIsBanner
+              ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]'
+              : 'h-[41.75rem] ',
           )}
           id='swiper_discover'
         >

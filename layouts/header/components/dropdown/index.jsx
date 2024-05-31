@@ -214,7 +214,6 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
                           onClick={handleClose}
                         >
                           {subItem?.label}
-                          {console.log(subItem)}
                         </Link>
                       ))}
                     </div>
