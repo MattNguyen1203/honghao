@@ -30,9 +30,9 @@ const data2 = [
   { param: '', title: 'People' },
 ]
 
-const SheetCp = ({ children, dataMenu,isLearnMore }) => {
+const SheetCp = ({ children, dataMenu, isLearnMore }) => {
   const isMobile = useStore((state) => state.isMobile)
-   const [currenImages, setCurrenImages] = useState('')
+  const [currenImages, setCurrenImages] = useState('')
   const listsImageCurrent = dataMenu.find(
     (l, i) => l?.param === currenImages
   )?.lists_image
@@ -105,7 +105,7 @@ const SheetCp = ({ children, dataMenu,isLearnMore }) => {
               loop={false}
               modules={[FreeMode]}
             >
-              {(isLearnMore?listsImageMoreCurrent:listsImageCurrent)?.map((d, i) => (
+              {(isLearnMore ? listsImageMoreCurrent : listsImageCurrent)?.map((d, i) => (
                 <SwiperSlide key={i} className=' overflow-hidden' >
                   <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
                 </SwiperSlide>
@@ -141,7 +141,7 @@ const SheetCp = ({ children, dataMenu,isLearnMore }) => {
     </Sheet>
   )
 }
-const Video = ({ children, dataMenu}) => {
+const Video = ({ children, dataMenu }) => {
   return (
     <div className='relative  xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
       <SheetCp
@@ -380,10 +380,10 @@ const Discover = ({ dataDiscover }) => {
                 <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
                   {i === 0 && !isMobile &&
                     <Video
-                    setCurrenImages={setCurrenImages}
-                    currenImages={currenImages} 
-                    dataMenu={dataDiscover?.lists_tabs} 
-                    listsImageCurrent={listsImageCurrent}>
+                      setCurrenImages={setCurrenImages}
+                      currenImages={currenImages}
+                      dataMenu={dataDiscover?.lists_tabs}
+                      listsImageCurrent={listsImageCurrent}>
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
                         className=" !h-full absolute top-0 bottom-0 left-0 " />
                     </Video>
@@ -470,7 +470,7 @@ const Discover = ({ dataDiscover }) => {
             </div>
 
             <SheetCp
-            isLearnMore={true}
+              isLearnMore={true}
               dataMenu={dataDiscover?.lists_tabs}
               listsImageCurrent={listsImageMoreCurrent}
             >

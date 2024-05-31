@@ -9,13 +9,13 @@ import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
-import Breadcrumb from '@/components/breadcrumb'
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogClose,
 } from '@/components/customCn/dialog'
+import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import {
   Sheet,
@@ -175,29 +175,29 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           src={dataBaner?.image_title_big}
           width={840}
           height={355}
-          className='  xmd:top-[9rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute md:left-[0rem]  xl:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+          className='  xmd:top-[9rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
         <div className='md:hidden'>
           <Breadcrumb className="!pl-0">
-          <BreadcrumbLink isBanner href='/activity'>Activity</BreadcrumbLink>
-        </Breadcrumb>
+            <BreadcrumbLink isBanner href='/activity'>Activity</BreadcrumbLink>
+          </Breadcrumb>
         </div>
-        <div className=' md:absolute flex-col md:left-[0.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
+        <div className=' md:absolute flex-col tablet:left-[5rem] lg:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
           <div className='md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
             {dataBaner?.desc_text}
           </div>
           <div className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
-            <Link href='/tours/book-now'>
+            <Link className='xmd:!w-max xmd:!flex-1' href='/tours/book-now'>
               <Button
-                className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
+                className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'
                 icon
               >
                 BOOK NOW
               </Button>
             </Link>
-            <Link href={'/tours'}>
+            <Link className='xmd:!w-max xmd:!flex-1' href={'/tours'}>
               <Button
-                className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
+                className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'
                 icon
                 variant='outline_white'
               >
@@ -227,7 +227,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
 
         {/* motobike */}
 
-        <div className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] xl:left-[-1rem] md:left-[-1.05rem] left-[2.8rem] '>
+        <div className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] lg:left-[-1rem] tablet:left-[3.35rem] left-[2.8rem] '>
           <div className=' relative'>
             <div className=' absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center space-y-[0] w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -277,7 +277,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 />
               </svg>
             </div>
-            <div className='xmd:top-[10rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
+            <div className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
               <div className='relative'>
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataMoto?.label}
@@ -316,9 +316,9 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           </div>
         </div>
         {/* hiking */}
-        <div className='absolute w-[4.75rem] h-[6.25rem] xl:left-[-4.1rem] md:left-[-4.1rem]  left-[-0.5rem] top-[63.5rem]'>
+        <div className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.5rem] top-[63.5rem]'>
           <div className='relative '>
-            <div className=' absolute top-[5rem] left-[14.2rem] md:left-[31rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]'>
+            <div className=' absolute top-[5rem] left-[14.2rem] md:left-[28rem] lg:left-[30.5rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]'>
               <div className='xmd:hidden'>
                 <DialogCp data={dataMoto}>
                   <Image
@@ -366,7 +366,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 />
               </svg>
             </div>
-            <div className='xmd:top-[4.5rem] left-[3.5rem] top-[3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
+            <div className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
               <div>
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataHiking?.label}
@@ -396,7 +396,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </div>
             </div>
             <div
-              className='absolute left-[18.4rem] top-[4.2rem] md:left-[35.5rem] md:top-[6.5rem] text-white bg-orange-normal 
+              className='absolute left-[18.4rem] top-[4.2rem] tablet:left-[32.5rem] lg:left-[35rem] md:top-[6.5rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 px-2.5 py-1.5 rounded-[1.25rem]'
             >
@@ -404,7 +404,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             </div>
           </div>
         </div>
-        <div className='xmd:pr-[0.75rem] absolute xl:right-[0rem] md:right-[0rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+        <div className='xmd:pr-[0.75rem] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>
