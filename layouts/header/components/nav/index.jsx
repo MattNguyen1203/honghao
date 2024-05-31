@@ -52,7 +52,7 @@ const Nav = ({setOpenNav}) => {
           alt='Hồng Hào travel'
           width={200}
           height={200}
-          className='w-[9.625rem] h-[3.1875rem] object-contain xmd:w-[7.1875rem] xmd:h-[2.5625rem]'
+          className='w-[9.625rem] h-[3.1875rem] object-contain xmd:w-[7.1875rem] xmd:h-[2.5625rem] tablet:w-[12rem] tablet:h-[5rem]'
         />
       </Link>
 
@@ -68,11 +68,11 @@ const Nav = ({setOpenNav}) => {
           alt='Hồng Hào travel'
           width={50}
           height={50}
-          className='size-[2.0625rem] object-contain mr-[0.44rem]'
+          className='size-[2.0625rem] object-contain mr-[0.44rem] tablet:size-[4rem]'
         />
         <span
           className={cn(
-            'text-125 xmd:text-1 font-bold text-greyscale-0 uppercase',
+            'text-125 tablet:text-175 xmd:text-1 font-bold text-greyscale-0 uppercase',
           )}
         >
           Menu

@@ -52,7 +52,7 @@ const SlideImgs = ({animationCompleted, listImg = []}) => {
         onSlideChange={(swiper) => {
           setDotPositionIndex(swiper.realIndex)
         }}
-        className='w-[71rem] h-[35rem] relative translate-y-[100vh] xlg:w-full xmd:h-[30rem] xlg:translate-y-[0]'
+        className='w-[71rem] h-[35rem] tablet:h-[80rem] relative translate-y-[100vh] xlg:w-full xmd:h-[30rem] xlg:translate-y-[0]'
         id='homepage_banner-swiper'
       >
         {listImg?.map((item, index) => (

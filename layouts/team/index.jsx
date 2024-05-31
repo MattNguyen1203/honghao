@@ -14,10 +14,10 @@ export default async function OurTeam({darkTheme}) {
   return (
     <section className='flex items-center justify-between w-full'>
       <div className='team subContainer flex pl-0 ml-auto xmd:pl-0 xmd:mt-[3rem] mt-[3.75rem] bg-transparent xmd:flex-col justify-between md:space-x-[3.5rem] xmd:space-y-[3rem] items-start overflow-hidden'>
-        <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem]'>
+        <div className='md:w-[25.0625rem] xmd:mx-[1rem] space-y-[2.12rem] tablet:space-y-[4rem] tablet:pl-[4rem] tablet:w-max'>
           <div
             className={cn(
-              'font-bold uppercase text-1125 text-greyscale-80/40',
+              'font-bold uppercase text-1125 text-greyscale-80/40 tablet:text-175',
               {
                 'text-greyscale-0 opacity-40': darkTheme,
               },
@@ -36,7 +36,7 @@ export default async function OurTeam({darkTheme}) {
           <span
             dangerouslySetInnerHTML={{__html: dataTeam?.content}}
             className={cn(
-              'relative text-[1rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40',
+              'relative text-[1rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40 tablet:text-15',
               darkTheme && 'text-greyscale-5/50',
             )}
           ></span>
@@ -46,7 +46,7 @@ export default async function OurTeam({darkTheme}) {
               icon
               className='!flex-1 tablet:w-1/2 !w-max shrink-0'
             >
-              <Link href='/tours/detail-abc'> BOOK NOW</Link>
+              <Link href='/about-us'> About Us</Link>
             </Button>
             <Button
               icon

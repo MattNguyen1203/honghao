@@ -1,10 +1,15 @@
 'use client'
 
-import React, {useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import FilterSelectItem from './FilterSelectItem'
 import FilterPriceItem from './FilterPriceItem'
 import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
+const dataFormInit = {
+  titleTour: 'Ha Giang Loop tour',
+  typeoftour: 'Itinerary',
+  choosedays: {title: '3 days 2 night', day: 3},
+}
 
 const dataPrice = [
   {
@@ -17,28 +22,53 @@ const dataPrice = [
   },
 ]
 
-const Filter = ({listTypeofTour, listTime, listTours}) => {
+const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
   const dataFilter = [
     {
       label: 'days',
       content: listTime?.terms,
-      key: 'time',
+      key: 'time_data',
     },
     {
       label: 'TYPE OF TOUR',
       content: listTypeofTour?.terms,
-      key: 'type',
+      key: 'type_of_tour_data',
     },
   ]
 
   const [optionSelected, setOptionSelected] = useState({
-    type: listTypeofTour?.terms?.[0]?.slug,
-    time: listTime?.terms?.[0]?.slug,
+    type_of_tour_data: listTypeofTour?.terms?.[0]?.slug,
+    time_data: listTime?.terms?.[0]?.slug,
     selfPax: 0,
     localPax: 0,
   })
 
-  console.log('optionSelected', optionSelected)
+  const [tourSelected, setTourSelected] = useState({})
+
+  useEffect(() => {
+    const tourMatch = listTours?.tours?.find(
+      (item, index) =>
+        item?.time_data?.[0]?.slug === optionSelected?.time_data &&
+        item?.type_of_tour_data?.[0]?.slug ===
+          optionSelected?.type_of_tour_data,
+    )
+
+    setTourSelected(tourMatch)
+  }, [optionSelected, listTours])
+
+  const totalPrice = useMemo(() => {
+    if (!tourSelected) return 0
+    const selfPrice = tourSelected?.gia?.self_driving || 0
+    const localPrice = tourSelected?.gia?.local_driver || 0
+
+    return (
+      Number(selfPrice) * Number(optionSelected?.selfPax) +
+      Number(localPrice) * Number(optionSelected?.localPax)
+    )
+  }, [tourSelected, optionSelected])
+
+  console.log('tourSelected', tourSelected)
+
   return (
     <div className='xmd:hidden flex items-center absolute bottom-[2.94rem] left-1/2 -translate-x-1/2 bg-greyscale-0 rounded-[0.75rem] py-[0.75rem] pl-[2rem] pr-[0.75rem] z-[1000]'>
       {dataFilter?.map((item, index) => (
@@ -69,15 +99,26 @@ const Filter = ({listTypeofTour, listTime, listTours}) => {
         <DialogTrigger asChild>
           <div className='bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer'>
             <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
-              $299
+              ${totalPrice}
             </span>
             <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase'>
               book now
             </span>
           </div>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-fit z-[999]'>
-          <HomeForm />
+        <DialogContent className='sm:max-w-fit'>
+          <HomeForm
+            dataFormInit={{
+              titleTour: tourSelected?.title,
+              typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
+              choosedays: {title: tourSelected?.time_data?.[0]?.name, day: 3},
+              paxValueSelf: optionSelected?.selfPax,
+            }}
+            listLocation={commonData}
+            listTypeofTour={listTypeofTour}
+            listTime={listTime}
+            listTours={listTours}
+          />
         </DialogContent>
       </Dialog>
     </div>

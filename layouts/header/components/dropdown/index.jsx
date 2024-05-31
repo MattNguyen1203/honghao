@@ -135,7 +135,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
           alt='hong hao travel'
           width={200}
           height={200}
-          className='absolute top-[1.5rem] xmd:top-[3.38rem] left-[5rem] xmd:left-[1.25rem] w-[7.5625rem] h-[3.375rem] object-contain z-10'
+          className='absolute top-[1.5rem] xmd:top-[3.38rem] left-[5rem] xmd:left-[1.25rem] w-[7.5625rem] h-[3.375rem] object-contain z-10 tablet:w-[12rem] tablet:h-[5rem]'
         />
       </Link>
 

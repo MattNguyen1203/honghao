@@ -388,7 +388,7 @@ export default function Season({data, dataWeather}) {
                   ref={myRef}
                   className='absolute top-0 -translate-x-1/2 flex flex-col items-center -translate-y-[98%] transition-400'
                 >
-                  <strong className='font-tripsans text-1 font-extrabold leading-1.2 tracking-0.0125 mb-[0.44rem] text-greyscale-0'>
+                  <strong className='font-tripsans text-1 tablet:text-15 font-extrabold leading-1.2 tracking-0.0125 mb-[0.44rem] text-greyscale-0'>
                     Now
                   </strong>
                   <Image

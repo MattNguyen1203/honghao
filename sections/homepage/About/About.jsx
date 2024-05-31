@@ -110,7 +110,7 @@ const About = ({dataAbout}) => {
 
       <div
         ref={nextSectionRef}
-        className='pl-[6.75rem] xmd:px-[1rem] flex relative pb-[20.87rem] xmd:pb-[2.5rem] pt-[5rem] xmd:pt-[2.5rem]'
+        className='pl-[6.75rem] tablet:pl-[4rem] tablet:pb-[5rem] xmd:px-[1rem] flex relative pb-[20.87rem] xmd:pb-[2.5rem] pt-[5rem] xmd:pt-[2.5rem]'
       >
         <div className='w-[38.8125rem] xmd:w-full relative z-10'>
           <div className='xmd:flex hidden text-0875 text-greyscale-0/40 font-bold tracking-[0.00875rem] mb-[0.8rem]'>
@@ -153,7 +153,12 @@ const About = ({dataAbout}) => {
               variant='default'
               className='w-fit xmd:w-[10.21875rem] py-[1rem] px-[2rem] mr-[1rem]'
             >
-              Book now
+              <Link
+                href={'/about-us'}
+                className='flex'
+              >
+                About Us
+              </Link>
             </Button>
 
             <Link href='/tours'>

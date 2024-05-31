@@ -8,8 +8,16 @@ import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
-const Banner = ({dataBanner, listTypeofTour, listTime, listTours}) => {
+const Banner = ({
+  dataBanner,
+  listTypeofTour,
+  listTime,
+  listTours,
+  commonData,
+}) => {
   const isMobile = useStore((state) => state.isMobile)
+  const isTablet = useStore((state) => state.isTablet)
+
   const [animationCompleted, setAnimationCompleted] = useState(false)
 
   useEffect(() => {
@@ -111,8 +119,8 @@ const Banner = ({dataBanner, listTypeofTour, listTime, listTours}) => {
       className='xmd:min-h-[30rem] xlg:bg-green-normal'
       id='homepage__banner'
     >
-      {isMobile ? (
-        <div className='relative z-20 w-full h-[30rem] md:hidden flex '>
+      {isMobile || isTablet ? (
+        <div className='relative z-20 w-full h-[30rem] tablet:h-[80rem] lg:hidden flex '>
           <SlideImgs
             animationCompleted={true}
             listImg={dataBanner?.banner_gallery}
@@ -185,6 +193,7 @@ const Banner = ({dataBanner, listTypeofTour, listTime, listTours}) => {
             listTypeofTour={listTypeofTour}
             listTime={listTime}
             listTours={listTours}
+            commonData={commonData}
           />
 
           <div className='absolute top-0 left-0 z-20 w-full h-full'>

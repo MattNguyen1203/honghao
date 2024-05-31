@@ -1,19 +1,24 @@
+'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 
-export default function ItemCardBestTrip() {
+export default function ItemCardBestTrip({data}) {
   return (
-    <div className='rounded-[0.75rem] group h-[23.33956rem] w-[16.8755rem] tablet:h-[43.33956rem] tablet:w-[36rem] lg:h-[34.375rem] lg:w-[47.3125rem] relative flex xmd:flex-col-reverse tablet:flex-col-reverse lg:items-end lg:justify-between justify-start items-start lg:p-[1.5rem] p-[1rem] overflow-hidden item_tour_home'>
+    <Link
+      href={`/tours/${data?.detail_link}`}
+      className='rounded-[0.75rem] group h-[23.33956rem] w-[16.8755rem] tablet:h-[43.33956rem] tablet:w-[36rem] lg:h-[34.375rem] lg:w-[47.3125rem] relative flex xmd:flex-col-reverse tablet:flex-col-reverse lg:items-end lg:justify-between justify-start items-start lg:p-[1.5rem] tablet:p-[2.5rem] p-[1rem] overflow-hidden item_tour_home'
+    >
       <div className='z-10 size-full absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
         className='absolute top-0 left-0 size-full rounded-[0.75rem]'
         alt='item card'
-        src={'/home/ItemCard.jpg'}
+        src={data?.thumbnail || '/home/ItemCard.jpg'}
         width={757}
         height={550}
       />
       <div className='z-10 flex flex-col space-y-[0.66rem] lg:w-[33.9375rem] w-full'>
-        <span className='font-black text-white lg:text-15 text-1'>
-          Ha Giang Loop tour: Itinerary in 4 Days 5 Nights
+        <span className='font-black text-white lg:text-15 text-1 tablet:text-3'>
+          {data?.title}
         </span>
         <div className='hidden lg:block space-y-[0.66rem]'>
           <div className='flex space-x-[0.5rem] items-center'>
@@ -38,7 +43,7 @@ export default function ItemCardBestTrip() {
               Accomodation:
             </span>
             <span className='text-1 font-normal text-greyscale-5 translate-y-[2px]'>
-              Phòng Doom
+              {data?.infos?.accomodation}
             </span>
           </div>
           <div className='flex space-x-[0.5rem] items-center'>
@@ -73,10 +78,10 @@ export default function ItemCardBestTrip() {
               />
             </svg>
             <span className='text-1 font-extrabold text-white translate-y-[2px]'>
-              Accomodation:
+              Motorbike:
             </span>
             <span className='text-1 font-normal text-greyscale-5 translate-y-[2px]'>
-              Phòng Doom
+              {data?.infos?.motorbike}
             </span>
           </div>
           <div className='flex space-x-[0.5rem] items-center'>
@@ -98,10 +103,10 @@ export default function ItemCardBestTrip() {
               />
             </svg>
             <span className='text-1 font-extrabold text-white translate-y-[2px]'>
-              Accomodation:
+              Tour guide:
             </span>
             <span className='text-1 font-normal text-greyscale-5 translate-y-[2px]'>
-              Phòng Doom
+              {data?.infos?.tour_guide}
             </span>
           </div>
           <div className='flex space-x-[0.5rem] items-center'>
@@ -135,24 +140,21 @@ export default function ItemCardBestTrip() {
               />
             </svg>
             <span className='text-1 font-extrabold text-white translate-y-[2px]'>
-              Accomodation:
+              Transport:
             </span>
             <span className='text-1 font-normal text-greyscale-5 translate-y-[2px]'>
-              Phòng Doom
+              {data?.infos?.transport}
             </span>
           </div>
         </div>
       </div>
       <div className='flex-col flex items-end justify-center z-10 mt-[1.13rem] mb-[0.5rem] lg:my-0'>
         <div className='lg:group-hover:translate-y-[-1rem] transition-all duration-500 lg:translate-y-[50%] flex lg:flex-col lg:items-end items-center'>
-          <span className='block text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem] xmd:mr-[0.5rem] xmd:ml-0'>
+          <span className='block text-1 tablet:text-[2.25rem] font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem] xmd:mr-[0.5rem] tablet:mr-[2rem] xmd:ml-0'>
             From to
           </span>
-          {/* <span className='lg:hidden text-1 font-extrabold text-white opacity-60 lg:ml-0 ml-[0.5rem]'>
-            Up to
-          </span> */}
-          <span className='font-extrabold text-white lg:text-3 text-1125'>
-            $199
+          <span className='font-extrabold text-white lg:text-3 text-1125 tablet:text-25'>
+            ${data?.gia?.self_driving}
           </span>
         </div>
         <button className='hidden group-hover:translate-x-0 transition-all duration-500 translate-x-[120%] bg-[#DA4B19] rounded-[0.5rem] h-[3.5rem] py-[1rem] px-[2rem] lg:flex justify-center items-center space-x-[0.5rem] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'>
@@ -262,10 +264,10 @@ export default function ItemCardBestTrip() {
             fill='#FEEEE8'
           />
         </svg>
-        <span className='opacity-80 text-1 font-normal text-white h-[1.125rem] w-[7.125rem] flex items-center text-center'>
-          4 Days 5 Nights
+        <span className='opacity-80 text-1 tablet:text-2 font-normal text-white h-[1.125rem] w-[7.125rem] flex items-center text-center'>
+          {data?.time_data?.[0]?.name}
         </span>
       </div>
-    </div>
+    </Link>
   )
 }
