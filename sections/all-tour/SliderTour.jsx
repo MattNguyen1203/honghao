@@ -17,11 +17,11 @@ export default function SliderTour({type, dataBestTrip}) {
         EXPLORE
       </span>
       {isAllTourPage ? (
-        <h2 className='text-3 xmd:text-25 font-black text-greyscale-80'>
+        <h2 className='xmd:container text-3 xmd:text-25 font-black text-greyscale-80'>
           BEST TRIPS <br className='md:hidden' /> FOR YOU
         </h2>
       ) : (
-        <h2 className='text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
+        <h2 className='xmd:container text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
           TRIPS FOR YOU
         </h2>
       )}

@@ -119,6 +119,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             listTime={listTime}
             listTours={listTours}
           />
+
         </DialogContent>
       </Dialog>
     </div>

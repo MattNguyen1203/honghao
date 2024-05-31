@@ -33,8 +33,7 @@ export default function ContactForm({data}) {
     ) {
       toast({
         title: 'Sending information failed',
-        description:
-          'Please check the information you have filled in again.',
+        description: 'Please check the information you have filled in again.',
       })
     } else {
       const formData = new FormData()
@@ -65,8 +64,7 @@ export default function ContactForm({data}) {
       } else {
         toast({
           title: 'Sending information failed',
-          description:
-            'Please check the information you have filled in again.',
+          description: 'Please check the information you have filled in again.',
         })
       }
       setIsLoading(false)
@@ -239,10 +237,9 @@ export default function ContactForm({data}) {
         />
         <button
           type='submit'
-          className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
+          className='flex items-center justify-center text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
         >
-          {data.submit_button_text}
-          {isLoading && (
+          {isLoading ? (
             <svg
               className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
               xmlns='http://www.w3.org/2000/svg'
@@ -262,6 +259,8 @@ export default function ContactForm({data}) {
                 d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
               ></path>
             </svg>
+          ) : (
+            data.submit_button_text
           )}
         </button>
       </form>

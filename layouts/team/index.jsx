@@ -44,14 +44,14 @@ export default async function OurTeam({darkTheme}) {
           <div className='flex flex-start space-x-[1rem] '>
             <Button
               icon
-              className='!flex-1 tablet:w-1/2 !w-max shrink-0'
+              className='!flex-1 tablet:!w-1/2 !w-max shrink-0'
             >
               <Link href='/about-us'> About Us</Link>
             </Button>
             <Button
               icon
               variant='outline'
-              className='!flex-1 tablet:w-1/2 !w-max shrink-0'
+              className='!flex-1 tablet:!w-1/2 !w-max shrink-0'
             >
               <Link href='/tours'>All tour</Link>
             </Button>
