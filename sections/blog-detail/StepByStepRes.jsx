@@ -6,7 +6,7 @@ import {useState} from 'react'
 
 // import {dataSLides} from './data'
 
-export default function StepByStepRes({dataAcf}) {
+export default function StepByStepRes({dataAcf, dataTourDetail}) {
   const [seeLess, setSeeLess] = useState(true)
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides
@@ -64,7 +64,7 @@ export default function StepByStepRes({dataAcf}) {
             </span>
           </div>
           <h2 className='tablet:text-[#2e2e2e] font-black text-white mt-[0.75rem] mb-[0.65rem] tracking-[0.00375rem] text-[1.5rem] md:text-[3rem] md:my-[1rem]'>
-            {dataAcf?.name_tour}
+            {dataTourDetail?.title}
           </h2>
           <div className='flex items-center space-x-[1.25rem]'>
             <div className='flex items-center whitespace-nowrap'>

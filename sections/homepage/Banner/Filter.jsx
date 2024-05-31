@@ -5,11 +5,6 @@ import FilterSelectItem from './FilterSelectItem'
 import FilterPriceItem from './FilterPriceItem'
 import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
-const dataFormInit = {
-  titleTour: 'Ha Giang Loop tour',
-  typeoftour: 'Itinerary',
-  choosedays: {title: '3 days 2 night', day: 3},
-}
 
 const dataPrice = [
   {
@@ -67,7 +62,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
     )
   }, [tourSelected, optionSelected])
 
-  console.log('tourSelected', tourSelected)
+  console.log('commonData', commonData)
 
   return (
     <div className='xmd:hidden flex items-center absolute bottom-[2.94rem] left-1/2 -translate-x-1/2 bg-greyscale-0 rounded-[0.75rem] py-[0.75rem] pl-[2rem] pr-[0.75rem] z-[1000]'>
@@ -111,15 +106,18 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             dataFormInit={{
               titleTour: tourSelected?.title,
               typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
-              choosedays: {title: tourSelected?.time_data?.[0]?.name, day: 3},
-              paxValueSelf: optionSelected?.selfPax,
+              choosedays: {
+                title: tourSelected?.time_data?.[0]?.name,
+                day: tourSelected?.infos?.number_day,
+              },
+              priceSelf: tourSelected?.gia?.self_driving,
+              priceLocal: tourSelected?.gia?.local_driver,
             }}
-            listLocation={commonData}
+            listLocation={commonData?.acf}
             listTypeofTour={listTypeofTour}
             listTime={listTime}
-            listTours={listTours}
+            listTours={listTours?.tours}
           />
-
         </DialogContent>
       </Dialog>
     </div>

@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 // import {dataSLides} from './data'
 
-export default function StepByStep({dataAcf}) {
+export default function StepByStep({dataAcf, dataTourDetail}) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
@@ -80,7 +80,7 @@ export default function StepByStep({dataAcf}) {
           </div>
           <div className='flex items-center justify-between mt-[0.75rem] pr-[4.81rem]'>
             <h2 className='text-[2rem] font-black leading-[1] font-londrina text-greyscale-80'>
-              {dataAcf?.name_tour}
+              {dataTourDetail?.title}
             </h2>
             <div className='flex items-center space-x-[1.25rem]'>
               <div className='flex items-center whitespace-nowrap'>

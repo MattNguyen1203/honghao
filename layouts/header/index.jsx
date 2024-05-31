@@ -5,12 +5,18 @@ import getData from '@/lib/getData'
 import {GLOBAL_PAGE_ID} from '@/lib/constants'
 
 export default async function Header() {
-  const dataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
+  const getDataAcf = getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
+  const getBesttrip = getData(
+    `wp-json/okhub/v1/get_field_best_trip_by_page?page_id=${GLOBAL_PAGE_ID}`,
+  )
+
+  const [dataAcf, dataBestTrip] = await Promise.all([getDataAcf, getBesttrip])
 
   const dataHeader = dataAcf?.acf?.header
   return (
-    <header className='w-full fixed top-0 left-0 z-[1001]'>
-      <WrapNav dataHeader={dataHeader} />
-    </header>
+    <WrapNav
+      dataHeader={dataHeader}
+      dataBestTrip={dataBestTrip}
+    />
   )
 }

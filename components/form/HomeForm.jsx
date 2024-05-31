@@ -37,29 +37,6 @@ import {generateRandom4DigitNumber} from '@/lib/utils'
 import {usePathname, useRouter, useSearchParams} from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
 
-const data = {
-  typeoftour: ['Best Budget', 'Standard', 'Premium'],
-  choosedays: [
-    {title: '4 days 3 night', day: 4},
-    {title: '3 days 2 night', day: 3},
-    {title: '2 days 1 night', day: 2},
-  ],
-  pickup: ['Hà Nội1', 'Hà Nội2', 'Hà Nội3'],
-  droff: [
-    {title: 'Hà Nội11', address: ['Hà Nội11131', 'Hà Nội11221', 'Hà Nội11233']},
-    {
-      title: 'Hà Nội12',
-      address: ['Hà Nội121312', 'Hà Nội12221', 'Hà Nội13223'],
-    },
-    {
-      title: 'Hà Nội13',
-      address: ['Hà Nội131312', 'Hà Nội1323123', 'Hà Nội133123'],
-    },
-  ],
-  paxValueSelf: 169,
-  paxValueLocal: 199,
-}
-
 const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
@@ -106,7 +83,8 @@ export default function HomeForm({
   const [dataDestination, setDataDestination] = useState([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDialogText, setIsDialogText] = useState('')
-  const [tourInit, setTourInit] = useState({})
+  const [tourSelected, setTourSelected] = useState(dataFormInit)
+  const [notFoundTour, setNotFoundTour] = useState(false)
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -130,34 +108,72 @@ export default function HomeForm({
   const router = useRouter()
   const pathname = usePathname()
 
-  // set data typeoftour, choosedays form TourDetail
+  console.log('dataForm', dataForm)
+
   useEffect(() => {
     if (!dataFormInit) return
     form.setValue('typeoftour', dataFormInit?.typeoftour)
     form.setValue('choosedays', dataFormInit?.choosedays?.title)
-  }, [dataFormInit, listTypeofTour, listTime, listTours])
+  }, [dataFormInit])
+
+  // console.log('listTour', listTours)
+  useEffect(() => {
+    if (isTourDetail) return
+    if (!dataForm?.choosedays || !dataForm?.typeoftour) return
+    const tourMatch = listTours?.find((tour) => {
+      return (
+        tour?.type_of_tour_data?.[0]?.name === dataForm?.typeoftour &&
+        tour?.time_data?.[0]?.name === dataForm?.choosedays
+      )
+    })
+    if (tourMatch) {
+      setTourSelected({
+        titleTour: tourMatch?.title,
+        typeoftour: tourMatch?.type_of_tour_data?.[0]?.name,
+        choosedays: {
+          title: tourMatch?.time_data?.[0]?.name,
+          day: tourMatch?.infos?.number_day,
+        },
+        priceSelf: tourMatch?.gia?.self_driving,
+        priceLocal: tourMatch?.gia?.local_driver,
+      })
+      setNotFoundTour(false)
+    } else {
+      setTourSelected({
+        titleTour: 'Không có tour phù hợp',
+        typeoftour: '',
+        choosedays: {
+          title: '',
+          day: 0,
+        },
+        priceSelf: 0,
+        priceLocal: 0,
+      })
+      setNotFoundTour(true)
+    }
+  }, [dataForm?.choosedays, dataForm?.typeoftour])
+  console.log('tourSelected', tourSelected)
 
   // tính ngày enddate theo tour
   useEffect(() => {
     let startDate = dataForm?.dob
     let endDateUse = new Date(startDate)
     if (dataForm?.dob && dataForm?.choosedays) {
-      const dayValue = data?.choosedays.find(
-        (item) => item.title === dataForm?.choosedays,
-      )
+      const dayValue = Number(tourSelected?.choosedays?.day)
 
-      endDateUse.setDate(startDate?.getDate() + dayValue?.day || 0)
+      console.log('dayValue', dayValue)
+      endDateUse.setDate(startDate?.getDate() + dayValue || 0)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
-  }, [dataForm?.choosedays, dataForm?.dob])
+  }, [dataForm?.choosedays, dataForm?.dob, tourSelected?.choosedays])
 
   // set enddate theo tour Detail
   useEffect(() => {
     if (isTourDetail && dataForm?.dob) {
       let startDate = dataForm?.dob
       let endDateUse = new Date(startDate)
-      endDateUse.setDate(startDate?.getDate() + dataFormInit?.choosedays?.day)
+      endDateUse.setDate(startDate?.getDate() + tourSelected?.choosedays?.day)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
@@ -165,7 +181,6 @@ export default function HomeForm({
 
   //lấy data từ droff
   useEffect(() => {
-    console.log('change', dataForm?.droff)
     form.setValue('destination', '')
     const dataDestination = listLocation?.droff_location?.find(
       (item) => item.city === dataForm?.droff,
@@ -195,11 +210,11 @@ export default function HomeForm({
         formdata.append('entry.516066790', newvalue?.phone)
         formdata.append(
           'entry.513250024',
-          newvalue?.typeoftour || dataFormInit?.typeoftour,
+          newvalue?.typeoftour || tourSelected?.typeoftour,
         )
         formdata.append(
           'entry.531591585',
-          newvalue?.choosedays || dataFormInit?.choosedays?.title,
+          newvalue?.choosedays || tourSelected?.choosedays?.title,
         )
         formdata.append('entry.1318177335', newvalue?.message)
         formdata.append('entry.596297400', newvalue?.pickup)
@@ -209,11 +224,11 @@ export default function HomeForm({
         formdata.append('entry.571877462', newvalue?.address)
         formdata.append('entry.1295571760', newvalue?.destination)
         formdata.append('entry.954465883', paxValueLocal + paxValueSelf)
-        formdata.append('entry.681687580', dataFormInit?.titleTour)
+        formdata.append('entry.681687580', tourSelected?.titleTour)
         formdata.append(
           'entry.842974294',
-          paxValueSelf * data?.paxValueSelf +
-            paxValueLocal * data?.paxValueLocal,
+          paxValueSelf * tourSelected?.priceSelf +
+            paxValueLocal * tourSelected?.priceLocal,
         )
         formdata.append('entry.750534916', paxValueLocal)
         formdata.append('entry.1182103187', paxValueSelf)
@@ -236,7 +251,7 @@ export default function HomeForm({
         console.log(error)
       }
     },
-    [dataFormInit, paxValueLocal, paxValueSelf],
+    [tourSelected, paxValueLocal, paxValueSelf],
   )
 
   function onSubmit(values, type) {
@@ -258,7 +273,8 @@ export default function HomeForm({
     postFile(newvalue, status)
 
     const totalPrice =
-      paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal
+      paxValueSelf * tourSelected?.priceSelf +
+      paxValueLocal * tourSelected?.priceLocal
 
     if (type === 'onepay') {
       const params = generateParamsPayment(
@@ -312,7 +328,7 @@ export default function HomeForm({
     getIp()
   }, [])
 
-  console.log('dataDestination', dataDestination)
+  // console.log('dataDestination', dataDestination)
   return (
     <>
       <section
@@ -337,7 +353,7 @@ export default function HomeForm({
                   Type of tour:
                 </span>
                 <span className='text-1 text-[#727272]'>
-                  Ha Giang Loop tour: Itinerary in 3 Days 4 Nights
+                  {tourSelected?.titleTour}
                 </span>
               </div>
             )}
@@ -736,18 +752,12 @@ export default function HomeForm({
                       <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                         Address *
                       </FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        // defaultValue={field.value}
-                      >
+                      <Select onValueChange={field.onChange}>
                         <FormControl>
                           <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                             <SelectValue
                               className='text-greyscale-10 text-0875 flex-1'
-                              placeholder={
-                                dataForm?.destination === '' &&
-                                'Please Select Droff'
-                              }
+                              placeholder={'Please Select Droff'}
                             />
                           </SelectTrigger>
                         </FormControl>
@@ -789,7 +799,7 @@ export default function HomeForm({
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                      ${data?.paxValueSelf}
+                      ${tourSelected?.priceSelf}
                     </span>
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
@@ -862,7 +872,7 @@ export default function HomeForm({
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                      ${data?.paxValueLocal}
+                      ${tourSelected?.priceLocal}
                     </span>
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
@@ -936,8 +946,8 @@ export default function HomeForm({
                 </span>
                 <span className='w-[10.5625rem] py-[0.25rem] px-[0.5rem] rounded-[0.25rem] bg-greyscale-5 flex justify-center items-center text-125 font-bold text-greyscale-80'>
                   $
-                  {paxValueSelf * data?.paxValueSelf +
-                    paxValueLocal * data?.paxValueLocal}
+                  {paxValueSelf * tourSelected?.priceSelf +
+                    paxValueLocal * tourSelected?.priceLocal}
                 </span>
               </div>
             </div>
@@ -949,6 +959,7 @@ export default function HomeForm({
               } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
+                disabled={notFoundTour}
                 className={`${
                   isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
                 } hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
@@ -959,6 +970,7 @@ export default function HomeForm({
                 <ICWhiteArrow />
               </Button>
               <Button
+                disabled={notFoundTour}
                 className={`${
                   isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
                 } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
@@ -1055,9 +1067,9 @@ export default function HomeForm({
         </Form>
         <InformationForm
           isTourDetail={isTourDetail}
-          titleTour={dataFormInit?.titleTour}
+          titleTour={tourSelected?.titleTour}
           dataForm={dataForm}
-          data={data}
+          data={tourSelected}
           paxValueSelf={paxValueSelf}
           paxValueLocal={paxValueLocal}
         />

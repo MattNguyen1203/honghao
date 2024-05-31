@@ -1,11 +1,11 @@
 'use client'
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
-import Link from 'next/link'
 
 const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
   const phoneNumber = '0941556338'
+
   return (
     <div className=' xmd:hidden fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
       <div className='w-[3.125rem] animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
@@ -20,13 +20,16 @@ const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
               listLocation={dataAcf}
               listTypeofTour={listTypeofTour}
               listTime={listTime}
-              listTours={listTours}
+              listTours={listTours?.tours}
             />
           </DialogContent>
         </Dialog>
       </div>
       {/* Call me bb */}
-      <a href={`tel:${phoneNumber}`} className='cursor-pointer'>
+      <a
+        href={`tel:${phoneNumber}`}
+        className='cursor-pointer'
+      >
         <div className='relative cursor-pointer'>
           <div className='w-[3.625rem] z-5 pingCall  flex justify-center items-center h-[3.625rem] shrink-0 blur-none rounded-[6.25rem] bg-[rgba(255,255,255,0.15)]'></div>
           <svg

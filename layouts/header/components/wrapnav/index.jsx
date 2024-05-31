@@ -4,7 +4,7 @@ import React, {useEffect, useState, useRef} from 'react'
 import Nav from '../nav'
 import NavDropdown from '../dropdown'
 
-const WrapNav = ({dataHeader}) => {
+const WrapNav = ({dataHeader, dataBestTrip}) => {
   const setIsMobile = useStore((state) => state.setIsMobile)
   const isMobile = useStore((state) => state.isMobile)
   const setIsTablet = useStore((state) => state.setIsTablet)
@@ -29,14 +29,15 @@ const WrapNav = ({dataHeader}) => {
   }, [])
 
   return (
-    <div className='w-full'>
+    <>
       <Nav setOpenNav={setOpenNav} />
       <NavDropdown
         setOpenNav={setOpenNav}
         openNav={openNav}
         dataHeader={dataHeader}
+        dataBestTrip={dataBestTrip}
       />
-    </div>
+    </>
   )
 }
 

@@ -13,10 +13,11 @@ import ItemTour from '@/components/itemtour'
 import useClickOutSide from '@/hooks/useClickOutside'
 import useStore from '@/app/(store)/store'
 
-const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
+const NavDropdown = ({openNav, setOpenNav, dataHeader, dataBestTrip}) => {
   const [openChild, setOpenChild] = useState(false)
   const [activeKey, setActiveKey] = useState('home')
   const [sideRef, isOutSide, isClick] = useClickOutSide(false)
+
   const dataHeaderNav = [
     {
       label: 'Home',
@@ -110,7 +111,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
   return (
     <div
       className={cn(
-        'flex w-full h-[40.125rem] xmd:h-screen overflow-hidden bg-green-dark rounded-b-[1.5rem] xmd:rounded-none fixed top-0 left-0 z-[1000] -translate-y-[100%] transition-all duration-1000',
+        'flex w-full h-[40.125rem] xmd:h-screen overflow-hidden bg-green-dark rounded-b-[1.5rem] xmd:rounded-none fixed top-0 left-0 z-[1005] -translate-y-[100%] transition-all duration-1000',
         openNav && 'translate-y-0',
       )}
       ref={sideRef}
@@ -261,12 +262,15 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader}) => {
               modules={[Scrollbar]}
               className='nav-slide w-full h-[28rem]'
             >
-              {new Array(5).fill(0).map((item, index) => (
+              {dataBestTrip?.map((item, index) => (
                 <SwiperSlide
                   className='select-none max-w-full'
                   key={index}
                 >
-                  <ItemTour className='h-[26rem]' />
+                  <ItemTour
+                    className='h-[26rem]'
+                    data={item}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
