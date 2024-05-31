@@ -14,7 +14,7 @@ const ItemTour = ({className, type, data}) => {
       >
         <div className='w-full h-full before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'>
           <Image
-            src='/imgs/itemTour/demo.jpg'
+            src={data?.thumbnail || '/imgs/itemTour/demo.jpg'}
             alt=''
             width={400}
             height={500}
@@ -43,7 +43,7 @@ const ItemTour = ({className, type, data}) => {
             <div className='flex items-center text-greyscale-0'>
               <div className='flex items-center mr-[0.5rem]'>
                 <span className='text-15 xmd:text-1125 font-medium mr-[0.44rem]'>
-                  $199
+                  {data?.gia?.self_driving}
                 </span>
                 <span className='relative text-0875  xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                   Self - Driving
@@ -52,7 +52,7 @@ const ItemTour = ({className, type, data}) => {
 
               <div className='flex items-center'>
                 <span className='text-15  xmd:text-1125 font-medium mr-[0.44rem]'>
-                  $199
+                  {data?.gia?.local_driver}
                 </span>
                 <span className='relative text-0875 xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                   Local driver

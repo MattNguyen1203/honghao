@@ -25,7 +25,6 @@ export default async function page({params: {slug}}) {
   return (
     <>
       <TourDetail
-        slug={slug?.[0]}
         data={dataAcf?.acf}
         dataPage={dataAcfPage?.acf}
         dataBestTrip={dataBestTrip?.tours}
