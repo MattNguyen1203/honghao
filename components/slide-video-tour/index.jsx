@@ -119,6 +119,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           onBeforeInit={(swiper) => {
             mainSwiper.current = swiper
           }}
+          allowTouchMove={false}
           loop={true}
           effect={'fade'}
           spaceBetween={10}
@@ -127,7 +128,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           navigation={false}
           thumbs={{swiper: thumbsSwiper}}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
-          className='xmd:w-full xmd:h-[20.93544rem]'
+          className='xmd:w-full !pointer-events-none xmd:h-[20.93544rem]'
         >
           {data?.map((d, i) => {
             const img1 = d?.url
@@ -137,6 +138,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
                 className='!flex !justify-center !items-center'
               >
                 <Image
+                draggable='false'
                   priority
                   alt='ảnh'
                   src={img1}
@@ -155,7 +157,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
         </Swiper>
       )}
       <div
-        onMouseLeave={handleMouseLeave}
+        onMouseLeave={checkIsBanner?()=>{}:handleMouseLeave}
         className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
         <Swiper
           ref={subSwiper}
@@ -190,7 +192,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           className={cn(
             'slide-video-tour mySwiper',
             checkIsBanner
-              ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]'
+              ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem] md:!pt-[2.3rem]'
               : 'h-[41.75rem] ',
           )}
           id='swiper_discover'
@@ -204,7 +206,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
               >
                 <div
                   ref={el => div2Refs.current[i] = el}
-                  onClick={() => handleSlide(i)}
+                  onClick={checkIsBanner?()=>{}:() => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
                     i === activeIndex

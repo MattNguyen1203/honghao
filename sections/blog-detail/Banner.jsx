@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
-const Banner = ({dataDetailPost}) => {
+const Banner = ({ dataDetailPost }) => {
   return (
     <section className='h-[50rem] xmd:h-[23rem] bg-green-dark w-full'>
       <div className="flex flex-col items-center space-y-[4rem] xmd:space-y-[0.75rem] xmd:pt-[6rem] pt-[7.7rem]">
@@ -11,8 +11,8 @@ const Banner = ({dataDetailPost}) => {
         ">HA GIANG FRIENDS</div>
         <div className='md:hidden '>
           <Breadcrumb className="!pl-0">
-            <BreadcrumbLink isBanner subLink href='/blog'>blog</BreadcrumbLink>
-            <BreadcrumbLink isBanner href={`/blog/${dataDetailPost?.title}`}>{dataDetailPost?.title}</BreadcrumbLink>
+            <BreadcrumbLink isBanner subLink href='/blog'>Blog</BreadcrumbLink>
+            <BreadcrumbLink isBanner href={`/blog/${dataDetailPost?.post_slug}`}>{dataDetailPost?.title}</BreadcrumbLink>
           </Breadcrumb>
         </div>
         <div className="flex flex-col items-center xmd:space-y-[1rem] space-y-[1.7rem]">

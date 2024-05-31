@@ -250,9 +250,6 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             ))}
           </div>
         )}
-        {(paginationClient?.total_pages > 1 ||
-          (!paginationClient?.total_pages &&
-            dataTours?.pagination?.total_pages > 1)) && (
           <PaginationCustom
             pagination={
               paginationClient && Object.keys(paginationClient).length === 0
@@ -261,7 +258,6 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             }
             href={'#grid-tours'}
           />
-        )}
       </div>
     </div>
   )

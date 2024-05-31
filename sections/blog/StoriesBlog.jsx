@@ -157,7 +157,7 @@ const saveScrollPosition1 = (id) => {
                     <div
                     id={`category-${d?.id}`}
                     value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
-                      !currentTab?.includes(`/blog/${d?.slug}`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
+                      !currentTab?.includes(`/blog/${d?.slug }`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                     )}>
                       {/* <div className=''> */}
                       <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">

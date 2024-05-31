@@ -4,8 +4,8 @@ import { getMeta } from '@/lib/getMeta'
 import getData from '@/lib/getData'
 import { PAGE_BLOG_ID } from '@/lib/constants'
 export async function generateMetadata(params) {
-  const result = await fetchMetaData(`${params.slug}/`)
-  return getMeta(result, `/${params.slug}`)
+  const result = await fetchMetaData(`${params?.params?.slug?.[0]}/`)
+  return getMeta(result, `/${params?.params?.slug?.[0]}`)
 }
 
 const page = async ({ params }) => {

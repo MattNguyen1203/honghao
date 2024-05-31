@@ -65,7 +65,7 @@ export default function FrequentlyAskedQuestions({ data }) {
     <section className='kKao4-container'>
       <h3 className='h3 mb-6 md:mb-[2.8rem]'>{data?.heading}</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
-        <AccordionCustom data={data.questions} />
+        <AccordionCustom data={data?.questions} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
           <h4 className='mb-6 h4 md:mb-8'>{data?.form?.heading}</h4>
           <form
