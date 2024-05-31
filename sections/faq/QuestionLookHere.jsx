@@ -16,7 +16,7 @@ export default function QuestionLookHere({data}) {
           {data.description}
         </p>
       </div>
-      <div className='overflow-x-auto xmd:-mx-4'>
+      <div className='overflow-x-auto xmd:-mx-4 no-scrollbar '>
         <div className='grid grid-cols-4 gap-4 md:gap-[1.12rem] min-w-max xmd:pl-4'>
           {data.questions.map((item, i) => {
             return (

@@ -1,10 +1,12 @@
 import Link from 'next/link'
 
-export default function BreadcrumbLink({href, children}) {
+export default function BreadcrumbLink({href, children ,isBanner}) {
   return (
     <>
       <svg
-        className='w-[0.25rem] h-[0.5rem] stroke-orange-normal'
+        className={`w-[0.25rem] h-[0.5rem] `,
+       isBanner ?'stroke-white':'stroke-orange-normal'
+      }
         xmlns='http://www.w3.org/2000/svg'
         width='5'
         height='8'
@@ -20,7 +22,10 @@ export default function BreadcrumbLink({href, children}) {
       </svg>
       <Link
         href={href}
-        className='text-greyscale-40 line-clamp-1 md:text-greyscale-80 text-0.875 text-sm not-italic font-normal leading-[150%] tracking-0.00219'
+        className={
+          ` line-clamp-1 md:text-greyscale-80 text-0.875 text-sm not-italic font-normal leading-[150%] tracking-0.00219`,
+          isBanner ?'text-white':'text-greyscale-40'
+        }
       >
         {children}
       </Link>

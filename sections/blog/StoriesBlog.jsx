@@ -44,16 +44,46 @@ const TitleBeauty = ({ children }) => {
 const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost }) => {
   const categories = dataCategorisAndFirstpost?.categories
   const firstPost = dataCategorisAndFirstpost?.posts
+  const { shouldFetch, setShouldFetch } =
+    useStore((state) => state)
   const pathName = usePathname()
   const [currentCategories, setCurrentCategories] = useState(null)
   const router = useRouter()
   const [currentTab, setCurrentTab] = useState('')
-  const saveScrollPosition = (id) => {
-    const scrollContainer = document.querySelector('.saveposition');
-    if (scrollContainer) {
-      localStorage.setItem('scrollPosition', scrollContainer.scrollLeft);
-    }
-  };
+
+
+  const scrollToSavedPosition = () => {
+  const scrollContainer = document.querySelector('.saveposition');
+  const savedPosition = localStorage.getItem('scrollPosition');
+  if (scrollContainer && savedPosition) {
+    scrollContainer.scrollTo({
+      left: parseInt(savedPosition, 10),
+      behavior: 'smooth'
+    });
+  }
+};
+  useEffect(() => {
+    scrollToSavedPosition();
+  }, []);
+
+const saveScrollPosition1 = (id) => {
+  const scrollContainer = document.querySelector('.saveposition');
+  const targetElement = document.getElementById(id);
+
+  if (scrollContainer && targetElement) {
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const targetRect = targetElement.getBoundingClientRect();
+    const scrollLeft = targetRect.left - containerRect.left + scrollContainer.scrollLeft - (containerRect.width / 2) + (targetRect.width / 2);
+
+    scrollContainer.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth'
+    });
+
+    localStorage.setItem('scrollPosition', scrollLeft);
+  }
+};
+
 
   useEffect(() => {
     const scrollContainer = document.querySelector('.saveposition');
@@ -103,7 +133,7 @@ const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost })
           </div>
           <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
             <div className='xmd:w-screen saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
-              <div className='flex items-start space-x-[0.94rem]'>
+              <div className='saveposition flex items-start space-x-[0.94rem]'>
                 <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(null)}>
                   <div className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                     currentTab !== `all` ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
@@ -118,8 +148,13 @@ const StoriesBlog = ({ dataGetAllPostsByCategories, dataCategorisAndFirstpost })
                 </Link>
                 {categories?.filter((c) => c?.slug !== 'uncategorized')?.map((d, i) => (
 
-                  <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(d?.id)}>
-                    <div value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                  <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false}
+                    onClick={() => saveScrollPosition1(`category-${d?.id}`)}
+                  // onClick={() => saveScrollPosition(d?.id)}
+                  >
+                    <div
+                    id={`category-${d?.id}`}
+                    value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                       !currentTab?.includes(`/blog/${d?.slug}`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                     )}>
                       {/* <div className=''> */}
