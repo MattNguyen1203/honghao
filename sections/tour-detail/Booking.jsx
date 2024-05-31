@@ -37,7 +37,7 @@ export default function Booking({data, dataTourDetail, dataPage}) {
             ONLINE BOOKING
           </h2>
         </div>
-        <HomeForm
+        {/* <HomeForm
           isTourDetail
           dataFormInit={dataFormInit}
           listLocation={dataPage}

@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+import Breadcrumb from '@/components/breadcrumb'
 const Detail = ({ dataDetailPost }) => {
   const { currentCategories, setCurrentCategories } = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
@@ -84,6 +86,11 @@ const Detail = ({ dataDetailPost }) => {
         height={1000}
         className='xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] '
       />
+              <div className='xmd:hidden'>
+          <Breadcrumb divider className="!pl-0">
+            <BreadcrumbLink href='/activity'>Activity</BreadcrumbLink>
+          </Breadcrumb>
+        </div>
       <div className='container detail relative md:border-l md:border-r md:border-[#E5E5E5] mx-auto'>
         <h2 className='w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]'>
           {dataDetailPost?.title}

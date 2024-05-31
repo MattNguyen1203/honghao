@@ -19,9 +19,6 @@ const BlogDetail = async ({ dataDetailPost, data, slugCompare }) => {
       <section>
         <Banner />
       </section>
-      <section className='xmd:hidden'>
-        <Breadcrumb divider />
-      </section>
       <section>
         <Detail dataDetailPost={dataDetailPost} />
       </section>

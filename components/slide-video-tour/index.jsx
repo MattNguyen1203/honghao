@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {
   FreeMode,
   Navigation,
@@ -9,7 +9,7 @@ import {
   Thumbs,
   EffectFade,
 } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -19,11 +19,8 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import { cn } from '@/lib/utils'
-const SlideVideoTours = ({ type, data, mainImage }) => {
-  if (!data) {
-    return
-  }
+import {cn} from '@/lib/utils'
+const SlideVideoTours = ({type, data, mainImage}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
@@ -31,27 +28,59 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
   const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
 
+  const div1Ref = useRef(null);
+  const div2Refs = useRef([]);
+  const div3Ref = useRef(null);
+  const [distance, setDistance] = useState({ top: 0, left: 0 });
+
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
     setActiveIndex(newIndex)
   }
-  const handleSlide = (i) => {
-    // subSwiper?.current?.slideTo(i)
-    setActiveIndex(i)
+  const handleSlide = (index) => {
+    const div3 = div3Ref.current;
+    const div1 = div1Ref.current;
+    const div2 = div2Refs.current[index];
+    if (div1 && div2 && div3) {
+      const rect1 = div1.getBoundingClientRect();
+      const rect2 = div2.getBoundingClientRect();
+
+      const distanceTop = (rect2.top - rect1.top);
+      const distanceLeft = (rect2.left - rect1.left);
+      setDistance({ top: distanceTop, left: distanceLeft });
+      div3.style.top = window.innerWidth < 1024 ? `${distanceTop +10}px` : `${distanceTop + 20}px`;
+      // div3.style.left = `${distanceLeft - 100}px`;
+    }
+    setActiveIndex(index)
   }
   useEffect(() => {
     mainSwiper?.current?.slideTo(activeIndex)
   }, [activeIndex])
+
+
+
+  const handleMouseLeave = () => {
+    const div3 = div3Ref.current;
+    if (div3) {
+      div3.style.top = '20%';
+    }
+  };
+
+
+
   return (
     <div
+      ref={div1Ref}
       className={cn(
         'xmd:w-[23.40656rem] xmd:h-fit relative w-[86.875rem] h-[44.75rem] bg-white flex xmd:flex-col justify-center items-center rounded-3xl',
         checkIsBanner ? 'w-full h-[43.75rem] rounded-none' : '',
       )}
     >
       <svg
+        ref={div3Ref}
         className={cn(
-          'xmd:hidden activity arrowfr size-[3.3rem]  absolute right-[17rem] z-[100] -translate-y-1/2',
+
+          ' xmd:hidden activity arrowfr size-[3.3rem] duration-300 transition-all  absolute right-[17rem] z-[100] -translate-y-1/2',
           checkIsBanner ? ' top-[55%]' : ' top-[20%]',
         )}
         xmlns='http://www.w3.org/2000/svg'
@@ -67,19 +96,22 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
       </svg>
 
       {checkIsBanner && (
-        <Image
-          priority
-          alt='ảnh'
-          src={mainImage}
-          width={1500}
-          height={1500}
-          className={cn(
-            ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
-            checkIsBanner
-              ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
-              : '',
-          )}
-        />
+        <>
+          <div className='xmd:hidden absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+          <Image
+            priority
+            alt='ảnh'
+            src={mainImage}
+            width={1500}
+            height={1500}
+            className={cn(
+              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
+              checkIsBanner
+                ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
+                : '',
+            )}
+          />
+        </>
       )}
       {!checkIsBanner && (
         <Swiper
@@ -93,7 +125,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           freemode={true}
           onSlidesChange={handleSlideChange}
           navigation={false}
-          thumbs={{ swiper: thumbsSwiper }}
+          thumbs={{swiper: thumbsSwiper}}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
@@ -122,7 +154,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           })}
         </Swiper>
       )}
-      <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
+      <div
+        onMouseLeave={handleMouseLeave}
+        className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
         <Swiper
           ref={subSwiper}
           onBeforeInit={(swiper) => {
@@ -141,8 +175,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
             delay: 0,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
-          }
-          }
+          }}
           centeredSlides={checkIsBanner ? true : false}
           mousewheel={true}
           speed={checkIsBanner ? 1500 : 1500}
@@ -156,7 +189,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           modules={[Navigation, Thumbs, Autoplay, Mousewheel]}
           className={cn(
             'slide-video-tour mySwiper',
-            checkIsBanner ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]' : 'h-[41.75rem] ',
+            checkIsBanner
+              ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]'
+              : 'h-[41.75rem] ',
           )}
           id='swiper_discover'
         >
@@ -168,6 +203,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                 className={cn(' ', checkIsBanner ? '' : 'cursor-pointer')}
               >
                 <div
+                  ref={el => div2Refs.current[i] = el}
                   onClick={() => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',

@@ -39,7 +39,7 @@ export default function StepByStepRes({dataAcf, dataTourDetail}) {
           !seeLess && 'h-0 overflow-hidden'
         } transition-all duration-500`}
       >
-        <div className='transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
+        <div className='tablet:hidden transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
           <Image
             className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
             src={dataSLides?.[0]?.imgStep?.url}
