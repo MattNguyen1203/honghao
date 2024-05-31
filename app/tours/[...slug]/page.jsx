@@ -11,8 +11,9 @@ export async function generateMetadata(params) {
 }
 
 export default async function page({params: {slug}}) {
-  const dataAcf = await getData(`wp-json/acf/v3/tours/11`)
   const dataAcfPage = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
+  const id = await getData(`wp-json/okhub/v1/get-tour-detail/${slug?.[0]}`)
+  const dataAcf = id ? await getData(`wp-json/acf/v3/tours/${id?.tour}`) : {}
 
   const dataBestTrip = await getData(
     `wp-json/okhub/v1/tours?page=1&per_page=5&type-of-tour=best-budget`,

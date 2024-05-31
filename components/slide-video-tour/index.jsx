@@ -20,52 +20,16 @@ import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 import { cn } from '@/lib/utils'
-const data = [
-  {
-    title: 'people',
-  },
-  {
-    title: 'Hiking',
-  },
-  {
-    title: 'Discovery',
-  },
-  {
-    title: 'Food',
-  },
-]
-const images = [
-  { img: '/imgs/activity/video.png' },
-  { img: '/imgs/activity/video2.png' },
-  { img: '/imgs/activity/video.png' },
-  { img: '/imgs/activity/video4.png' },
-  { img: '/imgs/activity/video2.png' },
-  { img: '/imgs/activity/video.png' },
-  { img: '/imgs/activity/video2.png' },
-  { img: '/imgs/activity/video.png' },
-  { img: '/imgs/activity/video4.png' },
-  { img: '/imgs/activity/video2.png' },
-]
-const images2 = [
-  { img: '/imgs/common/slidevideotour.png' },
-  { img: '/imgs/common/slidevideotour1.png' },
-  { img: '/imgs/common/slidevideotour2.png' },
-  { img: '/imgs/common/SlideVideotour.png' },
-  { img: '/imgs/common/slidevideotour1.png' },
-  { img: '/imgs/common/slidevideotour2.png' },
-  { img: '/imgs/common/slidevideotour.png' },
-  { img: '/imgs/common/slidevideotour1.png' },
-  { img: '/imgs/common/slidevideotour2.png' },
-  { img: '/imgs/common/slidevideotour.png' },
-]
 const SlideVideoTours = ({ type, data, mainImage }) => {
+  if (!data) {
+    return
+  }
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
   const mainSwiper = useRef()
   const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
-  const imagesToUse = checkIsBanner ? images2 : images
 
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
@@ -119,7 +83,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
       )}
       {!checkIsBanner && (
         <Swiper
-                  ref={mainSwiper}
+          ref={mainSwiper}
           onBeforeInit={(swiper) => {
             mainSwiper.current = swiper
           }}
@@ -130,10 +94,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           onSlidesChange={handleSlideChange}
           navigation={false}
           thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs,EffectFade]}
+          modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
-
           {data?.map((d, i) => {
             const img1 = d?.url
             return (
@@ -190,7 +153,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           spaceBetween={10}
           freeMode={true}
           watchSlidesProgress={true}
-          modules={[Navigation, Thumbs, Autoplay,Mousewheel]}
+          modules={[Navigation, Thumbs, Autoplay, Mousewheel]}
           className={cn(
             'slide-video-tour mySwiper',
             checkIsBanner ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]' : 'h-[41.75rem] ',
