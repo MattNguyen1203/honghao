@@ -8,8 +8,8 @@ import StepByStepRes from '../blog-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
-const TourDetail = ({data, dataPage, dataBestTrip}) => {
-
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+const TourDetail = ({data, dataPage, dataBestTrip, slug}) => {
   return (
     <main className='alldestinations '>
       <section>
@@ -19,7 +19,9 @@ const TourDetail = ({data, dataPage, dataBestTrip}) => {
         <Breadcrumb
           type='section'
           divider
-        />
+        >
+          <BreadcrumbLink href={`/tours/${slug}`}>{slug}</BreadcrumbLink>
+        </Breadcrumb>
       </section>
       <StepByStep dataAcf={data} />
       <StepByStepRes dataAcf={data} />
@@ -27,7 +29,10 @@ const TourDetail = ({data, dataPage, dataBestTrip}) => {
         <Booking />
       </section>
       <section>
-        <FaqAboutTrip dataAcfPage={dataPage?.faq} videoAndImage={dataPage?.video_and_image} />
+        <FaqAboutTrip
+          dataAcfPage={dataPage?.faq}
+          videoAndImage={dataPage?.video_and_image}
+        />
       </section>
 
       <OurTeam />
