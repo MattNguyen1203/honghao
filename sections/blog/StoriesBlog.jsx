@@ -134,12 +134,14 @@ const saveScrollPosition1 = (id) => {
           <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
             <div className='xmd:w-screen saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='saveposition flex items-start space-x-[0.94rem]'>
-                <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition(null)}>
+                <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition1(`category-all`)}>
                   <div className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                     currentTab !== `all` ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                   )}>
                     {/* <div className=''> */}
-                    <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
+                    <div
+                    id={`category-all`}
+                    className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
                       All
                     </div>
