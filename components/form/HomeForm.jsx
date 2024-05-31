@@ -25,7 +25,7 @@ import {Calendar} from '@/components/ui/calendar'
 import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover'
 import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import InformationForm from './InformationForm'
 import {FORM_API, paymentOnepay} from '@/lib/constants'
 import {useToast} from '@/components/ui/use-toast'
@@ -35,6 +35,7 @@ import {generateParamsPayment} from '@/lib/payment'
 import CryptoJS from 'crypto-js'
 import {generateRandom4DigitNumber} from '@/lib/utils'
 import {usePathname, useRouter, useSearchParams} from 'next/navigation'
+import ICWhiteArrow from '../icons/ICWhiteArrow'
 
 const data = {
   typeoftour: ['Best Budget', 'Standard', 'Premium'],
@@ -91,14 +92,21 @@ const formSchema = z.object({
   }),
 })
 
-export default function HomeForm({isTourDetail = false, dataTourDetail}) {
+export default function HomeForm({
+  isTourDetail = false,
+  dataFormInit,
+  listLocation,
+  listTypeofTour = [],
+  listTime = [],
+  listTours = [],
+}) {
   const {toast} = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(1)
   const [paxValueLocal, setPaxValueLocal] = useState(1)
-  const [dataDestination, setDataDestination] = useState(1)
+  const [dataDestination, setDataDestination] = useState([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDialogText, setIsDialogText] = useState('')
-  // const [dataFormState, setDataFormState] = useState({})
+  const [tourInit, setTourInit] = useState({})
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -121,85 +129,13 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
-  // useEffect(() => {
-  //   // const vpcMerchTxnRef = searchParams.get('vpc_MerchTxnRef')
-  //   // const vpcTxnResponseCode = searchParams.get('vpc_TxnResponseCode')
-  //   // console.log(vpcMerchTxnRef)
-  //   // if (vpcMerchTxnRef) {
-  //   //   // const totalPrice =
-  //   //   //   paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal
-  //   //   // const randomIDOrder = generateRandom4DigitNumber()
-  //   //   // let jsonObject = localStorage.getItem('myDataForm')
-  //   //   // console.log(jsonObject)
-  //   //   // let retrievedObject = JSON.parse(jsonObject)
-  //   //   // console.log(retrievedObject)
-  //   //   // console.log(ip)
-  //   //   // const params = generateParamsPayment(
-  //   //   //   retrievedObject,
-  //   //   //   ip,
-  //   //   //   randomIDOrder,
-  //   //   //   totalPrice,
-  //   //   //   true,
-  //   //   //   pathname,
-  //   //   // )
-  //   //   // const secretWordArray = CryptoJS.enc.Hex.parse(
-  //   //   //   paymentOnepay.SECRET_KEY_HASH,
-  //   //   // )
-  //   //   // const hash = CryptoJS.HmacSHA256(params, secretWordArray)
-  //   //   // // eslint-disable-next-line camelcase
-  //   //   // const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
-  //   //   let vpcSecureHash = localStorage.getItem('vpcSecureHash')
-  //   //   console.log(vpcSecureHash)
-  //   //   const callApi = async () => {
-  //   //     const res = await fetch('/api/payment', {
-  //   //       method: 'POST',
-  //   //       body: JSON.stringify({
-  //   //         vpc_AccessCode: paymentOnepay.ACCESS_CODE,
-  //   //         vpc_Command: 'queryDR',
-  //   //         vpc_MerchTxnRef: vpcMerchTxnRef,
-  //   //         vpc_Merchant: paymentOnepay.MERCHANT_ID,
-  //   //         vpc_Password: 'op123456',
-  //   //         vpc_User: 'op01',
-  //   //         vpc_Version: '2',
-  //   //         vpc_SecureHash: vpcSecureHash,
-  //   //       }),
-  //   //     })
-  //   //     const data = await res.json()
-  //   //     console.log(data)
-  //   //     return data
-  //   //   }
-  //   //   callApi().then((res) => {
-  //   //     console.log(res)
-  //   //     const list = res.toString().split('&')
-  //   //     console.log(list)
-  //   //     let code
-  //   //     list?.forEach((e) => {
-  //   //       if (e?.includes('vpc_TxnResponseCode')) {
-  //   //         code = Number(e?.slice(e.length - 1))
-  //   //         console.log(code)
-  //   //       }
-  //   //     })
-  //   //     return code
-  //   //   })
-  //   // }
-  //   // if (vpcMerchTxnRef && vpcTxnResponseCode === '0') {
-  //   //   setIsDialogText('Successfully booked the tour')
-  //   //   setIsDialogOpen(true)
-  //   //   router.push(pathname)
-  //   // } else {
-  //   //   router.push(pathname)
-  //   // }
-  // }, [])
-  // console.log(dataFormState)
   // set data typeoftour, choosedays form TourDetail
   useEffect(() => {
-    if (isTourDetail) {
-      form.setValue('typeoftour', dataTourDetail?.typeoftour)
-      form.setValue('choosedays', dataTourDetail?.choosedays?.title)
-    }
-  }, [])
+    if (!dataFormInit) return
+    form.setValue('typeoftour', dataFormInit?.typeoftour)
+    form.setValue('choosedays', dataFormInit?.choosedays?.title)
+  }, [dataFormInit, listTypeofTour, listTime, listTours])
 
   // tính ngày enddate theo tour
   useEffect(() => {
@@ -221,7 +157,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
     if (isTourDetail && dataForm?.dob) {
       let startDate = dataForm?.dob
       let endDateUse = new Date(startDate)
-      endDateUse.setDate(startDate?.getDate() + dataTourDetail?.choosedays?.day)
+      endDateUse.setDate(startDate?.getDate() + dataFormInit?.choosedays?.day)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
@@ -229,11 +165,12 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
 
   //lấy data từ droff
   useEffect(() => {
+    console.log('change', dataForm?.droff)
     form.setValue('destination', '')
-    const dataDestination = data?.droff.find(
-      (item) => item.title === dataForm?.droff,
+    const dataDestination = listLocation?.droff_location?.find(
+      (item) => item.city === dataForm?.droff,
     )
-    setDataDestination(dataDestination)
+    setDataDestination(dataDestination?.list_address)
   }, [dataForm?.droff])
 
   // formatted date từ chuổi sang dd/mm/yyyy
@@ -246,54 +183,61 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   }
 
   // post gg form + gg sheet
-  async function postFile(newvalue, type) {
-    try {
-      const formdata = new FormData()
-      const formattedDob = formattedDate(newvalue?.dob)
-      const formattedEnddate = formattedDate(newvalue?.enddate)
-      formdata?.append('entry.335637933', newvalue?.username)
-      formdata?.append('entry.1417657903', newvalue?.email)
-      formdata?.append('entry.516066790', newvalue?.phone)
-      formdata?.append(
-        'entry.513250024',
-        newvalue?.typeoftour || dataTourDetail?.typeoftour,
-      )
-      formdata?.append(
-        'entry.531591585',
-        newvalue?.choosedays || dataTourDetail?.choosedays?.title,
-      )
-      formdata?.append('entry.1318177335', newvalue?.message)
-      formdata?.append('entry.596297400', newvalue?.pickup)
-      formdata?.append('entry.737203426', newvalue?.droff)
-      formdata?.append('entry.1683072828', formattedDob)
-      formdata?.append('entry.1967653042', formattedEnddate)
-      formdata?.append('entry.571877462', newvalue?.address)
-      formdata?.append('entry.1295571760', newvalue?.destination)
-      formdata?.append('entry.954465883', paxValueLocal + paxValueSelf)
-      formdata?.append('entry.681687580', dataTourDetail?.titleTour)
-      formdata?.append(
-        'entry.842974294',
-        paxValueSelf * data?.paxValueSelf + paxValueLocal * data?.paxValueLocal,
-      )
-      formdata?.append('entry.750534916', paxValueLocal)
-      formdata?.append('entry.1182103187', paxValueSelf)
-      formdata?.append('entry.477674361', type)
-      await fetch(`${FORM_API}`, {
-        method: 'POST',
-        body: formdata,
-        mode: 'no-cors',
-      })
-      // setIsDialogOpen(true)
-      // setIsDialogText('Successfully booked the tour')
-    } catch (error) {
-      setIsDialogText('fail booked the tour')
-      toast({
-        title: 'Sending information failed',
-        description: 'Please check the information you have filled in again.',
-      })
-      console.log(error)
-    }
-  }
+  const postFile = useCallback(
+    async (newvalue, type) => {
+      try {
+        const formdata = new FormData()
+        const formattedDob = formattedDate(newvalue?.dob)
+        const formattedEnddate = formattedDate(newvalue?.enddate)
+
+        formdata.append('entry.335637933', newvalue?.username)
+        formdata.append('entry.1417657903', newvalue?.email)
+        formdata.append('entry.516066790', newvalue?.phone)
+        formdata.append(
+          'entry.513250024',
+          newvalue?.typeoftour || dataFormInit?.typeoftour,
+        )
+        formdata.append(
+          'entry.531591585',
+          newvalue?.choosedays || dataFormInit?.choosedays?.title,
+        )
+        formdata.append('entry.1318177335', newvalue?.message)
+        formdata.append('entry.596297400', newvalue?.pickup)
+        formdata.append('entry.737203426', newvalue?.droff)
+        formdata.append('entry.1683072828', formattedDob)
+        formdata.append('entry.1967653042', formattedEnddate)
+        formdata.append('entry.571877462', newvalue?.address)
+        formdata.append('entry.1295571760', newvalue?.destination)
+        formdata.append('entry.954465883', paxValueLocal + paxValueSelf)
+        formdata.append('entry.681687580', dataFormInit?.titleTour)
+        formdata.append(
+          'entry.842974294',
+          paxValueSelf * data?.paxValueSelf +
+            paxValueLocal * data?.paxValueLocal,
+        )
+        formdata.append('entry.750534916', paxValueLocal)
+        formdata.append('entry.1182103187', paxValueSelf)
+        formdata.append('entry.477674361', type)
+
+        await fetch(`${FORM_API}`, {
+          method: 'POST',
+          body: formdata,
+          mode: 'no-cors',
+        })
+
+        // setIsDialogOpen(true)
+        // setIsDialogText('Successfully booked the tour')
+      } catch (error) {
+        setIsDialogText('fail booked the tour')
+        toast({
+          title: 'Sending information failed',
+          description: 'Please check the information you have filled in again.',
+        })
+        console.log(error)
+      }
+    },
+    [dataFormInit, paxValueLocal, paxValueSelf],
+  )
 
   function onSubmit(values, type) {
     const randomIDOrder = generateRandom4DigitNumber()
@@ -367,6 +311,8 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
   useEffect(() => {
     getIp()
   }, [])
+
+  console.log('dataDestination', dataDestination)
   return (
     <>
       <section
@@ -484,7 +430,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={listTypeofTour?.terms?.[0]?.name}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -495,14 +441,14 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className='min-w-[16rem] p-[1.25rem] rounded-[0.75rem] sahdow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'>
-                            {data?.typeoftour?.map((e, index) => (
+                            {listTypeofTour?.terms?.map((e, index) => (
                               <>
                                 <SelectItem
                                   key={index}
                                   className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
-                                  value={e}
+                                  value={e?.name}
                                 >
-                                  {e}
+                                  {e?.name}
                                 </SelectItem>
                                 <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                               </>
@@ -523,7 +469,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={listTime?.terms?.[0]?.name}
                           className='aa'
                         >
                           <FormControl>
@@ -535,14 +481,14 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className='min-w-[16rem] p-[1.25rem] rounded-[0.75rem] sahdow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'>
-                            {data?.choosedays?.map((e, index) => (
+                            {listTime?.terms?.map((e, index) => (
                               <>
                                 <SelectItem
                                   key={index}
                                   className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
-                                  value={e?.title}
+                                  value={e?.name}
                                 >
-                                  {e?.title}
+                                  {e?.name}
                                 </SelectItem>
                                 <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                               </>
@@ -568,7 +514,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          // defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -579,14 +525,14 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className='min-w-[16rem] p-[1.25rem] rounded-[0.75rem] sahdow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'>
-                            {data?.pickup?.map((e, index) => (
+                            {listLocation?.pickup_location?.map((e, index) => (
                               <>
                                 <SelectItem
                                   key={index}
                                   className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
-                                  value={e}
+                                  value={e.city}
                                 >
-                                  {e}
+                                  {e.city}
                                 </SelectItem>
                                 <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                               </>
@@ -692,7 +638,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          // defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -703,14 +649,14 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className='min-w-[16rem] p-[1.25rem] rounded-[0.75rem] sahdow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'>
-                            {data?.droff?.map((e, index) => (
+                            {listLocation?.droff_location?.map((e, index) => (
                               <>
                                 <SelectItem
                                   key={index}
                                   className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
-                                  value={e?.title}
+                                  value={e?.city}
                                 >
-                                  {e?.title}
+                                  {e?.city}
                                 </SelectItem>
                                 <hr className='last:hidden w-full h-[0.0625rem] bg-[#f1f1f1]' />
                               </>
@@ -792,7 +738,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        // defaultValue={field.value}
                       >
                         <FormControl>
                           <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -807,14 +753,14 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                         </FormControl>
                         <SelectContent className='min-w-[16rem] p-[1.25rem] rounded-[0.75rem] sahdow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'>
                           {dataDestination &&
-                            dataDestination?.address?.map((e, index) => (
+                            dataDestination?.map((e, index) => (
                               <>
                                 <SelectItem
                                   key={index}
                                   className='*:text-[1rem] *:font-bold *:text-greyscale-80 hover:bg-[#f1f1f1] py-[1.12rem]'
-                                  value={e}
+                                  value={e?.address}
                                 >
-                                  {e}
+                                  {e?.address}
                                 </SelectItem>
                                 <hr className='w-full h-[0.0625rem] bg-[#f1f1f1]' />
                               </>
@@ -1010,92 +956,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
                 onClick={form.handleSubmit((values) => onSubmit(values, 'cod'))}
               >
                 BOOK NOW, Pay later
-                <svg
-                  className='ml-[0.5rem]'
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='12'
-                  height='12'
-                  viewBox='0 0 12 12'
-                  fill='none'
-                >
-                  <path
-                    d='M10.125 6H0'
-                    stroke='url(#paint0_linear_9604_2828)'
-                    strokeWidth='2'
-                  />
-                  <g filter='url(#filter0_i_9604_2828)'>
-                    <path
-                      d='M12 6L6 11.25L8.41379 6L6 0.75L12 6Z'
-                      fill='white'
-                    />
-                  </g>
-                  <defs>
-                    <filter
-                      id='filter0_i_9604_2828'
-                      x='6'
-                      y='0.75'
-                      width='26'
-                      height='14.5'
-                      filterUnits='userSpaceOnUse'
-                      colorInterpolationFilters='sRGB'
-                    >
-                      <feFlood
-                        floodOpacity='0'
-                        result='BackgroundImageFix'
-                      />
-                      <feBlend
-                        mode='normal'
-                        in='SourceGraphic'
-                        in2='BackgroundImageFix'
-                        result='shape'
-                      />
-                      <feColorMatrix
-                        in='SourceAlpha'
-                        type='matrix'
-                        values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-                        result='hardAlpha'
-                      />
-                      <feOffset
-                        dx='20'
-                        dy='4'
-                      />
-                      <feGaussianBlur stdDeviation='50' />
-                      <feComposite
-                        in2='hardAlpha'
-                        operator='arithmetic'
-                        k2='-1'
-                        k3='1'
-                      />
-                      <feColorMatrix
-                        type='matrix'
-                        values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0'
-                      />
-                      <feBlend
-                        mode='normal'
-                        in2='shape'
-                        result='effect1_innerShadow_9604_2828'
-                      />
-                    </filter>
-                    <linearGradient
-                      id='paint0_linear_9604_2828'
-                      x1='4.53912'
-                      y1='6'
-                      x2='4.53912'
-                      y2='6.892'
-                      gradientUnits='userSpaceOnUse'
-                    >
-                      <stop
-                        offset='0.31'
-                        stopColor='white'
-                      />
-                      <stop
-                        offset='1'
-                        stopColor='white'
-                        stopOpacity='0'
-                      />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                <ICWhiteArrow />
               </Button>
               <Button
                 className={`${
@@ -1194,7 +1055,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
         </Form>
         <InformationForm
           isTourDetail={isTourDetail}
-          dataTourDetail={dataTourDetail}
+          titleTour={dataFormInit?.titleTour}
           dataForm={dataForm}
           data={data}
           paxValueSelf={paxValueSelf}
@@ -1204,7 +1065,7 @@ export default function HomeForm({isTourDetail = false, dataTourDetail}) {
       {isDialogOpen && (
         <div
           onClick={handleClickOutside}
-          className='z-[999] fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
+          className=' fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
         >
           <div className='child_video overflow-hidden rounded-[1.5rem] h-[30.3125rem] w-[47.25rem] relative bg-[linear-gradient(0deg,rgba(19,52,28,0.60)_0%,rgba(19,52,28,0.60)_100%)]'>
             <Image

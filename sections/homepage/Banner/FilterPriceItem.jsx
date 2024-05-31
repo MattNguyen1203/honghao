@@ -9,7 +9,7 @@ const FilterPriceItem = ({data, setOptionSelected}) => {
     setQty((prev) => prev + 1)
   }
   const handleDec = () => {
-    if (qty < 2) return
+    if (qty < 1) return
     setQty((prev) => prev - 1)
   }
 

@@ -17,7 +17,7 @@
   height: 44rem !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .slide-season {
     border-radius: 0.5rem !important;
   }

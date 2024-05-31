@@ -14,7 +14,7 @@ import ClientSayPopup from '@/components/client-say/ClientSayItemPopup'
 export default function ClientSay({dataReview}) {
   const [hoverRef, isHover] = useHover()
   return (
-    <section className='relative md:h-[60rem]'>
+    <section className='relative md:h-[60rem] tablet:mt-[4rem]'>
       {/* desktop */}
       <div className='hidden md:block'>
         <Image
@@ -112,7 +112,7 @@ export default function ClientSay({dataReview}) {
           />
         </div>
         <div className='absolute -translate-x-1/2 bottom-20 left-1/2'>
-          <p className='text-greyscale-0 font-tripsans text-0.875 text-center font-bold leading-1.2 tracking-0.00875 mb-2'>
+          <p className='text-greyscale-0 font-tripsans text-0.875 tablet:text-15 text-center font-bold leading-1.2 tracking-0.00875 mb-2'>
             View us on:
           </p>
           <div className='flex flex-row space-x-3'>
@@ -212,7 +212,7 @@ export default function ClientSay({dataReview}) {
           />
         </div>
         <div className='mt-8'>
-          <p className='text-greyscale-0 font-tripsans text-0.875 text-center font-bold leading-1.2 tracking-0.00875 mb-2'>
+          <p className='text-greyscale-0 font-tripsans text-0.875 tablet:text-15 text-center font-bold leading-1.2 tracking-0.00875 mb-2'>
             View us on:
           </p>
           <div className='flex flex-row justify-center space-x-3'>

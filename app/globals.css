@@ -71,10 +71,10 @@
     @apply border border-black;
   }
   .container {
-    @apply !w-[87.5rem] !max-w-none mx-auto xmd:!w-full xmd:px-[1rem];
+    @apply !w-[87.5rem] tablet:!w-full tablet:px-[4rem] !max-w-none mx-auto xmd:!w-full xmd:px-[1rem];
   }
   .subContainer {
-    @apply !w-[87.5rem] !max-w-none mx-auto xmd:!w-full;
+    @apply !w-[87.5rem] tablet:!w-full !max-w-none mx-auto xmd:!w-full;
   }
   .kKao4-container {
     @apply w-[87.5rem] mx-auto xmd:w-full xmd:px-[1rem];

@@ -2,7 +2,7 @@ import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
 
-const dataTourDetail = {
+const dataFormInit = {
   titleTour: 'Ha Giang Loop tour',
   typeoftour: 'Itinerary',
   choosedays: {title: '3 days 2 night', day: 3},
@@ -26,7 +26,7 @@ export default function Booking() {
         </div>
         <HomeForm
           isTourDetail
-          dataTourDetail={dataTourDetail}
+          dataFormInit={dataFormInit}
         />
       </div>
     </div>

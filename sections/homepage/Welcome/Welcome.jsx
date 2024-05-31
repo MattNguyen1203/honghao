@@ -64,7 +64,7 @@ const Welcome = ({data}) => {
 
   return (
     <div
-      className='flex flex-col items-center mt-0 xmd:mt-[3rem] tablet:mt-[10rem] relative'
+      className='min-w-screen min-h-screen xlg:min-w-full xlg:min-h-0 flex flex-col items-center mt-0 xmd:mt-[3rem] tablet:mt-[10rem] relative'
       ref={parentRef}
     >
       <div
