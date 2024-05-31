@@ -24,7 +24,7 @@ const StartPlanning = ({dataStartPlanning}) => {
 
       <div className='absolute flex justify-center w-full md:-translate-y-1/2 xmd:top-[3.6rem] top-1/2'>
         <div className='relative flex items-center md:space-x-[2.3rem] h-full  xl:container w-full'>
-          <div className='md:relative p-[3rem]'>
+          <div className='md:relative p-[3rem] xmd:hidden'>
             <Image
               priority
               alt='ảnh xoay'

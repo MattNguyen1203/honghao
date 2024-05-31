@@ -1,5 +1,5 @@
 'use client'
-import React, {useRef, useState, useEffect} from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import {
   FreeMode,
   Navigation,
@@ -9,7 +9,7 @@ import {
   Thumbs,
   EffectFade,
 } from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -19,60 +19,25 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import {cn} from '@/lib/utils'
-const data = [
-  {
-    title: 'people',
-  },
-  {
-    title: 'Hiking',
-  },
-  {
-    title: 'Discovery',
-  },
-  {
-    title: 'Food',
-  },
-]
-const images = [
-  {img: '/imgs/activity/video.png'},
-  {img: '/imgs/activity/video2.png'},
-  {img: '/imgs/activity/video.png'},
-  {img: '/imgs/activity/video4.png'},
-  {img: '/imgs/activity/video2.png'},
-  {img: '/imgs/activity/video.png'},
-  {img: '/imgs/activity/video2.png'},
-  {img: '/imgs/activity/video.png'},
-  {img: '/imgs/activity/video4.png'},
-  {img: '/imgs/activity/video2.png'},
-]
-const images2 = [
-  {img: '/imgs/common/slidevideotour.png'},
-  {img: '/imgs/common/slidevideotour1.png'},
-  {img: '/imgs/common/slidevideotour2.png'},
-  {img: '/imgs/common/SlideVideotour.png'},
-  {img: '/imgs/common/slidevideotour1.png'},
-  {img: '/imgs/common/slidevideotour2.png'},
-  {img: '/imgs/common/slidevideotour.png'},
-  {img: '/imgs/common/slidevideotour1.png'},
-  {img: '/imgs/common/slidevideotour2.png'},
-  {img: '/imgs/common/slidevideotour.png'},
-]
-const SlideVideoTours = ({type, data, mainImage}) => {
+import { cn } from '@/lib/utils'
+const SlideVideoTours = ({ type, data, mainImage }) => {
   if (!data) {
     return
   }
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(-1)
+  const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
   const mainSwiper = useRef()
-  const subSwiper = useRef()
+  const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
-  const imagesToUse = checkIsBanner ? images2 : images
 
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
     setActiveIndex(newIndex)
+  }
+  const handleSlide = (i) => {
+    // subSwiper?.current?.slideTo(i)
+    setActiveIndex(i)
   }
   useEffect(() => {
     mainSwiper?.current?.slideTo(activeIndex)
@@ -87,7 +52,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
       <svg
         className={cn(
           'xmd:hidden activity arrowfr size-[3.3rem]  absolute right-[17rem] z-[100] -translate-y-1/2',
-          checkIsBanner ? ' top-[55%]' : ' top-[45%]',
+          checkIsBanner ? ' top-[55%]' : ' top-[20%]',
         )}
         xmlns='http://www.w3.org/2000/svg'
         width='54'
@@ -102,36 +67,33 @@ const SlideVideoTours = ({type, data, mainImage}) => {
       </svg>
 
       {checkIsBanner && (
-        <>
-          <div className='absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
-          <Image
-            priority
-            alt='ảnh'
-            src={mainImage}
-            width={1500}
-            height={1500}
-            className={cn(
-              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
-              checkIsBanner
-                ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
-                : '',
-            )}
-          />
-        </>
+        <Image
+          priority
+          alt='ảnh'
+          src={mainImage}
+          width={1500}
+          height={1500}
+          className={cn(
+            ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
+            checkIsBanner
+              ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
+              : '',
+          )}
+        />
       )}
       {!checkIsBanner && (
         <Swiper
-          // ref={mainSwiper}
+          ref={mainSwiper}
           onBeforeInit={(swiper) => {
             mainSwiper.current = swiper
           }}
-          pagination={{
-            clickable: true,
-          }}
-          allowTouchMove={false}
-          speed={500}
+          loop={true}
           effect={'fade'}
-          thumbs={{swiper: thumbsSwiper}}
+          spaceBetween={10}
+          freemode={true}
+          onSlidesChange={handleSlideChange}
+          navigation={false}
+          thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full xmd:h-[20.93544rem]'
         >
@@ -149,7 +111,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
                   width={1500}
                   height={1500}
                   className={cn(
-                    ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] ',
+                    ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover ',
                     checkIsBanner
                       ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
                       : '',
@@ -160,38 +122,41 @@ const SlideVideoTours = ({type, data, mainImage}) => {
           })}
         </Swiper>
       )}
-      <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-0'>
+      <div className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
         <Swiper
+          ref={subSwiper}
+          onBeforeInit={(swiper) => {
+            subSwiper.current = swiper
+          }}
           breakpoints={{
             767: {
               direction: 'vertical',
               slidesPerView: 6,
             },
           }}
-          allowTouchMove={true}
-          direction={'horizontal'}
-          loop={true}
-          centeredSlides={true}
-          autoplay={
-            !checkIsBanner
-              ? false
-              : {
-                  delay: 0,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: false,
-                }
-          }
-          mousewheel={true}
-          speed={checkIsBanner ? 1500 : 500}
-          initialSlide={3}
-          slidesPerView={2.12}
-          watchSlidesProgress={true}
-          modules={[Navigation, Autoplay, Thumbs, Pagination, Mousewheel]}
           onSlideChange={handleSlideChange}
-          // onSwiper={setThumbsSwiper}
+          allowTouchMove={checkIsBanner ? false : true}
+          direction={'horizontal'}
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }
+          }
+          centeredSlides={checkIsBanner ? true : false}
+          mousewheel={true}
+          speed={checkIsBanner ? 1500 : 1500}
+          // initialSlide={3}
+          slidesPerView={2.12}
+          onSwiper={setThumbsSwiper}
+          loop={true}
+          spaceBetween={10}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[Navigation, Thumbs, Autoplay, Mousewheel]}
           className={cn(
-            'slide-video-tour mySwiper    ',
-            checkIsBanner ? 'md:h-[43.75rem] ' : 'h-[41.75rem]',
+            'slide-video-tour mySwiper',
+            checkIsBanner ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem]' : 'h-[41.75rem] ',
           )}
           id='swiper_discover'
         >
@@ -200,9 +165,10 @@ const SlideVideoTours = ({type, data, mainImage}) => {
             return (
               <SwiperSlide
                 key={i}
-                className={cn(' ', checkIsBanner ? '' : '')}
+                className={cn(' ', checkIsBanner ? '' : 'cursor-pointer')}
               >
                 <div
+                  onClick={() => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
                     i === activeIndex
@@ -218,7 +184,7 @@ const SlideVideoTours = ({type, data, mainImage}) => {
                     width={500}
                     height={500}
                     className={cn(
-                      '  rounded-[0.75rem] duration-500 ease-linear size-full ',
+                      '  rounded-[0.75rem] duration-500 ease-linear size-full object-cover',
                     )}
                   />
                   <div

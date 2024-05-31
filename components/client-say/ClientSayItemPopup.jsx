@@ -34,10 +34,10 @@ export default function ClientSayPopup({
           />
         </div>
         <div className='flex flex-col space-y-[0.38rem] flex-none ml-5'>
-          <strong className='text-greyscale-5 font-tripsans text-1.25 font-bold leading-1.2 line-clamp-1'>
+          <strong className='text-greyscale-5 font-tripsans text-1.25 tablet:text-175 font-bold leading-1.2 line-clamp-1'>
             {name}
           </strong>
-          <p className='text-greyscale-5 text-0.875 leading-1.2 tracking-0.00875 line-clamp-1'>
+          <p className='text-greyscale-5 text-0.875 tablet:text-15 leading-1.2 tracking-0.00875 line-clamp-1'>
             {date}
           </p>
         </div>
@@ -62,17 +62,17 @@ export default function ClientSayPopup({
                 key={i}
                 src={'/imgs/home/star.svg'}
                 alt='star'
-                className='size-4'
+                className='size-4 tablet:size-[2rem]'
                 width={120}
                 height={120}
               />
             )
           })}
       </div>
-      <div className='h-[6rem] pr-[0.62rem] md:pr-4 overflow-y-auto content-container'>
+      <div className='h-[6rem] tablet:h-[10rem] pr-[0.62rem] md:pr-4 overflow-y-auto content-container'>
         <div
           dangerouslySetInnerHTML={{__html: content}}
-          className='text-greyscale-5 text-0.875 leading-1.2 tracking-0.00875 opacity-90'
+          className='text-greyscale-5 text-0.875 tablet:text-15 leading-1.2 tracking-0.00875 opacity-90'
         ></div>
       </div>
     </div>

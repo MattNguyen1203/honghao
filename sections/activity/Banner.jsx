@@ -16,7 +16,7 @@ import {
   DialogTrigger,
   DialogClose,
 } from '@/components/customCn/dialog'
-
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import {
   Sheet,
   SheetContent,
@@ -143,14 +143,14 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         height={1935}
         className='z-[3] xmd:hidden absolute h-full w-full'
       />
-      <div className='absolute bottom-0 z-[5] left-0 w-full h-[139.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+      <div className='object-cover absolute bottom-0 z-[5] left-0 w-full h-[139.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
         priority
         alt='ảnh'
         src={dataBanerMobi?.image}
         width={1600}
         height={1935}
-        className=' md:hidden absolute h-full w-full'
+        className='object-cover md:hidden absolute h-full w-full'
       />
       <Image
         priority
@@ -175,34 +175,35 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           src={dataBaner?.image_title_big}
           width={840}
           height={355}
-          className='  xmd:top-[9rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute md:left-[3rem]  xl:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+          className='  xmd:top-[9rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute md:left-[0rem]  xl:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
         <div className='md:hidden'>
-          <Breadcrumb />
+          <Breadcrumb className="!pl-0">
+          <BreadcrumbLink isBanner href='/activity'>Activity</BreadcrumbLink>
+        </Breadcrumb>
         </div>
-        <div className=' md:absolute flex-col md:left-[3.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
+        <div className=' md:absolute flex-col md:left-[0.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
           <div className='md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
-            Ha Giang, nestled in the rugged mountains of northern Vietnam,
-            beckons adventurers with its breathtaking scenery and vibrant
-            cultural tapestry. From the towering peaks of the Dong Van Karst
-            Plateau to the winding roads of the Ma Pi Leng Pass, Ha Giang offers
-            an unforgettable journey through some of Vietnam's most
-            awe-inspiring landscapes.
+            {dataBaner?.desc_text}
           </div>
           <div className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
-            <Button
-              className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
-              icon
-            >
-              BOOK NOW
-            </Button>
-            <Button
-              className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
-              icon
-              variant='outline_white'
-            >
-              All tour
-            </Button>
+            <Link href='/tours/book-now'>
+              <Button
+                className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
+                icon
+              >
+                BOOK NOW
+              </Button>
+            </Link>
+            <Link href={'/tours'}>
+              <Button
+                className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
+                icon
+                variant='outline_white'
+              >
+                All tour
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -306,7 +307,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </div>
             </div>
             <div
-              className='absolute xmd:top-[5.6rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-2rem] text-white bg-orange-normal 
+              className='absolute xmd:top-[5.6rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-1.7rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 px-2.5 py-1.5 rounded-[1.25rem]'
             >
@@ -395,7 +396,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </div>
             </div>
             <div
-              className='absolute left-[18.4rem] top-[4.2rem] md:left-[36rem] md:top-[6rem] text-white bg-orange-normal 
+              className='absolute left-[18.4rem] top-[4.2rem] md:left-[35.5rem] md:top-[6.5rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 px-2.5 py-1.5 rounded-[1.25rem]'
             >
@@ -403,7 +404,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             </div>
           </div>
         </div>
-        <div className='xmd:pr-[0.75rem] absolute xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+        <div className='xmd:pr-[0.75rem] absolute xl:right-[0rem] md:right-[0rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>

@@ -1,17 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import {useGSAP} from '@gsap/react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/navigation'
-import {Navigation, Thumbs, FreeMode} from 'swiper/modules'
-import {useEffect, useRef, useState} from 'react'
+import { Navigation, Thumbs, FreeMode } from 'swiper/modules'
+import { useEffect, useRef, useState } from 'react'
 import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
 import 'swiper/css/thumbs'
 import 'swiper/css/free-mode'
-import {getCurrentDate} from '@/lib/getCurrentDate'
+import { getCurrentDate } from '@/lib/getCurrentDate'
 
 const listMonth = [
   'jan',
@@ -28,7 +28,7 @@ const listMonth = [
   'dec',
 ]
 
-export default function Season({data, dataWeather}) {
+export default function Season({ data, dataWeather }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const swiperRef = useRef(null)
   const swiperThumbMobileRef = useRef(null)
@@ -69,11 +69,10 @@ export default function Season({data, dataWeather}) {
     if (!isMobile) {
       const thumbItems = document.querySelectorAll('.thumb-item')
       const thumbItemWidth = thumbItems[0].offsetWidth
-      myRef.current.style.left = `calc(${thumbItemWidth * activeIndex}px + ${
-        thumbItems[1].getBoundingClientRect().left -
+      myRef.current.style.left = `calc(${thumbItemWidth * activeIndex}px + ${thumbItems[1].getBoundingClientRect().left -
         thumbItems[0].getBoundingClientRect().left -
         thumbItemWidth
-      }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
+        }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
     }
   }, [activeIndex, isMobile])
   return (
@@ -133,7 +132,7 @@ export default function Season({data, dataWeather}) {
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.realIndex)
             }}
-            thumbs={{swiper: thumbsSwiper}}
+            thumbs={{ swiper: thumbsSwiper }}
           >
             {data?.map((item, index) => (
               <SwiperSlide key={index}>
@@ -352,7 +351,7 @@ export default function Season({data, dataWeather}) {
                 {parseInt(dataWeather?.main.temp) - 273}°C
               </span>
               {dataWeather?.weather?.main === 'Clear' ||
-              dataWeather?.weather?.id === 801 ? (
+                dataWeather?.weather?.id === 801 ? (
                 <Image
                   src={'/imgs/home/sun.svg'}
                   alt='sun with cloud'
@@ -388,7 +387,7 @@ export default function Season({data, dataWeather}) {
                   ref={myRef}
                   className='absolute top-0 -translate-x-1/2 flex flex-col items-center -translate-y-[98%] transition-400'
                 >
-                  <strong className='font-tripsans text-1 font-extrabold leading-1.2 tracking-0.0125 mb-[0.44rem] text-greyscale-0'>
+                  <strong className='font-tripsans text-1 tablet:text-15 font-extrabold leading-1.2 tracking-0.0125 mb-[0.44rem] text-greyscale-0'>
                     Now
                   </strong>
                   <Image

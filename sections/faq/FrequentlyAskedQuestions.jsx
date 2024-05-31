@@ -1,12 +1,14 @@
 'use client'
 
-import {useState} from 'react'
+import { useState } from 'react'
 import AccordionCustom from '@/sections/common/accordion'
-import {regName, regPhone, regEmail} from '@/lib/reg'
-import {useToast} from '@/components/ui/use-toast'
-
-export default function FrequentlyAskedQuestions({data}) {
-  const {toast} = useToast()
+import { regName, regPhone, regEmail } from '@/lib/reg'
+import { useToast } from '@/components/ui/use-toast'
+import Link from 'next/link'
+import Image from 'next/image'
+export default function FrequentlyAskedQuestions({ data }) {
+  const { toast } = useToast()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
@@ -35,10 +37,11 @@ export default function FrequentlyAskedQuestions({data}) {
       formData.append('_wpcf7_unit_tag', '297')
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/297/feedback`,
-        {method: 'POST', body: formData},
+        { method: 'POST', body: formData },
       )
       const result = await res.json()
       if (result.status === 'mail_sent') {
+        setIsDialogOpen(true)
         toast({
           title: 'Sending information successfully',
           description:
@@ -60,11 +63,11 @@ export default function FrequentlyAskedQuestions({data}) {
   }
   return (
     <section className='kKao4-container'>
-      <h3 className='h3 mb-6 md:mb-[2.8rem]'>{data.heading}</h3>
+      <h3 className='h3 mb-6 md:mb-[2.8rem]'>{data?.heading}</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={data.questions} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
-          <h4 className='mb-6 h4 md:mb-8'>{data.form.heading}</h4>
+          <h4 className='mb-6 h4 md:mb-8'>{data?.form?.heading}</h4>
           <form
             className='grid grid-cols-2 gap-4'
             onSubmit={(e) => handleOnSubmit(e)}
@@ -106,7 +109,7 @@ export default function FrequentlyAskedQuestions({data}) {
                 }}
               />
               <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
-                {errorMessage.phone}
+                {errorMessage?.phone}
               </p>
             </div>
             <div className='col-span-2'>
@@ -140,7 +143,7 @@ export default function FrequentlyAskedQuestions({data}) {
               type='submit'
               className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2 flex flex-row justify-center items-center'
             >
-              {data.form.submit_button_text}
+              {data?.form?.submit_button_text}
               {isLoading && (
                 <svg
                   className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
@@ -166,6 +169,42 @@ export default function FrequentlyAskedQuestions({data}) {
           </form>
         </div>
       </div>
+
+      {isDialogOpen && (
+        <div
+          // onClick={handleClickOutside}
+          className='z-[999] fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
+        >
+          <div className='child_video overflow-hidden rounded-[1.5rem] h-[30.3125rem] w-[47.25rem] relative bg-[linear-gradient(0deg,rgba(19,52,28,0.60)_0%,rgba(19,52,28,0.60)_100%)]'>
+            <Image
+              className='size-full rounded-[1.5rem]'
+              alt='successfully'
+              src={'/imgs/successfully.jpg'}
+              width={756}
+              height={485}
+            />
+            <div className='flex flex-col absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 space-y-[3rem] items-center'>
+              <span className='w-[21.8125rem] text-35 font-black text-[#FFF] text-center'>
+                Thank you for asking
+              </span>
+              <div
+                onClick={()=>setIsDialogOpen(false)}
+                className='flex items-center cursor-pointer justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
+              >
+                Close
+              </div>
+            </div>
+            <Image
+              id='may_ig'
+              className='absolute z-10 bottom-0 h-[8.37rem] w-[82.50331rem] object-cover'
+              alt='mây'
+              src={'/imgs/may.png'}
+              width={1320.053}
+              height={659.181}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

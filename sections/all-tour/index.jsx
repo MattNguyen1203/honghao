@@ -4,7 +4,8 @@ import SliderTour from './SliderTour'
 import GridCheckBox from './GridCheckBox'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 
-export default function AllTour({dataTours, typeOfTours}) {
+export default function AllTour({dataTours, typeOfTours, dataBestTrip}) {
+
   return (
     <main>
       <BannerAllTour />
@@ -17,7 +18,7 @@ export default function AllTour({dataTours, typeOfTours}) {
         </Breadcrumb>
       </div>
       <section>
-        <SliderTour type='alltour' />
+        <SliderTour type='alltour' dataBestTrip={dataBestTrip}/>
       </section>
       <section className='md:pt-[4.19rem] mt-[3rem] md:bg-[#F0F0F0] rounded-t-[1.5rem]'>
         <GridCheckBox

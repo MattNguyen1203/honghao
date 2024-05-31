@@ -10,17 +10,17 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 const CardMain = ({ singlePost }) => {
   return (
-    <Link href={`/${singlePost?.post_slug}`}>
-      <div className='xmd:hidden relative rounded-md overflow-hidden'>
-        <Image priority alt="ảnh" src={singlePost?.thumbnail} width={1500} height={800} className="w-[89.9375rem] h-[43.6875rem] shrink-0" />
-        <div className="absolute z-10 bottom-0 left-0">
+    <Link href={`/${singlePost?.id}${singlePost?.post_slug}`}>
+      <div className='xmd:hidden relative rounded-md overflow-hidden group'>
+        <Image priority alt="ảnh" src={singlePost?.thumbnail} width={1500} height={900} className="rounded-md group-hover:scale-110 duration-500  w-[89.9375rem]  h-[43.6875rem] shrink-0 object-cover" />
+        <div className="absolute z-10 bottom-0 left-0 flex items-start justify-between">
           <div className="bg-green-dark flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0">
             <div className="inline-flex flex-col items-start space-y-[5.1875rem]">
               <div className="inline-flex flex-col items-start space-y-[1.1875rem]">
                 <button className='flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
                   <div className="text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase">
 
-                    ARTICLE
+                    {singlePost?.primary_category?.name}
                   </div>
                 </button>
                 <div className='w-[21.82813rem] line-clamp-3 shrink-0 text-[#FCF8F7] text-[2.5rem] not-italic font-black leading-[100%]'>
@@ -31,10 +31,10 @@ const CardMain = ({ singlePost }) => {
                 5 min READ
               </div>
             </div>
-            <div className="absolute top-[1.85rem] right-[-4.4rem] bg-[#FAF1EE] rotate-90 inline-flex flex-col justify-center items-center pl-[1.31rem] pr-[1.17rem] pt-[0.9rem] pb-[0.62rem] rounded-[0.75rem_0.75rem_0rem_0rem] text-[#030922] text-[0.89356rem] not-italic font-light leading-[1.03125rem] tracking-[0.03125rem] uppercase">
-              Article
-            </div>
 
+          </div>
+          <div className=" bg-[#FAF1EE] ml-[2.55rem] inline-flex flex-col justify-center items-center pl-[1.31rem] pr-[1.17rem] pt-[0.9rem] pb-[0.62rem] rounded-[0.75rem_0.75rem_0rem_0rem] text-[#030922] text-[0.89356rem] not-italic font-light leading-[1.03125rem] tracking-[0.03125rem] uppercase transform rotate-90 origin-top-left">
+            {singlePost?.primary_category?.name}
           </div>
         </div>
       </div>
@@ -44,6 +44,8 @@ const CardMain = ({ singlePost }) => {
 const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategories }) => {
   const listPost = dataGetAllPostsByCategories?.posts
   const pagination = dataGetAllPostsByCategories?.pagination
+  const { shouldFetch, setShouldFetch } =
+    useStore((state) => state)
   const pathname = usePathname()
   const searchParams = useSearchParams();
   const search = searchParams.get('page')
@@ -52,11 +54,11 @@ const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategor
   const [loading, setLoading] = useState(false)
   const fetcher = url => fetch(url).then(r => r.json())
   const { data, error, isLoading } = useSWR(
-    // shouldFetch ? (
-    pathname !== '/blog'
-      ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=2`
-      : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=4`
-    // ) : null
+    shouldFetch ? (
+      pathname !== '/blog'
+        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=2`
+        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=4`
+    ) : null
     ,
     fetcher,
     {
@@ -67,7 +69,12 @@ const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategor
   );
 
   console.log({ paginationClient, search });
+  useEffect(() => {
+    if(search){
+      setShouldFetch(true)
 
+    }
+  }, [])
   useEffect(() => {
     setLoading(isLoading)
     if (data) {
@@ -106,3 +113,5 @@ const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategor
 }
 
 export default ListStories
+
+

@@ -6,13 +6,14 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {useRef, useState} from 'react'
 import Image from 'next/image'
 import ItemCardBestTrip from './ItemCardBestTrip'
+import Link from 'next/link'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
 const data = Array(5).fill(0)
 
-export default function BestTrips() {
+export default function BestTrips({listBestTrip}) {
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
@@ -50,13 +51,13 @@ export default function BestTrips() {
       ref={container}
       className='relative w-full bg-white lg:h-screen'
     >
-      <div className='lg:container subContainer xmd:!px-0 tablet:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
-        <div className='xmd:mb-[2rem] xmd:pl-[0.75rem]'>
+      <div className='lg:container subContainer xmd:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
+        <div className='xmd:mb-[2rem] xmd:pl-[0.75rem] tablet:pl-[4rem]'>
           <h3 className='font-extrabold text-1125 xmd:text-0875 xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
             EXPLORE
           </h3>
-          <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem]'>
-            BEST TRIPS <br className='md:hidden' /> FOR YOU {index}
+          <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem] '>
+            BEST TRIPS <br className='md:hidden' /> FOR YOU
           </h2>
           <Image
             className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
@@ -70,22 +71,26 @@ export default function BestTrips() {
           <div
             ref={listTourHome}
             id='list_tour_home'
-            className='flex lg:flex-col lg:w-full w-fit h-fit lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem] xmd:pr-[0.75rem] lg:space-y-[2rem] lg:space-x-0 space-x-[0.75rem]'
+            className='xmd:translate-none flex lg:flex-col lg:w-full w-fit h-fit lg:static absolute tablet:overflow-x-auto xmd:overflow-x-auto top-0 left-0 lg:pl-0 pl-[0.75rem] xmd:pr-[0.75rem] lg:space-y-[2rem] tablet:space-x-[2rem] lg:space-x-0 space-x-[0.75rem]'
           >
-            {data.map((_, index) => (
-              <ItemCardBestTrip key={index} />
+            {listBestTrip?.map((item, index) => (
+              <ItemCardBestTrip
+                key={index}
+                data={item}
+              />
             ))}
           </div>
         </div>
       </div>
-      <button
+      <Link
+        href='/tours'
         style={{writingMode: 'vertical-rl'}}
         className='top-0 translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
       >
         All tour
         <IconArrowRight />
         {/* writing-mode: vertical-lr; */}
-      </button>
+      </Link>
     </section>
   )
 }

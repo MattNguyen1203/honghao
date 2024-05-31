@@ -7,11 +7,12 @@ import Image from 'next/image'
 import {Draggable} from 'gsap/Draggable'
 import InertiaPlugin from 'gsap/InertiaPlugin'
 import ICMapSmall from '@/components/icons/ICMapSmall'
+import Link from 'next/link'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger, Draggable, InertiaPlugin)
 }
-export default function GladdestMoment() {
+export default function GladdestMoment({dataGallery}) {
   const container = useRef(null)
   const slideRef = useRef(null)
   const tweenRef = useRef(null)
@@ -20,7 +21,7 @@ export default function GladdestMoment() {
   if (typeof window !== 'undefined' && window?.innerWidth <= 1024) return null
   useGSAP(
     () => {
-      console.log(slideRef.current.style.width)
+      // console.log(slideRef.current.style.width)
 
       Draggable.create(slideRef.current, {
         type: 'x',
@@ -62,14 +63,16 @@ export default function GladdestMoment() {
     },
     {scope: container},
   )
+
+  console.log('dataGallery', dataGallery)
   return (
     <section
       ref={container}
-      className='w-full h-fit -mt-[15rem] pb-[0.8rem] xlg:hidden z-20 relative'
+      className='w-full h-fit mt-[-5rem] pb-[0.8rem] xlg:hidden z-20 relative'
     >
       <div className='mb-[3rem] flex justify-between items-center w-[calc(100%-16.665rem)] ml-auto'>
         <h2 className='tetx-[3.5rem] font-black leading-[1] text-[#222] font-londrina whitespace-nowrap'>
-          THE GLADDEST MOMENT
+          {dataGallery?.heading}
         </h2>
         <div className='size-[6.5625rem] relative'>
           <Image
@@ -85,11 +88,10 @@ export default function GladdestMoment() {
           <ICMapSmall className='size-[2.375rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
         </div>
         <div className='w-[42.6875rem] h-[4.9375rem] bg-[linear-gradient(90deg,rgba(255,255,255,0.00)_-48.55%,rgba(12,140,30,0.14)_100%)] flex items-center'>
-          <p className='text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] text-[#262626] ml-[2.13rem]'>
-            Don't hesitate to pick up your backpack and go. When you reach your
-            destination and <br /> see all the beautiful things in sight, you
-            will know that your efforts were worth it
-          </p>
+          <p
+            dangerouslySetInnerHTML={{__html: dataGallery?.description}}
+            className='text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] text-[#262626] ml-[2.13rem]'
+          ></p>
         </div>
       </div>
 
@@ -111,16 +113,18 @@ export default function GladdestMoment() {
             className='flex flex-col h-[43rem] absolute top-0 left-0 space-y-[0.75rem]'
           >
             <div className='flex space-x-[0.75rem] pl-[16.665rem]'>
-              {Array(4)
-                .fill(0)
-                .map((_, index) => (
-                  <ItemGallery
-                    key={index}
-                    index={index}
-                  />
-                ))}
+              {dataGallery?.gallery_top?.map((img, index) => (
+                <ItemGallery
+                  key={index}
+                  index={index}
+                  img={img}
+                />
+              ))}
               <div className='w-[10rem] flex justify-center items-center'>
-                <div className='size-[7.625rem] relative group rounded-full lg:hover:bg-[#E64828] transition-all duration-200 flex justify-center items-center'>
+                <Link
+                  href='/activity'
+                  className='size-[7.625rem] relative group rounded-full lg:hover:bg-[#E64828] transition-all duration-200 flex justify-center items-center'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='122'
@@ -148,21 +152,20 @@ export default function GladdestMoment() {
                       DISCOVERY
                     </span>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
             <div
               id='slide_item_2'
               className='flex space-x-[0.75rem]'
             >
-              {Array(5)
-                .fill(0)
-                .map((_, index) => (
-                  <ItemGallery
-                    key={index}
-                    index={index}
-                  />
-                ))}
+              {dataGallery?.gallery_bottom?.map((img, index) => (
+                <ItemGallery
+                  key={index}
+                  index={index}
+                  img={img}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -170,14 +173,12 @@ export default function GladdestMoment() {
     </section>
   )
 }
-const ItemGallery = ({index}) => {
+const ItemGallery = ({index, img}) => {
   return (
     <div className='item_slide w-[33.33rem] flex-shrink-0 h-[21.125rem] relative group'>
       <Image
         className='object-cover size-full rounded-[1rem]'
-        src={
-          index % 2 === 0 ? '/imgs/home/demo-2_.jpg' : '/imgs/home/demo-3_.png'
-        }
+        src={img?.url || ''}
         alt='demo'
         width={400}
         height={300}
