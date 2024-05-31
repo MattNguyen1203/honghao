@@ -35,7 +35,7 @@ const Nav = ({setOpenNav}) => {
   return (
     <div
       className={cn(
-        'py-[1.5rem] px-[5rem] xmd:px-[1.25rem] xmd:py-[0.5rem] flex w-full justify-between items-center transtion-all duration-500',
+        'fixed top-0 left-0 z-[1001] py-[1.5rem] px-[5rem] xmd:px-[1.25rem] xmd:py-[0.5rem] flex w-full justify-between items-center transtion-all duration-500',
         isHidden ? '-translate-y-[100%]' : 'translate-y-0',
         isTransparent ? 'bg-transparent' : ' bg-greyscale-0 shadow-md',
       )}

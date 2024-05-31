@@ -1,14 +1,27 @@
+'use client'
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
 
-const dataFormInit = {
-  titleTour: 'Ha Giang Loop tour',
-  typeoftour: 'Itinerary',
-  choosedays: {title: '3 days 2 night', day: 3},
-}
+// const dataFormInit = {
+//   titleTour: 'Ha Giang Loop tour',
+//   typeoftour: 'Itinerary',
+//   choosedays: {title: '3 days 2 night', day: 3},
+// }
 
-export default function Booking() {
+export default function Booking({data, dataTourDetail, dataPage}) {
+  console.log('data', data)
+  const dataFormInit = {
+    titleTour: dataTourDetail?.title,
+    typeoftour: dataTourDetail?.type_of_tour_data?.[0]?.name,
+    choosedays: {
+      title: dataTourDetail?.time_data?.[0]?.name,
+      day: data?.infos?.number_day,
+    },
+    priceSelf: data?.gia?.self_driving,
+    priceLocal: data?.gia?.local_driver,
+  }
+
   return (
     <div className='relative h-[70rem] xmd:h-fit flex bg-white'>
       <div className='xmd:hidden absolute size-full top-0 left-0'>
@@ -24,10 +37,11 @@ export default function Booking() {
             ONLINE BOOKING
           </h2>
         </div>
-        {/* <HomeForm
+        <HomeForm
           isTourDetail
           dataFormInit={dataFormInit}
-        /> */}
+          listLocation={dataPage}
+        />
       </div>
     </div>
   )

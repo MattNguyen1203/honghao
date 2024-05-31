@@ -64,7 +64,6 @@ export default function GladdestMoment({dataGallery}) {
     {scope: container},
   )
 
-  console.log('dataGallery', dataGallery)
   return (
     <section
       ref={container}

@@ -9,11 +9,14 @@ import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
-const TourDetail = ({data, dataPage, dataBestTrip, slug}) => {
+const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail, slug}) => {
   return (
     <main className='alldestinations '>
       <section>
-        <Banner dataAcf={data} />
+        <Banner
+          dataAcf={data}
+          dataTourDetail={dataTourDetail}
+        />
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb
@@ -23,10 +26,20 @@ const TourDetail = ({data, dataPage, dataBestTrip, slug}) => {
           <BreadcrumbLink href={`/tours/${slug}`}>{slug}</BreadcrumbLink>
         </Breadcrumb>
       </section>
-      <StepByStep dataAcf={data} />
-      <StepByStepRes dataAcf={data} />
+      <StepByStep
+        dataAcf={data}
+        dataTourDetail={dataTourDetail}
+      />
+      <StepByStepRes
+        dataAcf={data}
+        dataTourDetail={dataTourDetail}
+      />
       <section>
-        <Booking />
+        <Booking
+          data={data}
+          dataTourDetail={dataTourDetail}
+          dataPage={dataPage}
+        />
       </section>
       <section>
         <FaqAboutTrip
