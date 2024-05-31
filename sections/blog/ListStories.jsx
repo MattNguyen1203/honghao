@@ -56,8 +56,8 @@ const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategor
   const { data, error, isLoading } = useSWR(
     shouldFetch ? (
       pathname !== '/blog'
-        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=2`
-        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=4`
+        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=8`
+        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=8`
     ) : null
     ,
     fetcher,

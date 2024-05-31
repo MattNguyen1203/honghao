@@ -14,7 +14,7 @@ const getDataAcf = async () => {
   return getData(`wp-json/acf/v3/pages/${PAGE_BLOG_ID}`)
 }
 const getDataCategorisAndFirstpost = async () => {
-  return getData(`wp-json/okhub/v1/get-list-cat-and-first-posts?page=1&per_page=4`)
+  return getData(`wp-json/okhub/v1/get-list-cat-and-first-posts?page=1&per_page=8`)
 }
 const page = async () => {
 

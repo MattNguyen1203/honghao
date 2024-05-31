@@ -4,7 +4,15 @@ import Image from 'next/image'
 
 export default function QuestionLookHere({data}) {
   return (
-    <section className='kKao4-container relative pt-8 md:pt-[2.94rem] mb-12 md:mb-[4.5rem]'>
+    <section className='relative pt-8 md:pt-[2.94rem] mb-12 md:mb-[4.5rem]'>
+      <Image
+        src={'/imgs/faq/question-section/background-deco.png'}
+        alt='background deco'
+        className='absolute top-0 left-0 w-full h-[42.9rem]  -z-10 hidden md:block'
+        width={1920}
+        height={1080}
+      />
+    <div className='kKao4-container relative '>
       <div className='mb-[1.12rem] md:mb-14'>
         <SectionHeading
           h5='FAQS'
@@ -29,13 +37,9 @@ export default function QuestionLookHere({data}) {
           })}
         </div>
       </div>
-      <Image
-        src={'/imgs/faq/question-section/background-deco.png'}
-        alt='background deco'
-        className='absolute top-0 left-0 w-full h-[42.9rem] object-cover -z-10 hidden md:block'
-        width={1920}
-        height={1080}
-      />
+
+    </div>
     </section>
+
   )
 }

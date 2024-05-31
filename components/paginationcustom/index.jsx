@@ -47,7 +47,9 @@ export default function PaginationCustom({href, pagination}) {
     router.push(`${pathName}?${createQueryString("page", d)}`, { scroll: false })
   }
   return (
-    <Pagination className={'mt-[2rem] paginationcustom'}>
+        <>
+{pagination?.total_pages>1&&
+    <Pagination className={ ' mt-[2rem] paginationcustom'}>
       <PaginationContent>
         {new Array(pagination?.total_pages).fill(0)?.map((d, i) => (
           <PaginationItem
@@ -69,6 +71,7 @@ export default function PaginationCustom({href, pagination}) {
           </PaginationItem>
         ))}
       </PaginationContent>
-    </Pagination>
+    </Pagination>    }
+    </>
   )
 }

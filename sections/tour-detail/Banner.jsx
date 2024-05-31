@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 
-const Banner = ({dataAcf, dataTourDetail}) => {
+const Banner = ({ dataAcf, dataTourDetail }) => {
   const data = [
     {
       icon: (
@@ -233,7 +233,7 @@ const Banner = ({dataAcf, dataTourDetail}) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -285,7 +285,7 @@ const Banner = ({dataAcf, dataTourDetail}) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -313,21 +313,27 @@ const Banner = ({dataAcf, dataTourDetail}) => {
               </div>
             </div>
             <Image
-              priority
-              alt='ảnh'
-              src={'/imgs/all-destinations/honghao-xoay.png'}
+              className={` w-[14.375rem] scale-110 xmd:hidden z-10 absolute top-0 circular-infinity`}
+              src={'/home/text-circle-box-map-white.svg'}
+              alt='text circle box map'
               width={300}
               height={400}
-              className='w-[11.375rem] xmd:hidden z-10 absolute top-0 circular-infinity '
             />
             <Image
+              className={` w-[14.375rem] scale-110 md:hidden z-10 absolute top-0 circular-infinity`}
+              src={'/home/text-circle-box-map.svg'}
+              alt='text circle box map'
+              width={300}
+              height={400}
+            />
+            {/* <Image
               priority
               alt='ảnh'
               src={'/imgs/all-destinations/honghao-xoay-den.png'}
               width={300}
               height={400}
               className='w-[11.375rem] md:hidden z-10 absolute top-0 circular-infinity '
-            />
+            /> */}
           </div>
         </div>
       </div>
