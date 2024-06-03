@@ -3,14 +3,7 @@ import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
 
-// const dataFormInit = {
-//   titleTour: 'Ha Giang Loop tour',
-//   typeoftour: 'Itinerary',
-//   choosedays: {title: '3 days 2 night', day: 3},
-// }
-
 export default function Booking({data, dataTourDetail, dataPage}) {
-  console.log('data', data)
   const dataFormInit = {
     titleTour: dataTourDetail?.title,
     typeoftour: dataTourDetail?.type_of_tour_data?.[0]?.name,

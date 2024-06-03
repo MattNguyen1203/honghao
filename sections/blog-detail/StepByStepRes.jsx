@@ -10,7 +10,6 @@ export default function StepByStepRes({dataAcf, dataTourDetail}) {
   const [seeLess, setSeeLess] = useState(true)
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides
-  // console.log(dataSLides)
   return (
     <>
       <button

@@ -7,6 +7,10 @@ import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import {useSearchParams} from 'next/navigation'
+import {generateParams} from '@/lib/payment'
+import CryptoJS from 'crypto-js'
+import {paymentOnepay} from '@/lib/constants'
 gsap.registerPlugin(ScrollTrigger)
 const Banner = ({
   dataBanner,
@@ -17,6 +21,7 @@ const Banner = ({
 }) => {
   const isMobile = useStore((state) => state.isMobile)
   const isTablet = useStore((state) => state.isTablet)
+  const searchParams = useSearchParams()
 
   const [animationCompleted, setAnimationCompleted] = useState(false)
 
@@ -114,6 +119,7 @@ const Banner = ({
         })
     })
   }, [])
+
   return (
     <section
       className='xmd:min-h-[30rem] xlg:bg-green-normal'
