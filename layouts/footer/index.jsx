@@ -77,13 +77,13 @@ export default async function Footer() {
     },
   ]
   return (
-    <footer className='overflow-hidden pt-[3.69rem] h-auto bg-greyscale-0 relative before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(255,255,255,0.93)_0%,#FFF_37.97%,#FFF_98.21%)] before:z-10 before:opacity-85'>
+    <footer className='overflow-hidden pt-[3.69rem] h-auto bg-greyscale-0 relative before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(255,255,255,0.93)_0%,#FFF_37.97%,#FFF_98.21%)] before:z-10 before:opacity-50'>
       <Image
-        src='/imgs/footer/footerBg.png'
+        src='/imgs/footer/Group.png'
         alt='hong hao travel'
         width={2000}
         height={1000}
-        className='w-full h-full object-contain absolute top-0 left-0'
+        className='w-full h-full object-contain absolute top-[-5rem] left-0'
       />
       <div className='container'>
         <div className='w-[59.6875rem] xmd:w-full h-full relative z-40'>

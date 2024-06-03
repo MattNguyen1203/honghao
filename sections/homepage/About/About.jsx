@@ -70,7 +70,7 @@ const About = ({dataAbout}) => {
             dangerouslySetInnerHTML={{
               __html: dataAbout?.about_us?.content || '',
             }}
-            className='px-[1.5rem] text-35 xmd:text-15 font-black font-londrina text-greyscale-0/80 mb-[4rem] xmd:mb-[1.56rem] text-center leading-[100%]'
+            className='*:text-center md:w-[53.75rem] md:px-0 px-[1.5rem] text-35 xmd:text-15 font-black font-londrina text-greyscale-0/80 mb-[4rem] xmd:mb-[1.56rem] text-center leading-[100%]'
           ></div>
 
           <div className='flex space-x-[0.75rem] xmd:space-[0.5rem] tablet:space-[1.5rem] mb-[6.3rem] xmd:mb-[2.8rem] xmd:flex-wrap items-center justify-center'>
@@ -81,7 +81,7 @@ const About = ({dataAbout}) => {
               >
                 <div className='animate-spin flex size-full rounded-full border border-dashed border-greyscale-0 absolute top-0 left-0'></div>
                 <div className='relative overflow-hidden w-full h-[2.125rem]'>
-                  <span className='group-hover:translate-y-[-200%] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
+                  <span className='text-center group-hover:translate-y-[-200%] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>
                     {item?.text}
                   </span>
                   <span className='xlg:hidden translate-y-[100%] group-hover:-translate-y-1/2 xlg:!-translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'>

@@ -51,7 +51,6 @@ const Welcome = ({data}) => {
           },
           '<',
         )
-
       ScrollTrigger.create({
         trigger: parentRef.current,
         start: 'top 60%',

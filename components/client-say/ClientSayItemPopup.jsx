@@ -13,7 +13,7 @@ export default function ClientSayPopup({
   return (
     <div
       className={cn(
-        'relative flex flex-col gap-4 rounded-[1.5rem] overflow-hidden w-[19.4375rem] md:w-[22rem] xmd:bg-white/10 px-4 py-6 flex-none',
+        'relative flex flex-col gap-4 rounded-[1.5rem] overflow-hidden w-[19.4375rem] md:w-[22rem] xmd:bg-white/10 bg-[rgba(255,255,255,0.10)] md:backdrop-blur-[1rem] px-4 py-6 flex-none',
         {
           'absolute top-0 right-0 translate-x-full -translate-y-1/2':
             direction === 'right',
