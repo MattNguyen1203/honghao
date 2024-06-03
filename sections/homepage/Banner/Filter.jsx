@@ -62,8 +62,6 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
     )
   }, [tourSelected, optionSelected])
 
-  console.log('commonData', commonData)
-
   return (
     <div className='xmd:hidden flex items-center absolute bottom-[2.94rem] left-1/2 -translate-x-1/2 bg-greyscale-0 rounded-[0.75rem] py-[0.75rem] pl-[2rem] pr-[0.75rem] z-[1000]'>
       {dataFilter?.map((item, index) => (
@@ -117,6 +115,8 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             listTypeofTour={listTypeofTour}
             listTime={listTime}
             listTours={listTours?.tours}
+            selfPax={optionSelected?.selfPax}
+            localPax={optionSelected?.localPax}
           />
         </DialogContent>
       </Dialog>

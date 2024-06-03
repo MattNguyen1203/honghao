@@ -21,8 +21,6 @@ export default function GladdestMoment({dataGallery}) {
   if (typeof window !== 'undefined' && window?.innerWidth <= 1024) return null
   useGSAP(
     () => {
-      // console.log(slideRef.current.style.width)
-
       Draggable.create(slideRef.current, {
         type: 'x',
         inertia: true,

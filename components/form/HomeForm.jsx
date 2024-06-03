@@ -31,7 +31,7 @@ import {FORM_API, paymentOnepay} from '@/lib/constants'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import Link from 'next/link'
-import {generateParamsPayment} from '@/lib/payment'
+import {generateParams, generateParamsPayment} from '@/lib/payment'
 import CryptoJS from 'crypto-js'
 import {generateRandom4DigitNumber} from '@/lib/utils'
 import {usePathname, useRouter, useSearchParams} from 'next/navigation'
@@ -76,10 +76,12 @@ export default function HomeForm({
   listTypeofTour = [],
   listTime = [],
   listTours = [],
+  selfPax,
+  localPax,
 }) {
   const {toast} = useToast()
-  const [paxValueSelf, setPaxValueSelf] = useState(1)
-  const [paxValueLocal, setPaxValueLocal] = useState(1)
+  const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
+  const [paxValueLocal, setPaxValueLocal] = useState(localPax || 0)
   const [dataDestination, setDataDestination] = useState([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDialogText, setIsDialogText] = useState('')
@@ -108,24 +110,15 @@ export default function HomeForm({
   const router = useRouter()
   const pathname = usePathname()
 
-  console.log('dataForm', dataForm)
-
-  useEffect(() => {
-    if (!dataFormInit) return
-    form.setValue('typeoftour', dataFormInit?.typeoftour)
-    form.setValue('choosedays', dataFormInit?.choosedays?.title)
-  }, [dataFormInit])
-
-  // console.log('listTour', listTours)
-  useEffect(() => {
-    if (isTourDetail) return
-    if (!dataForm?.choosedays || !dataForm?.typeoftour) return
+  // hàm lấy tour phù hợp
+  const handleChangeTourSelected = (type, time, listTours) => {
     const tourMatch = listTours?.find((tour) => {
       return (
-        tour?.type_of_tour_data?.[0]?.name === dataForm?.typeoftour &&
-        tour?.time_data?.[0]?.name === dataForm?.choosedays
+        tour?.type_of_tour_data?.[0]?.name === type &&
+        tour?.time_data?.[0]?.name === time
       )
     })
+
     if (tourMatch) {
       setTourSelected({
         titleTour: tourMatch?.title,
@@ -151,8 +144,32 @@ export default function HomeForm({
       })
       setNotFoundTour(true)
     }
+  }
+
+  // kiểm tra thông tin đầu vào
+  useEffect(() => {
+    if (dataFormInit) {
+      form.setValue('typeoftour', dataFormInit?.typeoftour)
+      form.setValue('choosedays', dataFormInit?.choosedays?.title)
+    } else {
+      const typeInit = listTypeofTour?.terms?.[0]?.name
+      const timeInit = listTime?.terms?.[0]?.name
+      form.setValue('typeoftour', typeInit)
+      form.setValue('choosedays', timeInit)
+      handleChangeTourSelected(typeInit, timeInit, listTours)
+    }
+  }, [dataFormInit])
+
+  // lấy lại tour phù hợp khi thay đổi thông tin
+  useEffect(() => {
+    if (isTourDetail) return
+    if (!dataForm?.choosedays || !dataForm?.typeoftour) return
+    handleChangeTourSelected(
+      dataForm?.typeoftour,
+      dataForm?.choosedays,
+      listTours,
+    )
   }, [dataForm?.choosedays, dataForm?.typeoftour])
-  console.log('tourSelected', tourSelected)
 
   // tính ngày enddate theo tour
   useEffect(() => {
@@ -161,23 +178,22 @@ export default function HomeForm({
     if (dataForm?.dob && dataForm?.choosedays) {
       const dayValue = Number(tourSelected?.choosedays?.day)
 
-      console.log('dayValue', dayValue)
       endDateUse.setDate(startDate?.getDate() + dayValue || 0)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
   }, [dataForm?.choosedays, dataForm?.dob, tourSelected?.choosedays])
 
-  // set enddate theo tour Detail
-  useEffect(() => {
-    if (isTourDetail && dataForm?.dob) {
-      let startDate = dataForm?.dob
-      let endDateUse = new Date(startDate)
-      endDateUse.setDate(startDate?.getDate() + tourSelected?.choosedays?.day)
-      setEndDate(endDateUse)
-      form.setValue('enddate', endDateUse)
-    }
-  }, [dataForm?.dob])
+  // // set enddate theo tour Detail
+  // useEffect(() => {
+  //   if (isTourDetail && dataForm?.dob) {
+  //     let startDate = dataForm?.dob
+  //     let endDateUse = new Date(startDate)
+  //     endDateUse.setDate(startDate?.getDate() + tourSelected?.choosedays?.day)
+  //     setEndDate(endDateUse)
+  //     form.setValue('enddate', endDateUse)
+  //   }
+  // }, [dataForm?.dob])
 
   //lấy data từ droff
   useEffect(() => {
@@ -234,26 +250,28 @@ export default function HomeForm({
         formdata.append('entry.1182103187', paxValueSelf)
         formdata.append('entry.477674361', type)
 
-        await fetch(`${FORM_API}`, {
+        const res = await fetch(`${FORM_API}`, {
           method: 'POST',
           body: formdata,
           mode: 'no-cors',
         })
 
-        // setIsDialogOpen(true)
-        // setIsDialogText('Successfully booked the tour')
+        console.log('Response from Google Sheets:', res)
+
+        setIsDialogOpen(true)
+        setIsDialogText('Successfully booked the tour')
       } catch (error) {
         setIsDialogText('fail booked the tour')
         toast({
           title: 'Sending information failed',
           description: 'Please check the information you have filled in again.',
         })
-        console.log(error)
       }
     },
     [tourSelected, paxValueLocal, paxValueSelf],
   )
 
+  // handle submit
   function onSubmit(values, type) {
     const randomIDOrder = generateRandom4DigitNumber()
     if (paxValueSelf === 0 && paxValueLocal === 0) {
@@ -268,13 +286,16 @@ export default function HomeForm({
       paxValueLocal: paxValueLocal,
       ...values,
     }
+
     localStorage.setItem('myDataForm', JSON.stringify(newvalue))
     const status = type === 'onepay' ? 'Processing' : 'COD'
+
     postFile(newvalue, status)
 
     const totalPrice =
-      paxValueSelf * tourSelected?.priceSelf +
-      paxValueLocal * tourSelected?.priceLocal
+      (Number(paxValueSelf) * Number(tourSelected?.priceSelf) +
+        Number(paxValueLocal) * Number(tourSelected?.priceLocal)) *
+      listLocation?.ti_gia
 
     if (type === 'onepay') {
       const params = generateParamsPayment(
@@ -285,7 +306,6 @@ export default function HomeForm({
         true,
         pathname,
       )
-      console.log('params', params)
       const secretWordArray = CryptoJS.enc.Hex.parse(
         paymentOnepay.SECRET_KEY_HASH,
       )
@@ -328,7 +348,43 @@ export default function HomeForm({
     getIp()
   }, [])
 
-  // console.log('dataDestination', dataDestination)
+  // useEffect(() => {
+  //   console.log('vpn', searchParams?.vpc_MerchTxnRef)
+
+  //   const vpc_merch = searchParams.get('vpc_MerchTxnRef')
+  //   if (!vpc_merch) return
+  //   const handleSecureHash = () => {
+  //     const paramsGenerate = generateParams(true, vpc_merch)
+  //     const secretWordArray = CryptoJS.enc.Hex.parse(
+  //       paymentOnepay.SECRET_KEY_HASH,
+  //     )
+  //     const hash = CryptoJS.HmacSHA256(paramsGenerate, secretWordArray)
+  //     const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+  //     return vpc_SecureHash
+  //   }
+
+  //   const fetcher = async () => {
+  //     const res = await fetch('/api/payment', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         vpc_AccessCode: paymentOnepay.ACCESS_CODE,
+  //         vpc_MerchTxnRef: vpc_merch,
+  //         vpc_Merchant: paymentOnepay.MERCHANT_ID,
+  //         vpc_Password: 'op123456',
+  //         vpc_User: 'op01',
+  //         vpc_Version: '2',
+  //         vpc_SecureHash: handleSecureHash(),
+  //       }),
+  //     })
+
+  //     const data = res.json()
+  //     return data
+  //   }
+  //   fetcher().then((res) => {
+  //     console.log('res', res)
+  //   })
+  // }, [])
+
   return (
     <>
       <section
@@ -426,7 +482,7 @@ export default function HomeForm({
                     <FormControl>
                       <Textarea
                         className='resize-none !h-[3.6875rem] !min-h-[3.6875rem] py-[0.75rem] px-[1rem] rounded-[0.5rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal bg-white focus-visible:ring-transparent'
-                        placeholder='Message *'
+                        placeholder='Message'
                         {...field}
                       />
                     </FormControl>
