@@ -23,8 +23,8 @@ const StartPlanning = ({dataStartPlanning}) => {
       />
 
       <div className='absolute flex justify-center w-full md:-translate-y-1/2 xmd:top-[3.6rem] top-1/2'>
-        <div className='relative flex items-center md:space-x-[2.3rem] h-full  xl:container w-full'>
-          <div className='md:relative p-[3rem] xmd:hidden'>
+        <div className='relative  flex items-center md:space-x-[2.3rem] h-full container w-full'>
+          <div className='md:relative p-[0rem] xmd:hidden'>
             <Image
               priority
               alt='ảnh xoay'
@@ -44,7 +44,7 @@ const StartPlanning = ({dataStartPlanning}) => {
             />
           </div>
           <div className='flex flex-col mx-auto items-center'>
-            <h2 className='md:w-[27.5rem] xmd:text-[1.5rem] mb-[2.26rem] xmd:mb-[0.75rem] md:h-[6.4375rem] tablet:!h-auto shrink-0 text-greyscale-70 text-center not-italic xmd:!font-black xmd:tracking-[0.00875rem] xmd:leading-[1.2] !font-light '>
+            <h2 className='md:w-[27.5rem] xmd:text-[1.5rem] mb-[2.26rem] xmd:mb-[0.75rem] md:h-[6.4375rem] tablet:!h-auto shrink-0 text-greyscale-70 text-center not-italic xmd:!font-black font-[400] xmd:tracking-[0.00875rem] xmd:leading-[1.2]'>
               {dataStartPlanning?.main_text}
             </h2>
             <div className='w-[20.3125rem] md:h-[4.875rem] xmd:mb-[2rem] mb-[2.38rem] shrink-0 text-greyscale-20 text-center text-base xmd:text-[0.875rem] xmd:leading-[1.5] not-italic font-normal leading-[150%] tracking-[0.005rem]'>

@@ -241,7 +241,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             )}
           </div>
         ) : (
-          <div className='grid-tours grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[1.25rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
+          <div className='grid-tours grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[3.75rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
             {new Array(6).fill(0)?.map((e, index) => (
               <Skeleton
                 className='rounded-2xl   xmd:w-[21.4375rem] xmd:h-[15.3125rem] w-[21.4375rem] h-[29.5625rem]'

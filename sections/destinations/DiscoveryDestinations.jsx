@@ -1,15 +1,15 @@
 'use client'
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import CardDestination from './CardDestination'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PaginationV2 from '@/components/pagination'
-import {useSearchParams} from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import getData from '@/lib/getData'
-import {Skeleton} from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 gsap.registerPlugin(ScrollTrigger)
-const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
+const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const [listDestination, setListDestination] = useState({
     posts: dataListCat?.posts,
     pagination: dataListCat?.pagination,
@@ -24,7 +24,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
   const scrollRef = useRef()
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (listDestination?.posts?.length < 4) return
+      if (listDestination?.posts?.length < 3) return
       if (window.innerWidth > 768) {
         ScrollTrigger.create({
           trigger: pinRef.current,
@@ -64,7 +64,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
     const fetchData = async () => {
       setIsLoading(true)
       const res = await getData(
-        `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=${currentPage}&posts_per_page=8`,
+        `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=${currentPage}&posts_per_page=4`,
       )
       setListDestination(res)
       setIsLoading(false)
@@ -82,7 +82,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
         src={'/imgs/all-destinations/discover-desti.png'}
         width={1600}
         height={900}
-        className='absolute xmd:hidden z-[-1] w-full h-[90vh]'
+        className='absolute xmd:hidden z-[-1] object-cover w-full h-[90vh]'
       />
       <Image
         ref={pinRefMobi}
@@ -118,7 +118,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
             </h2>
           </div>
           <div
-            dangerouslySetInnerHTML={{__html: dataAcf?.description}}
+            dangerouslySetInnerHTML={{ __html: dataAcf?.description }}
             className=' text-green-dark-active md:w-[27.5625rem] text-[1rem] xmd:text-[0.875rem]  not-italic font-normal xmd:tracking-[0.00219rem] tracking-[0.005rem] leading-[150%]'
           ></div>
         </div>
@@ -129,18 +129,18 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
           >
             {isLoading
               ? new Array(2).fill().map((item, index) => (
-                  <Skeleton
-                    className='xmd:w-full xmd:h-[23.33775rem] w-[29.375rem] h-[31.875rem] rounded-[1.25rem] overflow-hidden'
-                    key={index}
-                  />
-                ))
+                <Skeleton
+                  className='xmd:w-full xmd:h-[23.33775rem] w-[29.375rem] h-[31.875rem] rounded-[1.25rem] overflow-hidden'
+                  key={index}
+                />
+              ))
               : listDestination?.posts?.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <CardDestination data={item} />
-                    </div>
-                  )
-                })}
+                return (
+                  <div key={index}>
+                    <CardDestination data={item} />
+                  </div>
+                )
+              })}
           </div>
 
           <PaginationV2

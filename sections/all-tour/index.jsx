@@ -17,10 +17,10 @@ export default function AllTour({dataTours, typeOfTours, dataBestTrip}) {
           <BreadcrumbLink href={'/tours'}>All Tours</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      <section>
+      <section className='mt-[2rem] md:mt-[3rem]'>
         <SliderTour type='alltour' dataBestTrip={dataBestTrip}/>
       </section>
-      <section className='md:pt-[4.19rem] mt-[3rem] md:bg-[#F0F0F0] rounded-t-[1.5rem]'>
+      <section className='md:pt-[4.19rem] mt-[4rem] md:bg-[#F0F0F0] rounded-t-[1.5rem]'>
         <GridCheckBox
           typeOfTours={typeOfTours}
           dataTours={dataTours}
