@@ -5,7 +5,6 @@ export async function POST(req) {
   const myHeaders = new Headers()
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded')
 
-  console.log(body)
   const urlencoded = new URLSearchParams()
   urlencoded.append('vpc_Command', 'queryDR')
   urlencoded.append('vpc_Version', '2')
@@ -15,7 +14,7 @@ export async function POST(req) {
   urlencoded.append('vpc_User', 'op01')
   urlencoded.append('vpc_Password', 'op123456')
   urlencoded.append('vpc_SecureHash', body?.vpc_SecureHash)
-  console.log(urlencoded)
+
   const requestOptions = {
     method: 'POST',
     headers: myHeaders,

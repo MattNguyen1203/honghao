@@ -1,11 +1,100 @@
 'use client'
 import {Button} from '@/components/customCn/button'
+import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
+import {generateParams, generateParamsPayment} from '@/lib/payment'
+// import {FORM_API} from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
+import CryptoJS from 'crypto-js'
 
-const ThankYou = ({searchParams}) => {
-  console.log('searchParams', searchParams)
+const ThankYou = ({searchParams, slug}) => {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  const postFile = useCallback(async (newvalue, status) => {
+    const listValue = {
+      username: newvalue?.username,
+      email: newvalue?.email,
+      phone: newvalue?.phone,
+      typeoftour: newvalue?.tourtype,
+      choosedays: newvalue?.tourduration,
+      message: newvalue?.message,
+      pickup: newvalue?.pickup,
+      droff: newvalue?.droff,
+      dob: newvalue?.departuredate,
+      enddate: newvalue?.enddate,
+      address: newvalue?.address,
+      destination: newvalue?.destination,
+      totalPax: newvalue?.selfPax + newvalue?.localPax,
+      titleTour: newvalue?.titleTour,
+      totalPrice: newvalue?.TOTAL,
+      paxValueLocal: newvalue?.localPax,
+      paxValueSelf: newvalue?.selfPax,
+      status: status,
+      orderId: newvalue?.orderId,
+      method: newvalue?.method,
+    }
+    const res = await fetch(`/api/postForm`, {
+      method: 'POST',
+      body: JSON.stringify(listValue),
+    })
+    console.log('res', res)
+  }, [])
+
+  useEffect(() => {
+    const handleSecureHash = () => {
+      const paramsGenerate = generateParams(true, searchParams?.vpc_MerchTxnRef)
+      const secretWordArray = CryptoJS.enc.Hex.parse(
+        paymentOnepay.SECRET_KEY_HASH,
+      )
+      const hash = CryptoJS.HmacSHA256(paramsGenerate, secretWordArray)
+      const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+      return vpc_SecureHash
+    }
+    const fetchData = async () => {
+      const result = await fetch('/api/payment', {
+        method: 'POST',
+        body: JSON.stringify({
+          vpc_AccessCode: paymentOnepay.ACCESS_CODE,
+          vpc_MerchTxnRef: searchParams?.vpc_MerchTxnRef,
+          vpc_Merchant: paymentOnepay.MERCHANT_ID,
+          vpc_Password: 'op123456',
+          vpc_User: 'op01',
+          vpc_Version: '2',
+          vpc_SecureHash: handleSecureHash(),
+        }),
+      })
+
+      console.log('result', result)
+
+      // const res = await fetch('/api/getData', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({slug: slug?.[0]}),
+      // })
+
+      // if (!res.ok) {
+      //   throw new Error('Network response was not ok')
+      // }
+      // const data = await res.json()
+      // const finalData = await JSON.parse(data)
+
+      // console.log('finalData', finalData)
+
+      // if (finalData?.orderId) {
+      //   postFile(finalData, 'Payment Successfull')
+      // } else {
+      //   console.log('have something wrong')
+      // }
+    }
+
+    fetchData()
+  }, [slug])
+
   return (
     <section className=' bg-green-normal w-screen h-screen overflow-hidden'>
       <div className='container pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
