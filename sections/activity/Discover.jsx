@@ -269,9 +269,9 @@ const Discover = ({ dataDiscover }) => {
           trigger: imgRef.current,
           pin: imgRef.current,
           start: '0% 0%',
-          end: () => `+=${scrollRef.current.offsetWidth}`,
+          end: () => `+=${scrollRef.current.offsetWidth} 30%`,
           toggleActions: 'restart reverse reverse reverse',
-          // markers: true,
+          markers: true,
           scrub: 1,
         },
       })
@@ -304,7 +304,7 @@ const Discover = ({ dataDiscover }) => {
         src={'/imgs/activity/pattern-white.png'}
         width={1600}
         height={1400}
-        className='absolute image xmd:hidden w-full top-0 h-[49.0625rem] shrink-0'
+        className='absolute image xmd:hidden w-full top-0 shrink-0'
       />
       <div className='relative border border-transparent w-full '>
         <Image
@@ -474,7 +474,7 @@ const Discover = ({ dataDiscover }) => {
               dataMenu={dataDiscover?.lists_tabs}
               listsImageCurrent={listsImageMoreCurrent}
             >
-              <div className='text-[0.875rem] hover:bg-orange-hover duration-300 ease-linear hover:text-white text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid'>
+              <div className='text-[0.875rem] mb-[1rem] hover:bg-orange-hover duration-300 ease-linear hover:text-white text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid'>
                 Lear more
               </div>
             </SheetCp>

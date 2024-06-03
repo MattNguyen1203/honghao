@@ -27,7 +27,7 @@ import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
 import {useCallback, useEffect, useState} from 'react'
 import InformationForm from './InformationForm'
-import {FORM_API, paymentOnepay} from '@/lib/constants'
+import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -87,6 +87,7 @@ export default function HomeForm({
   const [isDialogText, setIsDialogText] = useState('')
   const [tourSelected, setTourSelected] = useState(dataFormInit)
   const [notFoundTour, setNotFoundTour] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -215,57 +216,68 @@ export default function HomeForm({
 
   // post gg form + gg sheet
   const postFile = useCallback(
-    async (newvalue, type) => {
-      try {
-        const formdata = new FormData()
-        const formattedDob = formattedDate(newvalue?.dob)
-        const formattedEnddate = formattedDate(newvalue?.enddate)
+    async (newvalue, status, orderId, method) => {
+      const totalPriceUSD =
+        Number(paxValueSelf) * Number(tourSelected?.priceSelf) +
+        Number(paxValueLocal) * Number(tourSelected?.priceLocal)
+      const totalPriceVND = totalPriceUSD * listLocation?.ti_gia
+      const formattedDob = formattedDate(newvalue?.dob)
+      const formattedEnddate = formattedDate(newvalue?.enddate)
 
-        formdata.append('entry.335637933', newvalue?.username)
-        formdata.append('entry.1417657903', newvalue?.email)
-        formdata.append('entry.516066790', newvalue?.phone)
-        formdata.append(
-          'entry.513250024',
-          newvalue?.typeoftour || tourSelected?.typeoftour,
-        )
-        formdata.append(
-          'entry.531591585',
-          newvalue?.choosedays || tourSelected?.choosedays?.title,
-        )
-        formdata.append('entry.1318177335', newvalue?.message)
-        formdata.append('entry.596297400', newvalue?.pickup)
-        formdata.append('entry.737203426', newvalue?.droff)
-        formdata.append('entry.1683072828', formattedDob)
-        formdata.append('entry.1967653042', formattedEnddate)
-        formdata.append('entry.571877462', newvalue?.address)
-        formdata.append('entry.1295571760', newvalue?.destination)
-        formdata.append('entry.954465883', paxValueLocal + paxValueSelf)
-        formdata.append('entry.681687580', tourSelected?.titleTour)
-        formdata.append(
-          'entry.842974294',
+      const listValue = {
+        username: newvalue?.username,
+        email: newvalue?.email,
+        phone: newvalue?.phone,
+        typeoftour: newvalue?.typeoftour || tourSelected?.typeoftour,
+        choosedays: newvalue?.choosedays || tourSelected?.choosedays?.title,
+        message: newvalue?.message,
+        pickup: newvalue?.pickup,
+        droff: newvalue?.droff,
+        dob: formattedDob,
+        enddate: formattedEnddate,
+        address: newvalue?.address,
+        destination: newvalue?.destination,
+        totalPax: paxValueLocal + paxValueSelf,
+        titleTour: tourSelected?.titleTour,
+        totalPrice:
           paxValueSelf * tourSelected?.priceSelf +
-            paxValueLocal * tourSelected?.priceLocal,
-        )
-        formdata.append('entry.750534916', paxValueLocal)
-        formdata.append('entry.1182103187', paxValueSelf)
-        formdata.append('entry.477674361', type)
+          paxValueLocal * tourSelected?.priceLocal,
+        paxValueLocal: paxValueLocal,
+        paxValueSelf: paxValueSelf,
+        status: status,
+        orderId: orderId,
+        method: method,
+      }
 
-        const res = await fetch(`${FORM_API}`, {
-          method: 'POST',
-          body: formdata,
-          mode: 'no-cors',
-        })
+      const res = await fetch(`/api/postForm`, {
+        method: 'POST',
+        body: JSON.stringify(listValue),
+      })
 
-        console.log('Response from Google Sheets:', res)
+      if (res.ok) {
+        if (method === 'onepay') {
+          const params = generateParamsPayment(ip, orderId, totalPriceVND, true)
+          const secretWordArray = CryptoJS.enc.Hex.parse(
+            paymentOnepay.SECRET_KEY_HASH,
+          )
+          const hash = CryptoJS.HmacSHA256(params, secretWordArray)
+          // eslint-disable-next-line camelcase
+          const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
+          // localStorage.setItem('vpcSecureHash', vpc_SecureHash)
 
-        setIsDialogOpen(true)
-        setIsDialogText('Successfully booked the tour')
-      } catch (error) {
-        setIsDialogText('fail booked the tour')
-        toast({
-          title: 'Sending information failed',
-          description: 'Please check the information you have filled in again.',
-        })
+          const url = `${paymentOnepay.ONEPAY_HOST}?${generateParamsPayment(
+            ip,
+            orderId,
+            totalPriceVND,
+            false,
+          )}&vpc_SecureHash=${vpc_SecureHash}`
+
+          console.log('url', url)
+          router.push(url)
+        } else {
+          setIsDialogOpen(true)
+          setIsDialogText('Successfully booked the tour')
+        }
       }
     },
     [tourSelected, paxValueLocal, paxValueSelf],
@@ -273,7 +285,7 @@ export default function HomeForm({
 
   // handle submit
   function onSubmit(values, type) {
-    const randomIDOrder = generateRandom4DigitNumber()
+    const randomIDOrder = new Date().getTime().toString()
     if (paxValueSelf === 0 && paxValueLocal === 0) {
       toast({
         title: 'Sending information failed',
@@ -286,44 +298,9 @@ export default function HomeForm({
       paxValueLocal: paxValueLocal,
       ...values,
     }
-
-    localStorage.setItem('myDataForm', JSON.stringify(newvalue))
     const status = type === 'onepay' ? 'Processing' : 'COD'
 
-    postFile(newvalue, status)
-
-    const totalPrice =
-      (Number(paxValueSelf) * Number(tourSelected?.priceSelf) +
-        Number(paxValueLocal) * Number(tourSelected?.priceLocal)) *
-      listLocation?.ti_gia
-
-    if (type === 'onepay') {
-      const params = generateParamsPayment(
-        newvalue,
-        ip,
-        randomIDOrder,
-        totalPrice,
-        true,
-        pathname,
-      )
-      const secretWordArray = CryptoJS.enc.Hex.parse(
-        paymentOnepay.SECRET_KEY_HASH,
-      )
-      const hash = CryptoJS.HmacSHA256(params, secretWordArray)
-      // eslint-disable-next-line camelcase
-      const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
-      localStorage.setItem('vpcSecureHash', vpc_SecureHash)
-
-      const url = `${paymentOnepay.ONEPAY_HOST}?${generateParamsPayment(
-        newvalue,
-        ip,
-        randomIDOrder,
-        totalPrice,
-        false,
-        pathname,
-      )}&vpc_SecureHash=${vpc_SecureHash}`
-      router.push(url)
-    }
+    postFile(newvalue, status, randomIDOrder, type)
   }
   // click out cho pupup thông báo thành công
   const handleClickOutside = (event) => {

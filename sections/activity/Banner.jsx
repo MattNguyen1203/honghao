@@ -143,7 +143,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         height={1935}
         className='z-[3] xmd:hidden absolute h-full w-full'
       />
-      <div className='object-cover absolute bottom-0 z-[5] left-0 w-full h-[139.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+      <div className='object-cover absolute bottom-0 z-[4] left-0 w-full h-[809.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
         priority
         alt='ảnh'

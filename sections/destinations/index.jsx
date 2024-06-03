@@ -4,7 +4,8 @@ import DiscoveryDestinations from './DiscoveryDestinations'
 import Banner from './Banner'
 import BannerMobile from '../common/banner'
 import Breadcrumb from '@/components/breadcrumb'
-const Destinations = ({dataAcf, dataListCat}) => {
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+const Destinations = ({ dataAcf, dataListCat }) => {
   const dataBanner = dataAcf?.acf?.banner
   return (
     <main className=''>
@@ -20,12 +21,11 @@ const Destinations = ({dataAcf, dataListCat}) => {
       </section>
       {/* <section className='xmd:hidden'><Breadcrumb divider /></section> */}
       <section className=''>
-        <Breadcrumb
-          type='section'
-          divider
-        />
+        <Breadcrumb divider >
+          <BreadcrumbLink href='/destination'>Destination</BreadcrumbLink>
+        </Breadcrumb>
       </section>
-      <section className='min-h-screen xmd:min-h-[130vh] md:mb-[5rem]'>
+      <section className='lg:min-h-[90vh] md:min-h-[88vh] xmd:min-h-[130vh] md:mb-[2rem] '>
         <DiscoveryDestinations
           dataListCat={dataListCat}
           dataAcf={dataAcf?.acf}
