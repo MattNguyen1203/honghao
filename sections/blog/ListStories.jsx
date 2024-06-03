@@ -3,12 +3,12 @@ import CardBlog from './CardBlog'
 import PaginationCustom from '@/components/paginationcustom'
 import useSWR from 'swr'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import {useState, useEffect} from 'react'
 import useStore from '@/app/(store)/store'
-import { usePathname, useSearchParams } from 'next/navigation'
-import { Skeleton } from "@/components/ui/skeleton"
+import {usePathname, useSearchParams} from 'next/navigation'
+import {Skeleton} from '@/components/ui/skeleton'
 
-const CardMain = ({ singlePost }) => {
+const CardMain = ({singlePost}) => {
   return (
     <Link href={`/${singlePost?.id}${singlePost?.post_slug}`}>
       <div className='xmd:hidden relative rounded-md overflow-hidden group'>
@@ -18,8 +18,7 @@ const CardMain = ({ singlePost }) => {
             <div className="inline-flex flex-col items-start space-y-[5.1875rem]">
               <div className="inline-flex flex-col items-start space-y-[1.1875rem]">
                 <button className='flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
-                  <div className="text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase">
-
+                  <div className='text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase'>
                     {singlePost?.primary_category?.name}
                   </div>
                 </button>
@@ -27,13 +26,12 @@ const CardMain = ({ singlePost }) => {
                   {singlePost?.title}
                 </div>
               </div>
-              <div className="text-[#787878] text-[0.9155rem] not-italic font-light leading-[1.625rem] tracking-[0.03125rem] uppercase">
+              <div className='text-[#787878] text-[0.9155rem] not-italic font-light leading-[1.625rem] tracking-[0.03125rem] uppercase'>
                 5 min READ
               </div>
             </div>
-
           </div>
-          <div className=" bg-[#FAF1EE] ml-[2.55rem] inline-flex flex-col justify-center items-center pl-[1.31rem] pr-[1.17rem] pt-[0.9rem] pb-[0.62rem] rounded-[0.75rem_0.75rem_0rem_0rem] text-[#030922] text-[0.89356rem] not-italic font-light leading-[1.03125rem] tracking-[0.03125rem] uppercase transform rotate-90 origin-top-left">
+          <div className=' bg-[#FAF1EE] ml-[2.55rem] inline-flex flex-col justify-center items-center pl-[1.31rem] pr-[1.17rem] pt-[0.9rem] pb-[0.62rem] rounded-[0.75rem_0.75rem_0rem_0rem] text-[#030922] text-[0.89356rem] not-italic font-light leading-[1.03125rem] tracking-[0.03125rem] uppercase transform rotate-90 origin-top-left'>
             {singlePost?.primary_category?.name}
           </div>
         </div>
@@ -41,17 +39,21 @@ const CardMain = ({ singlePost }) => {
     </Link>
   )
 }
-const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategories }) => {
+const ListStories = ({
+  dataGetAllPostsByCategories,
+  dataMainCard,
+  currentCategories,
+}) => {
   const listPost = dataGetAllPostsByCategories?.posts
   const pagination = dataGetAllPostsByCategories?.pagination
-  const { shouldFetch, setShouldFetch } =
-    useStore((state) => state)
+  const {shouldFetch, setShouldFetch} = useStore((state) => state)
   const pathname = usePathname()
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
   const search = searchParams.get('page')
   const [dataBlogClient, setDataBlogClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
   const [loading, setLoading] = useState(false)
+
   const fetcher = url => fetch(url).then(r => r.json())
   const { data, error, isLoading } = useSWR(
     shouldFetch ? (
@@ -64,54 +66,62 @@ const ListStories = ({ dataGetAllPostsByCategories, dataMainCard, currentCategor
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
-      revalidateOnReconnect: false
-    }
-  );
+      revalidateOnReconnect: false,
+    },
+  )
 
-  console.log({ paginationClient, search });
   useEffect(() => {
-    if(search){
+    if (search) {
       setShouldFetch(true)
-
     }
   }, [])
   useEffect(() => {
     setLoading(isLoading)
     if (data) {
       setPaginationClient(data?.pagination)
-      setDataBlogClient(data?.posts);
+      setDataBlogClient(data?.posts)
     }
     if (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error)
     }
-  }, [data, error, isLoading]);
-
+  }, [data, error, isLoading])
 
   return (
-    <div id='list-stories' className="flex flex-col items-start md:space-y-[2.62rem]">
+    <div
+      id='list-stories'
+      className='flex flex-col items-start md:space-y-[2.62rem]'
+    >
       <CardMain singlePost={dataMainCard} />
-      {!loading ? <div className="grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]">
-        {(dataBlogClient?.length > 0 ? dataBlogClient : listPost)?.map((d, i) => (
-          <div key={i}>
-            <CardBlog singlePost={d} />
-          </div>
-        ))}
-
-      </div> :
-
-        <div className="grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]">
-          {new Array(8).fill(0).map((d, i) => (
-
-            <Skeleton className='rounded-2xl  xmd:w-[21.4375rem] xmd:h-[15.3125rem] w-[44.25rem] h-[25.8125rem]' key={i} />
-          ))}
-
+      {!loading ? (
+        <div className='grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]'>
+          {(dataBlogClient?.length > 0 ? dataBlogClient : listPost)?.map(
+            (d, i) => (
+              <div key={i}>
+                <CardBlog singlePost={d} />
+              </div>
+            ),
+          )}
         </div>
-      }
-      <PaginationCustom pagination={paginationClient && Object.keys(paginationClient).length === 0 ? pagination : paginationClient} href={'#list-stories'} />
+      ) : (
+        <div className='grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]'>
+          {new Array(8).fill(0).map((d, i) => (
+            <Skeleton
+              className='rounded-2xl  xmd:w-[21.4375rem] xmd:h-[15.3125rem] w-[44.25rem] h-[25.8125rem]'
+              key={i}
+            />
+          ))}
+        </div>
+      )}
+      <PaginationCustom
+        pagination={
+          paginationClient && Object.keys(paginationClient).length === 0
+            ? pagination
+            : paginationClient
+        }
+        href={'#list-stories'}
+      />
     </div>
   )
 }
 
 export default ListStories
-
-

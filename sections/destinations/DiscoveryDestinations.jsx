@@ -68,8 +68,6 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
       )
       setListDestination(res)
       setIsLoading(false)
-
-      // console.log('res', res)
     }
 
     fetchData()

@@ -15,7 +15,6 @@ export default function InformationForm({
   paxValueSelf,
   isTourDetail = false,
 }) {
-  // console.log(dataForm)
   const formattedDate = (date) => {
     let newDate = new Date(date || 0)
     let day = newDate.getDate()

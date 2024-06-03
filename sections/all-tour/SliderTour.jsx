@@ -10,7 +10,6 @@ import Image from 'next/image'
 export default function SliderTour({ type, dataBestTrip }) {
   const isAllTourPage = type === 'alltour'
 
-  console.log('dataBestTrip', dataBestTrip)
   return (
     <div className='container xmd:mt-[2rem] xmd:!px-0'>
       <span className='xmd:container xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 opacity-[0.4]'>
