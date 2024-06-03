@@ -83,7 +83,7 @@
     @apply text-[6rem] leading-[1];
   }
   h2 {
-    @apply text-[3.5rem] tablet:text-[5rem] font-black leading-[1] font-londrina;
+    @apply text-[3.5rem] font-black leading-[1] font-londrina;
   }
   h4 {
     @apply font-bold text-greyscale-80 font-tripsans leading-1 text-1.5;

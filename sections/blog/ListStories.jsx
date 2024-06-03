@@ -14,7 +14,7 @@ const CardMain = ({ singlePost }) => {
       <div className='xmd:hidden relative rounded-md overflow-hidden group'>
         <Image priority alt="ảnh" src={singlePost?.thumbnail} width={1500} height={900} className="rounded-md group-hover:scale-110 duration-500  w-[89.9375rem]  h-[43.6875rem] shrink-0 object-cover" />
         <div className="absolute z-10 bottom-0 left-0 flex items-start justify-between">
-          <div className="bg-green-dark flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0">
+          <div className="bg-[#0C271B] flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0">
             <div className="inline-flex flex-col items-start space-y-[5.1875rem]">
               <div className="inline-flex flex-col items-start space-y-[1.1875rem]">
                 <button className='flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
