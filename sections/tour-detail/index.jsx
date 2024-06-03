@@ -8,6 +8,7 @@ import StepByStepRes from '../blog-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
+import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail}) => {
   return (
     <main className='alldestinations '>
@@ -18,10 +19,17 @@ const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail}) => {
         />
       </section>
       <section className='xmd:hidden'>
-        <Breadcrumb
-          type='section'
-          divider
-        />
+        <Breadcrumb divider className=''>
+          <BreadcrumbLink
+            subLink
+            href='/tour'
+          >
+            Tour
+          </BreadcrumbLink>
+          <BreadcrumbLink href={`/tours/${dataTourDetail?.detail_link}`}>
+            {dataTourDetail?.title}
+          </BreadcrumbLink>
+        </Breadcrumb>
       </section>
       <StepByStep
         dataAcf={data}

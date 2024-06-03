@@ -102,7 +102,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
     <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] mb-[4rem]'>
       {!isMobile ? (
         <div
-          className={`xmd:hidden py-[1.9375rem] px-[1.875rem] h-fill mb-[6.4rem] overflow-hidden sticky top-[8rem] rounded-[1rem] bg-white`}
+          className={`xmd:hidden min-w-[20.75rem] py-[1.9375rem] px-[1.875rem] h-fill mb-[6.4rem] overflow-hidden sticky top-[8rem] rounded-[1rem] bg-white`}
         >
           <span className='text-1 font-bold text-greyscale-80'>
             TYPE OF TOUR
@@ -250,9 +250,6 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             ))}
           </div>
         )}
-        {(paginationClient?.total_pages > 1 ||
-          (!paginationClient?.total_pages &&
-            dataTours?.pagination?.total_pages > 1)) && (
           <PaginationCustom
             pagination={
               paginationClient && Object.keys(paginationClient).length === 0
@@ -261,7 +258,6 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             }
             href={'#grid-tours'}
           />
-        )}
       </div>
     </div>
   )

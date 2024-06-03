@@ -178,32 +178,20 @@ const StoriesBlog = ({
                     {/* </div> */}
                   </div>
                 </Link>
-                {categories
-                  ?.filter((c) => c?.slug !== 'uncategorized')
-                  ?.map((d, i) => (
-                    <Link
-                      key={i}
-                      href={`/blog/${d?.slug}`}
-                      prefetch={true}
-                      scroll={false}
-                      onClick={() => saveScrollPosition1(`category-${d?.id}`)}
-                      // onClick={() => saveScrollPosition(d?.id)}
-                    >
-                      <div
-                        id={`category-${d?.id}`}
-                        value={d?.name}
-                        className={cn(
-                          'flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
-                          !currentTab?.includes(`/blog/${d?.slug}`)
-                            ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white'
-                            : '',
-                        )}
-                      >
-                        {/* <div className=''> */}
-                        <div className='w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase'>
-                          {d?.name}
-                        </div>
-                        {/* </div> */}
+                {categories?.filter((c) => c?.slug !== 'uncategorized')?.map((d, i) => (
+                  <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false}
+                    onClick={() => saveScrollPosition1(`category-${d?.id}`)}
+                  // onClick={() => saveScrollPosition(d?.id)}
+                  >
+                    <div
+                    id={`category-${d?.id}`}
+                    value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
+                      !currentTab?.includes(`/blog/${d?.slug }`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
+                    )}>
+                      {/* <div className=''> */}
+                      <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
+
+                        {d?.name}
                       </div>
                     </Link>
                   ))}

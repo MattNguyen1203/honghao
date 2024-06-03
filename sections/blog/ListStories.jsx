@@ -60,13 +60,15 @@ const ListStories = ({
   const [dataBlogClient, setDataBlogClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
   const [loading, setLoading] = useState(false)
-  const fetcher = (url) => fetch(url).then((r) => r.json())
-  const {data, error, isLoading} = useSWR(
-    shouldFetch
-      ? pathname !== '/blog'
-        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=2`
-        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=4`
-      : null,
+
+  const fetcher = url => fetch(url).then(r => r.json())
+  const { data, error, isLoading } = useSWR(
+    shouldFetch ? (
+      pathname !== '/blog'
+        ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=8`
+        : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=8`
+    ) : null
+    ,
     fetcher,
     {
       revalidateIfStale: false,

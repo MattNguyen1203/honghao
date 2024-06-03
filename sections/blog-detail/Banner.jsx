@@ -2,18 +2,19 @@ import React from 'react'
 import Image from 'next/image';
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
-const Banner = () => {
+const Banner = ({ dataDetailPost }) => {
   return (
     <section className='h-[50rem] xmd:h-[23rem] bg-green-dark w-full'>
       <div className="flex flex-col items-center space-y-[4rem] xmd:space-y-[0.75rem] xmd:pt-[6rem] pt-[7.7rem]">
         <div className="xmd:hidden inline-flex justify-center items-center gap-2.5 px-[1.625rem] py-2 rounded-[6.25rem]
         text-[#030922] text-center bg-white text-[0.90088rem] not-italic font-normal leading-[1.625rem] tracking-[0.0625rem] uppercase
         ">HA GIANG FRIENDS</div>
-              {/* <div className='md:hidden'>
-          <Breadcrumb divider className="!pl-0">
-            <BreadcrumbLink href='/blog/ahihi'>/blog/ahihi</BreadcrumbLink>
+        <div className='md:hidden '>
+          <Breadcrumb className="!pl-0">
+            <BreadcrumbLink isBanner subLink href='/blog'>Blog</BreadcrumbLink>
+            <BreadcrumbLink isBanner href={`/blog/${dataDetailPost?.post_slug}`}>{dataDetailPost?.title}</BreadcrumbLink>
           </Breadcrumb>
-        </div> */}
+        </div>
         <div className="flex flex-col items-center xmd:space-y-[1rem] space-y-[1.7rem]">
 
           <div className=' xmd:relative flex items-center xmd:items-start xmd:space-x-[0rem] space-x-[1.5rem] '>
