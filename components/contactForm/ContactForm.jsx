@@ -245,7 +245,7 @@ export default function ContactForm({data}) {
         >
           {isLoading ? (
             <svg
-              className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
+              className='z-10 w-5 h-5 animate-spin2 md:ml-[0.75rem] ml-[0.56rem]'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
               viewBox='0 0 24 24'

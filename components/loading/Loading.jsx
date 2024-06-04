@@ -3,7 +3,7 @@ import React from 'react'
 const Loading = () => {
   return (
     <svg
-      className='animate-spin h-[1.5rem] w-[1.5rem] text-white'
+      className='animate-spin2 h-[1.5rem] w-[1.5rem] text-white'
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'

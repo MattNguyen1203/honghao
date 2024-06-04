@@ -18,7 +18,7 @@ const CloudAnimate = () => {
   }, [])
   return (
     <div
-      className='absolute right-[-35rem] top-0'
+      className='absolute right-[-50rem] top-0'
       ref={imageRef}
     >
       <Image
