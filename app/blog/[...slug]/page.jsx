@@ -1,5 +1,5 @@
 import Blog from '@/sections/blog'
-import React from 'react'
+import React, {Suspense} from 'react'
 import getData from '@/lib/getData'
 import {PAGE_BLOG_ID} from '@/lib/constants'
 import {fetchMetaData} from '@/lib/fetchMetadata'
@@ -32,11 +32,13 @@ const page = async ({params, searchParams}) => {
     `wp-json/okhub/v1/get-posts-by-category/1?cat_id=${CateCurrent?.id}&page=1&posts_per_page=8`,
   )
   return (
-    <Blog
-      data={dataAcf}
-      dataGetAllPostsByCategories={dataGetAllPostsByCategories}
-      dataCategorisAndFirstpost={dataCategorisAndFirstpost}
-    />
+    <Suspense>
+      <Blog
+        data={dataAcf}
+        dataGetAllPostsByCategories={dataGetAllPostsByCategories}
+        dataCategorisAndFirstpost={dataCategorisAndFirstpost}
+      />
+    </Suspense>
   )
 }
 
