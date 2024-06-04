@@ -10,16 +10,16 @@
   }
 }
 
-.about  .circle {
+.about .circle {
   animation: scaleInOut 1.5s ease-in-out infinite;
 }
-.about  .text-linear {
-  background: linear-gradient(
+.about .text-linear {
+  /* background: linear-gradient(
     180deg,
     #fff 37.06%,
     rgba(255, 255, 255, 0) 107.22%
   );
-  background-clip: text;
+  background-clip: text; */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

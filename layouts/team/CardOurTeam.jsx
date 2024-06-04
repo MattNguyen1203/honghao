@@ -20,7 +20,7 @@ const CardOurTeam = ({data}) => {
           src={data?.img?.url || ''}
           width={300}
           height={400}
-          className='object-cover scale-110 md:group-hover:scale-100 duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
+          className='object-cover scale-110 md:group-hover:scale-101 duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
         />
       </div>
       <div className='absolute right-[1.1rem] top-[0.6rem] group-hover:opacity-100 opacity-0 duration-500 '>

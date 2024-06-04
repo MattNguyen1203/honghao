@@ -27,15 +27,15 @@ import {Input} from '@/components/ui/input'
 import {Textarea} from '@/components/ui/textarea'
 import {useCallback, useEffect, useState} from 'react'
 import InformationForm from './InformationForm'
-import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
+import {paymentOnepay} from '@/lib/constants'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import Link from 'next/link'
-import {generateParams, generateParamsPayment} from '@/lib/payment'
+import {generateParamsPayment} from '@/lib/payment'
 import CryptoJS from 'crypto-js'
-import {generateRandom4DigitNumber} from '@/lib/utils'
-import {usePathname, useRouter, useSearchParams} from 'next/navigation'
+import {usePathname, useRouter} from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
+import Loading from '../loading/Loading'
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -88,6 +88,8 @@ export default function HomeForm({
   const [tourSelected, setTourSelected] = useState(dataFormInit)
   const [notFoundTour, setNotFoundTour] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isPayNow, setIsPayNow] = useState(null)
+
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -109,7 +111,6 @@ export default function HomeForm({
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
-  const pathname = usePathname()
 
   // hàm lấy tour phù hợp
   const handleChangeTourSelected = (type, time, listTours) => {
@@ -185,17 +186,6 @@ export default function HomeForm({
     }
   }, [dataForm?.choosedays, dataForm?.dob, tourSelected?.choosedays])
 
-  // // set enddate theo tour Detail
-  // useEffect(() => {
-  //   if (isTourDetail && dataForm?.dob) {
-  //     let startDate = dataForm?.dob
-  //     let endDateUse = new Date(startDate)
-  //     endDateUse.setDate(startDate?.getDate() + tourSelected?.choosedays?.day)
-  //     setEndDate(endDateUse)
-  //     form.setValue('enddate', endDateUse)
-  //   }
-  // }, [dataForm?.dob])
-
   //lấy data từ droff
   useEffect(() => {
     form.setValue('destination', '')
@@ -216,7 +206,7 @@ export default function HomeForm({
 
   // post gg form + gg sheet
   const postFile = useCallback(
-    async (newvalue, status, orderId, method) => {
+    async (newvalue, status, orderId, method, setIsLoading) => {
       const totalPriceUSD =
         Number(paxValueSelf) * Number(tourSelected?.priceSelf) +
         Number(paxValueLocal) * Number(tourSelected?.priceLocal)
@@ -260,31 +250,34 @@ export default function HomeForm({
           const secretWordArray = CryptoJS.enc.Hex.parse(
             paymentOnepay.SECRET_KEY_HASH,
           )
+
           const hash = CryptoJS.HmacSHA256(params, secretWordArray)
           // eslint-disable-next-line camelcase
           const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
-          // localStorage.setItem('vpcSecureHash', vpc_SecureHash)
-
           const url = `${paymentOnepay.ONEPAY_HOST}?${generateParamsPayment(
             ip,
             orderId,
             totalPriceVND,
             false,
           )}&vpc_SecureHash=${vpc_SecureHash}`
-
-          console.log('url', url)
           router.push(url)
         } else {
           setIsDialogOpen(true)
           setIsDialogText('Successfully booked the tour')
         }
+        form.reset()
+        setIsLoading(false)
       }
     },
-    [tourSelected, paxValueLocal, paxValueSelf],
+    [tourSelected, paxValueLocal, paxValueSelf, ip],
   )
 
   // handle submit
   function onSubmit(values, type) {
+    if (type === 'onepay') {
+      setIsPayNow(true)
+    }
+    setIsLoading(true)
     const randomIDOrder = new Date().getTime().toString()
     if (paxValueSelf === 0 && paxValueLocal === 0) {
       toast({
@@ -298,9 +291,8 @@ export default function HomeForm({
       paxValueLocal: paxValueLocal,
       ...values,
     }
-    const status = type === 'onepay' ? 'Processing' : 'COD'
 
-    postFile(newvalue, status, randomIDOrder, type)
+    postFile(newvalue, 'Processing', randomIDOrder, type, setIsLoading)
   }
   // click out cho pupup thông báo thành công
   const handleClickOutside = (event) => {
@@ -324,43 +316,6 @@ export default function HomeForm({
   useEffect(() => {
     getIp()
   }, [])
-
-  // useEffect(() => {
-  //   console.log('vpn', searchParams?.vpc_MerchTxnRef)
-
-  //   const vpc_merch = searchParams.get('vpc_MerchTxnRef')
-  //   if (!vpc_merch) return
-  //   const handleSecureHash = () => {
-  //     const paramsGenerate = generateParams(true, vpc_merch)
-  //     const secretWordArray = CryptoJS.enc.Hex.parse(
-  //       paymentOnepay.SECRET_KEY_HASH,
-  //     )
-  //     const hash = CryptoJS.HmacSHA256(paramsGenerate, secretWordArray)
-  //     const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
-  //     return vpc_SecureHash
-  //   }
-
-  //   const fetcher = async () => {
-  //     const res = await fetch('/api/payment', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         vpc_AccessCode: paymentOnepay.ACCESS_CODE,
-  //         vpc_MerchTxnRef: vpc_merch,
-  //         vpc_Merchant: paymentOnepay.MERCHANT_ID,
-  //         vpc_Password: 'op123456',
-  //         vpc_User: 'op01',
-  //         vpc_Version: '2',
-  //         vpc_SecureHash: handleSecureHash(),
-  //       }),
-  //     })
-
-  //     const data = res.json()
-  //     return data
-  //   }
-  //   fetcher().then((res) => {
-  //     console.log('res', res)
-  //   })
-  // }, [])
 
   return (
     <>
@@ -609,9 +564,9 @@ export default function HomeForm({
                                   !field?.value && 'text-muted-foreground'
                                 }`}
                               >
-                                {field?.value ? (
+                                {dataForm?.dob ? (
                                   <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
-                                    {format(field.value, 'dd/M/yyyy')}
+                                    {format(dataForm?.dob, 'dd/M/yyyy')}
                                   </span>
                                 ) : (
                                   <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
@@ -736,7 +691,7 @@ export default function HomeForm({
                               >
                                 {dataForm?.dob && endDate ? (
                                   <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
-                                    {format(field.value, 'dd/M/yyyy')}
+                                    {format(endDate, 'dd/M/yyyy')}
                                   </span>
                                 ) : dataForm?.choosedays ? (
                                   <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
@@ -997,10 +952,18 @@ export default function HomeForm({
                   isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
                 } hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
                 type='submit'
-                onClick={form.handleSubmit((values) => onSubmit(values, 'cod'))}
+                onClick={form.handleSubmit((values) =>
+                  onSubmit(values, 'Pay Later'),
+                )}
               >
-                BOOK NOW, Pay later
-                <ICWhiteArrow />
+                {isLoading && !isPayNow ? (
+                  <Loading />
+                ) : (
+                  <>
+                    BOOK NOW, Pay later
+                    <ICWhiteArrow />
+                  </>
+                )}
               </Button>
               <Button
                 disabled={notFoundTour}
@@ -1012,7 +975,7 @@ export default function HomeForm({
                   onSubmit(values, 'onepay'),
                 )}
               >
-                PAY NOW
+                {isLoading && isPayNow ? <Loading /> : <>Pay Now</>}
               </Button>
 
               {isTourDetail && (

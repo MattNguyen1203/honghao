@@ -145,7 +145,7 @@ export default function ClientSay({dataReview}) {
               />
             </Link>
             <Link
-              href={'/'}
+              href={'https://www.facebook.com/honghaohg'}
               className='flex items-center justify-center rounded-full size-9 bg-[#1C7EF2]'
             >
               <Image

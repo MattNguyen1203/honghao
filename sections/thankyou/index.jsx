@@ -7,11 +7,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, {useCallback, useEffect, useState} from 'react'
 import CryptoJS from 'crypto-js'
+import {parseQueryString} from '@/lib/utils'
+import {useRouter} from 'next/navigation'
 
 const ThankYou = ({searchParams, slug}) => {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [isSuccessfull, setIsSuccessfull] = useState(false)
+
+  const router = useRouter()
 
   const postFile = useCallback(async (newvalue, status) => {
     const listValue = {
@@ -40,7 +42,11 @@ const ThankYou = ({searchParams, slug}) => {
       method: 'POST',
       body: JSON.stringify(listValue),
     })
-    console.log('res', res)
+
+    // if (res.ok) {
+    //   router.push(`/payment-successfull/${newvalue?.orderId}`)
+    // }
+    // console.log('res', res)
   }, [])
 
   useEffect(() => {
@@ -53,7 +59,9 @@ const ThankYou = ({searchParams, slug}) => {
       const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
       return vpc_SecureHash
     }
+
     const fetchData = async () => {
+      //check onepay success or failed
       const result = await fetch('/api/payment', {
         method: 'POST',
         body: JSON.stringify({
@@ -67,29 +75,37 @@ const ThankYou = ({searchParams, slug}) => {
         }),
       })
 
-      console.log('result', result)
+      const data = await result.text()
+      const parseData = parseQueryString(data)
 
-      // const res = await fetch('/api/getData', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({slug: slug?.[0]}),
-      // })
+      if (parseData?.vpc_TxnResponseCode) {
+        //if success => get data and push a new order
+        setIsSuccessfull(true)
+        const res = await fetch('/api/getData', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({slug: slug?.[0]}),
+        })
 
-      // if (!res.ok) {
-      //   throw new Error('Network response was not ok')
-      // }
-      // const data = await res.json()
-      // const finalData = await JSON.parse(data)
+        if (!res.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await res.json()
+        const finalData = await JSON.parse(data)
+        console.log('finalData', finalData)
 
-      // console.log('finalData', finalData)
+        if (finalData?.orderId) {
+          router.push(`/payment-successfull/${finalData?.orderId}`)
 
-      // if (finalData?.orderId) {
-      //   postFile(finalData, 'Payment Successfull')
-      // } else {
-      //   console.log('have something wrong')
-      // }
+          postFile(finalData, 'Payment Successfull')
+        } else {
+          console.log('have something wrong')
+        }
+      } else {
+        setIsSuccessfull(false)
+      }
     }
 
     fetchData()
@@ -112,7 +128,7 @@ const ThankYou = ({searchParams, slug}) => {
           </div>
           <div className='flex flex-col items-center justify-center'>
             <div className=' text-3 font-semibold capitalize font-londrina'>
-              Successful Payment !!!
+              {isSuccessfull ? 'Successful Payment!!!' : 'Payment failed'}
             </div>
             <div className='mt-[2rem] text-125 font-semibold capitalize w-[60%] text-center text-greyscale-0/70 font-londrina'>
               Hope you have an enjoyable experience on this trip. We will

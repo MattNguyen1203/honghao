@@ -17,7 +17,7 @@ export default function ItemCardBestTrip({data}) {
         height={550}
       />
       <div className='z-10 flex flex-col space-y-[0.66rem] lg:w-[33.9375rem] w-full'>
-        <span className='font-black text-white lg:text-15 text-1 tablet:text-3'>
+        <span className='font-black text-white lg:text-15 text-1 tablet:text-3 group-hover:underline'>
           {data?.title}
         </span>
         <div className='hidden lg:block space-y-[0.66rem]'>

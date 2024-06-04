@@ -7,8 +7,9 @@ import {
 
 import getData from '@/lib/getData'
 import Homepage from '@/sections/homepage'
-import { fetchMetaData } from '@/lib/fetchMetadata'
-import { getMeta } from '@/lib/getMeta'
+import {fetchMetaData} from '@/lib/fetchMetadata'
+import {getMeta} from '@/lib/getMeta'
+import {Suspense} from 'react'
 
 const getHomepageData = async () => {
   return getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)
@@ -63,15 +64,17 @@ const page = async () => {
     getCommonData(),
   ])
   return (
-    <Homepage
-      dataAcf={dataAcf?.acf}
-      dataWeather={dataWeather}
-      listTypeofTour={listTypeofTour}
-      listTime={listTime}
-      listTours={listTours}
-      listBestTrip={listBestTrip}
-      commonData={commonData}
-    />
+    <Suspense>
+      <Homepage
+        dataAcf={dataAcf?.acf}
+        dataWeather={dataWeather}
+        listTypeofTour={listTypeofTour}
+        listTime={listTime}
+        listTours={listTours}
+        listBestTrip={listBestTrip}
+        commonData={commonData}
+      />
+    </Suspense>
   )
 }
 
