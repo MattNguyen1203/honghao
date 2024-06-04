@@ -34,7 +34,10 @@ const Homepage = ({
       <BestTrips listBestTrip={listBestTrip} />
       <GladdestMoment dataGallery={dataAcf?.moment} />
       <GladdestMomentRes dataGallery={dataAcf?.moment} />
-      <ClientSay dataReview={dataAcf?.client_say} />
+      <ClientSay
+        dataReview={dataAcf?.client_say}
+        commonData={commonData?.acf}
+      />
       <div className='flex relative pb-[14.5rem] xmd:pb-[6rem] bg-[linear-gradient(180deg,#122718_7.6%,rgba(18,39,24,0.71)_43.62%,#122718_79.64%)] w-full h-fit'>
         <Image
           src='/imgs/home/bannerBg2.jpg'
