@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import {useState} from 'react'
 import AccordionCustom from '@/sections/common/accordion'
-import { regName, regPhone, regEmail } from '@/lib/reg'
-import { useToast } from '@/components/ui/use-toast'
-import Link from 'next/link'
+import {regName, regPhone, regEmail} from '@/lib/reg'
+import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
-export default function FrequentlyAskedQuestions({ data }) {
-  const { toast } = useToast()
+import {FORM_FAQ_API} from '@/lib/constants'
+export default function FrequentlyAskedQuestions({data}) {
+  const {toast} = useToast()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -25,22 +25,23 @@ export default function FrequentlyAskedQuestions({ data }) {
     if (errorMessage.name || errorMessage.phone || errorMessage.email) {
       toast({
         title: 'Sending information failed',
-        description:
-          'Please check the information you have filled in again.',
+        description: 'Please check the information you have filled in again.',
       })
     } else {
       const formData = new FormData()
-      formData.append('fullName', name)
-      formData.append('phone', phone)
-      formData.append('yourEmail', email)
-      formData.append('message', message)
-      formData.append('_wpcf7_unit_tag', '297')
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/297/feedback`,
-        { method: 'POST', body: formData },
-      )
-      const result = await res.json()
-      if (result.status === 'mail_sent') {
+      formData.append('entry.1190877216', name)
+      formData.append('entry.851090568', phone)
+      formData.append('entry.571575564', email)
+      formData.append('entry.502542779', message)
+      const requestOptions = {
+        method: 'POST',
+        body: formData,
+      }
+
+      const responsive = await fetch(FORM_FAQ_API, requestOptions)
+      const data = await responsive.text()
+      const res = Response.json(data)
+      if (res.ok) {
         setIsDialogOpen(true)
         toast({
           title: 'Sending information successfully',
@@ -54,8 +55,7 @@ export default function FrequentlyAskedQuestions({ data }) {
       } else {
         toast({
           title: 'Sending information failed',
-          description:
-            'Please check the information you have filled in again.',
+          description: 'Please check the information you have filled in again.',
         })
       }
       setIsLoading(false)
@@ -188,7 +188,7 @@ export default function FrequentlyAskedQuestions({ data }) {
                 Thank you for asking
               </span>
               <div
-                onClick={()=>setIsDialogOpen(false)}
+                onClick={() => setIsDialogOpen(false)}
                 className='flex items-center cursor-pointer justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
               >
                 Close
