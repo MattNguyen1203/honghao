@@ -5,11 +5,9 @@ import {Suspense} from 'react'
 
 export default async function TeamLayout({children}) {
   return (
-    <Suspense>
-      <main className=''>
-        {children}
-        <OurTeam />
-      </main>
-    </Suspense>
+    <main className=''>
+      {children}
+      <OurTeam />
+    </main>
   )
 }

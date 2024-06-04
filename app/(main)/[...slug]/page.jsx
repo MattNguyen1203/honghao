@@ -3,6 +3,7 @@ import {fetchMetaData} from '@/lib/fetchMetadata'
 import {getMeta} from '@/lib/getMeta'
 import getData from '@/lib/getData'
 import {PAGE_BLOG_ID} from '@/lib/constants'
+import {notFound} from 'next/navigation'
 export async function generateMetadata({params: {slug}}) {
   const result = await fetchMetaData(`${slug?.[0]}/`)
   return getMeta(result, `/${slug?.[0]}`)
@@ -23,6 +24,10 @@ const page = async ({params}) => {
   const dataDetailPost = await getData(
     `wp-json/okhub/v1/get-post-detail-by-slug/${params?.slug?.[0]}`,
   )
+
+  if (!dataDetailPost) {
+    return notFound()
+  }
 
   return (
     <BlogDetail

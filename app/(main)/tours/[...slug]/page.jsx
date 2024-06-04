@@ -4,6 +4,7 @@ import {fetchMetaData} from '@/lib/fetchMetadata'
 import {getMeta} from '@/lib/getMeta'
 import getData from '@/lib/getData'
 import {GLOBAL_PAGE_ID} from '@/lib/constants'
+import {notFound} from 'next/navigation'
 
 export async function generateMetadata({params: {slug}}) {
   const result = await fetchMetaData(`tours/${slug?.[0]}/`)
@@ -30,6 +31,10 @@ export default async function page({params: {slug}}) {
   const dataBestTrip = await getData(
     `wp-json/okhub/v1/tours?page=1&per_page=5&type-of-tour=best-budget`,
   )
+
+  if (!dataTourDetail) {
+    return notFound()
+  }
   return (
     <>
       <TourDetail

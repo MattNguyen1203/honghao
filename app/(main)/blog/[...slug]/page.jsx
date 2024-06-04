@@ -4,6 +4,7 @@ import getData from '@/lib/getData'
 import {PAGE_BLOG_ID} from '@/lib/constants'
 import {fetchMetaData} from '@/lib/fetchMetadata'
 import {getMeta} from '@/lib/getMeta'
+import {notFound} from 'next/navigation'
 
 export async function generateStaticParams() {
   const dataDetailPost = await getData(
@@ -31,6 +32,11 @@ const page = async ({params, searchParams}) => {
   const dataGetAllPostsByCategories = await getData(
     `wp-json/okhub/v1/get-posts-by-category/1?cat_id=${CateCurrent?.id}&page=1&posts_per_page=8`,
   )
+
+  if (!dataGetAllPostsByCategories) {
+    return notFound()
+  }
+
   return (
     <Suspense>
       <Blog

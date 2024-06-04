@@ -52,21 +52,11 @@ export const viewport = {
 export default function RootLayout({children}) {
   return (
     <html lang='en'>
-      <head>
-        <link
-          rel='canonical'
-          href={process.env.DOMAIN}
-        />
-      </head>
       <body
         className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <Header />
-        <WrapSocials />
         {children}
-        <Footer />
-        <Toaster />
       </body>
     </html>
   )
