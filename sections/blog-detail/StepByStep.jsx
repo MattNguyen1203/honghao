@@ -85,8 +85,7 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
             <div className='flex items-center space-x-[1.25rem]'>
               <div className='flex items-center whitespace-nowrap'>
                 <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
-                  {dataAcf?.don_vi}
-                  {dataAcf?.gia?.self_driving}
+                  ${dataAcf?.gia?.self_driving}
                 </span>
                 <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                   Self - Driving
@@ -94,8 +93,7 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
               </div>
               <div className='flex items-center whitespace-nowrap'>
                 <span className='text-orange-normal text-[1.5rem] font-bold leading-[1.2] mr-[0.44rem]'>
-                  {dataAcf?.don_vi}
-                  {dataAcf?.gia?.local_driver}
+                  ${dataAcf?.gia?.local_driver}
                 </span>
                 <span className='block font-normal border-b border-solid text-greyscale-80 border-greyscale-80'>
                   Local driver
