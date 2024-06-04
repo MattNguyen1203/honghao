@@ -134,7 +134,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (
-    <section className='relative xl:h-[100rem] overflow-hidden'>
+    <section className='relative bd xl:h-[100rem] overflow-hidden'>
       <Image
         priority
         alt='ảnh'
@@ -143,7 +143,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         height={1935}
         className='z-[3] xmd:hidden absolute h-full w-full'
       />
-      <div className='object-cover absolute bottom-0 z-[4] left-0 w-full h-[809.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+      <div className='object-cover absolute bottom-[0rem] z-[3] left-0 w-full h-[119.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_80%)]'></div>
       <Image
         priority
         alt='ảnh'
@@ -158,7 +158,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         src={'/imgs/activity/islus.png'}
         width={1600}
         height={400}
-        className='z-[6] xmd:hidden absolute bottom-0 w-full h-[24.47356rem]'
+        className='z-[6] xmd:hidden absolute bottom-0 w-full '
       />
       <Image
         priority

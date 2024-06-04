@@ -271,7 +271,7 @@ const Discover = ({ dataDiscover }) => {
           start: '0% 0%',
           end: () => `+=${scrollRef.current.offsetWidth} 30%`,
           toggleActions: 'restart reverse reverse reverse',
-          markers: true,
+          // markers: true,
           scrub: 1,
         },
       })
