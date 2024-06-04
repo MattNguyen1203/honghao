@@ -43,7 +43,7 @@ const ItemTour = ({className, type, data}) => {
             <div className='flex items-center text-greyscale-0'>
               <div className='flex items-center mr-[0.5rem]'>
                 <span className='text-15 xmd:text-1125 font-medium mr-[0.44rem]'>
-                  {data?.gia?.self_driving}
+                  ${data?.gia?.self_driving}
                 </span>
                 <span className='relative text-0875  xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                   Self - Driving
@@ -52,7 +52,7 @@ const ItemTour = ({className, type, data}) => {
 
               <div className='flex items-center'>
                 <span className='text-15  xmd:text-1125 font-medium mr-[0.44rem]'>
-                  {data?.gia?.local_driver}
+                  ${data?.gia?.local_driver}
                 </span>
                 <span className='relative text-0875 xmd:text-075 tracking-0.00219 border-b border-b-[#fff] pb-[0.12rem]'>
                   Local driver

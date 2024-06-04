@@ -5,9 +5,17 @@ import {getMeta} from '@/lib/getMeta'
 import getData from '@/lib/getData'
 import {GLOBAL_PAGE_ID} from '@/lib/constants'
 
-export async function generateMetadata(params) {
-  const result = await fetchMetaData(`tours/${params.params.slug?.[0]}/`)
-  return getMeta(result, `/tours/${params.params.slug?.[0]}`)
+export async function generateMetadata({params: {slug}}) {
+  const result = await fetchMetaData(`tours/${slug?.[0]}/`)
+  return getMeta(result, `/tours/${slug?.[0]}`)
+}
+
+export async function generateStaticParams() {
+  const dataTours = await getData(`wp-json/okhub/v1/tours?page=1&per_page=100`)
+
+  return dataTours?.tours?.map((tour) => ({
+    slug: [tour?.detail_link],
+  }))
 }
 
 export default async function page({params: {slug}}) {

@@ -10,13 +10,20 @@ import {Skeleton} from '@/components/ui/skeleton'
 
 const CardMain = ({singlePost}) => {
   return (
-    <Link href={`/${singlePost?.id}${singlePost?.post_slug}`}>
+    <Link href={`/${singlePost?.post_slug}`}>
       <div className='xmd:hidden relative rounded-md overflow-hidden group'>
-        <Image priority alt="ảnh" src={singlePost?.thumbnail} width={1500} height={900} className="rounded-md group-hover:scale-110 duration-500  w-[89.9375rem]  h-[43.6875rem] shrink-0 object-cover" />
-        <div className="absolute z-10 bottom-0 left-0 flex items-start justify-between">
-          <div className="bg-[#0C271B] flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0">
-            <div className="inline-flex flex-col items-start space-y-[5.1875rem]">
-              <div className="inline-flex flex-col items-start space-y-[1.1875rem]">
+        <Image
+          priority
+          alt='ảnh'
+          src={singlePost?.thumbnail}
+          width={1500}
+          height={900}
+          className='rounded-md group-hover:scale-110 duration-500  w-[89.9375rem]  h-[43.6875rem] shrink-0 object-cover'
+        />
+        <div className='absolute z-10 bottom-0 left-0 flex items-start justify-between'>
+          <div className='bg-[#0C271B] flex items-center justify-center relative w-[29.89381rem] h-[22.17188rem] shrink-0'>
+            <div className='inline-flex flex-col items-start space-y-[5.1875rem]'>
+              <div className='inline-flex flex-col items-start space-y-[1.1875rem]'>
                 <button className='flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
                   <div className='text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase'>
                     {singlePost?.primary_category?.name}
@@ -54,14 +61,13 @@ const ListStories = ({
   const [paginationClient, setPaginationClient] = useState({})
   const [loading, setLoading] = useState(false)
 
-  const fetcher = url => fetch(url).then(r => r.json())
-  const { data, error, isLoading } = useSWR(
-    shouldFetch ? (
-      pathname !== '/blog'
+  const fetcher = (url) => fetch(url).then((r) => r.json())
+  const {data, error, isLoading} = useSWR(
+    shouldFetch
+      ? pathname !== '/blog'
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=8`
         : `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-list-cat-and-first-posts?page=${search}&per_page=8`
-    ) : null
-    ,
+      : null,
     fetcher,
     {
       revalidateIfStale: false,
