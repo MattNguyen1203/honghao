@@ -4,6 +4,7 @@ import Image from 'next/image'
 import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import {useToast} from '@/components/ui/use-toast'
+import {FORM_CONTACT_API} from '@/lib/constants'
 
 export default function ContactForm({data}) {
   const {toast} = useToast()
@@ -37,19 +38,22 @@ export default function ContactForm({data}) {
       })
     } else {
       const formData = new FormData()
-      formData.append('fullName', name)
-      formData.append('phone', phone)
-      formData.append('yourEmail', email)
-      formData.append('contactSubject', contactSubject)
-      formData.append('message', message)
-      formData.append('country', country)
-      formData.append('_wpcf7_unit_tag', '299')
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}wp-json/contact-form-7/v1/contact-forms/299/feedback`,
-        {method: 'POST', body: formData},
-      )
-      const result = await res.json()
-      if (result.status === 'mail_sent') {
+      formData.append('entry.1276228628', name)
+      formData.append('entry.1750062698', phone)
+      formData.append('entry.1369068052', email)
+      formData.append('entry.7626765', contactSubject)
+      formData.append('entry.907377509', message)
+      formData.append('entry.1971401006', country)
+
+      const requestOptions = {
+        method: 'POST',
+        body: formData,
+      }
+
+      const responsive = await fetch(FORM_CONTACT_API, requestOptions)
+      const data = await responsive.text()
+      const res = Response.json(data)
+      if (res.ok) {
         toast({
           title: 'Sending information successfully',
           description:
