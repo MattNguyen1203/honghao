@@ -12,7 +12,7 @@ const CloudAnimate = () => {
         trigger: imageRef.current,
         start: '30% center',
       },
-      translateX: '-35rem',
+      translateX: '-50rem',
       duration: 3,
     })
   }, [])
