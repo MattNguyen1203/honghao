@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import Activity from '@/sections/activity/index'
 import getData from '@/lib/getData'
 import {PAGE_ACTIVITY_ID} from '@/lib/constants'
@@ -12,7 +12,11 @@ export async function generateMetadata() {
 
 const page = async () => {
   const dataAcf = await getData(`wp-json/acf/v3/pages/${PAGE_ACTIVITY_ID}`)
-  return <Activity data={dataAcf} />
+  return (
+    <Suspense>
+      <Activity data={dataAcf} />
+    </Suspense>
+  )
 }
 
 export default page

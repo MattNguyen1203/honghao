@@ -42,11 +42,6 @@ const ThankYou = ({searchParams, slug}) => {
       method: 'POST',
       body: JSON.stringify(listValue),
     })
-
-    // if (res.ok) {
-    //   router.push(`/payment-successfull/${newvalue?.orderId}`)
-    // }
-    // console.log('res', res)
   }, [])
 
   useEffect(() => {
@@ -94,7 +89,6 @@ const ThankYou = ({searchParams, slug}) => {
         }
         const data = await res.json()
         const finalData = await JSON.parse(data)
-        console.log('finalData', finalData)
 
         if (finalData?.orderId) {
           router.push(`/payment-successfull/${finalData?.orderId}`)

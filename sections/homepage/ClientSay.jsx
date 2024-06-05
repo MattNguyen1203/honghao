@@ -12,7 +12,6 @@ import SectionHeading from '../common/heading/SectionHeading'
 import ClientSayPopup from '@/components/client-say/ClientSayItemPopup'
 
 export default function ClientSay({dataReview, commonData}) {
-  console.log('commonData', commonData)
   const [hoverRef, isHover] = useHover()
   return (
     <section className='relative md:h-[60rem] tablet:mt-[4rem]'>
