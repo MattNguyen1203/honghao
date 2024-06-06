@@ -217,7 +217,7 @@ export default function ClientSay({dataReview, commonData}) {
           </p>
           <div className='flex flex-row justify-center space-x-3'>
             <Link
-              href={'/'}
+              href={commonData?.contact_info?.tripadvisor || '/'}
               className='size-9 rounded-full flex justify-center items-center bg-[#33E0A0]'
             >
               <Image
@@ -229,7 +229,7 @@ export default function ClientSay({dataReview, commonData}) {
               />
             </Link>
             <Link
-              href={'/'}
+              href={commonData?.contact_info?.instagram || '/'}
               className='flex items-center justify-center rounded-full size-9'
               style={{
                 background:
@@ -245,7 +245,7 @@ export default function ClientSay({dataReview, commonData}) {
               />
             </Link>
             <Link
-              href={'/'}
+              href={commonData?.contact_info?.facebook || '/'}
               className='flex items-center justify-center rounded-full size-9 bg-[#1C7EF2]'
             >
               <Image
@@ -257,7 +257,7 @@ export default function ClientSay({dataReview, commonData}) {
               />
             </Link>
             <Link
-              href={'/'}
+              href={commonData?.contact_info?.tiktok || '/'}
               className='flex items-center justify-center rounded-full size-9 bg-elevation-30'
             >
               <Image

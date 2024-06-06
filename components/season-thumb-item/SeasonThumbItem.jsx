@@ -1,5 +1,6 @@
 import {cn} from '@/lib/utils'
 import Image from 'next/image'
+import './style.css'
 
 export default function SeasonThumbItem({
   handleOnClick,
@@ -11,7 +12,7 @@ export default function SeasonThumbItem({
   return (
     <div
       className={cn(
-        'min-w-fit pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] backdrop-blur-[5px] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item flex-none px-4 md:px-3.5 transition-400 border',
+        'relative bg_card min-w-fit pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item flex-none px-4 md:px-3.5 transition-400 border',
         {
           'bg-elevation-30 thumb-item-mobile': isMobile,
           'border-greyscale-0/20': !isMobile,
@@ -24,27 +25,27 @@ export default function SeasonThumbItem({
         <>
           <div
             className={cn(
-              'absolute w-full h-full top-0 left-0 !mt-0 transition-600',
+              'absolute w-full h-full top-0 left-0 !mt-0 transition-600 bg-[linear-gradient(180deg,rgba(255,255,255,0.50)_0%,rgba(255,255,255,0.05)_100%)]',
               {
                 'opacity-0': !active,
               },
             )}
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%)',
-            }}
+            // style={{
+            //   background:
+            //     'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%)',
+            // }}
           />
           <div
             className={cn(
-              'absolute w-full h-full top-0 left-0 !mt-0 transition-600',
+              'absolute w-full h-full top-0 left-0 !mt-0 transition-600 bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.01)_100%)]',
               {
                 'opacity-0': active,
               },
             )}
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)',
-            }}
+            // style={{
+            //   background:
+            //     'linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)',
+            // }}
           />
         </>
       )}

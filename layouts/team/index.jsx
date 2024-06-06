@@ -50,10 +50,15 @@ export default async function OurTeam({darkTheme}) {
             </Button>
             <Button
               icon
-              variant='outline'
-              className='!flex-1 tablet:!w-1/2 !w-max shrink-0'
+              variant='outline_white'
+              className='!flex-1 tablet:!w-1/2 !w-max shrink-0 border-[1px] border-solid border-white'
             >
-              <Link href='/tours'>All tour</Link>
+              <Link
+                className='text-white'
+                href='/tours'
+              >
+                All tour
+              </Link>
             </Button>
           </div>
         </div>

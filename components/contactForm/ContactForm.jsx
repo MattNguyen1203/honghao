@@ -48,11 +48,13 @@ export default function ContactForm({data}) {
       const requestOptions = {
         method: 'POST',
         body: formData,
+        mode: 'no-cors',
       }
 
       const responsive = await fetch(FORM_CONTACT_API, requestOptions)
       const data = await responsive.text()
       const res = Response.json(data)
+      console.log(res)
       if (res.ok) {
         toast({
           title: 'Sending information successfully',
