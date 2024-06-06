@@ -36,6 +36,7 @@ export default function FrequentlyAskedQuestions({data}) {
       const requestOptions = {
         method: 'POST',
         body: formData,
+        mode: 'no-cors',
       }
 
       const responsive = await fetch(FORM_FAQ_API, requestOptions)
@@ -146,7 +147,7 @@ export default function FrequentlyAskedQuestions({data}) {
               {data?.form?.submit_button_text}
               {isLoading && (
                 <svg
-                  className='z-10 w-5 h-5 animate-spin md:ml-[0.75rem] ml-[0.56rem]'
+                  className='z-10 w-5 h-5 animate-spin2 md:ml-[0.75rem] ml-[0.56rem]'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'

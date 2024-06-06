@@ -94,7 +94,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
               ${totalPrice}
             </span>
-            <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase'>
+            <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase whitespace-nowrap'>
               book now
             </span>
           </div>
