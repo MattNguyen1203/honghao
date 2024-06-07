@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
 
-const Banner = ({dataBanner, dataBannerMobi}) => {
+const Banner = ({ dataBanner, dataBannerMobi }) => {
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
       <Image
@@ -37,7 +37,7 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
         />
         {/* <Image priority alt="ảnh title mobi" src={'/imgs/about/main-title-mobi.png'} width={840} height={355} className=" xmd:ml-[1.5rem] md:hidden w-[19.098rem] h-[7.42925rem]" /> */}
         <div className=' xmd:mt-[1.8rem] xmd:mx-[1rem]  md:absolute flex flex-col md:left-[3.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
-          <div className=' md:w-[52.3125rem] xmd:ml-[0.5rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
+          <div className=' xmd:w-[20.9rem] md:w-[52.3125rem] mx-auto text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
             {dataBanner?.desc_text}
           </div>
           <div className=' xmd:hidden flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
@@ -75,7 +75,7 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
           className='absolute bottom-[0.6rem] left-0 md:hidden'
         />
         {/* 10000 */}
-        <div className='absolute w-[4.75rem] h-[6.25rem] left-[-0.2rem] top-[13rem] md:left-[2.27rem] xl:left-[-1.9rem] md:top-[51.5rem]'>
+        <div className='absolute w-[4.75rem] h-[6.25rem] left-[0rem] top-[13rem] md:left-[2.27rem] xl:left-[-1.9rem] md:top-[51.5rem]'>
           <div className=' relative'>
             <div className=' absolute xmd:top-[11rem] xmd:left-[17.8rem] md:left-[50.5rem] md:top-[3rem] inline-flex flex-col items-center w-[8.75013rem]'>
               <svg

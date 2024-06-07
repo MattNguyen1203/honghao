@@ -1,14 +1,14 @@
 'use client'
-import React, {useState, useEffect} from 'react'
-import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
+import React, { useState, useEffect } from 'react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Image from 'next/image'
 import CardBlog from './CardBlog'
 import ListStories from './ListStories'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import useStore from '@/app/(store)/store'
-import {usePathname, useRouter} from 'next/navigation'
-const Button = ({children}) => {
+import { usePathname, useRouter } from 'next/navigation'
+const Button = ({ children }) => {
   return (
     <div className='  flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
       <div className='text-[#030922] text-center text-[0.78906rem] not-italic font-normal leading-4 tracking-[0.03125rem] uppercase'>
@@ -18,7 +18,7 @@ const Button = ({children}) => {
   )
 }
 
-const TitleBeauty = ({children}) => {
+const TitleBeauty = ({ children }) => {
   return (
     <div className="mt-[1.75rem] w-full relative xmd:mt-[1.45rem] inline-flex z-10 items-end  justify-between xmd:space-x-[1.25rem] space-x-[1.75rem]">
       <div className=' xmd:hidden w-screen absolute  left-1/2  -translate-x-1/2 top-[1.4rem] h-[0.0625rem] bg-[#E5E5E5]'></div>
@@ -57,7 +57,7 @@ const StoriesBlog = ({
 }) => {
   const categories = dataCategorisAndFirstpost?.categories
   const firstPost = dataCategorisAndFirstpost?.posts
-  const {shouldFetch, setShouldFetch} = useStore((state) => state)
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
   const pathName = usePathname()
   const [currentCategories, setCurrentCategories] = useState(null)
   const router = useRouter()
@@ -136,10 +136,10 @@ const StoriesBlog = ({
               </h2>
             </TitleBeauty>
           </div>
-          <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-fit flex justify-end flex-col items-center">
+          <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-full flex justify-end flex-col items-center">
             <div className='xmd:w-screen mx-auto  relative saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='xmd:hidden w-screen absolute  left-1/2  -translate-x-1/2 top-[-1rem] h-[0.0625rem] bg-[#E5E5E5]'></div>
-              <div className='saveposition mx-auto flex justify-center items-start space-x-[0.94rem]'>
+              <div className=' mx-auto w-max flex justify-center items-start space-x-[0.94rem]'>
                 <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition1(`category-all`)}>
                   <div className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                     currentTab !== `all` ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
@@ -157,21 +157,19 @@ const StoriesBlog = ({
                 {categories?.filter((c) => c?.slug !== 'uncategorized')?.map((d, i) => (
                   <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false}
                     onClick={() => saveScrollPosition1(`category-${d?.id}`)}
-                  // onClick={() => saveScrollPosition(d?.id)}
                   >
                     <div
                       id={`category-${d?.id}`}
                       value={d?.name} className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                         !currentTab?.includes(`/blog/${d?.slug}`) ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                       )}>
-                      {/* <div className=''> */}
                       <div className="w-max font-medium text-center text-[0.78906rem] not-italic leading-4 tracking-[0.03125rem] uppercase">
 
                         {d?.name}
                       </div>
-                      </div>
-                    </Link>
-                  ))}
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
             <ListStories

@@ -49,10 +49,27 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
           trigger: pinRefMobi.current,
           pin: pinRefMobi.current,
           start: '-210% 0%',
-          end: () => `+=${scrollRef.current.offsetHeight} 120%`,
+          end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
           toggleActions: 'restart reverse reverse reverse',
           scrub: 1,
           pinSpacing: false,
+          onUpdate: self => {
+            if (self.isActive) {
+              pinRefMobi.current.style.position = 'fixed';
+              pinRefMobi.current.style.top = 'auto';
+              pinRefMobi.current.style.bottom = '0'; // Fixed to bottom of the screen
+              pinRefMobi.current.style.left = '0';
+              pinRefMobi.current.style.right = '0';
+              pinRefMobi.current.style.zIndex = '1000';
+            } else {
+              pinRefMobi.current.style.position = '';
+              pinRefMobi.current.style.top = '';
+              pinRefMobi.current.style.bottom = '';
+              pinRefMobi.current.style.left = '';
+              pinRefMobi.current.style.right = '';
+              pinRefMobi.current.style.zIndex = '';
+            }
+          }
         })
       }
     }, scrollRef)
@@ -107,11 +124,14 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
       >
         <div
           ref={pin2Ref}
-          className=' inline-flex flex-col mt-[1.4rem] w-fit items-start space-y-[1.5rem]'
+          className=' inline-flex flex-col xmd:mt-[0.7rem] mt-[1.4rem] w-fit items-start space-y-[1.5rem]'
         >
           <div className='flex flex-col items-start space-y-[0.75rem]'>
-            <div className='text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
-              {dataAcf?.subheader}
+            <div className='xmd:hidden text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
+              Discovery Ha Giang
+            </div>
+            <div className='md:hidden xmd:translate-y-[-0.3rem] uppercase text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
+              Start With
             </div>
             <h2 className='text-green-normal-hover text-[3.5rem] xmd:text-[2.5rem] not-italic font-black xmd:leading-[120%] leading-[100%]'>
               {dataAcf?.header}

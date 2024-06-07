@@ -12,7 +12,7 @@ const RelatedArticle = ({ dataRelate }) => {
   return (
     <section className='relative md:mt-[4.5rem]  md:h-[60.18244rem] xmd:h-[31.1875rem]'>
       <Image priority alt="ảnh" src={'/imgs/blogDetail/mountain.png'} width={1600} height={1000} className="z-[-1] xmd:hidden absolute w-full h-full" />
-      <Image priority alt="ảnh" src={'/imgs/blogDetail/bg-start2-mobi.png'} width={380} height={430} className="w-full z-[10]  h-[36.1875rem] absolute top-[-4rem] md:hidden" />
+      <Image priority alt="ảnh" src={'/imgs/blogDetail/bg-start2-mobi.png'} width={380} height={430} className="w-full z-[-1]  h-[36.1875rem] absolute bottom-[-1rem] md:hidden" />
 
       <div className="xl:container flex flex-col items-center">
 
