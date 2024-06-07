@@ -304,7 +304,7 @@ const Discover = ({ dataDiscover }) => {
         src={'/imgs/activity/pattern-white.png'}
         width={1600}
         height={1400}
-        className='absolute image xmd:hidden w-full top-0 shrink-0'
+        className='absolute object-cover image xmd:hidden w-full top-0 shrink-0'
       />
       <div className='relative border border-transparent w-full '>
         <Image
@@ -314,7 +314,7 @@ const Discover = ({ dataDiscover }) => {
           src={'/imgs/activity/mountain.png'}
           width={1600}
           height={1400}
-          className='absolute image md:hidden top-[5rem] '
+          className='absolute image md:hidden top-[5rem] object-cover'
         />
         <div className='w-full container md:hidden flex justify-center items-center mt-[2.87rem]'>
           <Image
@@ -323,7 +323,7 @@ const Discover = ({ dataDiscover }) => {
             src={'/imgs/activity/sun.png'}
             width={1600}
             height={1400}
-            className=' size-[10.5rem] '
+            className=' size-[10.5rem] object-cover'
           />
         </div>
 
@@ -385,7 +385,7 @@ const Discover = ({ dataDiscover }) => {
                       dataMenu={dataDiscover?.lists_tabs}
                       listsImageCurrent={listsImageCurrent}>
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
-                        className=" !h-full absolute top-0 bottom-0 left-0 " />
+                        className=" !h-full absolute top-0 bottom-0 left-0 object-cover" />
                     </Video>
                   }
 
@@ -400,7 +400,7 @@ const Discover = ({ dataDiscover }) => {
                         src={d?.image}
                         width={1600}
                         height={1400}
-                        className=' !h-full absolute top-0 bottom-0 left-0 '
+                        className=' !h-full absolute top-0 bottom-0 left-0 object-cover'
                       />
                     </Video>
                   )}
@@ -408,13 +408,13 @@ const Discover = ({ dataDiscover }) => {
                     <ImageNormal>
 
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
-                        className=" w-full h-full" />
+                        className=" w-full h-full object-cover" />
                     </ImageNormal>)}
                   {isMobile &&
                     <ImageNormal>
 
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
-                        className=" w-full h-full" />
+                        className=" w-full h-full object-cover" />
                     </ImageNormal>}
                 </SwiperSlide>
               ))}
@@ -425,45 +425,45 @@ const Discover = ({ dataDiscover }) => {
             <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem] cursor-pointer">
               <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
                 <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
-                  {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
                 </Video>
                 <ImageBig>
-                  {listsImageCurrent?.[1] && <Image priority alt="ảnh" src={listsImageCurrent[1]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[1] && <Image priority alt="ảnh" src={listsImageCurrent[1]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageBig>
                 <ImageNormal>
-                  {listsImageCurrent?.[2] && <Image priority alt="ảnh" src={listsImageCurrent[2]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[2] && <Image priority alt="ảnh" src={listsImageCurrent[2]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent?.[3] && <Image priority alt="ảnh" src={listsImageCurrent[3]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[3] && <Image priority alt="ảnh" src={listsImageCurrent[3]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageBig>
                 <ImageSmall>
-                  {listsImageCurrent?.[4] && <Image priority alt="ảnh" src={listsImageCurrent[4]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[4] && <Image priority alt="ảnh" src={listsImageCurrent[4]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageSmall>
               </div>
               <div className='space-y-[4.62rem] mt-[5.8rem]'>
                 <ImageNormal>
-                  {listsImageCurrent?.[5] && <Image priority alt="ảnh" src={listsImageCurrent[5]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[5] && <Image priority alt="ảnh" src={listsImageCurrent[5]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageNormal>
                 <ImageBig>
-                  {listsImageCurrent?.[6] && <Image priority alt="ảnh" src={listsImageCurrent[6]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[6] && <Image priority alt="ảnh" src={listsImageCurrent[6]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent?.[7] && <Image priority alt="ảnh" src={listsImageCurrent[7]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[7] && <Image priority alt="ảnh" src={listsImageCurrent[7]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent?.[8] && <Image priority alt="ảnh" src={listsImageCurrent[8]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[8] && <Image priority alt="ảnh" src={listsImageCurrent[8]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageSmall>
                 </div>
                 <ImageBig>
-                  {listsImageCurrent?.[9] && <Image priority alt="ảnh" src={listsImageCurrent[9]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                  {listsImageCurrent?.[9] && <Image priority alt="ảnh" src={listsImageCurrent[9]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                 </ImageBig>
                 <div className='space-x-[4.69rem] flex items-start'>
                   <ImageSmall>
-                    {listsImageCurrent?.[10] && <Image priority alt="ảnh" src={listsImageCurrent[10]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[10] && <Image priority alt="ảnh" src={listsImageCurrent[10]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageSmall>
                   <ImageSmall>
-                    {listsImageCurrent?.[11] && <Image priority alt="ảnh" src={listsImageCurrent[11]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 ease-linear  cursor-pointer " />}
+                    {listsImageCurrent?.[11] && <Image priority alt="ảnh" src={listsImageCurrent[11]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageSmall>
                 </div>
               </div>
