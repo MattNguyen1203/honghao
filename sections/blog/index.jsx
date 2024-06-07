@@ -5,15 +5,22 @@ import StartPlanning from './StartPlanning'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import './blog.css'
-const Blog = ({ data, dataCategorisAndFirstpost, dataGetAllPostsByCategories }) => {
-
+const Blog = ({
+  data,
+  dataCategorisAndFirstpost,
+  dataGetAllPostsByCategories,
+  dataCommon,
+}) => {
   const dataStartPlanning = data?.acf?.start_planning
   const dataBanner = data?.acf?.banner
   const dataBannerMobi = data?.acf?.['banner-mobi']
   return (
     <main className='blog'>
       <section>
-        <Banner dataBanner={dataBanner} dataBannerMobi={dataBannerMobi} />
+        <Banner
+          dataBanner={dataBanner}
+          dataBannerMobi={dataBannerMobi}
+        />
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb divider>
@@ -23,10 +30,14 @@ const Blog = ({ data, dataCategorisAndFirstpost, dataGetAllPostsByCategories }) 
       <section>
         <StoriesBlog
           dataCategorisAndFirstpost={dataCategorisAndFirstpost}
-          dataGetAllPostsByCategories={dataGetAllPostsByCategories} />
+          dataGetAllPostsByCategories={dataGetAllPostsByCategories}
+        />
       </section>
       <section>
-        <StartPlanning dataStartPlanning={dataStartPlanning} />
+        <StartPlanning
+          dataCommon={dataCommon}
+          dataStartPlanning={dataStartPlanning}
+        />
       </section>
     </main>
   )
