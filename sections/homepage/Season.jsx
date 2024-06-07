@@ -90,20 +90,15 @@ export default function Season({data, dataWeather}) {
     })
   }, [])
   useEffect(() => {
-    if (!isMobile) {
-      const thumbItems = document.querySelectorAll('.thumb-item')
-      const thumbItemWidth = thumbItems[0].offsetWidth
-      const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${
-        thumbItems[1].getBoundingClientRect().left -
-        thumbItems[0].getBoundingClientRect().left -
-        thumbItemWidth
-      }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
-      myRef.current.style.left = leftPosition
-    }
+    const thumbItems = document.querySelectorAll('.thumb-item')
+    const thumbItemWidth = thumbItems[0].offsetWidth
+    const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${
+      thumbItems[1].getBoundingClientRect().left -
+      thumbItems[0].getBoundingClientRect().left -
+      thumbItemWidth
+    }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
+    myRef.current.style.left = leftPosition
   }, [activeIndex, isMobile])
-  const handleSlideChange = (swiper) => {
-    setActiveIndex(swiper.realIndex)
-  }
   return (
     <>
       <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full demo'>
@@ -152,7 +147,7 @@ export default function Season({data, dataWeather}) {
           <Swiper
             slidesPerView={1}
             loop
-            // speed={400}
+            speed={400}
             navigation={{
               prevEl: '.prev-slide-season-btn',
               nextEl: '.next-slide-season-btn',
@@ -162,7 +157,7 @@ export default function Season({data, dataWeather}) {
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper
             }}
-            onSlideChange={handleSlideChange}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             thumbs={{swiper: thumbsSwiper}}
           >
             {data?.map((item, index) => (
@@ -378,7 +373,7 @@ export default function Season({data, dataWeather}) {
                 </defs>
               </svg>
             </button>
-            <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] backdrop-blur-[5px] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
+            <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
               <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
                 {parseInt(dataWeather?.main.temp) - 273}°C
               </span>
