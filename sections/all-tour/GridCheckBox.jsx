@@ -1,16 +1,16 @@
 'use client'
 
 import useStore from '@/app/(store)/store'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
 import CheckBox from './CheckBox'
-import {usePathname, useRouter, useSearchParams} from 'next/navigation'
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
-import {Skeleton} from '@/components/ui/skeleton'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Skeleton } from '@/components/ui/skeleton'
 
-export default function GridCheckBox({dataTours, typeOfTours}) {
+export default function GridCheckBox({ dataTours, typeOfTours }) {
   const isMobile = useStore((state) => state.isMobile)
   const tours = dataTours?.tours
   const pagination = dataTours?.pagination
@@ -21,7 +21,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
 
   const pageCurrent = searchParams.get('page')
   const deviceCurrent = searchParams.get('device')
-  const {shouldFetch, setShouldFetch} = useStore((state) => state)
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
   const [isAllTour, setIsAllTour] = useState(true)
   const [dataToursClient, setDataToursClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
@@ -74,7 +74,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
   }
 
   const fetcher = (url) => fetch(url).then((r) => r.json())
-  const {data, error, isLoading} = useSWR(
+  const { data, error, isLoading } = useSWR(
     shouldFetch
       ? deviceCurrent !== null
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9&type-of-tour=${selectedTypes}`
@@ -99,7 +99,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
   }, [data, error, isLoading])
 
   return (
-    <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] mb-[4rem]'>
+    <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] xmd:mb-[1rem] mb-[4rem]'>
       {!isMobile ? (
         <div
           className={`xmd:hidden min-w-[20.75rem] py-[1.9375rem] px-[1.875rem] h-fill mb-[6.4rem] overflow-hidden sticky top-[8rem] rounded-[1rem] bg-white`}
@@ -250,14 +250,14 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
             ))}
           </div>
         )}
-          <PaginationCustom
-            pagination={
-              paginationClient && Object.keys(paginationClient).length === 0
-                ? pagination
-                : paginationClient
-            }
-            href={'#grid-tours'}
-          />
+        <PaginationCustom
+          pagination={
+            paginationClient && Object.keys(paginationClient).length === 0
+              ? pagination
+              : paginationClient
+          }
+          href={'#grid-tours'}
+        />
       </div>
     </div>
   )
