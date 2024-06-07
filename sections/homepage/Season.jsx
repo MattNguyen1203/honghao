@@ -90,14 +90,16 @@ export default function Season({data, dataWeather}) {
     })
   }, [])
   useEffect(() => {
-    const thumbItems = document.querySelectorAll('.thumb-item')
-    const thumbItemWidth = thumbItems[0].offsetWidth
-    const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${
-      thumbItems[1].getBoundingClientRect().left -
-      thumbItems[0].getBoundingClientRect().left -
-      thumbItemWidth
-    }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
-    myRef.current.style.left = leftPosition
+    if (!isMobile) {
+      const thumbItems = document.querySelectorAll('.thumb-item')
+      const thumbItemWidth = thumbItems[0].offsetWidth
+      const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${
+        thumbItems[1].getBoundingClientRect().left -
+        thumbItems[0].getBoundingClientRect().left -
+        thumbItemWidth
+      }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
+      myRef.current.style.left = leftPosition
+    }
   }, [activeIndex, isMobile])
   return (
     <>

@@ -172,7 +172,7 @@ export default function ClientSay({dataReview, commonData}) {
         </div>
       </div>
       {/* mobile */}
-      <div className='relative block pt-16 pb-4 kKao4-container md:hidden '>
+      <div className='relative block pt-16 xmd:pt-[4.54rem] pb-4 kKao4-container md:hidden '>
         <SectionHeading
           h5='READ WHAT OUR RECENT'
           h2='CLIENTS SAY'

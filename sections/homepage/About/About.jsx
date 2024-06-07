@@ -76,7 +76,7 @@ const About = ({dataAbout}) => {
           <div className='flex space-x-[0.75rem] xmd:space-[0.5rem] tablet:space-[1.5rem] mb-[6.3rem] xmd:mb-[2.8rem] xmd:flex-wrap items-center justify-center'>
             {dataAbout?.about_us?.infos?.map((item, index) => (
               <div
-                className='group hover:bg-orange-normal overflow-hidden transition-all duration-500 rounded-full relative size-[11.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:p-[1rem] xmd:tracking-[0] text-center'
+                className='group hover:bg-orange-normal overflow-hidden transition-all duration-500 rounded-full relative size-[11.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:py-[1rem] xmd:px-[0.54rem] xmd:tracking-[0] text-center'
                 key={index}
               >
                 <div className='animate-spin flex size-full rounded-full border border-dashed border-greyscale-0 absolute top-0 left-0'></div>
@@ -112,7 +112,7 @@ const About = ({dataAbout}) => {
 
       <div
         ref={nextSectionRef}
-        className='pl-[6.75rem] tablet:pl-[4rem] tablet:pb-[5rem] xmd:px-[1rem] flex relative pb-[20.87rem] xmd:pb-[2.5rem] pt-[5rem] xmd:pt-[2.5rem]'
+        className='pl-[6.75rem] tablet:pl-[4rem] tablet:pb-[5rem] xmd:px-[1rem] flex relative pb-[20.87rem] xmd:pb-0 pt-[5rem] xmd:pt-0'
       >
         <div className='w-[38.8125rem] xmd:w-full relative z-10'>
           <div className='xmd:flex hidden text-0875 text-greyscale-0/40 font-bold tracking-[0.00875rem] mb-[0.8rem]'>
@@ -126,7 +126,7 @@ const About = ({dataAbout}) => {
             dangerouslySetInnerHTML={{
               __html: dataAbout?.section_3?.description,
             }}
-            className='text-greyscale-10 text-1 tablet:text-175 tablet:mb-[2rem] tablet:leading-normal tablet:tracking-0 xmd:text-0875 tracking-[0.005rem] mb-[1rem] xmd:tracking-[0.00219rem] xmd:leading-normal'
+            className='text-greyscale-10 text-1 tablet:text-175 tablet:mb-[2rem] tablet:leading-normal tablet:tracking-0 xmd:text-0875 tracking-[0.005rem] mb-[1rem] xmd:mb-[1.5rem] xmd:tracking-[0.00219rem] xmd:leading-normal'
           ></p>
 
           <ul className='mb-[2rem]'>
