@@ -1,14 +1,14 @@
-import { Button } from '@/components/customCn/button'
+import {Button} from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import TeamSlide from './TeamSlide'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import './team.css'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 import getData from '@/lib/getData'
-import { GLOBAL_PAGE_ID } from '@/lib/constants'
+import {GLOBAL_PAGE_ID} from '@/lib/constants'
 
-export default async function OurTeam({ darkTheme }) {
+export default async function OurTeam({darkTheme, btnHome = false}) {
   const dataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
   const dataTeam = dataAcf?.acf?.team
   return (
@@ -34,7 +34,7 @@ export default async function OurTeam({ darkTheme }) {
             {dataTeam?.heading}
           </h2>
           <span
-            dangerouslySetInnerHTML={{ __html: dataTeam?.content }}
+            dangerouslySetInnerHTML={{__html: dataTeam?.content}}
             className={cn(
               ' relative *:text-[0.875rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40 tablet:text-15',
               darkTheme && 'text-greyscale-5/50',
@@ -50,11 +50,11 @@ export default async function OurTeam({ darkTheme }) {
             </Button>
             <Button
               icon
-              variant='outline_white'
-              className='!flex-1 tablet:!w-1/2 !w-max shrink-0 border-[1px] border-solid border-white'
+              variant={btnHome ? 'outline_white' : 'outline'}
+              className='!flex-1 tablet:!w-1/2 !w-max shrink-0'
             >
               <Link
-                className='text-white'
+                className={`${btnHome && 'text-white'}`}
                 href='/tours'
               >
                 All tour

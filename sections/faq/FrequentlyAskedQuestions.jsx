@@ -28,20 +28,16 @@ export default function FrequentlyAskedQuestions({data}) {
         description: 'Please check the information you have filled in again.',
       })
     } else {
-      const formData = new FormData()
-      formData.append('entry.1190877216', name)
-      formData.append('entry.851090568', phone)
-      formData.append('entry.571575564', email)
-      formData.append('entry.502542779', message)
-      const requestOptions = {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
+      const listValue = {
+        name: name,
+        phone: phone,
+        email: email,
+        message: message,
       }
-
-      const responsive = await fetch(FORM_FAQ_API, requestOptions)
-      const data = await responsive.text()
-      const res = Response.json(data)
+      const res = await fetch(`/api/postFAQForm`, {
+        method: 'POST',
+        body: JSON.stringify(listValue),
+      })
       if (res.ok) {
         setIsDialogOpen(true)
         toast({

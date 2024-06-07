@@ -4,7 +4,7 @@ import './about.css'
 import OurTeam from '@/layouts/team'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
-export default function About({ data }) {
+export default function About({data}) {
   const dataBanner = data?.acf?.banner
   const dataBannerMobi = data?.acf?.['banner-mobi']
   const dataCommit = data?.acf?.ethicalcommitments
@@ -15,7 +15,7 @@ export default function About({ data }) {
         dataBannerMobi={dataBannerMobi}
       />
       <div className=''>
-        <Breadcrumb divider >
+        <Breadcrumb divider>
           <BreadcrumbLink href='/about-us'>About us</BreadcrumbLink>
         </Breadcrumb>
       </div>
