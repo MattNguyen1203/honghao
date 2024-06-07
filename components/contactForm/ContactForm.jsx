@@ -4,7 +4,6 @@ import Image from 'next/image'
 import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import {useToast} from '@/components/ui/use-toast'
-import {FORM_CONTACT_API} from '@/lib/constants'
 
 export default function ContactForm({data}) {
   const {toast} = useToast()
@@ -36,26 +35,21 @@ export default function ContactForm({data}) {
         title: 'Sending information failed',
         description: 'Please check the information you have filled in again.',
       })
+      setIsLoading(false)
     } else {
-      const formData = new FormData()
-      formData.append('entry.1276228628', name)
-      formData.append('entry.1750062698', phone)
-      formData.append('entry.1369068052', email)
-      formData.append('entry.7626765', contactSubject)
-      formData.append('entry.907377509', message)
-      formData.append('entry.1971401006', country)
-
-      const requestOptions = {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
+      const listValue = {
+        name: name,
+        phone: phone,
+        email: email,
+        contactSubject: contactSubject,
+        message: message,
+        country: country,
       }
-
-      const responsive = await fetch(FORM_CONTACT_API, requestOptions)
-      const data = await responsive.text()
-      const res = Response.json(data)
-      console.log(res)
-      if (res.ok) {
+      const res = await fetch(`/api/postContactForm`, {
+        method: 'POST',
+        body: JSON.stringify(listValue),
+      })
+      if (res?.ok) {
         toast({
           title: 'Sending information successfully',
           description:

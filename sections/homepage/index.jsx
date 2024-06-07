@@ -46,7 +46,10 @@ const Homepage = ({
           height={1080}
           className='w-full h-full object-cover absolute top-0 left-0 z-[-1]'
         />
-        <OurTeam darkTheme />
+        <OurTeam
+          btnHome
+          darkTheme
+        />
       </div>
       <Season
         data={dataAcf?.weather}
