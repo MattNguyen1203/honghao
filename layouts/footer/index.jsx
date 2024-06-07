@@ -102,14 +102,14 @@ export default async function Footer() {
               height={200}
               quality={100}
               priority
-              className='w-[13.875rem] h-[4.875rem] object-contain xmd:w-[7.8845rem] xmd:h-[2.772rem] ml-[-0.75rem] mb-[2.81rem]'
+              className='w-[13.875rem] h-[4.875rem] object-contain xmd:w-[7.8845rem] xmd:h-[2.772rem] ml-[-0.75rem] mb-[2.81rem] xmd:mb-[2.63rem]'
             />
           </Link>
-          <div className='flex mb-[2.44rem] xmd:flex-col-reverse'>
+          <div className='flex mb-[2.44rem] xmd:mb-[1.62rem] xmd:flex-col-reverse'>
             {footerData?.map((item, index) => (
               <div
                 key={index}
-                className='w-max xmd:w-full first:mr-[7.5rem] xmd:first:mr-0 xmd:last:mb-[3rem]'
+                className='w-max xmd:w-full first:mr-[7.5rem] xmd:first:mr-0 xmd:last:mb-[2rem]'
               >
                 <div className='text-1 text-greyscale-80 font-bold tracking-0.0125 mb-[1rem] uppercase'>
                   {item.heading}
