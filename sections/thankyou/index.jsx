@@ -1,16 +1,16 @@
 'use client'
-import {Button} from '@/components/customCn/button'
-import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
-import {generateParams, generateParamsPayment} from '@/lib/payment'
+import { Button } from '@/components/customCn/button'
+import { FORM_API, GOOGLE_KEY, paymentOnepay } from '@/lib/constants'
+import { generateParams, generateParamsPayment } from '@/lib/payment'
 // import {FORM_API} from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import CryptoJS from 'crypto-js'
-import {parseQueryString} from '@/lib/utils'
-import {useRouter} from 'next/navigation'
+import { parseQueryString } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
-const ThankYou = ({searchParams, slug}) => {
+const ThankYou = ({ searchParams, slug }) => {
   const [isSuccessfull, setIsSuccessfull] = useState(false)
 
   const router = useRouter()
@@ -46,9 +46,21 @@ const ThankYou = ({searchParams, slug}) => {
 
   useEffect(() => {
     const handleSecureHash = () => {
+
+      if (!CryptoJS || !CryptoJS.enc || !CryptoJS.enc.Hex) {
+        console.error('CryptoJS or required properties are undefined');
+        return;
+      }
+
       const paramsGenerate = generateParams(true, searchParams?.vpc_MerchTxnRef)
-      const secretWordArray = CryptoJS.enc.Hex.parse(
-        paymentOnepay.SECRET_KEY_HASH,
+
+      if (!paymentOnepay?.SECRET_KEY_HASH) {
+        console.error('SECRET_KEY_HASH is undefined');
+        return;
+      }
+
+      const secretWordArray = CryptoJS?.enc?.Hex?.parse(
+        paymentOnepay?.SECRET_KEY_HASH,
       )
       const hash = CryptoJS.HmacSHA256(paramsGenerate, secretWordArray)
       const vpc_SecureHash = hash.toString(CryptoJS.enc.Hex).toUpperCase()
@@ -81,7 +93,7 @@ const ThankYou = ({searchParams, slug}) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({slug: slug?.[0]}),
+          body: JSON.stringify({ slug: slug?.[0] }),
         })
 
         if (!res.ok) {
@@ -106,30 +118,30 @@ const ThankYou = ({searchParams, slug}) => {
   }, [slug])
 
   return (
-    <section className=' bg-green-normal w-screen h-screen overflow-hidden'>
-      <div className='container pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
-        <h2>Thank You For Booking Our Tour!</h2>
-        <div className='flex items-center justify-center mt-[5rem]'>
-          <div className='flex flex-col mr-[1rem]'>
+    <section className=' bg-green-normal w-screen  h-screen overflow-hidden'>
+      <div className='container xmd:pt-[4rem] pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
+        <h2 className='xmd:text-[2rem] xdm:!text-center text-center'>Thank You For Booking Our Tour!</h2>
+        <div className='flex xmd:flex-col items-center justify-center xmd:mt-[1rem] mt-[5rem]'>
+          <div className='flex flex-col md:mr-[1rem]'>
             {/* <div className='text-3'>Hong Hao Travel</div> */}
             <Image
               src={'/imgs/home/bgThanks.jpg'}
               alt='hong hao travel'
               width={500}
               height={500}
-              className='object-cover w-[40rem] h-[30rem] rounded-md'
+              className='object-cover w-[40rem] xmd:w-[23rem] xmd:h-[10rem] h-[30rem]  xmd: rounded-md'
             />
           </div>
           <div className='flex flex-col items-center justify-center'>
-            <div className=' text-3 font-semibold capitalize font-londrina'>
+            <div className=' xmd:mt-[1rem] text-3 xmd:text-[2.5rem] font-semibold capitalize font-londrina'>
               {isSuccessfull ? 'Successful Payment!!!' : 'Payment failed'}
             </div>
-            <div className='mt-[2rem] text-125 font-semibold capitalize w-[60%] text-center text-greyscale-0/70 font-londrina'>
+            <div className='xmd:mt-[1rem] mt-[2rem] text-125 font-semibold capitalize w-[60%] text-center text-greyscale-0/70 font-londrina'>
               Hope you have an enjoyable experience on this trip. We will
               contact you as soon as possible.
             </div>
 
-            <Button className='mt-[3rem]'>
+            <Button className='xmd:mt-[1rem] mt-[3rem]'>
               <Link
                 href='/'
                 className='font-londrina tracking-[1.2px]'

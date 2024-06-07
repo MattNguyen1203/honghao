@@ -1,8 +1,8 @@
 import About from '@/sections/about'
 import getData from '@/lib/getData'
-import {PAGE_ABOUT_US_ID} from '@/lib/constants'
-import {fetchMetaData} from '@/lib/fetchMetadata'
-import {getMeta} from '@/lib/getMeta'
+import { PAGE_ABOUT_US_ID } from '@/lib/constants'
+import { fetchMetaData } from '@/lib/fetchMetadata'
+import { getMeta } from '@/lib/getMeta'
 
 export async function generateMetadata() {
   const result = await fetchMetaData('about-us/')
