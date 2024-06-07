@@ -63,7 +63,7 @@ const Welcome = ({data}) => {
 
   return (
     <div
-      className='min-w-screen min-h-screen xlg:min-w-full xlg:min-h-0 flex flex-col items-center mt-0 xmd:mt-[3rem] tablet:mt-[10rem] relative'
+      className='min-w-screen min-h-screen xlg:min-w-full xlg:min-h-0 flex flex-col items-center mt-0 xmd:mt-[2.63rem] tablet:mt-[10rem] relative'
       ref={parentRef}
     >
       <div
@@ -74,7 +74,7 @@ const Welcome = ({data}) => {
           className='text-1125 xmd:text-0875 tablet:text-[2rem] font-bold leading-[1] text-greyscale-0/40 mb-[0.5rem]'
           id='welcome_subText'
         >
-          {data?.subHeading}
+          {data?.subheading}
         </div>
         <h2 className='text-green-light font-black xmd:text-[1.45rem]  tablet:text-[5rem]'>
           {data?.heading}

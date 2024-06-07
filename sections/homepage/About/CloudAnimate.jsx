@@ -12,13 +12,13 @@ const CloudAnimate = () => {
         trigger: imageRef.current,
         start: '30% center',
       },
-      translateX: '-35rem',
+      left: '0',
       duration: 3,
     })
   }, [])
   return (
     <div
-      className='absolute right-[-35rem] top-0'
+      className='absolute right-[-50rem] top-0'
       ref={imageRef}
     >
       <Image

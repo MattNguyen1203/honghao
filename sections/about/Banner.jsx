@@ -25,7 +25,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
         className=' md:hidden absolute w-full h-[49.35963rem] shrink-0'
       />
 
-      <div className='xl:container  z-[6] relative xmd:h-[42.35963rem] md:left-[2rem] h-[100rem] xmd:mt-[6.9rem]'>
+      <div className='xl:container z-[6] relative xmd:h-[42.35963rem] md:left-[2rem] h-[100rem] xmd:mt-[4.63rem]'>
         {/* main title */}
         <Image
           priority

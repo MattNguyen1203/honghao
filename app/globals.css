@@ -373,3 +373,14 @@ input[type='password']::-ms-clear {
 .paginationcustom svg {
   stroke: #c24216 !important;
 }
+.notfound-text {
+  background: linear-gradient(
+    180deg,
+    #407b5a 12.25%,
+    rgba(64, 123, 90, 0.49) 56.05%,
+    rgba(64, 123, 90, 0) 85.25%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

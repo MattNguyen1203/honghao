@@ -204,6 +204,18 @@ export default function HomeForm({
     return `${day}/${month}/${year}`
   }
 
+  function resetField() {
+    form.setValue('username', '')
+    form.setValue('email', '')
+    form.setValue('phone', '')
+    form.setValue('message', '')
+    form.setValue('dob', '')
+    form.setValue('enddate', '')
+    form.setValue('address', '')
+    setPaxValueSelf(1)
+    setPaxValueLocal(0)
+  }
+
   // post gg form + gg sheet
   const postFile = useCallback(
     async (newvalue, status, orderId, method, setIsLoading) => {
@@ -265,7 +277,8 @@ export default function HomeForm({
           setIsDialogOpen(true)
           setIsDialogText('Successfully booked the tour')
         }
-        form.reset()
+        resetField()
+
         setIsLoading(false)
       }
     },

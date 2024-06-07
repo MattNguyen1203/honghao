@@ -51,12 +51,12 @@ export default function BestTrips({listBestTrip}) {
       ref={container}
       className='relative w-full bg-white lg:h-screen'
     >
-      <div className='lg:container subContainer xmd:!px-0 pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
+      <div className='lg:container subContainer xmd:!px-0 pt-[5.63rem] xmd:pt-[3rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
         <div className='xmd:mb-[2rem] xmd:pl-[0.75rem] tablet:pl-[4rem]'>
           <h3 className='font-extrabold text-1125 xmd:text-0875 xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
             EXPLORE
           </h3>
-          <h2 className='mt-[0.75rem] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem] '>
+          <h2 className='mt-[0.75rem] font-londrina xmd:leading-[1.2] text-35 xmd:text-25 font-black text-greyscale-80 tablet:mb-[2rem] '>
             BEST TRIPS <br className='md:hidden' /> FOR YOU
           </h2>
           <Image
@@ -85,7 +85,7 @@ export default function BestTrips({listBestTrip}) {
       <Link
         href='/tours'
         style={{writingMode: 'vertical-rl'}}
-        className='top-0 translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
+        className='top-0 xmd:top-[-1rem] translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
       >
         All tour
         <IconArrowRight />

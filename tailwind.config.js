@@ -112,7 +112,8 @@ module.exports = {
         leftToRight: 'leftToRight 10s linear infinite',
         cloud: 'cloud 10s linear infinite',
         cloud2: 'cloud2 10s linear infinite',
-        spin: 'spin 1s linear infinite',
+        spin: 'spin 10s linear infinite',
+        spin2: 'spin 1s linear infinite',
       },
       backgroundImage: {
         'custom-gradient':

@@ -77,13 +77,20 @@ export default async function Footer() {
     },
   ]
   return (
-    <footer className='overflow-hidden pt-[3.69rem] h-auto bg-greyscale-0 relative before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(255,255,255,0.93)_0%,#FFF_37.97%,#FFF_98.21%)] before:z-10 before:opacity-50'>
+    <footer className='overflow-hidden pt-[3.69rem] xmd:pt-[5.28rem] h-auto bg-greyscale-0 relative before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(255,255,255,0.93)_0%,#FFF_37.97%,#FFF_98.21%)] before:z-10 before:opacity-50'>
       <Image
         src='/imgs/footer/Group.png'
         alt='hong hao travel'
         width={2000}
         height={1000}
-        className='w-full h-full object-contain absolute top-[-5rem] left-0'
+        className='w-full h-full object-contain absolute top-[-5rem] left-0 xmd:hidden'
+      />
+      <Image
+        src='/imgs/footer/groupmb.png'
+        alt='hong hao travel'
+        width={931}
+        height={334.308}
+        className='z-[9] w-full h-full object-cover absolute top-0 left-0 md:hidden'
       />
       <div className='container'>
         <div className='w-[59.6875rem] xmd:w-full h-full relative z-40'>
@@ -95,14 +102,14 @@ export default async function Footer() {
               height={200}
               quality={100}
               priority
-              className='w-[13.875rem] h-[4.875rem] object-contain xmd:w-[7.8845rem] xmd:h-[2.772rem] ml-[-0.75rem] mb-[2.81rem]'
+              className='w-[13.875rem] h-[4.875rem] object-contain xmd:w-[7.8845rem] xmd:h-[2.772rem] ml-[-0.75rem] mb-[2.81rem] xmd:mb-[2.63rem]'
             />
           </Link>
-          <div className='flex mb-[2.44rem] xmd:flex-col-reverse'>
+          <div className='flex mb-[2.44rem] xmd:mb-[1.62rem] xmd:flex-col-reverse'>
             {footerData?.map((item, index) => (
               <div
                 key={index}
-                className='w-max xmd:w-full first:mr-[7.5rem] xmd:first:mr-0 xmd:last:mb-[3rem]'
+                className='w-max xmd:w-full first:mr-[7.5rem] xmd:first:mr-0 xmd:last:mb-[2rem]'
               >
                 <div className='text-1 text-greyscale-80 font-bold tracking-0.0125 mb-[1rem] uppercase'>
                   {item.heading}

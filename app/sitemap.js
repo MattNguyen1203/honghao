@@ -1,5 +1,39 @@
+import getData from '@/lib/getData'
+
 export default async function sitemap() {
-  return [
+  const getListCate = getData(
+    `wp-json/okhub/v1/get-list-cat-and-first-posts?per_page=0`,
+  )
+
+  const getListPost = getData(
+    `wp-json/okhub/v1/get-list-cat-and-first-posts?page=1&per_page=100`,
+  )
+  const getListTour = getData(`wp-json/okhub/v1/tours?page=1&per_page=100`)
+
+  const [listCate, listPost, listTour] = await Promise.all([
+    getListCate,
+    getListPost,
+    getListTour,
+  ])
+
+  const listCateArr = listCate?.categories?.map((item) => ({
+    url: `${process.env.DOMAIN}/blog/${item.slug}`,
+    lastModified: new Date(),
+    priority: 0.9,
+  }))
+
+  const listPostArr = listPost?.posts?.map((item) => ({
+    url: `${process.env.DOMAIN}/${item?.post_slug}`,
+    lastModified: new Date(),
+    priority: 1,
+  }))
+  const listTourArr = listTour?.tours?.map((item) => ({
+    url: `${process.env.DOMAIN}/${item?.detail_link}`,
+    lastModified: new Date(),
+    priority: 1,
+  }))
+
+  const listPage = [
     {url: process.env.DOMAIN, lastModified: new Date(), priority: 1},
     {
       url: `${process.env.DOMAIN}/about-us`,
@@ -24,6 +58,7 @@ export default async function sitemap() {
       lastModified: new Date(),
       priority: 1,
     },
-    // TODO: all tours, all blogs
   ]
+
+  return [...listCateArr, ...listPostArr, ...listTourArr, ...listPage]
 }
