@@ -19,7 +19,7 @@ const StartPlanning = ({dataStartPlanning, dataCommon}) => {
         src={'/imgs/blogDetail/bg-start-mobi.png'}
         width={380}
         height={430}
-        className='w-full z-[-20] h-[26.3125rem] md:hidden'
+        className='w-full z-[-500] md:hidden'
       />
 
       <div className='absolute flex justify-center w-full md:-translate-y-1/2 xmd:top-[3.6rem] top-1/2'>

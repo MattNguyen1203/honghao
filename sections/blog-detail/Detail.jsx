@@ -4,9 +4,11 @@ import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
+import { cn } from '@/lib/utils'
 const Detail = ({ dataDetailPost }) => {
   const { currentCategories, setCurrentCategories } = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
+  const [isVisible, setIsVisible] = useState(false);
   const handleScrollToContent = (e) => {
     const indexOfSectionToScroll = parseInt(e.target.id)
     const h2Elements = document.querySelectorAll('.detail h3')
@@ -28,8 +30,10 @@ const Detail = ({ dataDetailPost }) => {
     h2Elements.forEach((element) => {
       headings.push(element.textContent)
     })
+    setIsVisible(true);
     setHeadingTexts(headings)
   }, [])
+
 
 
   const Share = () => {
@@ -78,13 +82,16 @@ const Detail = ({ dataDetailPost }) => {
   }
   return (
     <section className=' w-full md:border-b md:border-[#E5E5E5]'>
-      {dataDetailPost?.thumbnail&&<Image
+
+      {dataDetailPost?.thumbnail && <Image
         priority
         alt='ảnh'
         src={dataDetailPost?.thumbnail}
         width={1600}
         height={1000}
-        className='xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] '
+        className={cn('xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] ',
+          isVisible ? 'visible' : 'hidden'
+        )}
       />}
       <div className='xmd:hidden '>
         <Breadcrumb divider className="!pl-0">

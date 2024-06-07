@@ -1,14 +1,14 @@
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import TeamSlide from './TeamSlide'
-import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import './team.css'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import getData from '@/lib/getData'
-import {GLOBAL_PAGE_ID} from '@/lib/constants'
+import { GLOBAL_PAGE_ID } from '@/lib/constants'
 
-export default async function OurTeam({darkTheme}) {
+export default async function OurTeam({ darkTheme }) {
   const dataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
   const dataTeam = dataAcf?.acf?.team
   return (
@@ -27,16 +27,16 @@ export default async function OurTeam({darkTheme}) {
           </div>
           <h2
             className={cn(
-              'uppercase !mt-[0.75rem]',
+              'uppercase !mt-[0.75rem] xmd:pb-[3rem]',
               darkTheme && 'text-greyscale-0',
             )}
           >
             {dataTeam?.heading}
           </h2>
           <span
-            dangerouslySetInnerHTML={{__html: dataTeam?.content}}
+            dangerouslySetInnerHTML={{ __html: dataTeam?.content }}
             className={cn(
-              'relative *:text-[0.875rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40 tablet:text-15',
+              ' relative *:text-[0.875rem] xmd:text-[0.875rem] z-50 tracking-[0.005rem] text-greyscale-40 tablet:text-15',
               darkTheme && 'text-greyscale-5/50',
             )}
           ></span>

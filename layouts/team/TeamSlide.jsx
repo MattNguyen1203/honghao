@@ -1,14 +1,14 @@
 'use client'
 
 import NavigationCustom from '@/components/navigationcustom'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {Navigation} from 'swiper/modules'
-import React, {useState, useRef} from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import React, { useState, useRef } from 'react'
 import 'swiper/css'
 import CardOurTeam from './CardOurTeam'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
-const TeamSlide = ({darkTheme, data}) => {
+const TeamSlide = ({ darkTheme, data }) => {
   const swiperRef = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
 

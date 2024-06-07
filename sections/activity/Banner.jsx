@@ -89,7 +89,7 @@ const SheetCp = ({ children, data }) => {
               }}
               speed={500}
               slidesPerView={1.2}
-              spaceBetween={30}
+              spaceBetween={18}
               className='!pl-10 xmd:!pl-4  !w-full '
               loop={false}
               modules={[FreeMode]}
@@ -134,7 +134,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (
-    <section className='relative bd xl:h-[100rem] overflow-hidden'>
+    <section className='relative xl:h-[100rem] overflow-hidden'>
       <Image
         priority
         alt='ảnh'
@@ -150,7 +150,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         src={dataBanerMobi?.image}
         width={1600}
         height={1935}
-        className='object-cover md:hidden absolute h-full w-full'
+        className='object-cover md:hidden absolute top-0 h-full w-full'
       />
       <Image
         priority
@@ -175,7 +175,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           src={dataBaner?.image_title_big}
           width={840}
           height={355}
-          className='  xmd:top-[9rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+          className=' xmd:translate-y-[-2rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
         <div className='md:hidden'>
           <Breadcrumb className="!pl-0">
@@ -250,7 +250,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                     src={'/imgs/activity/motobike-img-all.png'}
                     width={120}
                     height={200}
-                    className='w-[4.75rem] cursor-pointer h-[4.55rem]'
+                    className='w-[4.75rem] xmd:translate-y-[1rem]  cursor-pointer h-[4.55rem]'
                   />
                 </SheetCp>
               </div>
@@ -279,7 +279,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             </div>
             <div className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
               <div className='relative'>
-                <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
+                <div className=' text-linear1 text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataMoto?.label}
                 </div>
                 <div
@@ -307,7 +307,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </div>
             </div>
             <div
-              className='absolute xmd:top-[5.6rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-1.7rem] text-white bg-orange-normal 
+              className='absolute xmd:top-[7rem] xmd:left-[2.8rem] md:left-[55rem] md:top-[-1.7rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 px-2.5 py-1.5 rounded-[1.25rem]'
             >
@@ -316,7 +316,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           </div>
         </div>
         {/* hiking */}
-        <div className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.5rem] top-[63.5rem]'>
+        <div className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.7rem] top-[63.5rem]'>
           <div className='relative '>
             <div className=' absolute top-[5rem] left-[14.2rem] md:left-[28rem] lg:left-[30.5rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -339,7 +339,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                     src={'/imgs/activity/motobike-img-all.png'}
                     width={120}
                     height={200}
-                    className='w-[4.75rem] cursor-pointer h-[4.55rem]'
+                    className='w-[4.75rem] xmd:translate-y-[1rem]  cursor-pointer h-[4.55rem]'
                   />
                 </SheetCp>
               </div>
@@ -366,15 +366,13 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 />
               </svg>
             </div>
-            <div className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
+            <div className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[1rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[2.82rem]'>
               <div>
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataHiking?.label}
                 </div>
-                <div
-                  className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
-                flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl'
-                >
+                <div className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
+                flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] md:mt-[0.3rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl'>
                   Experience
                 </div>
               </div>
@@ -396,7 +394,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </div>
             </div>
             <div
-              className='absolute left-[18.4rem] top-[4.2rem] tablet:left-[32.5rem] lg:left-[35rem] md:top-[6.5rem] text-white bg-orange-normal 
+              className='absolute left-[18.4rem] top-[5.4rem] tablet:left-[32.5rem] lg:left-[35rem] md:top-[6.5rem] text-white bg-orange-normal 
             text-[0.875rem] font-medium leading-[1.2] tracking-[0.00875rem]
             inline-flex justify-center items-center gap-2.5 px-2.5 py-1.5 rounded-[1.25rem]'
             >
@@ -404,7 +402,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             </div>
           </div>
         </div>
-        <div className='xmd:pr-[0.75rem] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[9rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+        <div className='xmd:pr-[0.75rem] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>
