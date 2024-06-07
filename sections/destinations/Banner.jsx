@@ -56,15 +56,15 @@ const data = [
     ]
   },
 ]
-const Banner = ({dataBanner}) => {
-  const listsImage=dataBanner?.lists_image
-  const mainImage=dataBanner?.main_image
+const Banner = ({ dataBanner }) => {
+  const listsImage = dataBanner?.lists_image
+  const mainImage = dataBanner?.main_image
   return (
     <div className='relative'>
-      <div><SlideVideoTours type='banner' mainImage={mainImage} data={listsImage}/></div>
+      <div><SlideVideoTours type='banner' mainImage={mainImage} data={listsImage} /></div>
       <Image priority alt="ảnh" src={'/imgs/all-destinations/map.png'} width={401} height={401}
         className="w-[24.4375rem] h-[24.75rem] shrink-0 absolute bottom-[13rem] z-10 right-[18.72rem]" />
-              <div className='object-cover absolute bottom-0 z-[10] left-0 w-full xmd:h-[9rem] h-[10.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+      <div className='object-cover absolute bottom-0 z-[10] left-0 w-full xmd:h-[9rem] h-[1.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <div className='absolute xl:container border-red-500 left-1/2 z-50 h-full w-full -translate-x-1/2 top-0'>
         <div className='relative'>
           <Image priority alt="ảnh title web" src={'/imgs/all-destinations/main_title.png'} width={840} height={355} className="absolute left-[5rem] z-50 xmd:hidden top-[9rem] w-[43.3605rem] h-[16.1875rem]" />

@@ -14,14 +14,29 @@
   animation: scaleInOut 1.5s ease-in-out infinite;
 }
 .activity .text-linear {
-  background: linear-gradient(
-    180deg,
-    #fff 37.06%,
-    rgba(255, 255, 255, 0) 107.22%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+background: linear-gradient(180deg, #FFF 28.31%, rgba(255, 255, 255, 0.00) 86.67%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+@media (max-width: 768px) {
+.activity .text-linear1 {
+background: linear-gradient(180deg, #FFF 28.31%, rgba(255, 255, 255, 0.00) 97.67%);
+background-clip: text;
+-webkit-background-clip: text;
+}
+.activity .text-linear {
+background: linear-gradient(180deg, #FFF 28.31%, rgba(255, 255, 255, 0.00) 98.67%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+}
+.activity .text-linear1 {
+background: linear-gradient(180deg, #FFF 28.31%, rgba(255, 255, 255, 0.00) 97.67%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 @keyframes keyArrow {
   0% {
@@ -48,3 +63,4 @@
 .activity.shadow-no {
   box-shadow: 0px 0 0px px white, 0px 0 0px 0px white;
 }
+

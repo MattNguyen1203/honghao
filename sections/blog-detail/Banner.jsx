@@ -1,10 +1,18 @@
-import React from 'react'
+
+"use client"
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
+import { cn } from '@/lib/utils';
 const Banner = ({ dataDetailPost }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
   return (
-    <section className='h-[50rem] xmd:h-[23rem] bg-green-dark w-full'>
+    <section className={cn('h-[40rem] xmd:h-[23rem] bg-green-dark w-full box', isLoaded ? 'shrink' : '')}>
       <div className="flex flex-col items-center space-y-[4rem] xmd:space-y-[0.75rem] xmd:pt-[6rem] pt-[7.7rem]">
         <div className="xmd:hidden inline-flex justify-center items-center gap-2.5 px-[1.625rem] py-2 rounded-[6.25rem]
         text-[#030922] text-center bg-white text-[0.90088rem] not-italic font-normal leading-[1.625rem] tracking-[0.0625rem] uppercase
