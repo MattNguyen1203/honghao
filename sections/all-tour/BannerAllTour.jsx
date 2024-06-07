@@ -14,7 +14,7 @@ export default function BannerAllTour() {
         height={436}
       />
       <Image
-        className='xmd:hidden absolute top-1/2 object-cover right-[4.06rem] -translate-y-1/2 w-[24.4375rem] h-[24.75rem]'
+        className='xmd:hidden absolute top-1/2 object-contain right-[4.06rem] -translate-y-1/2 w-[24.4375rem] h-[24.75rem]'
         alt='image map'
         src={'/imgs/all-tour/Map.png'}
         width={391}

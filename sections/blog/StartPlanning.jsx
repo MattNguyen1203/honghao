@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import {Button} from '@/components/customCn/button'
 import Link from 'next/link'
-const StartPlanning = ({dataStartPlanning}) => {
+const StartPlanning = ({dataStartPlanning, dataCommon}) => {
   return (
     <div className='w-full md:h-[48.875rem] mt-[3rem] relative'>
       <Image
@@ -62,7 +62,9 @@ const StartPlanning = ({dataStartPlanning}) => {
                 icon
                 className='xmd:w-[8.9375rem]'
               >
-                Call us
+                <Link href={`tel:${dataCommon?.contact_info?.phone}`}>
+                  Call us
+                </Link>
               </Button>
             </div>
           </div>
