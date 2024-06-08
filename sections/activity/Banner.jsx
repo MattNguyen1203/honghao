@@ -1,11 +1,11 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image'
-import { Button } from '@/components/customCn/button'
-import { cn } from '@/lib/utils'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper/modules'
+import {Button} from '@/components/customCn/button'
+import {cn} from '@/lib/utils'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {FreeMode} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
@@ -26,12 +26,12 @@ import {
 } from '@/components/customCn/sheet'
 import Link from 'next/link'
 const data1 = [
-  { title: 'Experience' },
-  { title: 'Food' },
-  { title: 'Treaking' },
-  { title: 'People' },
+  {title: 'Experience'},
+  {title: 'Food'},
+  {title: 'Treaking'},
+  {title: 'People'},
 ]
-const DialogCp = ({ children, data }) => {
+const DialogCp = ({children, data}) => {
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -62,7 +62,7 @@ const DialogCp = ({ children, data }) => {
   )
 }
 
-const SheetCp = ({ children, data }) => {
+const SheetCp = ({children, data}) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -95,8 +95,18 @@ const SheetCp = ({ children, data }) => {
               modules={[FreeMode]}
             >
               {data?.lists_image?.map((d, i) => (
-                <SwiperSlide key={i} className=' overflow-hidden' >
-                  <Image priority alt="ảnh" src={d?.url} width={1500} height={1500} className="xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]" />
+                <SwiperSlide
+                  key={i}
+                  className=' overflow-hidden'
+                >
+                  <Image
+                    priority
+                    alt='ảnh'
+                    src={d?.url}
+                    width={1500}
+                    height={1500}
+                    className='xl:w-[98%] object-cover xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[38.0625rem] h-[27.9375rem] rounded-[1.25rem]'
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -130,11 +140,12 @@ const SheetCp = ({ children, data }) => {
     </Sheet>
   )
 }
-const Banner = ({ dataBaner, dataBanerMobi }) => {
+const Banner = ({dataBaner, dataBanerMobi}) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
+      <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Activity Ha Giang</h1>
       <Image
         priority
         alt='ảnh'
@@ -186,8 +197,13 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           className='md:hidden xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
         <div className='md:hidden xmd:-translate-y-[0.4rem]'>
-          <Breadcrumb className="!pl-0">
-            <BreadcrumbLink isBanner href='/activity'>Activity</BreadcrumbLink>
+          <Breadcrumb className='!pl-0'>
+            <BreadcrumbLink
+              isBanner
+              href='/activity'
+            >
+              Activity
+            </BreadcrumbLink>
           </Breadcrumb>
         </div>
         <div className=' md:absolute flex-col tablet:left-[5rem] lg:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
@@ -195,7 +211,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             {dataBaner?.desc_text}
           </div>
           <div className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
-            <Link className='xmd:!w-max xmd:!flex-1' href='/tours/book-now'>
+            <Link
+              className='xmd:!w-max xmd:!flex-1'
+              href='/tours/book-now'
+            >
               <Button
                 className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'
                 icon
@@ -203,7 +222,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 BOOK NOW
               </Button>
             </Link>
-            <Link className='xmd:!w-max xmd:!flex-1' href={'/tours'}>
+            <Link
+              className='xmd:!w-max xmd:!flex-1'
+              href={'/tours'}
+            >
               <Button
                 className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'
                 icon
@@ -379,8 +401,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataHiking?.label}
                 </div>
-                <div className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
-                flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] md:mt-[0.3rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl'>
+                <div
+                  className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
+                flex-col bg-[rgba(255,255,255,0.15)] items-start gap-4  backdrop-blur-lg xmd:px-[0.353rem] xmd:text-[0.52956rem] md:mt-[0.3rem] xmd:py-[0.1765rem] px-3 py-1.5 rounded-3xl'
+                >
                   Experience
                 </div>
               </div>

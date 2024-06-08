@@ -1,11 +1,12 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/customCn/button'
+import {Button} from '@/components/customCn/button'
 
-const Banner = ({ dataBanner, dataBannerMobi }) => {
+const Banner = ({dataBanner, dataBannerMobi}) => {
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
+      <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>About us HongHao</h1>
       <Image
         priority
         alt='ảnh'

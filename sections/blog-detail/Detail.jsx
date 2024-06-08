@@ -1,14 +1,14 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
-import { cn } from '@/lib/utils'
-const Detail = ({ dataDetailPost }) => {
-  const { currentCategories, setCurrentCategories } = useStore((state) => state)
+import {cn} from '@/lib/utils'
+const Detail = ({dataDetailPost}) => {
+  const {currentCategories, setCurrentCategories} = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
   const handleScrollToContent = (e) => {
     const indexOfSectionToScroll = parseInt(e.target.id)
     const h2Elements = document.querySelectorAll('.detail h3')
@@ -30,11 +30,9 @@ const Detail = ({ dataDetailPost }) => {
     h2Elements.forEach((element) => {
       headings.push(element.textContent)
     })
-    setIsVisible(true);
+    setIsVisible(true)
     setHeadingTexts(headings)
   }, [])
-
-
 
   const Share = () => {
     return (
@@ -82,27 +80,39 @@ const Detail = ({ dataDetailPost }) => {
   }
   return (
     <section className=' w-full md:border-b md:border-[#E5E5E5]'>
-
-      {dataDetailPost?.thumbnail && <Image
-        priority
-        alt='ảnh'
-        src={dataDetailPost?.thumbnail}
-        width={1600}
-        height={1000}
-        className={cn('xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] ',
-          isVisible ? 'visible' : 'hidden'
-        )}
-      />}
+      {dataDetailPost?.thumbnail && (
+        <Image
+          priority
+          alt='ảnh'
+          src={dataDetailPost?.thumbnail}
+          width={1600}
+          height={1000}
+          className={cn(
+            'xmd:w-screen object-cover mx-auto xmd:h-[14.93325rem] w-full h-[62.5rem] ',
+            isVisible ? 'visible' : 'hidden',
+          )}
+        />
+      )}
       <div className='xmd:hidden '>
-        <Breadcrumb divider className="!pl-0">
-          <BreadcrumbLink subLink href='/blog'>Blog</BreadcrumbLink>
-          <BreadcrumbLink href={`/blog/${dataDetailPost?.post_slug}`}>{dataDetailPost?.title}</BreadcrumbLink>
+        <Breadcrumb
+          divider
+          className='!pl-0'
+        >
+          <BreadcrumbLink
+            subLink
+            href='/blog'
+          >
+            Blog
+          </BreadcrumbLink>
+          <BreadcrumbLink href={`/blog/${dataDetailPost?.post_slug}`}>
+            {dataDetailPost?.title}
+          </BreadcrumbLink>
         </Breadcrumb>
       </div>
       <div className='container detail relative md:border-l md:border-r md:border-[#E5E5E5] mx-auto'>
-        <h2 className='w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]'>
+        <h1 className='w-[65.6875rem] xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]'>
           {dataDetailPost?.title}
-        </h2>
+        </h1>
         <div className='flex w-[65.8rem] xmd:w-[21.4375rem] mx-auto flex-col items-start bg-greyscale-5 xmd:space-y-[0.63rem] space-y-[1.875rem] xmd:py-[1.25rem] xmd:px-[0.62rem] md:p-5'>
           <div className='text-greyscale-80 xmd:text-greyscale-30 text-[2rem] xmd:text-[1.125rem] xmd:font-medium not-italic font-normal leading-[1.2]'>
             Table of Contents
@@ -122,7 +132,7 @@ const Detail = ({ dataDetailPost }) => {
         </div>
         <div
           className='paragraph mt-[2.5rem] xmd:pb-[1rem] pb-[5rem] mx-auto w-[65.6875rem] flex flex-col space-y-[1.87rem]'
-          dangerouslySetInnerHTML={{ __html: dataDetailPost?.content }}
+          dangerouslySetInnerHTML={{__html: dataDetailPost?.content}}
         />
         <div className='xmd:hidden'>
           <Share />

@@ -19,7 +19,10 @@ const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail}) => {
         />
       </section>
       <section className='xmd:hidden'>
-        <Breadcrumb divider className=''>
+        <Breadcrumb
+          divider
+          className=''
+        >
           <BreadcrumbLink
             subLink
             href='/tour'

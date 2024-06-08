@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 
-const Banner = ({ dataAcf, dataTourDetail }) => {
+const Banner = ({dataAcf, dataTourDetail}) => {
   const data = [
     {
       icon: (
@@ -132,7 +132,10 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
         data={dataAcf?.lists_anh_banner}
       />
       <div className='md:hidden'>
-        <Breadcrumb divider className=''>
+        <Breadcrumb
+          divider
+          className=''
+        >
           <BreadcrumbLink
             subLink
             href='/tour'
@@ -188,9 +191,9 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
                 </div>
               </div>
             </div>
-            <div className=' font-londrina xmd:text-greyscale-80 text-white text-[2rem] not-italic font-black leading-[100%]'>
+            <h1 className=' font-londrina xmd:text-greyscale-80 text-white text-[2rem] not-italic font-black leading-[100%]'>
               {dataTourDetail?.title}
-            </div>
+            </h1>
           </div>
 
           <div className='grid grid-cols-2 xmd:grid-cols-1 md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
@@ -295,7 +298,7 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{ __html: d?.children }}
+                    dangerouslySetInnerHTML={{__html: d?.children}}
                   />
                 </div>
               ))}
