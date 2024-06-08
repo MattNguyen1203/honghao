@@ -49,13 +49,14 @@ const BikeAnimation = ({children}) => {
                 duration: 6,
                 motionPath: {
                   path: '#pathMb',
+                  align: '#pathMb',
                   autoRotate: true,
                   start: 0,
                   end: 0.06,
+                  alignOrigin: [0.9, 0.9],
                 },
               })
             }
-
             return
           }
         }
@@ -68,7 +69,7 @@ const BikeAnimation = ({children}) => {
   }, [])
   return (
     <div
-      className='relative w-full xmd:h-[81.2695rem] pt-[8rem]'
+      className='relative w-full xmd:h-[81.2695rem] md:pt-[8rem]'
       ref={sectionRef}
     >
       <div className='w-[23.43744rem] absolute bottom-[-5rem] md:hidden xmd:h-[51.2695rem] h-[41.2695rem] bg-[#13341C]'></div>
