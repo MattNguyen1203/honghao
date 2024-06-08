@@ -201,23 +201,33 @@ const Video = ({ children, dataMenu }) => {
     </div>
   )
 }
+// const ImageBig = ({ children }) => {
+//   return (
+//     <div className='relative w-[35.6875rem] h-[23.8125rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
+//       {children}
+//     </div>
+//   )
+// }
+
 const ImageBig = ({ children }) => {
   return (
-    <div className='relative w-[35.6875rem] h-[23.8125rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
+    <div className='relative w-[35.6875rem] h-[23.8125rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
+
+
 const ImageNormal = ({ children }) => {
   return (
-    <div className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
+    <div className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
 const ImageSmall = ({ children }) => {
   return (
-    <div className='relative w-[18.375rem] h-[12.25rem] group scale-[0.99]  overflow-hidden rounded-xl cursor-pointer'>
+    <div className='relative w-[18.375rem] h-[12.25rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )

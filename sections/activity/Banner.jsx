@@ -138,7 +138,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
       <Image
         priority
         alt='ảnh'
-        src={dataBaner?.image}
+        src={dataBaner?.image?.url}
         width={1600}
         height={1935}
         className='z-[3] xmd:hidden absolute h-full w-full'
@@ -147,10 +147,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
       <Image
         priority
         alt='ảnh'
-        src={dataBanerMobi?.image}
+        src={dataBanerMobi?.image?.url}
         width={1600}
         height={1935}
-        className='object-cover md:hidden absolute top-0 h-full w-full'
+        className='object-cover md:hidden absolute top-0 left-0 h-full w-full'
       />
       <Image
         priority
@@ -172,12 +172,20 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         <Image
           priority
           alt='ảnh title web'
-          src={dataBaner?.image_title_big}
+          src={dataBaner?.image_title_big?.url}
           width={840}
           height={355}
-          className=' xmd:translate-y-[-2rem] xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+          className=' xmd:hidden xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
-        <div className='md:hidden'>
+        <Image
+          priority
+          alt='ảnh title web'
+          src={dataBanerMobi?.image_title_big?.url}
+          width={840}
+          height={355}
+          className='md:hidden xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+        />
+        <div className='md:hidden xmd:-translate-y-[0.4rem]'>
           <Breadcrumb className="!pl-0">
             <BreadcrumbLink isBanner href='/activity'>Activity</BreadcrumbLink>
           </Breadcrumb>

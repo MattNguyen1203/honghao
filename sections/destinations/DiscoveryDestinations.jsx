@@ -57,7 +57,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
             if (self.isActive) {
               pinRefMobi.current.style.position = 'fixed';
               pinRefMobi.current.style.top = 'auto';
-              pinRefMobi.current.style.bottom = '0'; // Fixed to bottom of the screen
+              pinRefMobi.current.style.bottom = '0';
               pinRefMobi.current.style.left = '0';
               pinRefMobi.current.style.right = '0';
               pinRefMobi.current.style.zIndex = '1000';

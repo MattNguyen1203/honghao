@@ -1,15 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
-import {Button} from '../customCn/button'
-import {cn} from '@/lib/utils'
+import { Button } from '../customCn/button'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
-const ItemTour = ({className, type, data}) => {
+import useStore from '@/app/(store)/store'
+const ItemTour = ({ className, type, data }) => {
+  const { isMobile } = useStore(state => state)
   return (
     <Link href={`/tours/${data?.detail_link}`}>
       <div
         className={cn(
-          'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden group cursor-pointer',
-          className,
+          'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden  cursor-pointer',
+          className, isMobile ? '' : 'group'
         )}
       >
         <div className='w-full h-full before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'>
