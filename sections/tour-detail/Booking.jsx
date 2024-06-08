@@ -16,7 +16,7 @@ export default function Booking({data, dataTourDetail, dataPage}) {
   }
 
   return (
-    <div className='relative h-[70rem] xmd:h-fit flex bg-white'>
+    <div className='relative h-[80rem] xmd:h-fit flex bg-white'>
       <div className='xmd:hidden absolute size-full top-0 left-0'>
         <BikeAnimation />
       </div>

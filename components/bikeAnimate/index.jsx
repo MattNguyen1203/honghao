@@ -1,14 +1,14 @@
 'use client'
 
 import gsap from 'gsap'
-import React, { useEffect, useRef } from 'react'
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
+import React, {useEffect, useRef} from 'react'
+import {MotionPathPlugin} from 'gsap/MotionPathPlugin'
 import useStore from '@/app/(store)/store'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(MotionPathPlugin)
 }
-const BikeAnimation = ({ children }) => {
+const BikeAnimation = ({children}) => {
   const sectionRef = useRef()
   //   const isMobile = useStore((state) => state.isMobile)
 
@@ -23,7 +23,7 @@ const BikeAnimation = ({ children }) => {
         isMobile: `(max-width: ${breakPoint - 1}px)`,
       },
       (context) => {
-        let { isDesktop, isMobile } = context.conditions
+        let {isDesktop, isMobile} = context.conditions
 
         const handleScroll = () => {
           const scrollPosition = window.scrollY || window.pageYOffset
@@ -37,9 +37,11 @@ const BikeAnimation = ({ children }) => {
                 duration: 10,
                 motionPath: {
                   path: '#path',
+                  align: '#path',
                   autoRotate: true,
                   start: 0.01,
                   end: 0.16,
+                  alignOrigin: [0.9, 0.9],
                 },
               })
             } else if (isMobile) {
@@ -66,19 +68,19 @@ const BikeAnimation = ({ children }) => {
   }, [])
   return (
     <div
-      className='relative w-full xmd:h-[81.2695rem]'
+      className='relative w-full xmd:h-[81.2695rem] pt-[8rem]'
       ref={sectionRef}
     >
       <div className='w-[23.43744rem] absolute bottom-[-5rem] md:hidden xmd:h-[51.2695rem] h-[41.2695rem] bg-[#13341C]'></div>
       {/* icon xe máy */}
       <svg
-        className=''
         xmlns='http://www.w3.org/2000/svg'
         width='71'
         height='60'
         viewBox='0 0 71 60'
         fill='none'
         id='rect'
+        className='relative'
       >
         <g clipPath='url(#clip0_9103_25132)'>
           <path
@@ -101,6 +103,23 @@ const BikeAnimation = ({ children }) => {
           </clipPath>
         </defs>
       </svg>
+
+      {/* <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='1647'
+        height='117'
+        viewBox='0 0 1647 117'
+        fill='none'
+        className='absolute top-0 left-0'
+      >
+        <path
+          d='M1645.27 115.183C1645.27 109.471 1644.24 102.194 1624.09 100.25C1618.03 99.6653 1585.1 100.175 1580.09 98.7651C1569.53 95.7922 1546.3 97.838 1533.84 95.9258C1524.81 94.5399 1513.33 96.5582 1504.56 95.2422C1499.52 94.4865 1496.13 93.6706 1490.54 93.5596C1476.24 93.2756 1462.03 88.4892 1448.49 87.1448C1444.65 86.7634 1434.94 84.1363 1431.67 85.5147C1429.06 86.6191 1418.96 85.988 1414.86 85.988C1400.58 85.988 1386.91 85.988 1372.81 85.988C1359.08 85.988 1343.63 83.7359 1330.45 82.6228C1298.46 79.9226 1266.88 80.3093 1234.04 80.3093C1225.51 80.3093 1218.89 79.572 1210.84 79.3628C1204.65 79.202 1204.43 77.4699 1197.45 77.4699C1182.21 77.4699 1171.34 77.3996 1158.35 79.836C1140.8 83.1297 1115.81 87.9699 1103.69 93.0864C1097.29 95.7857 1046.77 87.9321 1039.22 86.7241C1023.29 84.1775 1000.01 82.8645 986.576 79.1525C977.847 76.7414 961.296 76.6784 952.936 74.4202C938.432 70.5029 914.213 71.4896 896.87 69.6879C886.104 68.5694 878.683 66.6685 870.395 64.4298C863.373 62.5333 857.675 61.4632 853.575 58.5407C845.167 52.5481 845.082 53.5221 828.968 53.8084C821.798 53.9358 817.239 55.7013 810.747 55.7013C806.309 55.7013 803.323 54.7549 798.132 54.7549C787.571 54.7549 789.055 38.5251 781.26 40.5723C776.809 41.741 770.692 40.5806 765.842 41.3084C759.428 42.2708 758.258 42.991 750.579 42.991C737.205 42.991 730.766 32.8186 719.391 34.5255C709.347 36.0326 699.599 37.6857 692.76 40.5723C689.619 41.8977 645.55 20.0631 642.55 19.7254C606.376 15.6544 569.602 17.302 533.222 14.5725C510.425 12.862 491.054 6.72687 473.574 2.00558C472.85 1.80997 449.408 6.82508 442.115 6.9482C425.241 7.23307 408.947 8.54922 391.656 8.84112C359.241 9.38833 339.623 16.5638 313.009 21.6183C275.339 28.7723 209.469 22.0705 170.508 17.8851C152.621 15.9635 132.806 12.6338 114.131 11.7331C103.557 11.223 92.549 10.4582 82.3608 9.26177C67.5094 7.51771 45.4011 8.44813 30.0328 7.89466C47.026 7.89466 2 7.28199 2 11.6805'
+          stroke='#13341C'
+          stroke-width='3'
+          stroke-linecap='round'
+          id='path'
+        />
+      </svg> */}
 
       {/* svg núi PC */}
       <svg

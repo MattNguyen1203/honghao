@@ -71,7 +71,7 @@ export default function ContactForm({data}) {
     }
   }
   return (
-    <div className='absolute top-[9rem] md:top-[14rem] left-1/2 -translate-x-1/2 md:w-[32rem] xmd:px-4 w-full'>
+    <div className='absolute top-[9rem] md:top-[20rem] left-1/2 -translate-x-1/2 md:w-[32rem] xmd:px-4 w-full'>
       <Image
         src={'/imgs/contact-us/mountain-deco.png'}
         alt='mountain deco'
