@@ -5,6 +5,7 @@ import Image from 'next/image'
 export default function BannerAllTour() {
   return (
     <section className='w-full h-[43.75rem] xmd:h-[21.04713rem] relative'>
+      <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Ha Giang Our Tour</h1>
       <div className='absolute top-0 left-0 size-full bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
         className='size-full object-cover absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'

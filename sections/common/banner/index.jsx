@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Banner = ({ mainImg, mainText, mainTextMb }) => {
+const Banner = ({mainImg, mainText, mainTextMb}) => {
   return (
     <div className='w-full h-screen xmd:h-[21.04713rem] relative before:w-full before:h-[24.25rem] before:flex before:absolute before:bottom-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)] before:z-10'>
+      <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Contact Us</h1>
       <Image
         src={mainImg}
         alt='FAQ'
