@@ -100,7 +100,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           <div className='xmd:hidden absolute bottom-0 left-0 w-full h-[30rem] bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
           <Image
             priority
-            alt='ảnh'
+            alt='ảnh banner'
             src={mainImage}
             width={1500}
             height={1500}
@@ -140,7 +140,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                 <Image
                   draggable='false'
                   priority
-                  alt='ảnh'
+                  alt='ảnh banner'
                   src={img1}
                   width={1500}
                   height={1500}
@@ -217,7 +217,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                   {/* <div>{i}{activeIndex}</div> */}
                   <Image
                     priority
-                    alt='ảnh'
+                    alt='ảnh banner'
                     src={img1}
                     width={500}
                     height={500}

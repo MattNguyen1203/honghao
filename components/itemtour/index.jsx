@@ -1,23 +1,24 @@
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '../customCn/button'
-import { cn } from '@/lib/utils'
+import {Button} from '../customCn/button'
+import {cn} from '@/lib/utils'
 import Link from 'next/link'
 import useStore from '@/app/(store)/store'
-const ItemTour = ({ className, type, data }) => {
-  const { isMobile } = useStore(state => state)
+const ItemTour = ({className, type, data}) => {
+  const {isMobile} = useStore((state) => state)
   return (
     <Link href={`/tours/${data?.detail_link}`}>
       <div
         className={cn(
           'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden  cursor-pointer',
-          className, isMobile ? '' : 'group'
+          className,
+          isMobile ? '' : 'group',
         )}
       >
         <div className='w-full h-full before:size-full before:absolute before:top-0 before:left-0 before:bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'>
           <Image
             src={data?.thumbnail || '/imgs/itemTour/demo.jpg'}
-            alt=''
+            alt='thumbnail'
             width={400}
             height={500}
             className='w-full h-full object-cover '
@@ -30,7 +31,7 @@ const ItemTour = ({ className, type, data }) => {
             <div className='relative overflow-hidden  group-hover:opacity-0 opacity-100 pointer-events-none ease-linear transition-all duration-300 flex mb-[1rem] items-center px-[0.75rem] py-[0.38rem] xmd:py-[0.25rem] xmd:px-[0.5rem] rounded-[1.5rem] border border-solid border-[rgba(255, 255, 255, 0.52)] bg-[rgba(255,255,255,0.20)] backdrop-blur-sm w-fit group-hover:h-0 h-[2.25rem] xmd:h-fit'>
               <Image
                 src='/imgs/itemTour/icon.svg'
-                alt=''
+                alt='thumbnai tour'
                 width={12}
                 height={12}
                 className='size-[1.5rem] xmd:size-[1rem] mr-[0.5rem]'
@@ -72,7 +73,7 @@ const ItemTour = ({ className, type, data }) => {
               <div className='flex items-center mb-[0.5rem]'>
                 <Image
                   src='/imgs/itemTour/acc.svg'
-                  alt=''
+                  alt='thumbnai tour'
                   width={12}
                   height={12}
                   className='size-[1rem] mr-[0.38rem]'
@@ -88,7 +89,7 @@ const ItemTour = ({ className, type, data }) => {
               <div className='flex items-center mb-[0.5rem]'>
                 <Image
                   src='/imgs/itemTour/motobike.svg'
-                  alt=''
+                  alt='thumbnai tour'
                   width={12}
                   height={12}
                   className='size-[1rem] mr-[0.38rem]'
@@ -104,7 +105,7 @@ const ItemTour = ({ className, type, data }) => {
               <div className='flex items-center mb-[0.5rem]'>
                 <Image
                   src='/imgs/itemTour/tourguide.svg'
-                  alt=''
+                  alt='thumbnai tour'
                   width={12}
                   height={12}
                   className='size-[1rem] mr-[0.38rem]'
@@ -120,7 +121,7 @@ const ItemTour = ({ className, type, data }) => {
               <div className='flex items-center mb-[0.5rem]'>
                 <Image
                   src='/imgs/itemTour/transport.svg'
-                  alt=''
+                  alt='thumbnai tour'
                   width={12}
                   height={12}
                   className='size-[1rem] mr-[0.38rem]'
