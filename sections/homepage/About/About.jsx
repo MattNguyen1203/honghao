@@ -20,7 +20,7 @@ const About = ({dataAbout}) => {
     <section className='w-full bg-[linear-gradient(180deg,#122718_50%,rgba(18,39,24,0.80)_70%,#122718_100%)] relative'>
       <Image
         src='/imgs/home/bg3.jpg'
-        alt=''
+        alt='backgroup home'
         width={2000}
         height={500}
         className='w-full h-full absolute top-0 left-0 z-[-1] object-cover'
@@ -29,21 +29,21 @@ const About = ({dataAbout}) => {
       <div className='w-full relative z-[40]'>
         <Image
           src='/imgs/home/moutain.svg'
-          alt=''
+          alt='moutain home'
           width={2000}
           height={500}
           className='absolute top-[-2rem] xmd:top-[-1rem] left-0'
         />
         <Image
           src='/imgs/home/moto.svg'
-          alt=''
+          alt='môto svg'
           width={30}
           height={30}
           className='w-[2.6rem] h-[2.13rem] absolute top-[-3.8rem] left-[6.5rem] z-[2] lg:hidden'
         />
         <Image
           src='/imgs/home/bg2.svg'
-          alt=''
+          alt='backgroup 2'
           width={2000}
           height={500}
           className='absolute bottom-0 left-0 opacity-5 flex xmd:hidden'
@@ -51,7 +51,7 @@ const About = ({dataAbout}) => {
 
         <Image
           src='/imgs/home/bg2Mb.svg'
-          alt=''
+          alt='moto mobile'
           width={500}
           height={300}
           className='absolute top-[3rem] left-0 opacity-100 hidden xmd:flex'

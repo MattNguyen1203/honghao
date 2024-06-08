@@ -49,7 +49,7 @@ const MotoAnimate = () => {
       >
         <Image
           src='/imgs/home/motobike.png'
-          alt=''
+          alt='hong hao travel'
           width={50}
           height={50}
           className='size-[5rem] -translate-x-[50%] rotate-[30deg]'
