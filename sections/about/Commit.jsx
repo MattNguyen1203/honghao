@@ -26,7 +26,7 @@ export default function Commit({dataCommit}) {
         </div>
       </div>
       <div className=' relative h-fit xmd:h-auto flex z-20'>
-        <div className='absolute size-full top-[0] left-0 overflow-hidden'>
+        <div className='absolute size-full top-[0] left-0 overflow-hidden xmd:top-[-7rem]'>
           <BikeAnimation />
         </div>
         <Image
