@@ -2,13 +2,12 @@
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
 import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
-import {useEffect, useMemo} from 'react'
 
 const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
   const phoneNumber = '0941556338'
 
   return (
-    <div className=' xmd:hidden fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
+    <div className='fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
       <div className='w-[3.125rem] animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
         <Dialog>
           <DialogTrigger asChild>
@@ -16,7 +15,7 @@ const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className='sm:max-w-fit max-h-[85vh] overflow-y-scroll'>
+          <DialogContent className='!z-[301] sm:max-w-fit xmd:w-full max-h-[85vh] overflow-y-scroll'>
             <HomeForm
               listLocation={dataAcf}
               listTypeofTour={listTypeofTour}
