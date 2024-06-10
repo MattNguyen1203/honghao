@@ -16,8 +16,8 @@ export default function StepByStepRes({dataAcf, dataTourDetail}) {
         onClick={() => setSeeLess(!seeLess)}
         className='flex w-full xmd:mt-[1.5rem] md:hidden justify-center items-center gap-[0.25rem]'
       >
-        <div className='text-[color:var(--Orange-Normal,#E64827)] text-sm not-italic font-extrabold leading-[150%] tracking-[0.00219rem]'>
-          SEE LESS
+        <div className='text-[color:var(--Orange-Normal,#E64827)] transition-all text-sm not-italic font-extrabold leading-[150%] tracking-[0.00219rem]'>
+          {seeLess ? 'SEE LESS' : 'SEE MORE'}
         </div>
         <svg
           className='w-[0.49956rem] h-[0.83356rem] shrink-0'

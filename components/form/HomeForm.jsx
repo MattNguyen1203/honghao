@@ -335,9 +335,9 @@ export default function HomeForm({
       <section
         className={`${
           isTourDetail
-            ? 'xmd:bg-white xmd:!pb-[4rem]'
-            : 'bg-white xmd:!pb-[7.5rem]'
-        } flex xmd:flex-col xmd:w-full w-fit xmd:rounded-none rounded-[1.5rem] relative`}
+            ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full'
+            : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem]'
+        } flex xmd:flex-col w-fit xmd:rounded-none rounded-[1.5rem] relative`}
       >
         <Form {...form}>
           <form
@@ -345,7 +345,7 @@ export default function HomeForm({
             className={`${
               isTourDetail
                 ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
-                : 'w-[34.75rem]'
+                : 'w-[34.75rem] xmd:!p-0'
             } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
           >
             {isTourDetail && (
@@ -864,7 +864,7 @@ export default function HomeForm({
                 )}
                 <hr
                   className={`${
-                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem]'
+                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
                   } h-[0.0625rem] my-[0.75rem]`}
                 />
                 <div className='flex justify-between items-center'>
@@ -937,7 +937,7 @@ export default function HomeForm({
                 )}
                 <hr
                   className={`${
-                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem]'
+                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
                   } h-[0.0625rem] my-[0.75rem]`}
                 />
               </div>
@@ -956,7 +956,7 @@ export default function HomeForm({
               className={`${
                 isTourDetail
                   ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
-                  : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-[0.75rem] md:space-x-[0.5rem]'
+                  : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
               } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
