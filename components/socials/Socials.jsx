@@ -15,7 +15,7 @@ const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className='!z-[301] sm:max-w-fit xmd:w-full max-h-[85vh] overflow-y-scroll'>
+          <DialogContent className=' sm:max-w-fit xmd:w-full max-h-[85vh] overflow-y-scroll'>
             <HomeForm
               listLocation={dataAcf}
               listTypeofTour={listTypeofTour}

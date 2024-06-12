@@ -530,6 +530,7 @@ export default function HomeForm({
                           Pick up
                         </FormLabel>
                         <Select
+                        className=''
                           onValueChange={field.onChange}
                           // defaultValue={field.value}
                         >

@@ -7,9 +7,9 @@ import {
 
 import getData from '@/lib/getData'
 import Homepage from '@/sections/homepage'
-import {fetchMetaData} from '@/lib/fetchMetadata'
-import {getMeta} from '@/lib/getMeta'
-import {Suspense} from 'react'
+import { fetchMetaData } from '@/lib/fetchMetadata'
+import { getMeta } from '@/lib/getMeta'
+import { Suspense } from 'react'
 
 const getHomepageData = async () => {
   return getData(`wp-json/acf/v3/pages/${HOME_PAGE_ID}`)
