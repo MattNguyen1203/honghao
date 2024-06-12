@@ -5,14 +5,30 @@ import QuestionLookHere from './QuestionLookHere'
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions'
 import './styles.css'
 import getData from '@/lib/getData'
+import { GLOBAL_PAGE_ID } from '@/lib/constants'
 
 const pageId = 155
+
 const getFaqData = async () => {
   return getData(`/pages/${pageId}`, 'acf')
 }
 
+const getAskedQuestions = async () => {
+  return getData(`/pages/${GLOBAL_PAGE_ID}`, 'acf')
+}
+
 export default async function Faq() {
-  const data = (await getFaqData()).acf
+  const [
+    dataFaq,
+    dataAskedQuestions
+  ] = await Promise.all([
+    getFaqData(),
+    getAskedQuestions(),
+  ])
+
+  const data = dataFaq?.acf
+  const dataQuestions = dataAskedQuestions?.acf?.faq
+
   return (
     <main>
       <section>
@@ -28,8 +44,8 @@ export default async function Faq() {
           <BreadcrumbLink href='/faq'>FAQs</BreadcrumbLink>
         </Breadcrumb>
       </div>
-      <QuestionLookHere data={data.section_questions_look_here} />
-      <FrequentlyAskedQuestions data={data.section_frequently_asked_questions} />
+      <QuestionLookHere data={data?.section_questions_look_here} />
+      <FrequentlyAskedQuestions dataQt={dataQuestions} data={data?.section_frequently_asked_questions} />
     </main>
   )
 }

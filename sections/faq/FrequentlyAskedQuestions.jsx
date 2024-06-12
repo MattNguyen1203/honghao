@@ -6,7 +6,7 @@ import {regName, regPhone, regEmail} from '@/lib/reg'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import {FORM_FAQ_API} from '@/lib/constants'
-export default function FrequentlyAskedQuestions({data}) {
+export default function FrequentlyAskedQuestions({data,dataQt}) {
   const {toast} = useToast()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [name, setName] = useState('')
@@ -58,13 +58,14 @@ export default function FrequentlyAskedQuestions({data}) {
       setIsLoading(false)
     }
   }
+  console.log({dataQt});
   return (
     <section className='kKao4-container'>
-      <h3 className='h3 mb-6 md:mb-[2.8rem]'>{data?.heading}</h3>
+      <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
-        <AccordionCustom data={data?.questions} />
+        <AccordionCustom data={dataQt} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
-          <h4 className='mb-6 h4 md:mb-8'>{data?.form?.heading}</h4>
+          <h4 className='mb-6 h4 md:mb-8'>Ask a different question</h4>
           <form
             className='grid grid-cols-2 gap-4'
             onSubmit={(e) => handleOnSubmit(e)}
