@@ -9,9 +9,9 @@
 .blog-detail .circular-infinity {
   animation: rotateForever 8s linear infinite;
 }
-.detail h3 {
+.detail h2 {
   color: var(--greyscaletext-80-main, #262626);
-
+  font-family: var(--font-trip-sans);
   margin-bottom: 1.87rem !important;
   font-size: 2rem;
   font-style: normal;
@@ -19,7 +19,8 @@
   line-height: 120%; /* 2.4rem */
 }
 @media (max-width: 767px) {
-  .detail h3 {
+  .detail h2 {
+      font-family: var(--font-trip-sans);
     width: 21.4375rem;
     height: fit-content;
     margin-bottom: 0.5rem !important;
@@ -33,6 +34,7 @@
 }
 .detail .paragraph {
   align-self: stretch;
+
   color: var(--greyscaletext-80-main, #262626);
   font-size: 1rem;
   font-style: normal;
