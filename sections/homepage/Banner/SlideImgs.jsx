@@ -10,16 +10,28 @@ import {useEffect, useRef, useState} from 'react'
 
 const listDotPosition = [
   {
-    top: '16rem',
-    right: '10rem',
+    top: '19rem',
+    right: '12.5rem',
   },
   {
     top: '17rem',
-    right: '8rem',
+    right: '5.5rem',
   },
   {
-    top: '19rem',
-    right: '10rem',
+    top: '21.5rem',
+    right: '17.5rem',
+  },
+  {
+    top: '13.5rem',
+    right: '6.5rem',
+  },
+  {
+    top: '27.5rem',
+    right: '10.5rem',
+  },
+  {
+    top: '28.5rem',
+    right: '17.5rem',
   },
 ]
 
@@ -62,8 +74,8 @@ const SlideImgs = ({animationCompleted, listImg = []}) => {
           >
             <Image
               priority
-              alt={item?.alt || 'hong hao travel'}
-              src={item?.url}
+              alt={item?.image?.alt || 'hong hao travel'}
+              src={item?.image?.url}
               width={1920}
               height={1080}
               className='w-full h-full object-cover'
