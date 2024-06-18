@@ -6,7 +6,7 @@ import {regName, regPhone, regEmail} from '@/lib/reg'
 import {useToast} from '@/components/ui/use-toast'
 import Image from 'next/image'
 import {FORM_FAQ_API} from '@/lib/constants'
-export default function FrequentlyAskedQuestions({data,dataQt}) {
+export default function FrequentlyAskedQuestions({data, dataQt}) {
   const {toast} = useToast()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [name, setName] = useState('')
@@ -58,7 +58,6 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
       setIsLoading(false)
     }
   }
-  console.log({dataQt});
   return (
     <section className='kKao4-container'>
       <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>

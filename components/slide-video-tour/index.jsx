@@ -21,8 +21,6 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 import {cn} from '@/lib/utils'
 const SlideVideoTours = ({type, data = [], mainImage}) => {
-  console.log('data', data)
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
