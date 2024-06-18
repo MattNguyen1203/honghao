@@ -124,7 +124,7 @@ export default async function Footer() {
                       >
                         {child.src && (
                           <Link
-                            href={child.src}
+                            href={child.src || '/'}
                             className='flex w-full h-full absolute top-0 left-0'
                           />
                         )}
@@ -156,7 +156,7 @@ export default async function Footer() {
               {socialIcon?.map((item, index) => {
                 return (
                   <Link
-                    href={item?.src}
+                    href={item?.src || '/'}
                     key={index}
                     target='_blank'
                   >

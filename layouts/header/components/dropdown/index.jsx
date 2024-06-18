@@ -182,7 +182,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader, dataBestTrip}) => {
                     </div>
                   ) : (
                     <Link
-                      href={item.link}
+                      href={item.link || '/'}
                       className='flex items-center relative group'
                       onClick={handleClose}
                     >
@@ -205,7 +205,7 @@ const NavDropdown = ({openNav, setOpenNav, dataHeader, dataBestTrip}) => {
                     >
                       {children?.map((subItem, subIndex) => (
                         <Link
-                          href={subItem?.link}
+                          href={subItem?.link || '/'}
                           key={subIndex}
                           className={cn(
                             'py-[0.5rem] pr-[1rem] w-fit mt-[1rem]',

@@ -128,8 +128,8 @@ const Banner = ({dataAcf, dataTourDetail}) => {
     <div className='relative'>
       <SlideVideoTours
         type='banner'
-        mainImage={dataAcf?.main_image?.url}
-        data={dataAcf?.lists_anh_banner}
+        mainImage={dataAcf?.main_image?.url || ''}
+        data={dataAcf?.lists_anh_banner || []}
       />
       <div className='md:hidden'>
         <Breadcrumb

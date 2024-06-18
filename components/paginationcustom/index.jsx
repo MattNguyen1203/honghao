@@ -44,34 +44,35 @@ export default function PaginationCustom({href, pagination}) {
   const handlePushParam = (d) => {
     setShouldFetch(true)
     setCurrentPaggiBlog(d)
-    router.push(`${pathName}?${createQueryString("page", d)}`, { scroll: false })
+    router.push(`${pathName}?${createQueryString('page', d)}`, {scroll: false})
   }
   return (
-        <>
-{pagination?.total_pages>1&&
-    <Pagination className={ ' mt-[2rem] paginationcustom'}>
-      <PaginationContent>
-        {new Array(pagination?.total_pages).fill(0)?.map((d, i) => (
-          <PaginationItem
-            onClick={() => handlePushParam(i + 1)}
-            key={i}
-            className={
-              currentPaggiBlog === i + 1 ? className.active : className.base
-            }
-          >
-            <PaginationLink
-              isActive={true}
-              className={
-                '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
-              }
-              href={href}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-      </PaginationContent>
-    </Pagination>    }
+    <>
+      {pagination?.total_pages > 1 && (
+        <Pagination className={' mt-[2rem] paginationcustom'}>
+          <PaginationContent>
+            {new Array(pagination?.total_pages).fill(0)?.map((d, i) => (
+              <PaginationItem
+                onClick={() => handlePushParam(i + 1)}
+                key={i}
+                className={
+                  currentPaggiBlog === i + 1 ? className.active : className.base
+                }
+              >
+                <PaginationLink
+                  isActive={true}
+                  className={
+                    '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
+                  }
+                  href={href || '/'}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+          </PaginationContent>
+        </Pagination>
+      )}
     </>
   )
 }

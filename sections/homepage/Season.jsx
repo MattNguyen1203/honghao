@@ -460,7 +460,7 @@ export default function Season({data, dataWeather}) {
               }}
               modules={[FreeMode, Thumbs]}
             >
-              {data.map((item, i) => {
+              {data?.map((item, i) => {
                 return (
                   <SwiperSlide key={i}>
                     <SeasonThumbItem

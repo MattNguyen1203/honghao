@@ -12,7 +12,7 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
-  const dataSLides = dataAcf?.dataSLides
+  const dataSLides = dataAcf?.dataSLides || []
   useEffect(() => {
     const medium = Math.ceil(dataSLides?.length / 2)
     if (swiperRef.current) {
@@ -53,13 +53,14 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
     const swiper = swiperRef.current
     swiper.slideTo(index + 1, 500)
   }
+
   return (
     <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit xmd:hidden'>
       {/* map */}
       <div className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
-          src={dataSLides?.[indexSlider]?.imgStep?.url}
+          src={dataSLides?.[indexSlider]?.imgStep?.url || ''}
           alt='map2'
           width={300}
           height={400}
@@ -112,80 +113,86 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
                   {dataSLides?.[0]?.district}
                 </span>
                 <div className='flex mt-[0.81rem] h-full overflow-hidden relative'>
-                  <Swiper
-                    direction={'vertical'}
-                    slidesPerView={'auto'}
-                    spaceBetween={0}
-                    mousewheel={true}
-                    autoHeight={true}
-                    slideToClickedSlide={true}
-                    // onSlideChange={handleSlideChange2}
-                    onBeforeInit={(swiper) => {
-                      swiper2Ref.current = swiper
-                    }}
-                    modules={[Mousewheel]}
-                    className='size-full'
-                  >
-                    {Array(dataSLides?.length - 1)
-                      .fill(0)
-                      .map((_, index) => (
-                        <SwiperSlide
-                          className='w-full h-[9.125rem]'
-                          key={index}
-                        >
-                          <div className='flex justify-center'>
-                            <div className='h-[9.125rem] w-[2px] bg-[#C5C5C5]/50 relative'>
-                              <div
-                                className={`${
-                                  indexSlider >= index + 1
-                                    ? 'bg-[#23704D] delay-500'
-                                    : 'bg-[#C5C5C5]/80'
-                                }  size-[0.375rem] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transition-all duration-200`}
-                              ></div>
-                              <div
-                                className={`${
-                                  indexSlider >= index + 1 ? 'h-full' : 'h-0'
-                                } absolute top-0 z-[5] left-0 w-full bg-[#23704D] transition-all duration-500`}
-                              ></div>
-                              <div
-                                onClick={() => handleClickDistrict(index)}
-                                className='cursor-pointer absolute -right-[0.63rem] bottom-0 translate-y-1/2 z-10 flex flex-col translate-x-full'
-                              >
-                                <IconMarker
-                                  className='size-[1.5rem]'
-                                  isActive={indexSlider >= index + 1}
-                                />
-                                <span className='text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer'>
-                                  {dataSLides?.[index + 1]?.district}
-                                </span>
+                  {dataSLides && (
+                    <Swiper
+                      direction={'vertical'}
+                      slidesPerView={'auto'}
+                      spaceBetween={0}
+                      mousewheel={true}
+                      autoHeight={true}
+                      slideToClickedSlide={true}
+                      // onSlideChange={handleSlideChange2}
+                      onBeforeInit={(swiper) => {
+                        swiper2Ref.current = swiper
+                      }}
+                      modules={[Mousewheel]}
+                      className='size-full'
+                    >
+                      {Array(
+                        dataSLides && dataSLides?.length >= 1
+                          ? dataSLides?.length - 1
+                          : 0,
+                      )
+                        .fill(0)
+                        .map((_, index) => (
+                          <SwiperSlide
+                            className='w-full h-[9.125rem]'
+                            key={index}
+                          >
+                            <div className='flex justify-center'>
+                              <div className='h-[9.125rem] w-[2px] bg-[#C5C5C5]/50 relative'>
+                                <div
+                                  className={`${
+                                    indexSlider >= index + 1
+                                      ? 'bg-[#23704D] delay-500'
+                                      : 'bg-[#C5C5C5]/80'
+                                  }  size-[0.375rem] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transition-all duration-200`}
+                                ></div>
+                                <div
+                                  className={`${
+                                    indexSlider >= index + 1 ? 'h-full' : 'h-0'
+                                  } absolute top-0 z-[5] left-0 w-full bg-[#23704D] transition-all duration-500`}
+                                ></div>
+                                <div
+                                  onClick={() => handleClickDistrict(index)}
+                                  className='cursor-pointer absolute -right-[0.63rem] bottom-0 translate-y-1/2 z-10 flex flex-col translate-x-full'
+                                >
+                                  <IconMarker
+                                    className='size-[1.5rem]'
+                                    isActive={indexSlider >= index + 1}
+                                  />
+                                  <span className='text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer'>
+                                    {dataSLides?.[index + 1]?.district}
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    <SwiperSlide className='w-full h-[9.125rem]'>
-                      <div className='flex justify-center item_end'>
-                        <div className='h-[9.125rem] w-[2px]relative'></div>
-                      </div>
-                      <div
-                        style={{
-                          transform: `translate(-150%,-${
-                            (dataSLides?.length - 1 - indexSlider) * 9.125
-                          }rem)`,
-                        }}
-                        className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
-                      >
-                        <Image
-                          className='object-contain'
-                          src={'/home/motor1.png'}
-                          alt='motor'
-                          width={30}
-                          height={30}
-                          quality={95}
-                        />
-                      </div>
-                    </SwiperSlide>
-                  </Swiper>
+                          </SwiperSlide>
+                        ))}
+                      <SwiperSlide className='w-full h-[9.125rem]'>
+                        <div className='flex justify-center item_end'>
+                          <div className='h-[9.125rem] w-[2px]relative'></div>
+                        </div>
+                        <div
+                          style={{
+                            transform: `translate(-150%,-${
+                              (dataSLides?.length - 1 - indexSlider) * 9.125
+                            }rem)`,
+                          }}
+                          className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
+                        >
+                          <Image
+                            className='object-contain'
+                            src={'/home/motor1.png'}
+                            alt='motor'
+                            width={30}
+                            height={30}
+                            quality={95}
+                          />
+                        </div>
+                      </SwiperSlide>
+                    </Swiper>
+                  )}
                 </div>
               </div>
             </div>

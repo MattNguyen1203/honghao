@@ -5,9 +5,9 @@ import {
   PaginationItem,
   PaginationLink,
 } from '@/components/ui/pagination'
-import { useRouter, useSearchParams } from 'next/navigation'
+import {useRouter, useSearchParams} from 'next/navigation'
 
-export default function PaginationV2({ href, pagination }) {
+export default function PaginationV2({href, pagination}) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const className = {
@@ -19,7 +19,7 @@ export default function PaginationV2({ href, pagination }) {
   const handlePushParam = (index) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', index)
-    router.push(`?${params.toString()}`, { scroll: false })
+    router.push(`?${params.toString()}`, {scroll: false})
   }
   return (
     <>
@@ -41,7 +41,7 @@ export default function PaginationV2({ href, pagination }) {
                 className={
                   '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
                 }
-                href={href}
+                href={href || '/'}
               >
                 {i + 1}
               </PaginationLink>
@@ -51,6 +51,5 @@ export default function PaginationV2({ href, pagination }) {
       </Pagination>
       {/* } */}
     </>
-
   )
 }

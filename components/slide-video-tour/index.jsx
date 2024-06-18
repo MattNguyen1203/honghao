@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {
   FreeMode,
   Navigation,
@@ -9,7 +9,7 @@ import {
   Thumbs,
   EffectFade,
 } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -19,8 +19,10 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import { cn } from '@/lib/utils'
-const SlideVideoTours = ({ type, data, mainImage }) => {
+import {cn} from '@/lib/utils'
+const SlideVideoTours = ({type, data = [], mainImage}) => {
+  console.log('data', data)
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
@@ -28,27 +30,30 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
   const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
 
-  const div1Ref = useRef(null);
-  const div2Refs = useRef([]);
-  const div3Ref = useRef(null);
-  const [distance, setDistance] = useState({ top: 0, left: 0 });
+  const div1Ref = useRef(null)
+  const div2Refs = useRef([])
+  const div3Ref = useRef(null)
+  const [distance, setDistance] = useState({top: 0, left: 0})
 
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
     setActiveIndex(newIndex)
   }
   const handleSlide = (index) => {
-    const div3 = div3Ref.current;
-    const div1 = div1Ref.current;
-    const div2 = div2Refs.current[index];
+    const div3 = div3Ref.current
+    const div1 = div1Ref.current
+    const div2 = div2Refs.current[index]
     if (div1 && div2 && div3) {
-      const rect1 = div1.getBoundingClientRect();
-      const rect2 = div2.getBoundingClientRect();
+      const rect1 = div1.getBoundingClientRect()
+      const rect2 = div2.getBoundingClientRect()
 
-      const distanceTop = (rect2.top - rect1.top);
-      const distanceLeft = (rect2.left - rect1.left);
-      setDistance({ top: distanceTop, left: distanceLeft });
-      div3.style.top = window.innerWidth < 1024 ? `${distanceTop + 10}px` : `${distanceTop + 20}px`;
+      const distanceTop = rect2.top - rect1.top
+      const distanceLeft = rect2.left - rect1.left
+      setDistance({top: distanceTop, left: distanceLeft})
+      div3.style.top =
+        window.innerWidth < 1024
+          ? `${distanceTop + 10}px`
+          : `${distanceTop + 20}px`
       // div3.style.left = `${distanceLeft - 100}px`;
     }
     setActiveIndex(index)
@@ -57,16 +62,12 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
     mainSwiper?.current?.slideTo(activeIndex)
   }, [activeIndex])
 
-
-
   const handleMouseLeave = () => {
-    const div3 = div3Ref.current;
+    const div3 = div3Ref.current
     if (div3) {
-      div3.style.top = '20%';
+      div3.style.top = '20%'
     }
-  };
-
-
+  }
 
   return (
     <div
@@ -79,7 +80,6 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
       <svg
         ref={div3Ref}
         className={cn(
-
           ' xmd:hidden activity arrowfr size-[3.3rem] duration-300 transition-all  absolute right-[17rem] z-[100] -translate-y-1/2',
           checkIsBanner ? ' top-[55%]' : ' top-[20%]',
         )}
@@ -126,7 +126,7 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
           freemode={true}
           onSlidesChange={handleSlideChange}
           navigation={false}
-          thumbs={{ swiper: thumbsSwiper }}
+          thumbs={{swiper: thumbsSwiper}}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full !pointer-events-none xmd:h-[20.93544rem]'
         >
@@ -157,8 +157,9 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
         </Swiper>
       )}
       <div
-        onMouseLeave={checkIsBanner ? () => { } : handleMouseLeave}
-        className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'>
+        onMouseLeave={checkIsBanner ? () => {} : handleMouseLeave}
+        className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'
+      >
         <Swiper
           ref={subSwiper}
           onBeforeInit={(swiper) => {
@@ -205,8 +206,8 @@ const SlideVideoTours = ({ type, data, mainImage }) => {
                 className={cn(' ', checkIsBanner ? '' : 'cursor-pointer')}
               >
                 <div
-                  ref={el => div2Refs.current[i] = el}
-                  onClick={checkIsBanner ? () => { } : () => handleSlide(i)}
+                  ref={(el) => (div2Refs.current[i] = el)}
+                  onClick={checkIsBanner ? () => {} : () => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
                     i === activeIndex

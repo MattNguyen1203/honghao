@@ -32,7 +32,7 @@ export default function BreadcrumbLink({href, subLink, children, isBanner}) {
         />
       </svg>
       <Link
-        href={href}
+        href={href || '/'}
         className={cn(
           ` md:text-greyscale-80 text-0.875 text-sm not-italic font-normal leading-[150%] tracking-0.00219`,
           isBanner ? 'text-white' : 'text-greyscale-40',
