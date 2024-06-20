@@ -79,6 +79,7 @@ export default function HomeForm({
   selfPax,
   localPax,
 }) {
+  console.log('listLocation', listLocation)
   const {toast} = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
   const [paxValueLocal, setPaxValueLocal] = useState(localPax || 0)
@@ -530,7 +531,7 @@ export default function HomeForm({
                           Pick up
                         </FormLabel>
                         <Select
-                        className=''
+                          className=''
                           onValueChange={field.onChange}
                           // defaultValue={field.value}
                         >
@@ -1082,6 +1083,7 @@ export default function HomeForm({
           data={tourSelected}
           paxValueSelf={paxValueSelf}
           paxValueLocal={paxValueLocal}
+          exchangeRate={listLocation?.ti_gia}
         />
       </section>
       {isDialogOpen && (

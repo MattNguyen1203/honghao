@@ -14,6 +14,7 @@ if (typeof window !== 'undefined') {
 const data = Array(5).fill(0)
 
 export default function BestTrips({listBestTrip}) {
+  console.log('listBestTrip', listBestTrip)
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
@@ -45,7 +46,7 @@ export default function BestTrips({listBestTrip}) {
     },
     {scope: container},
   )
-
+  console.log('index', index)
   return (
     <section
       ref={container}
@@ -61,7 +62,12 @@ export default function BestTrips({listBestTrip}) {
           </h2>
           <Image
             className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
-            src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
+            src={
+              index >= listBestTrip?.length
+                ? listBestTrip?.[listBestTrip?.length - 1]?.infos
+                    ?.map_tour_image?.url
+                : listBestTrip?.[index]?.infos?.map_tour_image?.url || ''
+            }
             alt='map'
             width={500}
             height={500}

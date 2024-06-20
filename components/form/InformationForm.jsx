@@ -6,6 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import {formatCurrencyVND} from '@/lib/utils'
 
 export default function InformationForm({
   dataForm = {},
@@ -14,6 +15,7 @@ export default function InformationForm({
   paxValueLocal,
   paxValueSelf,
   isTourDetail = false,
+  exchangeRate,
 }) {
   const formattedDate = (date) => {
     let newDate = new Date(date || 0)
@@ -22,6 +24,10 @@ export default function InformationForm({
     let year = newDate.getFullYear()
     return `${day}/${month}/${year}`
   }
+
+  const serviceCharge = 3
+  const totalPrice =
+    paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal
 
   return (
     <div
@@ -176,7 +182,7 @@ export default function InformationForm({
             Provisional:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
-            ${paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal}
+            ${totalPrice}
           </span>
         </div>
         <div className='flex justify-between items-center w-full'>
@@ -184,13 +190,7 @@ export default function InformationForm({
             Service Charge 3%:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
-            $
-            {(
-              ((paxValueSelf * data?.priceSelf +
-                paxValueLocal * data?.priceLocal) /
-                100) *
-              3
-            ).toFixed(2)}
+            ${((totalPrice / 100) * serviceCharge).toFixed(2)}
           </span>
         </div>
         <hr className='w-full h-[0.0625rem] my-[0.5rem] bg-[#d9d9d9]/20 opacity-40' />
@@ -199,13 +199,11 @@ export default function InformationForm({
             Total amount:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
-            $
-            {((paxValueSelf * data?.priceSelf +
-              paxValueLocal * data?.priceLocal) /
-              100) *
-              3 +
-              (paxValueSelf * data?.priceSelf +
-                paxValueLocal * data?.priceLocal)}
+            ${(totalPrice / 100) * serviceCharge + totalPrice} ~{' '}
+            {formatCurrencyVND(
+              ((totalPrice / 100) * serviceCharge + totalPrice) *
+                Number(exchangeRate),
+            )}
           </span>
         </div>
       </div>
