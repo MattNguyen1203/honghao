@@ -65,7 +65,7 @@ export default function GladdestMoment({dataGallery}) {
   return (
     <section
       ref={container}
-      className='w-full h-fit pb-[0.8rem] xlg:hidden z-20 relative mt-[4rem]'
+      className='w-full h-fit pb-[0.8rem] xlg:hidden z-20 relative'
     >
       <div className='mb-[3rem] flex justify-between items-center w-[calc(100%-16.665rem)] ml-auto'>
         <h2 className='text-[3.5rem] font-black leading-[1] text-[#222] font-londrina whitespace-nowrap'>
