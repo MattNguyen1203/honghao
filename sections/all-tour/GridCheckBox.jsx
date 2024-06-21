@@ -1,16 +1,16 @@
 'use client'
 
 import useStore from '@/app/(store)/store'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import useSWR from 'swr'
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
 import CheckBox from './CheckBox'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Skeleton } from '@/components/ui/skeleton'
+import {usePathname, useRouter, useSearchParams} from 'next/navigation'
+import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
+import {Skeleton} from '@/components/ui/skeleton'
 
-export default function GridCheckBox({ dataTours, typeOfTours }) {
+export default function GridCheckBox({dataTours, typeOfTours}) {
   const isMobile = useStore((state) => state.isMobile)
   const tours = dataTours?.tours
   const pagination = dataTours?.pagination
@@ -21,7 +21,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
 
   const pageCurrent = searchParams.get('page')
   const deviceCurrent = searchParams.get('device')
-  const { shouldFetch, setShouldFetch } = useStore((state) => state)
+  const {shouldFetch, setShouldFetch} = useStore((state) => state)
   const [isAllTour, setIsAllTour] = useState(true)
   const [dataToursClient, setDataToursClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
@@ -74,7 +74,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
   }
 
   const fetcher = (url) => fetch(url).then((r) => r.json())
-  const { data, error, isLoading } = useSWR(
+  const {data, error, isLoading} = useSWR(
     shouldFetch
       ? deviceCurrent !== null
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9&type-of-tour=${selectedTypes}`
@@ -98,47 +98,53 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
     }
   }, [data, error, isLoading])
 
+  useEffect(() => {
+    document.body.style.overflow = 'visible'
+  }, [])
+
   return (
-    <div className='xmd:relative container flex xmd:flex-col justify-between items-start md:space-x-[2.62rem] xmd:mb-[1rem] mb-[4rem]'>
+    <div className='xmd:relative container flex xmd:flex-col justify-between items-stretch md:space-x-[2.62rem] xmd:mb-[1rem] mb-[4rem]'>
       {!isMobile ? (
         <div
-          className={`xmd:hidden min-w-[20.75rem] py-[1.9375rem] px-[1.875rem] h-fill mb-[6.4rem] overflow-hidden sticky top-[8rem] rounded-[1rem] bg-white`}
+          className={`xmd:hidden min-w-[20.75rem]`}
         >
-          <span className='text-1 font-bold text-greyscale-80'>
-            TYPE OF TOUR
-          </span>
-          <hr className='bg-[#C5C5C5] h-[0.0625rem] w-[17rem] my-[1.25rem]' />
-          <div className='space-y-[0.75rem]'>
-            <button
-              onClick={handleFilterAll}
-              className='flex justify-start w-fit items-center space-x-[0.375rem]'
-            >
-              <input
-                checked={isAllTour}
-                type='checkbox'
-                className='accent-[#E64828]'
-              />
-              <span className='text-0875 font-medium text-greyscale-80'>
-                ALL TOUR
-              </span>
-            </button>
-            {typeTours?.map((e, index) => (
-              <CheckBox
-                setIsAllTour={setIsAllTour}
-                isAllTour={isAllTour}
-                length={typeTours?.length}
-                handleFilterDevicePc1={handleFilterDevicePc1}
-                setLoading={setLoadingButton}
-                loading={loadingButton}
-                item={e}
-                key={index}
-              />
-            ))}
+          <div className='sticky top-[1.5rem] bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
+            <span className='font-bold text-1 text-greyscale-80'>
+              TYPE OF TOUR
+            </span>
+            <hr className='bg-[#C5C5C5] h-[0.0625rem] w-[17rem] my-[1.25rem]' />
+            <div className='space-y-[0.75rem]'>
+              <button
+                onClick={handleFilterAll}
+                className='flex justify-start w-fit items-center space-x-[0.375rem]'
+              >
+                <input
+                  checked={isAllTour}
+                  type='checkbox'
+                  className='accent-[#E64828]'
+                />
+                <span className='font-medium text-0875 text-greyscale-80'>
+                  ALL TOUR
+                </span>
+              </button>
+              {typeTours?.map((e, index) => (
+                <CheckBox
+                  setIsAllTour={setIsAllTour}
+                  isAllTour={isAllTour}
+                  length={typeTours?.length}
+                  handleFilterDevicePc1={handleFilterDevicePc1}
+                  setLoading={setLoadingButton}
+                  loading={loadingButton}
+                  item={e}
+                  key={index}
+                />
+              ))}
+            </div>
           </div>
         </div>
       ) : (
         <div className='md:hidden flex justify-between items-center mb-[1.25rem] w-full'>
-          <span className='text-0875 font-extrabold text-greyscale-30'>
+          <span className='font-extrabold text-0875 text-greyscale-30'>
             9 TOUR
           </span>
           <Dialog>
@@ -180,7 +186,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
                     strokeLinejoin='round'
                   />
                 </svg>
-                <span className='text-0875 font-extrabold text-greyscale-80'>
+                <span className='font-extrabold text-0875 text-greyscale-80'>
                   TYPE OF TOUR
                 </span>
               </button>
@@ -189,7 +195,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
               noIcon
               className='sm:max-w-fit bottom-0 top-auto translate-y-0 rounded-[1rem]'
             >
-              <span className='text-1 font-bold text-greyscale-80'>
+              <span className='font-bold text-1 text-greyscale-80'>
                 TYPE OF TOUR
               </span>
               <hr className='bg-[#C5C5C5] h-[0.0625rem] w-[17rem] my-[1.25rem]' />
@@ -203,7 +209,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
                     type='checkbox'
                     className='accent-[#E64828]'
                   />
-                  <span className='text-0875 font-medium text-greyscale-80'>
+                  <span className='font-medium text-0875 text-greyscale-80'>
                     ALL TOUR
                   </span>
                 </button>
@@ -225,7 +231,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
         </div>
       )}
 
-      <div className=' mb-[2rem] xmd:w-full'>
+      <div className='max-w-[64.128rem] mb-[2rem] xmd:w-full'>
         {!loading ? (
           <div
             id={'grid-tours'}

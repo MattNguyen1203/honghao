@@ -117,7 +117,7 @@ const ThankYou = ({searchParams, slug}) => {
   }, [slug])
 
   return (
-    <section className=' bg-green-normal w-screen  h-screen overflow-hidden'>
+    <section className='w-screen h-screen overflow-hidden  bg-green-normal'>
       <div className='container xmd:pt-[4rem] pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
         <h2 className='xmd:text-[2rem] xdm:!text-center text-center'>
           Thank You For Booking Our Tour!

@@ -79,7 +79,6 @@ export default function HomeForm({
   selfPax,
   localPax,
 }) {
-  console.log('listLocation', listLocation)
   const {toast} = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
   const [paxValueLocal, setPaxValueLocal] = useState(localPax || 0)

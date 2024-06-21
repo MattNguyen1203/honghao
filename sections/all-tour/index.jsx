@@ -20,7 +20,7 @@ export default function AllTour({dataTours, typeOfTours, dataBestTrip}) {
       <section className='mt-[2rem] md:mt-[3rem]'>
         <SliderTour type='alltour' dataBestTrip={dataBestTrip}/>
       </section>
-      <section className='md:pt-[4.19rem] mt-[4rem] md:bg-[#F0F0F0] rounded-t-[1.5rem]'>
+      <section className='section-pin md:pt-[4.19rem] mt-[4rem] md:bg-[#F0F0F0] rounded-t-[1.5rem]'>
         <GridCheckBox
           typeOfTours={typeOfTours}
           dataTours={dataTours}
