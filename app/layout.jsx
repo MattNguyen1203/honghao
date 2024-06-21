@@ -1,10 +1,10 @@
-import {Londrina_Solid} from 'next/font/google'
+import { Londrina_Solid } from 'next/font/google'
 import './globals.css'
 import Footer from '@/layouts/footer'
 import Header from '@/layouts/header'
 import localFont from 'next/font/local'
 import WrapSocials from '@/components/socials'
-import {Toaster} from '@/components/ui/toaster'
+import { Toaster } from '@/components/ui/toaster'
 
 const londrina = Londrina_Solid({
   display: 'swap',
@@ -49,7 +49,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
 }
-export default function RootLayout({children}) {
+export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body

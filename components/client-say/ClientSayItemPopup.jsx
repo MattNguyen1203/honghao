@@ -1,4 +1,4 @@
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
 export default function ClientSayPopup({
@@ -71,7 +71,7 @@ export default function ClientSayPopup({
       </div>
       <div className='h-[6rem] tablet:h-[10rem] pr-[0.62rem] md:pr-4 overflow-y-auto content-container'>
         <div
-          dangerouslySetInnerHTML={{__html: content}}
+          dangerouslySetInnerHTML={{ __html: content }}
           className='content-container text-greyscale-5 text-0.875 tablet:text-15 leading-1.2 tracking-0.00875 opacity-90'
         ></div>
       </div>

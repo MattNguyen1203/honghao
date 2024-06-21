@@ -1,5 +1,5 @@
 'use client'
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import AccordionCustom from '../common/accordion'
 import useStore from '@/app/(store)/store'
@@ -10,7 +10,7 @@ import {
   DialogClose,
 } from '@/components/customCn/dialog'
 
-const DialogCp = ({children, data, video}) => {
+const DialogCp = ({ children, data, video }) => {
   const videoRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   const isTablet = useStore((state) => state.isTablet)
@@ -74,7 +74,7 @@ const DialogCp = ({children, data, video}) => {
   )
 }
 
-const FaqAboutTrip = ({dataAcfPage, videoAndImage}) => {
+const FaqAboutTrip = ({ dataAcfPage, videoAndImage }) => {
   return (
     <section className='flex justify-center'>
       <div className='flex mt-[5.63rem] xl:container xmd:hidden flex-col items-start space-y-[3rem]'>

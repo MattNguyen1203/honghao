@@ -1,13 +1,13 @@
 'use client'
 
-import {useState} from 'react'
+import { useState } from 'react'
 import AccordionCustom from '@/sections/common/accordion'
-import {regName, regPhone, regEmail} from '@/lib/reg'
-import {useToast} from '@/components/ui/use-toast'
+import { regName, regPhone, regEmail } from '@/lib/reg'
+import { useToast } from '@/components/ui/use-toast'
 import Image from 'next/image'
-import {FORM_FAQ_API} from '@/lib/constants'
-export default function FrequentlyAskedQuestions({data,dataQt}) {
-  const {toast} = useToast()
+import { FORM_FAQ_API } from '@/lib/constants'
+export default function FrequentlyAskedQuestions({ data, dataQt }) {
+  const { toast } = useToast()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -58,14 +58,14 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
       setIsLoading(false)
     }
   }
-  console.log({dataQt});
+  console.log({ dataQt });
   return (
     <section className='kKao4-container'>
       <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
       <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={dataQt} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
-          <h4 className='mb-6 h4 md:mb-8'>Ask a different question</h4>
+          <h4 className='mb-6 h4 md:mb-8 '>Ask a different question</h4>
           <form
             className='grid grid-cols-2 gap-4'
             onSubmit={(e) => handleOnSubmit(e)}
@@ -75,18 +75,18 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
                 type='text'
                 name='name'
                 placeholder='Full name *'
-                className='py-[0.62rem] w-full font-tripsans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
+                className='py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                onBlur={() => {
-                  setErrorMessage({
-                    ...errorMessage,
-                    name: regName.test(name) ? '' : 'Invalid name',
-                  })
-                }}
+              // onBlur={() => {
+              //   setErrorMessage({
+              //     ...errorMessage,
+              //     name: regName.test(name) ? '' : 'Invalid name',
+              //   })
+              // }}
               />
-              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
+              <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
                 {errorMessage.name}
               </p>
             </label>
@@ -95,7 +95,7 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
                 type='tel'
                 name='tel'
                 placeholder='Phone *'
-                className='py-[0.62rem] w-full font-tripsans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
+                className='py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -106,7 +106,7 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
                   })
                 }}
               />
-              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
+              <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
                 {errorMessage?.phone}
               </p>
             </div>
@@ -115,33 +115,32 @@ export default function FrequentlyAskedQuestions({data,dataQt}) {
                 type='email'
                 name='email'
                 placeholder='Your email *'
-                className='col-span-2 py-[0.62rem] w-full font-tripsans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
-                required
+                className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onBlur={() => {
-                  setErrorMessage({
-                    ...errorMessage,
-                    email: regEmail.test(email) ? '' : 'Invalid email',
-                  })
-                }}
+              // onBlur={() => {
+              //   setErrorMessage({
+              //     ...errorMessage,
+              //     email: regEmail.test(email) ? '' : 'Invalid email',
+              //   })
+              // }}
               />
-              <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
+              <p className='text-0.75 md:text-0.875  font-sans font-semibold text-red-500 mt-0.5'>
                 {errorMessage.email}
               </p>
             </div>
             <textarea
               rows={5}
               placeholder='Message'
-              className='col-span-2 py-[0.62rem] w-full font-tripsans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans placeholder:opacity-80 border-b border-greyscale-10'
+              className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10'
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
             <button
               type='submit'
-              className='text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2 flex flex-row justify-center items-center'
+              className='text-greyscale-0  text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2 flex flex-row justify-center items-center'
             >
-              {data?.form?.submit_button_text}
+              submit
               {isLoading && (
                 <svg
                   className='z-10 w-5 h-5 animate-spin2 md:ml-[0.75rem] ml-[0.56rem]'

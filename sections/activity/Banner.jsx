@@ -1,11 +1,11 @@
 'use client'
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image'
-import {Button} from '@/components/customCn/button'
-import {cn} from '@/lib/utils'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {FreeMode} from 'swiper/modules'
+import { Button } from '@/components/customCn/button'
+import { cn } from '@/lib/utils'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
@@ -26,12 +26,12 @@ import {
 } from '@/components/customCn/sheet'
 import Link from 'next/link'
 const data1 = [
-  {title: 'Experience'},
-  {title: 'Food'},
-  {title: 'Treaking'},
-  {title: 'People'},
+  { title: 'Experience' },
+  { title: 'Food' },
+  { title: 'Treaking' },
+  { title: 'People' },
 ]
-const DialogCp = ({children, data}) => {
+const DialogCp = ({ children, data }) => {
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -62,7 +62,7 @@ const DialogCp = ({children, data}) => {
   )
 }
 
-const SheetCp = ({children, data}) => {
+const SheetCp = ({ children, data }) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -140,7 +140,7 @@ const SheetCp = ({children, data}) => {
     </Sheet>
   )
 }
-const Banner = ({dataBaner, dataBanerMobi}) => {
+const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
   return (
