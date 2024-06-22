@@ -1,11 +1,7 @@
 import { Londrina_Solid } from 'next/font/google'
 import './globals.css'
-import Footer from '@/layouts/footer'
-import Header from '@/layouts/header'
 import localFont from 'next/font/local'
-import WrapSocials from '@/components/socials'
-import { Toaster } from '@/components/ui/toaster'
-
+import NextTopLoader from 'nextjs-toploader'
 const londrina = Londrina_Solid({
   display: 'swap',
   weight: ['100', '300', '400', '900'],
@@ -56,6 +52,12 @@ export default function RootLayout({ children }) {
         className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
+        <NextTopLoader
+          color='#E64827'
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={5}
+        />
         {children}
       </body>
     </html>

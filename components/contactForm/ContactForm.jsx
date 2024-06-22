@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { useState } from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import { useToast } from '@/components/ui/use-toast'
-
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 export default function ContactForm({ data }) {
   const { toast } = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
@@ -22,6 +24,17 @@ export default function ContactForm({ data }) {
     email: '',
     contactSubject: '',
   })
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -71,7 +84,8 @@ export default function ContactForm({ data }) {
     }
   }
   return (
-    <div className='absolute top-[9rem] md:top-[20rem] left-1/2 -translate-x-1/2 md:w-[32rem] xmd:px-4 w-full'>
+    <div data-aos="fade-up"
+      data-aos-duration="550" className='absolute top-[9rem] md:top-[20rem] md:left-[36%] md:w-[32rem] xmd:px-4 w-full'>
       <Image
         src={'/imgs/contact-us/mountain-deco.png'}
         alt='mountain deco'
@@ -94,7 +108,7 @@ export default function ContactForm({ data }) {
             type='text'
             name='name'
             placeholder='Full name *'
-            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem]  rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -114,7 +128,7 @@ export default function ContactForm({ data }) {
             type='tel'
             name='tel'
             placeholder='Phone *'
-            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] rounded-none placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -134,7 +148,7 @@ export default function ContactForm({ data }) {
             type='email'
             name='email'
             placeholder='Your email *'
-            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             // required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -211,7 +225,7 @@ export default function ContactForm({ data }) {
             type='text'
             name='contactSubject'
             placeholder='Contact subject *'
-            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={contactSubject}
             onChange={(e) => setContactSubject(e.target.value)}
@@ -231,7 +245,7 @@ export default function ContactForm({ data }) {
         <textarea
           rows={5}
           placeholder='Message'
-          className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)]'
+          className='col-span-2 rounded-none py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)]'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

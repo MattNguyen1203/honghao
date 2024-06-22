@@ -14,6 +14,8 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import { useSearchParams, useRouter } from 'next/navigation'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import {
   Dialog,
   DialogContent,
@@ -40,6 +42,8 @@ const data2 = [
 const DialogCp = ({ children, data, video }) => {
   const videoRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
+
+
   useEffect(() => {
     if (isOpen && videoRef.current) {
       videoRef.current.play().catch((error) => {
@@ -161,7 +165,9 @@ const Video = ({ children, dataMenu }) => {
 }
 const VideoPopoup = ({ children, video }) => {
   return (
-    <div className='relative  xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
+    <div
+
+      className='relative  xmd:w-[19.25rem]  xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
       <DialogCp
         video={video}
       >
@@ -220,21 +226,28 @@ const VideoPopoup = ({ children, video }) => {
 }
 const ImageBig = ({ children }) => {
   return (
-    <div className='relative w-[35.6875rem] h-[23.8125rem] group  overflow-hidden rounded-xl cursor-pointer'>
+    <div
+      data-aos-duration="500" className='relative w-[35.6875rem] h-[23.8125rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
 const ImageNormal = ({ children }) => {
   return (
-    <div className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
+    <div
+
+      data-aos-duration="500"
+      className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
 }
 const ImageSmall = ({ children }) => {
   return (
-    <div className='relative w-[18.375rem] h-[12.25rem] group  overflow-hidden rounded-xl cursor-pointer'>
+    <div
+
+      data-aos-duration="500"
+      className='relative w-[18.375rem] h-[12.25rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
@@ -381,7 +394,17 @@ const Discover = ({ dataDiscover }) => {
   const [listsImageCurrent, setListsImageCurrent] = useState(null)
   const [VideoCurrent, setVideoCurrent] = useState(null)
   const [listsImageMoreCurrent, setListsImageMoreCurrent] = useState(null)
-
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
   useEffect(() => {
     const listsObjectImageCurrent = dataDiscover?.lists_tabs?.find(
       (l, i) => l?.param === currenImages,
@@ -505,13 +528,19 @@ const Discover = ({ dataDiscover }) => {
           className='w-full'
         >
           <h2 className='xmd:absolute top-[9rem] xmd:ml-[0rem] xxl:ml-[5rem] xmd:text-center xmd:left-1/2 xmd:-translate-x-1/2 md:w-[65.25rem] xmd:w-[21.4375rem] xl:mx-auto h2 xmd:text-[1.5rem] text-green-normal xmd:tracking-[0.00375rem] md:mt-[12.25rem]'>
-            {dataDiscover?.main_desc}
+            <div data-aos='fade-up' className="">
+
+              {dataDiscover?.main_desc}
+            </div>
           </h2>
 
           <div ref={menuRef} className=" xmd:mt-[5rem] md:z-[1000] mt-[1.75rem] w-full h-[6.25rem] flex justify-center items-center shrink-0">
             <div className="inline-flex h-[2.0625rem] justify-end items-start space-x-[2.25rem] shrink-0">
               {dataDiscover?.lists_tabs?.map((d, i) => (
                 <div
+                  data-aos="fade-up"
+                  data-aos-delay="0"
+                  data-aos-duration="500"
                   onClick={() => scrollToElement(d?.param)}
                   key={i}
                   className='z-10 flex group cursor-pointer flex-col justify-end items-start gap-4'
@@ -566,10 +595,19 @@ const Discover = ({ dataDiscover }) => {
           </div>
           <div id='acivity_lists_image' ref={imagesRef} className="z-9 md:space-y-[4rem] xmd:mt-[1.75rem] flex flex-col justify-center w-full items-center">
 
-            <div className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem]">
-              <div className="space-y-[4.69rem] flex flex-col justify-end items-end">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="0"
+              data-aos-duration="500"
+              className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem]">
+              <div
+
+                className="space-y-[4.69rem] flex flex-col justify-end items-end">
                 <VideoPopoup video={VideoCurrent?.url}>
-                  {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
+                  {listsImageCurrent?.[0] && <Image
+
+
+                    priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
                 </VideoPopoup>
                 {/* <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
                   {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
@@ -577,6 +615,8 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={1} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>
                     {listsImageCurrent?.[1] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[1]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageBig>
                 </SheetCp>
@@ -584,6 +624,8 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={2} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageNormal>
                     {listsImageCurrent?.[2] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[2]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageNormal>
                 </SheetCp>
@@ -595,12 +637,16 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={3} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>
                     {listsImageCurrent?.[3] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[3]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageBig>
                 </SheetCp>
                 <SheetCp index={4} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageNormal>
                     {listsImageCurrent?.[4] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[4]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageNormal>
                 </SheetCp>
@@ -609,6 +655,8 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={5} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageNormal>
                     {listsImageCurrent?.[5] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[5]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageNormal>
                 </SheetCp>
@@ -617,6 +665,8 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={6} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>
                     {listsImageCurrent?.[6] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[6]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageBig>
                 </SheetCp>
@@ -624,12 +674,16 @@ const Discover = ({ dataDiscover }) => {
                   <SheetCp index={7} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                     <ImageSmall>
                       {listsImageCurrent?.[7] && <Image
+
+
                         priority alt="ảnh" src={listsImageCurrent[7]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                     </ImageSmall>
                   </SheetCp>
                   <SheetCp index={8} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                     <ImageSmall>
                       {listsImageCurrent?.[8] && <Image
+
+
                         priority alt="ảnh" src={listsImageCurrent[8]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                     </ImageSmall>
                   </SheetCp>
@@ -637,6 +691,8 @@ const Discover = ({ dataDiscover }) => {
                 <SheetCp index={9} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>
                     {listsImageCurrent?.[9] && <Image
+
+
                       priority alt="ảnh" src={listsImageCurrent[9]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                   </ImageBig>
                 </SheetCp>
@@ -645,12 +701,16 @@ const Discover = ({ dataDiscover }) => {
                   <SheetCp index={10} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                     <ImageSmall>
                       {listsImageCurrent?.[10] && <Image
+
+
                         priority alt="ảnh" src={listsImageCurrent[10]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                     </ImageSmall>
                   </SheetCp>
                   <SheetCp index={11} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                     <ImageSmall>
                       {listsImageCurrent?.[11] && <Image
+
+
                         priority alt="ảnh" src={listsImageCurrent[11]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
                     </ImageSmall>
                   </SheetCp>

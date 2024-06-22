@@ -9,7 +9,7 @@ import {useState} from 'react'
 export default function StepByStepRes({dataAcf, dataTourDetail}) {
   const [seeLess, setSeeLess] = useState(true)
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
-  const dataSLides = dataAcf?.dataSLides
+  const dataSLides = dataAcf?.dataSLides || []
   return (
     <>
       <button
@@ -41,7 +41,7 @@ export default function StepByStepRes({dataAcf, dataTourDetail}) {
         <div className='tablet:hidden transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
           <Image
             className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
-            src={dataSLides?.[0]?.imgStep?.url}
+            src={dataSLides?.[0]?.imgStep?.url || ''}
             alt='map2'
             width={300}
             height={400}

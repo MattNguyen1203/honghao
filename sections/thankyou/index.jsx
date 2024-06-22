@@ -1,16 +1,16 @@
 'use client'
-import { Button } from '@/components/customCn/button'
-import { FORM_API, GOOGLE_KEY, paymentOnepay } from '@/lib/constants'
-import { generateParams, generateParamsPayment } from '@/lib/payment'
+import {Button} from '@/components/customCn/button'
+import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
+import {generateParams, generateParamsPayment} from '@/lib/payment'
 // import {FORM_API} from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import CryptoJS from 'crypto-js'
-import { parseQueryString } from '@/lib/utils'
-import { useRouter } from 'next/navigation'
+import {parseQueryString} from '@/lib/utils'
+import {useRouter} from 'next/navigation'
 
-const ThankYou = ({ searchParams, slug }) => {
+const ThankYou = ({searchParams, slug}) => {
   const [isSuccessfull, setIsSuccessfull] = useState(false)
 
   const router = useRouter()
@@ -46,17 +46,16 @@ const ThankYou = ({ searchParams, slug }) => {
 
   useEffect(() => {
     const handleSecureHash = () => {
-
       if (!CryptoJS || !CryptoJS.enc || !CryptoJS.enc.Hex) {
-        console.error('CryptoJS or required properties are undefined');
-        return;
+        console.error('CryptoJS or required properties are undefined')
+        return
       }
 
       const paramsGenerate = generateParams(true, searchParams?.vpc_MerchTxnRef)
 
       if (!paymentOnepay?.SECRET_KEY_HASH) {
-        console.error('SECRET_KEY_HASH is undefined');
-        return;
+        console.error('SECRET_KEY_HASH is undefined')
+        return
       }
 
       const secretWordArray = CryptoJS?.enc?.Hex?.parse(
@@ -93,7 +92,7 @@ const ThankYou = ({ searchParams, slug }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ slug: slug?.[0] }),
+          body: JSON.stringify({slug: slug?.[0]}),
         })
 
         if (!res.ok) {
@@ -118,9 +117,11 @@ const ThankYou = ({ searchParams, slug }) => {
   }, [slug])
 
   return (
-    <section className=' bg-green-normal w-screen  h-screen overflow-hidden'>
+    <section className='w-screen h-screen overflow-hidden  bg-green-normal'>
       <div className='container xmd:pt-[4rem] pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
-        <h2 className='xmd:text-[2rem] xdm:!text-center text-center'>Thank You For Booking Our Tour!</h2>
+        <h2 className='xmd:text-[2rem] xdm:!text-center text-center'>
+          Thank You For Booking Our Tour!
+        </h2>
         <div className='flex xmd:flex-col items-center justify-center xmd:mt-[1rem] mt-[5rem]'>
           <div className='flex flex-col md:mr-[1rem]'>
             {/* <div className='text-3'>Hong Hao Travel</div> */}

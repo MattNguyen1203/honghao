@@ -1070,6 +1070,7 @@ export default function HomeForm({
           data={tourSelected}
           paxValueSelf={paxValueSelf}
           paxValueLocal={paxValueLocal}
+          exchangeRate={listLocation?.ti_gia}
         />
       </section>
       {isDialogOpen && (

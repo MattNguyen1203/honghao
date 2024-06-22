@@ -1,9 +1,9 @@
 'use client'
 
 import gsap from 'gsap'
-import {useGSAP} from '@gsap/react'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {useRef, useState} from 'react'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import ItemCardBestTrip from './ItemCardBestTrip'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 }
 const data = Array(5).fill(0)
 
-export default function BestTrips({listBestTrip}) {
+export default function BestTrips({ listBestTrip }) {
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
@@ -30,6 +30,7 @@ export default function BestTrips({listBestTrip}) {
           start: 'top top',
           end: `+=${lengthTour * ((window.innerWidth / 100) * 23.33) * 2}`,
           pin: true,
+          anticipatePin: 1,
           scrub: true,
           onUpdate: (self) => {
             let precentCurrent = Number(self.progress.toFixed(3)) * percent
@@ -43,15 +44,14 @@ export default function BestTrips({listBestTrip}) {
         })
       })
     },
-    {scope: container},
+    { scope: container },
   )
-
   return (
     <section
       ref={container}
       className='relative w-full bg-white lg:h-screen'
     >
-      <div className='lg:container subContainer xmd:!px-0 pt-[5.63rem] xmd:pt-[3rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
+      <div className='lg:container subContainer xmd:!px-0 xmd:pt-[3rem] pt-[5.63rem] flex justify-between xmd:flex-col tablet:flex-col xmd:mb-[1.5rem] lg:space-x-[0.75rem]'>
         <div className='xmd:mb-[2rem] xmd:pl-[0.75rem] tablet:pl-[4rem]'>
           <h3 className='font-extrabold text-1125 xmd:text-0875 xmd:text-greyscale-60 text-greyscale-80 opacity-40'>
             EXPLORE
@@ -61,13 +61,19 @@ export default function BestTrips({listBestTrip}) {
           </h2>
           <Image
             className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
-            src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
+            src={
+              index >= listBestTrip?.length
+                ? listBestTrip?.[listBestTrip?.length - 1]?.infos
+                  ?.map_tour_image?.url
+                : listBestTrip?.[index]?.infos?.map_tour_image?.url || ''
+            }
+            // src={listBestTrip?.[0]?.infos?.map_tour_image?.url}
             alt='map'
             width={500}
             height={500}
           />
         </div>
-        <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-[50rem] w-full lg:h-auto h-[23.33956rem] tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
+        <div className='hidden_scrollbar lg:w-[47.3125rem] tablet:h-fit w-full lg:h-[32rem] h-fit tablet:relative xmd:relative tablet:overflow-x-auto xmd:overflow-x-auto'>
           <div
             ref={listTourHome}
             id='list_tour_home'
@@ -84,7 +90,7 @@ export default function BestTrips({listBestTrip}) {
       </div>
       <Link
         href='/tours'
-        style={{writingMode: 'vertical-rl'}}
+        style={{ writingMode: 'vertical-rl' }}
         className='top-0 xmd:top-[-1rem] translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
       >
         All tour

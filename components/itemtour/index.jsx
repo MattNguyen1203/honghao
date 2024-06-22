@@ -1,13 +1,15 @@
 import Image from 'next/image'
 import React from 'react'
-import {Button} from '../customCn/button'
-import {cn} from '@/lib/utils'
+import { Button } from '../customCn/button'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import useStore from '@/app/(store)/store'
-const ItemTour = ({className, type, data}) => {
-  const {isMobile} = useStore((state) => state)
+const ItemTour = ({ className, type, data }) => {
+  const { isMobile } = useStore((state) => state)
   return (
-    <Link href={`/tours/${data?.detail_link}`}>
+    <Link
+
+      href={`/tours/${data?.detail_link}`}>
       <div
         className={cn(
           'h-[29.5625rem] xmd:h-[15rem] rounded-[1.5rem] relative overflow-hidden  cursor-pointer',

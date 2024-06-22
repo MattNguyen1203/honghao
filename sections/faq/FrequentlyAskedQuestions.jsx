@@ -58,11 +58,15 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
       setIsLoading(false)
     }
   }
-  console.log({ dataQt });
   return (
     <section className='kKao4-container'>
-      <h3 className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
-      <div className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
+      <h3
+        data-aos="fade-up"
+        data-aos-duration="650"
+        className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
+      <div data-aos="fade-up"
+        data-aos-duration="650"
+        className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={dataQt} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
           <h4 className='mb-6 h4 md:mb-8 '>Ask a different question</h4>

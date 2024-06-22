@@ -5,7 +5,6 @@ import {cn} from '@/lib/utils'
 import useStore from '@/app/(store)/store'
 import Link from 'next/link'
 const CardDestination = ({data}) => {
-  console.log(data)
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div

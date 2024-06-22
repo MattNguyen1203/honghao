@@ -9,7 +9,12 @@ import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
-const TourDetail = ({data, dataPage, dataBestTrip, dataTourDetail}) => {
+const TourDetail = ({
+  data = {},
+  dataPage = {},
+  dataBestTrip = [],
+  dataTourDetail = {},
+}) => {
   return (
     <main className='alldestinations '>
       <section>

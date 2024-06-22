@@ -1,12 +1,28 @@
+"use client"
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+export default function Commit({ dataCommit }) {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      // disable: function () {
+      //   var maxWidth = 769
+      //   return window.innerWidth < maxWidth
+      // }
+    })
+    // AOS.refresh()
+  }, [])
 
-export default function Commit({dataCommit}) {
+
   return (
     <section className='h-fit'>
       <div className='w-full h-[40.0625rem] xmd:h-[29.2775rem] relative md:pt-[6.88rem] xmd:pt-[5rem]'>
         <Image
-          className='xmd:hidden size-full absolute top-0 left-0 object-cover'
+          className='z-[10] xmd:hidden size-full absolute top-[0rem] left-0 object-cover'
           alt='ảnh bg cam kết'
           src={'/imgs/about/Pattern-white.png'}
           width={1600}
@@ -20,7 +36,8 @@ export default function Commit({dataCommit}) {
           height={468.44}
         />
         <div className='container'>
-          <p className='flex justify-start xmd:w-full xmd:text-center w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
+          <p data-aos="fade-up"
+            data-aos-duration="500" className='flex justify-start xmd:w-full xmd:text-center w-[65.8125rem] text-35 xmd:text-15 font-londrina xmd:font-black text-[#122718] xmd:text-greyscale-80 opacity-80'>
             {dataCommit?.main_desc_test}
           </p>
         </div>
@@ -39,7 +56,8 @@ export default function Commit({dataCommit}) {
         <div className='md:bg-[#13341C] w-full md:mt-[17rem]'>
           <div className=' flex container mx-auto xmd:!px-0 xmd:flex-col justify-start md:space-x-[9.25rem] md:pb-[6rem]'>
             <div className='xmd:container xmd:mt-[0.8rem] flex flex-col justify-end '>
-              <div className='flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.5rem] xmd:mb-[2rem]'>
+              <div data-aos="fade-up"
+                data-aos-duration="750" className='flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.5rem] xmd:mb-[2rem]'>
                 <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
                   HONG HA TRAVEL
                 </span>
@@ -48,10 +66,12 @@ export default function Commit({dataCommit}) {
                 </h2>
               </div>
               <div className='z-10 xmd:mt-[2.7rem] flex flex-col items-start space-y-[1rem]'>
-                <p className=' w-[38.8125rem] xmd:w-[20.9375rem] text-1 font-normal text-greyscale-5'>
+                <p data-aos="fade-up"
+                  data-aos-duration="650" className=' w-[38.8125rem] xmd:w-[20.9375rem] text-1 font-normal text-greyscale-5'>
                   {dataCommit?.desc_text}
                 </p>
-                <div className='flex flex-col space-y-[0.75rem]'>
+                <div data-aos="fade-up"
+                  data-aos-duration="550" className='flex flex-col space-y-[0.75rem]'>
                   {dataCommit?.lists_commitment?.map((e, index) => (
                     <div
                       key={index}
@@ -72,7 +92,8 @@ export default function Commit({dataCommit}) {
                 </div>
               </div>
             </div>
-            <div className='xmd:w-full flex  items-end xmd:mt-[3rem] md:pb-[2.3rem] z-10'>
+            <div data-aos="fade-up"
+              data-aos-duration="750" className='xmd:w-full flex  items-end xmd:mt-[3rem] md:pb-[2.3rem] z-10'>
               <Image
                 className='h-[26.375rem] object-cover w-[41.9375rem] xmd:h-[14.74013rem] xmd:w-[23.4375rem] md:rounded-[1.25rem] shadow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'
                 alt='ảnh content cam kết'
