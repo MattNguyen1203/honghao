@@ -29,6 +29,10 @@ export default function InformationForm({
   const totalPrice =
     paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal
 
+
+
+  const hiddenServiceChange = true
+  const totalsvchange = (totalPrice / 100) * serviceCharge
   return (
     <div
       className={`${isTourDetail
@@ -183,23 +187,23 @@ export default function InformationForm({
             ${totalPrice}
           </span>
         </div>
-        <div className='flex justify-between items-center w-full'>
+        {hiddenServiceChange && <div className='flex justify-between items-center w-full'>
           <span className='text-0875 font-bold text-greyscale-5'>
             Service Charge 3%:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
             ${((totalPrice / 100) * serviceCharge).toFixed(2)}
           </span>
-        </div>
+        </div>}
         <hr className='w-full h-[0.0625rem] my-[0.5rem] bg-[#d9d9d9]/20 opacity-40' />
         <div className='flex justify-between items-center w-full'>
           <span className='text-0875 font-bold text-greyscale-5'>
             Total amount:
           </span>
           <span className='text-1 font-bold text-greyscale-5'>
-            ${(totalPrice / 100) * serviceCharge + totalPrice} ~{' '}
+            ${(hiddenServiceChange ? totalsvchange : 0) + totalPrice} ~{' '}
             {formatCurrencyVND(
-              ((totalPrice / 100) * serviceCharge + totalPrice) *
+              ((hiddenServiceChange ? totalsvchange : 0) + totalPrice) *
               Number(exchangeRate),
             )}
           </span>
