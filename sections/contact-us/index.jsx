@@ -18,8 +18,8 @@ export default async function ContactUs() {
       <section>
         <Banner
           mainImg={data.banner.background_image.url}
-          mainTextMb={'/imgs/contact-us/banner-title-mb.png'}
-          mainText={'/imgs/contact-us/banner-title.png'}
+          mainTextMb={data.banner.text_image.url}
+          mainText={data.banner.text_image_mobile.url}
         />
       </section>
       <div className='md:mb-5'>

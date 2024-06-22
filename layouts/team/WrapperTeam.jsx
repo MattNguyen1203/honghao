@@ -42,7 +42,7 @@ export default async function OurTeamChild({ darkTheme, dataTeam, btnHome = fals
             data-aos="fade-up"
             data-aos-duration="550"
             className={cn(
-              'uppercase !mt-[0.75rem] xmd:pb-[3rem]',
+              'uppercase !mt-[0.75rem] xmd:!text-[2.5rem] xmd:pb-[3rem]',
               darkTheme && 'text-greyscale-0',
             )}
           >

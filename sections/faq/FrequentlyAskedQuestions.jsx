@@ -118,7 +118,7 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
               <input
                 type='email'
                 name='email'
-                placeholder='Your email *'
+                placeholder='Your email'
                 className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

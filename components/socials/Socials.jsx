@@ -1,9 +1,9 @@
 'use client'
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import HomeForm from '@/components/form/HomeForm'
 
-const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
+const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
   const phoneNumber = '0941556338'
 
   return (
@@ -15,7 +15,7 @@ const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className=' sm:max-w-fit xmd:w-full max-h-[85vh] overflow-y-scroll'>
+          <DialogContent className=' sm:max-w-fit xmd:w-full max-h-[85vh] xmd:!overflow-x-hidden overflow-y-scroll'>
             <HomeForm
               listLocation={dataAcf}
               listTypeofTour={listTypeofTour}

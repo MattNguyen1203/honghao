@@ -334,8 +334,8 @@ export default function HomeForm({
     <>
       <section
         className={`${isTourDetail
-          ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full'
-          : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem]'
+          ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
+          : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
           } flex xmd:flex-col w-fit xmd:rounded-none rounded-[1.5rem] relative`}
       >
         <Form {...form}>
@@ -799,18 +799,18 @@ export default function HomeForm({
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
                       <span className='text-0875 text-greyscale-60'>Pax</span>
-                      <span className='w-[1.25rem] text-0875 font-bold text-right text-orange-normal-hover'>
+                      <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
                         {paxValueSelf}
                       </span>
-                      <div className='flex flex-col ml-[0.375rem]'>
+                      <div className='flex flex-col space-y-[0.5rem] xmd:space-y-[1rem] ml-[0.375rem]'>
                         <div
                           onClick={() => {
                             setPaxValueSelf(paxValueSelf + 1)
                           }}
-                          className=''
+                          className=' cursor-pointer'
                         >
                           <svg
-                            className='w-[0.75rem]'
+                            className='w-[0.75rem]  xmd:w-[1rem]  xmd:scale-125'
                             xmlns='http://www.w3.org/2000/svg'
                             width='12'
                             height='8'
@@ -831,10 +831,10 @@ export default function HomeForm({
                               setPaxValueSelf(paxValueSelf - 1)
                             }
                           }}
-                          className=''
+                          className=' cursor-pointer'
                         >
                           <svg
-                            className='w-[0.75rem]'
+                            className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
                             xmlns='http://www.w3.org/2000/svg'
                             width='12'
                             height='8'
@@ -871,18 +871,18 @@ export default function HomeForm({
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
                       <span className='text-0875 text-greyscale-60'>Pax</span>
-                      <span className='w-[1.25rem] text-0875 font-bold text-right text-orange-normal-hover'>
+                      <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
                         {paxValueLocal}
                       </span>
-                      <div className='flex flex-col ml-[0.375rem]'>
+                      <div className='flex flex-col ml-[0.375rem] space-y-[0.5rem] xmd:space-y-[1rem]'>
                         <div
                           onClick={() => {
                             setPaxValueLocal(paxValueLocal + 1)
                           }}
-                          className=''
+                          className=' cursor-pointer'
                         >
                           <svg
-                            className='w-[0.75rem]'
+                            className='w-[0.75rem] xmd:w-[1rem] xmd:scale-125'
                             xmlns='http://www.w3.org/2000/svg'
                             width='12'
                             height='8'
@@ -903,10 +903,10 @@ export default function HomeForm({
                               setPaxValueLocal(paxValueLocal - 1)
                             }
                           }}
-                          className=''
+                          className=' cursor-pointer'
                         >
                           <svg
-                            className='w-[0.75rem]'
+                            className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
                             xmlns='http://www.w3.org/2000/svg'
                             width='12'
                             height='8'
