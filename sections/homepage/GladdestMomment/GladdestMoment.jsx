@@ -1,10 +1,10 @@
 'use client'
 import gsap from 'gsap'
-import {useGSAP} from '@gsap/react'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {useRef, useState} from 'react'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
-import {Draggable} from 'gsap/Draggable'
+import { Draggable } from 'gsap/Draggable'
 import InertiaPlugin from 'gsap/InertiaPlugin'
 import ICMapSmall from '@/components/icons/ICMapSmall'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ import Link from 'next/link'
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger, Draggable, InertiaPlugin)
 }
-export default function GladdestMoment({dataGallery}) {
+export default function GladdestMoment({ dataGallery }) {
   const container = useRef(null)
   const slideRef = useRef(null)
   const tweenRef = useRef(null)
@@ -59,13 +59,13 @@ export default function GladdestMoment({dataGallery}) {
       slideElement.addEventListener('mouseenter', handleMouseEnter)
       slideElement.addEventListener('mouseleave', handleMouseLeave)
     },
-    {scope: container},
+    { scope: container },
   )
 
   return (
     <section
       ref={container}
-      className='w-full h-fit pb-[0.8rem] xlg:hidden z-20 relative mt-[4rem]'
+      className='w-full h-fit pb-[0.8rem] xlg:hidden z-20 relative'
     >
       <div className='mb-[3rem] flex justify-between items-center w-[calc(100%-16.665rem)] ml-auto'>
         <h2 className='text-[3.5rem] font-black leading-[1] text-[#222] font-londrina whitespace-nowrap'>
@@ -73,9 +73,8 @@ export default function GladdestMoment({dataGallery}) {
         </h2>
         <div className='size-[6.5625rem] relative'>
           <Image
-            className={`${
-              isAnimationEnd ? 'animate-spin' : ''
-            } object-cover size-full`}
+            className={`${isAnimationEnd ? 'animate-spin' : ''
+              } object-cover size-full`}
             src={'/home/text-circle-box-map.svg'}
             alt='text circle box map'
             width={100}
@@ -86,7 +85,7 @@ export default function GladdestMoment({dataGallery}) {
         </div>
         <div className='w-[42.6875rem] h-[4.9375rem] bg-[linear-gradient(90deg,rgba(255,255,255,0.00)_-48.55%,rgba(12,140,30,0.14)_100%)] flex items-center'>
           <p
-            dangerouslySetInnerHTML={{__html: dataGallery?.description}}
+            dangerouslySetInnerHTML={{ __html: dataGallery?.description }}
             className='text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] text-[#262626] ml-[2.13rem]'
           ></p>
         </div>
@@ -170,7 +169,7 @@ export default function GladdestMoment({dataGallery}) {
     </section>
   )
 }
-const ItemGallery = ({index, img}) => {
+const ItemGallery = ({ index, img }) => {
   return (
     <div className='item_slide w-[33.33rem] flex-shrink-0 h-[21.125rem] relative group'>
       <Image
