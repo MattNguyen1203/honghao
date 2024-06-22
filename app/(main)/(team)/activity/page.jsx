@@ -1,9 +1,9 @@
-import React, {Suspense} from 'react'
+import React, { Suspense } from 'react'
 import Activity from '@/sections/activity/index'
 import getData from '@/lib/getData'
-import {PAGE_ACTIVITY_ID} from '@/lib/constants'
-import {fetchMetaData} from '@/lib/fetchMetadata'
-import {getMeta} from '@/lib/getMeta'
+import { PAGE_ACTIVITY_ID } from '@/lib/constants'
+import { fetchMetaData } from '@/lib/fetchMetadata'
+import { getMeta } from '@/lib/getMeta'
 
 export async function generateMetadata() {
   const result = await fetchMetaData('activity-page/')

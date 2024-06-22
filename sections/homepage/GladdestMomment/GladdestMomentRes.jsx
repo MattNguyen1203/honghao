@@ -1,7 +1,7 @@
 'use client'
 import SlideInfinityText from '../SlideInfinity/SlideInfinityText'
 import SlideInfinity from '../SlideInfinity/SlideInfinity'
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
 
 export default function GladdestMomentRes() {
   if (typeof window !== 'undefined' && window?.innerWidth > 1024) return null

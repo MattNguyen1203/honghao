@@ -1,12 +1,14 @@
-import {regName, regPhone, regEmail, regContactSubject} from '@/lib/reg'
-import {cn} from '@/lib/utils'
+import { regName, regPhone, regEmail, regContactSubject } from '@/lib/reg'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import {useState} from 'react'
+import { useState } from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
-import {useToast} from '@/components/ui/use-toast'
-
-export default function ContactForm({data}) {
-  const {toast} = useToast()
+import { useToast } from '@/components/ui/use-toast'
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+export default function ContactForm({ data }) {
+  const { toast } = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const [name, setName] = useState('')
@@ -22,6 +24,17 @@ export default function ContactForm({data}) {
     email: '',
     contactSubject: '',
   })
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -71,7 +84,8 @@ export default function ContactForm({data}) {
     }
   }
   return (
-    <div className='absolute top-[9rem] md:top-[20rem] left-1/2 -translate-x-1/2 md:w-[32rem] xmd:px-4 w-full'>
+    <div data-aos="fade-up"
+      data-aos-duration="550" className='absolute top-[9rem] md:top-[20rem] md:left-[36%] md:w-[32rem] xmd:px-4 w-full'>
       <Image
         src={'/imgs/contact-us/mountain-deco.png'}
         alt='mountain deco'
@@ -94,18 +108,18 @@ export default function ContactForm({data}) {
             type='text'
             name='name'
             placeholder='Full name *'
-            className='py-[0.62rem] w-full font-tripsans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem]  rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            onBlur={() => {
-              setErrorMessage({
-                ...errorMessage,
-                name: regName.test(name) ? '' : 'Invalid name',
-              })
-            }}
+          // onBlur={() => {
+          //   setErrorMessage({
+          //     ...errorMessage,
+          //     name: regName.test(name) ? '' : 'Invalid name',
+          //   })
+          // }}
           />
-          <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
+          <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage.name}
           </p>
         </div>
@@ -114,7 +128,7 @@ export default function ContactForm({data}) {
             type='tel'
             name='tel'
             placeholder='Phone *'
-            className='py-[0.62rem] w-full font-tripsans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] rounded-none placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -125,8 +139,8 @@ export default function ContactForm({data}) {
               })
             }}
           />
-          <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
-            {errorMessage.phone}
+          <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
+            {errorMessage?.phone}
           </p>
         </div>
         <div className='col-span-1'>
@@ -134,18 +148,18 @@ export default function ContactForm({data}) {
             type='email'
             name='email'
             placeholder='Your email *'
-            className='py-[0.62rem] w-full font-tripsans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
-            required
+            className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            // required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onBlur={() => {
-              setErrorMessage({
-                ...errorMessage,
-                email: regEmail.test(email) ? '' : 'Invalid email',
-              })
-            }}
+          // onBlur={() => {
+          //   setErrorMessage({
+          //     ...errorMessage,
+          //     email: regEmail.test(email) ? '' : 'Invalid email',
+          //   })
+          // }}
           />
-          <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
+          <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage.email}
           </p>
         </div>
@@ -153,8 +167,8 @@ export default function ContactForm({data}) {
           <button
             ref={sideRef}
             type='button'
-            className='relative flex flex-row justify-center items-center font-tripsans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
-            style={{borderBottom: '1px solid rgba(187, 211, 200, 0.80)'}}
+            className='relative flex flex-row justify-center items-center font-sans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
+            style={{ borderBottom: '1px solid rgba(187, 211, 200, 0.80)' }}
             onClick={() => setIsOpenDropdown(!isOpenDropdown)}
           >
             {country ? (
@@ -211,7 +225,7 @@ export default function ContactForm({data}) {
             type='text'
             name='contactSubject'
             placeholder='Contact subject *'
-            className='py-[0.62rem] w-full font-tripsans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
+            className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             required
             value={contactSubject}
             onChange={(e) => setContactSubject(e.target.value)}
@@ -224,20 +238,20 @@ export default function ContactForm({data}) {
               })
             }}
           />
-          <p className='text-0.75 md:text-0.875 font-tripsans font-semibold text-red-500 mt-0.5'>
-            {errorMessage.contactSubject}
+          <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
+            {errorMessage?.contactSubject}
           </p>
         </div>
         <textarea
           rows={5}
           placeholder='Message'
-          className='col-span-2 py-[0.62rem] w-full font-tripsans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-tripsans border-b border-[rgba(187,211,200,0.80)]'
+          className='col-span-2 rounded-none py-[0.62rem] w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)]'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <button
           type='submit'
-          className='flex items-center justify-center text-greyscale-0 font-tripsans text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
+          className='flex items-center justify-center text-greyscale-0 text-0.875 font-extrabold leading-1.2 uppercase w-full rounded-[0.5rem] bg-orange-normal hover:bg-orange-normal-hover transition-400 h-11 col-span-2 mt-2'
         >
           {isLoading ? (
             <svg
@@ -260,7 +274,7 @@ export default function ContactForm({data}) {
               ></path>
             </svg>
           ) : (
-            data.submit_button_text
+            data?.submit_button_text
           )}
         </button>
       </form>

@@ -1,16 +1,17 @@
 'use client'
 
 import useStore from '@/app/(store)/store'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
 import CheckBox from './CheckBox'
-import {usePathname, useRouter, useSearchParams} from 'next/navigation'
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
-import {Skeleton} from '@/components/ui/skeleton'
-
-export default function GridCheckBox({dataTours, typeOfTours}) {
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Skeleton } from '@/components/ui/skeleton'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+export default function GridCheckBox({ dataTours, typeOfTours }) {
   const isMobile = useStore((state) => state.isMobile)
   const tours = dataTours?.tours
   const pagination = dataTours?.pagination
@@ -21,7 +22,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
 
   const pageCurrent = searchParams.get('page')
   const deviceCurrent = searchParams.get('device')
-  const {shouldFetch, setShouldFetch} = useStore((state) => state)
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
   const [isAllTour, setIsAllTour] = useState(true)
   const [dataToursClient, setDataToursClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
@@ -29,6 +30,17 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
   const [loadingButton, setLoadingButton] = useState(false)
   const [selectedTypes, setSelectedTypes] = useState('')
   // Extract device parameter from URL and set selectedTypes
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
   useEffect(() => {
     if (deviceCurrent) {
       setSelectedTypes(deviceCurrent.replace(/--/g, ','))
@@ -74,7 +86,7 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
   }
 
   const fetcher = (url) => fetch(url).then((r) => r.json())
-  const {data, error, isLoading} = useSWR(
+  const { data, error, isLoading } = useSWR(
     shouldFetch
       ? deviceCurrent !== null
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9&type-of-tour=${selectedTypes}`
@@ -108,7 +120,8 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
         <div
           className={`xmd:hidden min-w-[20.75rem]`}
         >
-          <div className='sticky top-[1.5rem] bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
+          <div data-aos="fade-up"
+            data-aos-duration="700" className='sticky top-[1.5rem] bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
             <span className='font-bold text-1 text-greyscale-80'>
               TYPE OF TOUR
             </span>
@@ -231,18 +244,22 @@ export default function GridCheckBox({dataTours, typeOfTours}) {
         </div>
       )}
 
-      <div className='max-w-[64.128rem] mb-[2rem] xmd:w-full'>
+      <div data-aos="fade-up"
+        data-aos-duration="500" className='max-w-[64.128rem] mb-[2rem] xmd:w-full'>
         {!loading ? (
           <div
+
             id={'grid-tours'}
             className=' grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[1.25rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'
           >
             {(dataToursClient?.length > 0 ? dataToursClient : tours)?.map(
               (e, index) => (
+                // <div >
                 <ItemTour
                   key={index}
                   data={e}
                 />
+                // </div>
               ),
             )}
           </div>

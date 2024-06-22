@@ -1,8 +1,10 @@
+"use client"
 import SlideVideoTours from '@/components/slide-video-tour'
-import React from 'react'
 
 import Image from 'next/image'
-
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 const data = [
   {
     icon: (
@@ -26,12 +28,12 @@ const data = [
     ),
     title: 'SPECIAL',
     children: [
-      {text: 'Expert Local Guides good English'},
-      {text: 'Book now, pay later'},
-      {text: 'Flexible cancellation policy'},
-      {text: 'Tours accommodate a maximum of 10 guests'},
-      {text: 'Creating job opportunities for the'},
-      {text: 'Vietnamese community'},
+      { text: 'Expert Local Guides good English' },
+      { text: 'Book now, pay later' },
+      { text: 'Flexible cancellation policy' },
+      { text: 'Tours accommodate a maximum of 10 guests' },
+      { text: 'Creating job opportunities for the' },
+      { text: 'Vietnamese community' },
     ],
   },
   {
@@ -55,7 +57,7 @@ const data = [
       </svg>
     ),
     title: 'ACCOMODATION',
-    children: [{text: 'Doom Room'}],
+    children: [{ text: 'Doom Room' }],
   },
   {
     icon: (
@@ -78,7 +80,7 @@ const data = [
       </svg>
     ),
     title: 'DESTINATION:',
-    children: [{text: 'Hanoi - Ba Be - Meo Vac - Dong Van - Ha Giang'}],
+    children: [{ text: 'Hanoi - Ba Be - Meo Vac - Dong Van - Ha Giang' }],
   },
   {
     icon: (
@@ -114,16 +116,27 @@ const data = [
       </svg>
     ),
     title: 'ACCOMODATION',
-    children: [{text: 'Sleeper bus'}, {text: 'Xe Wave, Vision'}],
+    children: [{ text: 'Sleeper bus' }, { text: 'Xe Wave, Vision' }],
   },
 ]
-const Banner = ({dataBanner}) => {
+const Banner = ({ dataBanner }) => {
   const listsImage = dataBanner?.lists_image
   const mainImage = dataBanner?.main_image
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
   return (
     <div className='relative'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Explore Ha Giang</h1>
-      <div>
+      <div >
         <SlideVideoTours
           type='banner'
           mainImage={mainImage}
@@ -131,6 +144,8 @@ const Banner = ({dataBanner}) => {
         />
       </div>
       <Image
+        data-aos="fade-up"
+        data-aos-duration="750"
         priority
         alt='ảnh'
         src={'/imgs/all-destinations/map.png'}
@@ -142,6 +157,10 @@ const Banner = ({dataBanner}) => {
       <div className='absolute xl:container border-red-500 left-1/2 z-50 h-full w-full -translate-x-1/2 top-0'>
         <div className='relative'>
           <Image
+
+            data-aos="fade-up"
+            data-aos-duration="750"
+
             priority
             alt='ảnh title web'
             src={'/imgs/all-destinations/main_title.png'}

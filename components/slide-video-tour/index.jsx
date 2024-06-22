@@ -1,5 +1,7 @@
 'use client'
-import React, {useRef, useState, useEffect} from 'react'
+import React, { useRef, useState, useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import {
   FreeMode,
   Navigation,
@@ -9,7 +11,7 @@ import {
   Thumbs,
   EffectFade,
 } from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import 'swiper/css'
@@ -19,19 +21,31 @@ import 'swiper/css/thumbs'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
-import {cn} from '@/lib/utils'
-const SlideVideoTours = ({type, data = [], mainImage}) => {
+import { cn } from '@/lib/utils'
+const SlideVideoTours = ({ type, data = [], mainImage }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [activeIndex, setActiveIndex] = useState(3)
   const isMobile = useStore((state) => state.isMobile)
   const mainSwiper = useRef()
   const subSwiper = useRef(null)
   const checkIsBanner = type === 'banner'
-
+  const [loaded, setLoaded] = useState(false);
   const div1Ref = useRef(null)
   const div2Refs = useRef([])
   const div3Ref = useRef(null)
-  const [distance, setDistance] = useState({top: 0, left: 0})
+  const [distance, setDistance] = useState({ top: 0, left: 0 })
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
 
   const handleSlideChange = (swiper) => {
     const newIndex = swiper?.realIndex
@@ -47,7 +61,7 @@ const SlideVideoTours = ({type, data = [], mainImage}) => {
 
       const distanceTop = rect2.top - rect1.top
       const distanceLeft = rect2.left - rect1.left
-      setDistance({top: distanceTop, left: distanceLeft})
+      setDistance({ top: distanceTop, left: distanceLeft })
       div3.style.top =
         window.innerWidth < 1024
           ? `${distanceTop + 10}px`
@@ -96,7 +110,11 @@ const SlideVideoTours = ({type, data = [], mainImage}) => {
       {checkIsBanner && (
         <>
           <div className='xmd:hidden absolute bottom-0 left-0 w-full h-[30rem] bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
+          {/* <div
+            className={` absolute bottom-0 z-[500] left-0 w-full h-[44.75rem] bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
+          ></div> */}
           <Image
+            onLoadingComplete={() => setLoaded(true)}
             priority
             alt='ảnh banner'
             src={mainImage}
@@ -124,7 +142,7 @@ const SlideVideoTours = ({type, data = [], mainImage}) => {
           freemode={true}
           onSlidesChange={handleSlideChange}
           navigation={false}
-          thumbs={{swiper: thumbsSwiper}}
+          thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs, EffectFade]}
           className='xmd:w-full !pointer-events-none xmd:h-[20.93544rem]'
         >
@@ -155,8 +173,11 @@ const SlideVideoTours = ({type, data = [], mainImage}) => {
         </Swiper>
       )}
       <div
-        onMouseLeave={checkIsBanner ? () => {} : handleMouseLeave}
-        className='md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] top-1/2 -translate-y-1/2'
+        data-aos={checkIsBanner ? 'fade-left' : ''}
+        onMouseLeave={checkIsBanner ? () => { } : handleMouseLeave}
+        className={cn('md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] ',
+          checkIsBanner ? 'top-0' : 'top-1/2 -translate-y-1/2'
+        )}
       >
         <Swiper
           ref={subSwiper}
@@ -205,7 +226,7 @@ const SlideVideoTours = ({type, data = [], mainImage}) => {
               >
                 <div
                   ref={(el) => (div2Refs.current[i] = el)}
-                  onClick={checkIsBanner ? () => {} : () => handleSlide(i)}
+                  onClick={checkIsBanner ? () => { } : () => handleSlide(i)}
                   className={cn(
                     'relative rounded-[0.75rem] overflow-hidden duration-500  border-[2px] ease-linear  w-[10.875rem] h-[6.35rem]',
                     i === activeIndex

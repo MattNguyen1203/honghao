@@ -1,9 +1,9 @@
 'use client'
 
 import gsap from 'gsap'
-import {useGSAP} from '@gsap/react'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {useRef, useState} from 'react'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import ItemCardBestTrip from './ItemCardBestTrip'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
 
-export default function BestTrips({listBestTrip}) {
+export default function BestTrips({ listBestTrip }) {
   const sectionRef = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
@@ -35,12 +35,11 @@ export default function BestTrips({listBestTrip}) {
               Math.max(Math.floor(self.progress / (1 / lengthTour)), 0),
               lengthTour - 1,
             )
-            listTourHome.current.style.transform = `translateY(-${
-              Math.min(
-                Math.max(self.progress / (lengthTour / (lengthTour - 1)), 0),
-                1 - 1 / lengthTour,
-              ) * 100
-            }%)`
+            listTourHome.current.style.transform = `translateY(-${Math.min(
+              Math.max(self.progress / (lengthTour / (lengthTour - 1)), 0),
+              1 - 1 / lengthTour,
+            ) * 100
+              }%)`
             setIndex(index)
           },
         },
@@ -86,7 +85,7 @@ export default function BestTrips({listBestTrip}) {
       </div>
       <Link
         href='/tours'
-        style={{writingMode: 'vertical-rl'}}
+        style={{ writingMode: 'vertical-rl' }}
         className='top-0 xmd:top-[-1rem] translate-y-1/2 absolute space-y-[0.5rem] right-0 lg:-translate-y-1/2 lg:top-1/2 bg-orange-normal lg:w-[3.4rem] lg:h-[9.4rem] w-[2.125rem] h-[7.9rem] rotate-180 flex justify-center items-center text-white rounded-tr-[0.5rem] rounded-br-[0.5rem] text-0.875 font-extrabold'
       >
         All tour

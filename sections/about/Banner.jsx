@@ -1,12 +1,30 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+const Banner = ({ dataBanner, dataBannerMobi }) => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      disable: function () {
+        var maxWidth = 769
+        return window.innerWidth < maxWidth
+      }
+    })
+    AOS.refresh()
+  }, [])
 
-const Banner = ({dataBanner, dataBannerMobi}) => {
+
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>About us HongHao</h1>
+      <div
+        className={` absolute top-0 left-0 z-[500] w-full h-[139.375rem] bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
+      ></div>
       <Image
         priority
         alt='ảnh'
@@ -14,6 +32,7 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
         width={1600}
         height={1935}
         className=' xmd:hidden absolute z-0 h-full w-full'
+        onLoadingComplete={() => setLoaded(true)}
       />
       <div className='absolute bottom-0 z-[5] left-0 w-full h-[139.375rem] xmd:h-[58.625rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
 
@@ -29,6 +48,10 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
       <div className='xl:container z-[6] relative xmd:h-[47.35963rem] md:left-[2rem] h-[100rem] xmd:mt-[4.63rem]'>
         {/* main title */}
         <Image
+          data-aos="fade-up"
+          data-aos-delay="0"
+          // data-aos-easing="linear"
+          data-aos-duration="750"
           priority
           alt='ảnh title web'
           src={dataBanner?.image_title_big}
@@ -38,10 +61,17 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
         />
         {/* <Image priority alt="ảnh title mobi" src={'/imgs/about/main-title-mobi.png'} width={840} height={355} className=" xmd:ml-[1.5rem] md:hidden w-[19.098rem] h-[7.42925rem]" /> */}
         <div className=' xmd:mt-[4.8rem] xmd:mx-[1rem]  md:absolute flex flex-col md:left-[3.5rem] xl:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
-          <div className=' xmd:w-[19.9rem] md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
+          <div
+            data-aos="fade-up"
+            data-aos-delay="0"
+            data-aos-duration="750"
+            className=' xmd:w-[19.9rem] md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
             {dataBanner?.desc_text}
           </div>
-          <div className=' xmd:hidden flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="750"
+            className=' xmd:hidden flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
             <Button
               className='xmd:!flex-1 xmd:!w-max xmd:shrink-0'
               icon
@@ -102,7 +132,8 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
                 />
               </svg>
             </div>
-            <div className='xmd:top-[7.5rem] xmd:left-[9rem]  md:left-[63rem] absolute flex flex-col items-end xmd:space-y-[0.75rem]'>
+            <div data-aos="fade-up"
+              data-aos-duration="500" className='xmd:top-[7.5rem] xmd:left-[9rem]  md:left-[63rem] absolute flex flex-col items-end xmd:space-y-[0.75rem]'>
               <h2 className=' text-linear bg-[linear-gradient(180deg,#FFF_30.31%,rgba(255,255,255,0.00)_87.67%)] bg-clip-text font-tripsans text-[7.25rem] xmd:text-[3.5rem]  not-italic font-bold leading-[100%] uppercase relative'>
                 10.000
               </h2>
@@ -142,7 +173,8 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
                 />
               </svg>
             </div>
-            <div className='xmd:top-[4.5rem] left-[3.5rem] top-[4.3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] '>
+            <div data-aos="fade-up"
+              data-aos-duration="750" className='xmd:top-[4.5rem] left-[3.5rem] top-[4.3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] '>
               <div className=' text-linear bg-[linear-gradient(180deg,#FFF_30.31%,rgba(255,255,255,0.00)_87.67%)] bg-clip-text w-max text-[7.25rem] xmd:text-[3.5rem]  not-italic font-bold leading-[100%] uppercase relative'>
                 13 year
               </div>
@@ -155,7 +187,8 @@ const Banner = ({dataBanner, dataBannerMobi}) => {
             </div>
           </div>
         </div>
-        <div className='absolute xmd:hidden xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[16.19rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-[0.00219rem]  tracking-[0.005rem]'>
+        <div data-aos="fade-up"
+          data-aos-duration="500" className='absolute xmd:hidden xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[16.19rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-[0.00219rem]  tracking-[0.005rem]'>
           {dataBanner?.desc_text}
         </div>
       </div>

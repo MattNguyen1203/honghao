@@ -34,7 +34,7 @@ export default async function Faq() {
       <section>
         <Banner
           mainImg={data?.banner?.background_image?.url}
-          mainImgMobile={data?.banner?.background_image_mobile?.url}
+          // mainImgMobile={data?.banner?.background_image_mobile?.url}
           mainTextMb={data?.banner?.image_title_big_mobile?.url}
           mainText={data?.banner?.image_title_big?.url}
         />
