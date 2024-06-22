@@ -61,8 +61,8 @@ const formSchema = z.object({
     required_error: 'A date of birth is required.',
     message: 'Please fill out this field',
   }),
-  address: z.string().min(1, 'Please fill out this field'),
-  destination: z.string().min(1, 'Please fill out this field'),
+  // address: z.string().min(1, 'Please fill out this field'),
+  // destination: z.string().min(1, 'Please fill out this field'),
   enddate: z.date({
     required_error: 'A date of birth is required.',
     message: 'Please fill out this field',
@@ -334,16 +334,16 @@ export default function HomeForm({
     <>
       <section
         className={`${isTourDetail
-            ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full'
-            : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem]'
+          ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full'
+          : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem]'
           } flex xmd:flex-col w-fit xmd:rounded-none rounded-[1.5rem] relative`}
       >
         <Form {...form}>
           <form
             // onSubmit={}
             className={`${isTourDetail
-                ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
-                : 'w-[34.75rem] xmd:!p-0'
+              ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
+              : 'w-[34.75rem] xmd:!p-0'
               } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
           >
             {isTourDetail && (
@@ -946,8 +946,8 @@ export default function HomeForm({
             </div>
             <div
               className={`${isTourDetail
-                  ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
-                  : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
+                ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
+                : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
                 } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
