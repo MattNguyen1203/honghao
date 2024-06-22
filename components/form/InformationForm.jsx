@@ -31,7 +31,7 @@ export default function InformationForm({
 
 
 
-  const hiddenServiceChange = true
+  const hiddenServiceChange = false
   const totalsvchange = (totalPrice / 100) * serviceCharge
   return (
     <div

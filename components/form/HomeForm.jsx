@@ -336,7 +336,7 @@ export default function HomeForm({
         className={`${isTourDetail
           ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
           : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
-          } flex xmd:flex-col w-fit xmd:rounded-none rounded-[1.5rem] relative`}
+          } flex xmd:flex-col w-fit xmd:rounded-none !rounded-[1.5rem] relative`}
       >
         <Form {...form}>
           <form
@@ -358,7 +358,7 @@ export default function HomeForm({
             )}
             <div
               className={`${isTourDetail && 'order-3 xmd:order-1'
-                } space-y-[0.75rem]`}
+                } space-y-[0.75rem] rounded-lg`}
             >
               <FormField
                 control={form.control}
