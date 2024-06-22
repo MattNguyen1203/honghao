@@ -147,7 +147,7 @@ export default function ContactForm({ data }) {
           <input
             type='email'
             name='email'
-            placeholder='Your email *'
+            placeholder='Your email'
             className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             // required
             value={email}
@@ -224,19 +224,18 @@ export default function ContactForm({ data }) {
           <input
             type='text'
             name='contactSubject'
-            placeholder='Contact subject *'
+            placeholder='Contact subject'
             className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
-            required
             value={contactSubject}
             onChange={(e) => setContactSubject(e.target.value)}
-            onBlur={() => {
-              setErrorMessage({
-                ...errorMessage,
-                contactSubject: regContactSubject.test(contactSubject)
-                  ? ''
-                  : 'Invalid contact object',
-              })
-            }}
+          // onBlur={() => {
+          //   setErrorMessage({
+          //     ...errorMessage,
+          //     contactSubject: regContactSubject.test(contactSubject)
+          //       ? ''
+          //       : 'Invalid contact object',
+          //   })
+          // }}
           />
           <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage?.contactSubject}

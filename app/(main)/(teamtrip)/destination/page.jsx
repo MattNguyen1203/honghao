@@ -25,7 +25,7 @@ const page = async () => {
     `wp-json/acf/v3/pages/${PAGE_DESTINATION_ID}`,
   )
   const getDataListCat = await getData(
-    `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=1&posts_per_page=6`,
+    `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=1&posts_per_page=10`,
   )
 
   const [dataAcf, dataListCat] = await Promise.all([

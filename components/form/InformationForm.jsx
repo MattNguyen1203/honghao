@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import {formatCurrencyVND} from '@/lib/utils'
+import { formatCurrencyVND } from '@/lib/utils'
 
 export default function InformationForm({
   dataForm = {},
@@ -31,18 +31,16 @@ export default function InformationForm({
 
   return (
     <div
-      className={`${
-        isTourDetail
-          ? '!w-[34.0625rem] xmd:!w-full pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:!p-0 xmd:mt-[5rem]'
-          : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem] xmd:!px-0'
-      } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
+      className={`${isTourDetail
+        ? '!w-[34.0625rem] xmd:!w-full pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:!p-0 xmd:mt-[5rem]'
+        : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem] xmd:!px-0'
+        } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
     >
       <span
-        className={`${
-          isTourDetail
-            ? 'opacity-70 text-1 xmd:text-0875 text-white xmd:text-greyscale-80 xmd:font-extrabold'
-            : 'opacity-40 text-0875 text-greyscale-80'
-        } font-bold`}
+        className={`${isTourDetail
+          ? 'opacity-70 xmd:opacity-100 text-1 xmd:text-0875 text-white xmd:text-black xmd:font-extrabold'
+          : 'opacity-40 xmd:opacity-100 text-0875 text-greyscale-80 xmd:text-black'
+          } font-bold`}
       >
         Confirmed tour booking
       </span>
@@ -202,7 +200,7 @@ export default function InformationForm({
             ${(totalPrice / 100) * serviceCharge + totalPrice} ~{' '}
             {formatCurrencyVND(
               ((totalPrice / 100) * serviceCharge + totalPrice) *
-                Number(exchangeRate),
+              Number(exchangeRate),
             )}
           </span>
         </div>

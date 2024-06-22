@@ -212,7 +212,7 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
           className={cn(
             'slide-video-tour mySwiper',
             checkIsBanner
-              ? 'md:h-[43.75rem] pointer-events-none !pt-[3.3rem] md:!pt-[2.3rem]'
+              ? 'md:h-[43.75rem] pointer-events-none !pt-[0.2rem] md:!pt-[2.3rem]'
               : 'h-[41.75rem] ',
           )}
           id='swiper_discover'
