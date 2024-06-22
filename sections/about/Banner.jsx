@@ -23,7 +23,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
     <section className='relative xl:h-[100rem] overflow-hidden'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>About us HongHao</h1>
       <div
-        className={` absolute top-0 left-0 z-[500] w-full h-[139.375rem] bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
+        className={` absolute top-0 left-0 z-[50] w-full h-[139.375rem] bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
       ></div>
       <Image
         priority
