@@ -62,10 +62,10 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
     <section className='kKao4-container'>
       <h3
         data-aos="fade-up"
-        data-aos-duration="650"
+        data-aos-duration="900"
         className='h3 mb-6 md:mb-[2.8rem]'>Frequently asked Questions</h3>
       <div data-aos="fade-up"
-        data-aos-duration="650"
+        data-aos-duration="900"
         className='flex flex-col md:flex-row md:space-x-[11.88rem]'>
         <AccordionCustom data={dataQt} />
         <div className='md:w-[35.3125rem] flex-none xmd:mt-8'>
@@ -79,7 +79,7 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
                 type='text'
                 name='name'
                 placeholder='Full name *'
-                className='py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
+                className='py-[0.62rem] w-full rounded-none font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -99,7 +99,7 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
                 type='tel'
                 name='tel'
                 placeholder='Phone *'
-                className='py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
+                className='py-[0.62rem] rounded-none w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -119,7 +119,7 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
                 type='email'
                 name='email'
                 placeholder='Your email'
-                className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
+                className='col-span-2 py-[0.62rem] rounded-none w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10 h-[2.31rem]'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               // onBlur={() => {
@@ -136,7 +136,7 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
             <textarea
               rows={5}
               placeholder='Message'
-              className='col-span-2 py-[0.62rem] w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10'
+              className='col-span-2 py-[0.62rem] rounded-none w-full font-sans text-0.875 placeholder:text-greyscale-40 leading-1.2 tracking-[0.00875rem] placeholder:font-sans placeholder:opacity-80 border-b border-greyscale-10'
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />

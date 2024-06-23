@@ -4,9 +4,6 @@ import Image from 'next/image'
 import { useState } from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import { useToast } from '@/components/ui/use-toast'
-import { useEffect } from 'react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 export default function ContactForm({ data }) {
   const { toast } = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
@@ -24,17 +21,6 @@ export default function ContactForm({ data }) {
     email: '',
     contactSubject: '',
   })
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)

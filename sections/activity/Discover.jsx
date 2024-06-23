@@ -227,7 +227,7 @@ const VideoPopoup = ({ children, video }) => {
 const ImageBig = ({ children }) => {
   return (
     <div
-      data-aos-duration="500" className='relative w-[35.6875rem] h-[23.8125rem] group  overflow-hidden rounded-xl cursor-pointer'>
+      data-aos-duration="900" className='relative w-[35.6875rem] h-[23.8125rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
   )
@@ -236,7 +236,7 @@ const ImageNormal = ({ children }) => {
   return (
     <div
 
-      data-aos-duration="500"
+      data-aos-duration="900"
       className='relative xmd:w-[19.25rem] xmd:h-[14.4375rem] w-[26.375rem] h-[17.625rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
@@ -246,7 +246,7 @@ const ImageSmall = ({ children }) => {
   return (
     <div
 
-      data-aos-duration="500"
+      data-aos-duration="900"
       className='relative w-[18.375rem] h-[12.25rem] group  overflow-hidden rounded-xl cursor-pointer'>
       {children}
     </div>
@@ -540,7 +540,7 @@ const Discover = ({ dataDiscover }) => {
                 <div
                   data-aos="fade-up"
                   data-aos-delay="0"
-                  data-aos-duration="500"
+                  data-aos-duration="900"
                   onClick={() => scrollToElement(d?.param)}
                   key={i}
                   className='z-10 flex group cursor-pointer flex-col justify-end items-start gap-4'
@@ -598,7 +598,7 @@ const Discover = ({ dataDiscover }) => {
             <div
               data-aos="fade-up"
               data-aos-delay="0"
-              data-aos-duration="500"
+              data-aos-duration="900"
               className="mx-auto xmd:hidden md:mt-[2rem] w-[81.5rem] grid grid-cols-2 space-x-[3.81rem]">
               <div
 

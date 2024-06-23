@@ -5,18 +5,21 @@ import Banner from './Banner'
 import BannerMobile from '../common/banner'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+import Aos from '@/components/Aos'
 const Destinations = ({ dataAcf, dataListCat }) => {
   const dataBanner = dataAcf?.acf?.banner
+  const text = dataBanner?.image_title_big?.url
+  const textMobile = dataBanner?.image_title_big_mobile?.url
   return (
-    <main className=''>
+    <Aos>
       <section className='xmd:hidden'>
         <Banner dataBanner={dataBanner} />
       </section>
       <section className='md:hidden'>
         <BannerMobile
-          mainImg={dataBanner?.main_image || '/imgs/common/banner.jpg'}
-          mainText='/imgs/common/text.png'
-          mainTextMb='/imgs/common/textMb.png'
+          mainImg={dataBanner?.main_image?.url || '/imgs/common/banner.jpg'}
+          mainText={text}
+          mainTextMb={textMobile}
         />
       </section>
       {/* <section className='xmd:hidden'><Breadcrumb divider /></section> */}
@@ -31,7 +34,7 @@ const Destinations = ({ dataAcf, dataListCat }) => {
           dataAcf={dataAcf?.acf}
         />
       </section>
-    </main>
+    </Aos>
   )
 }
 

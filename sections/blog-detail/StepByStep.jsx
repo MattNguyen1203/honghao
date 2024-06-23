@@ -1,14 +1,14 @@
 'use client'
 
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {Mousewheel} from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 // import {dataSLides} from './data'
 
-export default function StepByStep({dataAcf, dataTourDetail}) {
+export default function StepByStep({ dataAcf, dataTourDetail }) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
@@ -57,7 +57,8 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
   return (
     <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit xmd:hidden'>
       {/* map */}
-      <div className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
+      <div data-aos="fade-up"
+        data-aos-duration="900" className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
           src={dataSLides?.[indexSlider]?.imgStep?.url || ''}
@@ -67,7 +68,8 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
         />
       </div>
       {/* map */}
-      <div className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
+      <div data-aos="fade-up"
+        data-aos-duration="900" className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
         <div className='!overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
           <div className='flex items-center'>
             <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
@@ -142,16 +144,14 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
                             <div className='flex justify-center'>
                               <div className='h-[9.125rem] w-[2px] bg-[#C5C5C5]/50 relative'>
                                 <div
-                                  className={`${
-                                    indexSlider >= index + 1
-                                      ? 'bg-[#23704D] delay-500'
-                                      : 'bg-[#C5C5C5]/80'
-                                  }  size-[0.375rem] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transition-all duration-200`}
+                                  className={`${indexSlider >= index + 1
+                                    ? 'bg-[#23704D] delay-500'
+                                    : 'bg-[#C5C5C5]/80'
+                                    }  size-[0.375rem] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transition-all duration-200`}
                                 ></div>
                                 <div
-                                  className={`${
-                                    indexSlider >= index + 1 ? 'h-full' : 'h-0'
-                                  } absolute top-0 z-[5] left-0 w-full bg-[#23704D] transition-all duration-500`}
+                                  className={`${indexSlider >= index + 1 ? 'h-full' : 'h-0'
+                                    } absolute top-0 z-[5] left-0 w-full bg-[#23704D] transition-all duration-500`}
                                 ></div>
                                 <div
                                   onClick={() => handleClickDistrict(index)}
@@ -175,9 +175,8 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
                         </div>
                         <div
                           style={{
-                            transform: `translate(-150%,-${
-                              (dataSLides?.length - 1 - indexSlider) * 9.125
-                            }rem)`,
+                            transform: `translate(-150%,-${(dataSLides?.length - 1 - indexSlider) * 9.125
+                              }rem)`,
                           }}
                           className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
                         >
@@ -229,7 +228,7 @@ export default function StepByStep({dataAcf, dataTourDetail}) {
     </section>
   )
 }
-const IconOclock = ({className = ''}) => {
+const IconOclock = ({ className = '' }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -251,7 +250,7 @@ const IconOclock = ({className = ''}) => {
   )
 }
 
-const ItemCardInfo = ({item}) => {
+const ItemCardInfo = ({ item }) => {
   return (
     <article className='min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative'>
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
@@ -259,7 +258,7 @@ const ItemCardInfo = ({item}) => {
       </h3>
       <div
         className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
-        dangerouslySetInnerHTML={{__html: item?.descriptions_text}}
+        dangerouslySetInnerHTML={{ __html: item?.descriptions_text }}
       />
       <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>
         ( {item?.distance} )
@@ -267,7 +266,7 @@ const ItemCardInfo = ({item}) => {
     </article>
   )
 }
-const IconMarker = ({className = '', isActive = false}) => {
+const IconMarker = ({ className = '', isActive = false }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

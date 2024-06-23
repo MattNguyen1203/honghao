@@ -130,6 +130,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip }) => {
       <Link
         href='/'
         className='flex'
+        onClick={() => setOpenNav(false)}
       >
         <Image
           src='/imgs/common/logo.png'
@@ -264,6 +265,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip }) => {
             >
               {dataBestTrip?.map((item, index) => (
                 <SwiperSlide
+                  onClick={() => setOpenNav(false)}
                   className='select-none max-w-full'
                   key={index}
                 >

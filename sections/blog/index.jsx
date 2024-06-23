@@ -5,6 +5,7 @@ import StartPlanning from './StartPlanning'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import './blog.css'
+import Aos from '@/components/Aos'
 const Blog = ({
   data,
   dataCategorisAndFirstpost,
@@ -15,7 +16,7 @@ const Blog = ({
   const dataBanner = data?.acf?.banner
   const dataBannerMobi = data?.acf?.['banner-mobi']
   return (
-    <main className='blog'>
+    <Aos>
       <section>
         <Banner
           dataBanner={dataBanner}
@@ -39,7 +40,7 @@ const Blog = ({
           dataStartPlanning={dataStartPlanning}
         />
       </section>
-    </main>
+    </Aos>
   )
 }
 

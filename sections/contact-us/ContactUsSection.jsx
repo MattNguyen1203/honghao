@@ -1,28 +1,13 @@
 "use client"
 import Image from 'next/image'
-import { useEffect } from 'react'
 import SectionHeading from '../common/heading/SectionHeading'
 import Link from 'next/link'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 export default function ContactUsSection({ data }) {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
-
   return (
     <section className='kKao4-container relative pt-8 md:pt-[2.94rem]'>
       <div className='flex flex-col items-start md:flex-row'>
         <div data-aos="fade-up"
-          data-aos-duration="550" className='flex-none md:pr-24 md:basis-1/2'>
+          data-aos-duration="900" className='flex-none md:pr-24 md:basis-1/2'>
           <div className='mb-[1.12rem] md:mb-14'>
             <SectionHeading
               h5={data.heading}
@@ -84,7 +69,7 @@ export default function ContactUsSection({ data }) {
           </div>
         </div>
         <div data-aos="fade-up"
-          data-aos-duration="550" className='relative xmd:h-[35.25rem] flex-none xmd:-mx-4 md:basis-1/2 xmd:mt-12'>
+          data-aos-duration="900" className='relative xmd:h-[35.25rem] flex-none xmd:-mx-4 md:basis-1/2 xmd:mt-12'>
           <div
             className='map-container'
             dangerouslySetInnerHTML={{ __html: data.google_map }}

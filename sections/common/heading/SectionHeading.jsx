@@ -11,7 +11,7 @@ export default function SectionHeading({ h5, h2, darkTheme }) {
         {h5}
       </h5>
       <h2
-        className={cn('h2 xmd:text-[2rem]', {
+        className={cn('h2 xmd:text-[2.5rem]', {
           'text-greyscale-0': darkTheme,
         })}
       >

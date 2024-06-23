@@ -145,24 +145,17 @@ const SheetCp = ({ children, data }) => {
 const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
 
+  const { openbookNow, setOpenBooknow } = useStore(state => state)
+  const [loaded, setLoaded] = useState(false);
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Activity Ha Giang</h1>
+      <div className={cn('object-cover transition-all z-[5] duration-1000 xmd:duration-500 absolute bottom-[0rem] left-0 w-full h-[119.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_80%)]',
+        loaded ? ' opacity-100' : ' opacity-0'
+      )}></div>
       <div
-        className={` absolute top-0 left-0 z-[50] w-full h-full bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
+        className={` absolute top-0 left-0 z-[50] w-full h-full  bg-conicBanner opacity-100 transition-all duration-1000 xmd:duration-500 ${loaded ? '!opacity-0 pointer-events-none' : 'opacity-100'}`}
       ></div>
       <Image
         priority
@@ -170,21 +163,22 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         src={dataBaner?.image?.url}
         width={1600}
         height={1935}
-        className='z-[3] xmd:hidden absolute h-full w-full'
+        className={cn('z-[3] xmd:hidden absolute h-full w-full transition-all duration-1000 xmd:duration-500',
+          loaded ? '' : 'blur-lg'
+        )}
         onLoadingComplete={() => setLoaded(true)}
       />
-      <div className='object-cover absolute bottom-[0rem] z-[3] left-0 w-full h-[119.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_80%)]'></div>
+
       <Image
-        data-aos="fade-up"
-        data-aos-delay="0"
-        // data-aos-easing="linear"
-        data-aos-duration="250"
         priority
         alt='ảnh'
         src={dataBanerMobi?.image?.url}
         width={1600}
         height={1935}
-        className='object-cover md:hidden absolute top-0 left-0 h-full w-full'
+        className={cn('object-cover md:hidden absolute top-0 left-0 h-full w-full transition-all duration-1000 xmd:duration-500',
+          loaded ? '' : 'blur-sm'
+        )}
+        onLoadingComplete={() => setLoaded(true)}
       />
       <Image
         priority
@@ -205,6 +199,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
       <div className='container relative z-[7] xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
         <Image
           data-aos="fade-up"
+          data-aos-duration="900"
           priority
           alt='ảnh title web'
           src={dataBaner?.image_title_big?.url}
@@ -218,7 +213,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           src={dataBanerMobi?.image_title_big?.url}
           width={840}
           height={355}
-          className='md:hidden xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
+          className='md:hidden brightness-110 xmd:w-[20.9605rem] xmd:h-[8.65rem] md:absolute tablet:left-[5rem]  lg:left-[0rem] top-[9rem] w-[52.3605rem] h-[22.1875rem]'
         />
         <div className='md:hidden xmd:-translate-y-[0.4rem]'>
           <Breadcrumb className='!pl-0'>
@@ -233,18 +228,18 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         <div className=' md:absolute flex-col tablet:left-[5rem] lg:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
           <div
             data-aos="fade-up"
-            data-aos-delay="0"
-            data-aos-duration="600"
+            data-aos-duration="1000"
             className='md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
             {dataBaner?.desc_text}
           </div>
           <div data-aos="fade-up"
             data-aos-delay="0"
-            data-aos-duration="500"
+            data-aos-duration="1100"
             className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
-            <Link
+            <div
               className='xmd:!w-max xmd:!flex-1'
               href='/tours/book-now'
+              onClick={() => setOpenBooknow(true)}
             >
               <Button
                 className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'
@@ -252,7 +247,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               >
                 BOOK NOW
               </Button>
-            </Link>
+            </div>
             <Link
               className='xmd:!w-max xmd:!flex-1'
               href={'/tours'}
@@ -269,6 +264,8 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         </div>
 
         <Image
+          data-aos="fade-up"
+          data-aos-duration="1200"
           priority
           alt='map'
           src={'/imgs/activity/map.png'}
@@ -288,7 +285,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
 
         {/* motobike */}
 
-        <div className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] lg:left-[-1rem] tablet:left-[3.35rem] left-[2.8rem] '>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="900"
+          className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] lg:left-[-1rem] tablet:left-[3.35rem] left-[2.8rem] '>
           <div className=' relative'>
             <div className=' absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center space-y-[0] w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -341,7 +341,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             <div data-aos="fade-up"
               data-aos-delay="0"
               // data-aos-easing="linear"
-              data-aos-duration="500" className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
+              data-aos-duration="900" className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
               <div className='relative'>
                 <div className=' text-linear1 text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataMoto?.label}
@@ -380,7 +380,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           </div>
         </div>
         {/* hiking */}
-        <div className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.7rem] top-[63.5rem]'>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="900"
+          className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.7rem] top-[63.5rem]'>
           <div className='relative '>
             <div className=' absolute top-[5rem] left-[14.2rem] md:left-[28rem] lg:left-[30.5rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -432,8 +435,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             </div>
             <div
               data-aos="fade-up"
-              data-aos-delay="0"
-              data-aos-duration="500"
+              data-aos-duration="900"
               className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[1rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[2.82rem]'>
               <div>
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
@@ -474,8 +476,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         </div>
         <div
           data-aos="fade-up"
-          data-aos-delay="0"
-          data-aos-duration="500"
+          data-aos-duration="900"
           className='xmd:pr-[0.75rem] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>

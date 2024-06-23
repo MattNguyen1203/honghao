@@ -2,16 +2,15 @@
 import './slideInfinity.css'
 import Image from 'next/image'
 
-export default function SlideInfinity({type = ''}) {
+export default function SlideInfinity({ type = '' }) {
   return (
     <div
       id='slide_infinity'
       className='relative overflow-hidden w-full h-[14.18094rem] md:h-[20.18094rem]'
     >
       <div
-        className={`${
-          type ? '-left-[11.9rem]' : 'left-0'
-        } absolute top-0 flex items-center w-full h-[14.18094rem] md:h-[20.18094rem]`}
+        className={`${type ? '-left-[11.9rem]' : 'left-0'
+          } absolute top-0 flex items-center w-full h-[14.18094rem] md:h-[20.18094rem]`}
       >
         <div
           id='wrapper_infinity'
@@ -30,7 +29,7 @@ export default function SlideInfinity({type = ''}) {
     </div>
   )
 }
-const ItemGallery = ({index}) => {
+const ItemGallery = ({ index }) => {
   return (
     <div className='item_slide w-[23.83063rem] flex-shrink-0 h-[14.18094rem] relative group md:w-[31.83063rem] md:h-[20.18094rem]'>
       <Image

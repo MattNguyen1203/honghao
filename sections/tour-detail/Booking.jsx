@@ -1,9 +1,9 @@
-'use client'
+
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
 
-export default function Booking({data, dataTourDetail, dataPage}) {
+export default function Booking({ data, dataTourDetail, dataPage }) {
   const dataFormInit = {
     titleTour: dataTourDetail?.title,
     typeoftour: dataTourDetail?.type_of_tour_data?.[0]?.name,
@@ -22,7 +22,8 @@ export default function Booking({data, dataTourDetail, dataPage}) {
       </div>
       <div className='xmd:hidden absolute bottom-0 left-0 w-full h-[70%] bg-[#13341C]'></div>
       <div className='flex container flex-col justify-end md:pb-[7rem] tablet:pb-[2rem] xmd:mt-[0.88rem]'>
-        <div className='xmd:hidden flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.25rem] xmd:mb-[2rem]'>
+        <div data-aos="fade-up"
+          data-aos-duration="900" className='xmd:hidden flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.25rem] xmd:mb-[2rem]'>
           <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
             EASY WITH HONG HA TRAVEL
           </span>
@@ -30,11 +31,14 @@ export default function Booking({data, dataTourDetail, dataPage}) {
             ONLINE BOOKING
           </h2>
         </div>
-        <HomeForm
-          isTourDetail
-          dataFormInit={dataFormInit}
-          listLocation={dataPage}
-        />
+        <div data-aos="fade-up"
+          data-aos-duration="900">
+          <HomeForm
+            isTourDetail
+            dataFormInit={dataFormInit}
+            listLocation={dataPage}
+          />
+        </div>
       </div>
     </div>
   )

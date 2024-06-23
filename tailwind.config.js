@@ -17,11 +17,11 @@ module.exports = {
         xl: '1600px',
         lg: '1024px',
         md: '768px',
-        x2xl: {max: '1799px'},
-        xxl: {max: '1599px'},
-        xlg: {max: '1023px'},
-        xmd: {max: '767px'},
-        tablet: {min: '768px', max: '1023px'},
+        x2xl: { max: '1799px' },
+        xxl: { max: '1599px' },
+        xlg: { max: '1023px' },
+        xmd: { max: '767px' },
+        tablet: { min: '768px', max: '1023px' },
       },
       fontFamily: {
         londrina: ['var(--font-londrina-solid)'],
@@ -94,16 +94,16 @@ module.exports = {
       },
       keyframes: {
         'accordion-down': {
-          from: {height: '0'},
-          to: {height: 'var(--radix-accordion-content-height)'},
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {height: 'var(--radix-accordion-content-height)'},
-          to: {height: '0'},
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
         spin: {
-          from: {transform: 'rotate(0deg)'},
-          to: {transform: 'rotate(360deg)'},
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
         },
       },
       animation: {
@@ -116,6 +116,9 @@ module.exports = {
         spin2: 'spin 1s linear infinite',
       },
       backgroundImage: {
+        'conicBanner': 'conic-gradient(rgb(6,78,59),rgb(6,95,70),rgb(6,78,59))',
+        'conicBannerMb': 'conic-gradient(at_center_bottom,rgb(6,78,59),rgb(6,95,70),rgb(6,78,59))',
+
         'custom-gradient':
           'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.3) 50%, rgba(255, 253, 253, 0) 100%)',
         'contact-us-gradient':

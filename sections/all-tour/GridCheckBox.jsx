@@ -1,5 +1,4 @@
 'use client'
-
 import useStore from '@/app/(store)/store'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
@@ -9,8 +8,6 @@ import CheckBox from './CheckBox'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 export default function GridCheckBox({ dataTours, typeOfTours }) {
   const isMobile = useStore((state) => state.isMobile)
   const tours = dataTours?.tours
@@ -29,18 +26,6 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
   const [loading, setLoading] = useState(false)
   const [loadingButton, setLoadingButton] = useState(false)
   const [selectedTypes, setSelectedTypes] = useState('')
-  // Extract device parameter from URL and set selectedTypes
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
   useEffect(() => {
     if (deviceCurrent) {
       setSelectedTypes(deviceCurrent.replace(/--/g, ','))
@@ -121,7 +106,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
           className={`xmd:hidden min-w-[20.75rem]`}
         >
           <div data-aos="fade-up"
-            data-aos-duration="700" className='sticky top-[1.5rem] bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
+            data-aos-duration="900" className='sticky top-[1.5rem] bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
             <span className='font-bold text-1 text-greyscale-80'>
               TYPE OF TOUR
             </span>
@@ -245,7 +230,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
       )}
 
       <div data-aos="fade-up"
-        data-aos-duration="500" className='max-w-[64.128rem] mb-[2rem] xmd:w-full'>
+        data-aos-duration="900" className='max-w-[64.128rem] mb-[2rem] xmd:w-full'>
         {!loading ? (
           <div
 

@@ -1,15 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import Image from 'next/image'
-import CardBlog from './CardBlog'
 import ListStories from './ListStories'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import useStore from '@/app/(store)/store'
 import { usePathname, useRouter } from 'next/navigation'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 const Button = ({ children }) => {
   return (
     <div className='  flex justify-center items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem] bg-[#fcf8f7]'>
@@ -64,17 +59,7 @@ const StoriesBlog = ({
   const [currentCategories, setCurrentCategories] = useState(null)
   const router = useRouter()
   const [currentTab, setCurrentTab] = useState('')
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
+
   const scrollToSavedPosition = () => {
     const scrollContainer = document.querySelector('.saveposition');
     const savedPosition = localStorage.getItem('scrollPosition');
@@ -141,7 +126,7 @@ const StoriesBlog = ({
           </div>
 
           <div data-aos="fade-up"
-            data-aos-duration="550" className=' flex xmd:hidden flex-col w-[89.9375rem] items-center '>
+            data-aos-duration="900" className=' flex xmd:hidden flex-col w-[89.9375rem] items-center '>
             <Button>OUR BLOG</Button>
             <TitleBeauty>
               <h2 className='text-greyscale-70 font-londrina xmd:text-[2rem] xmd:font-black xmd:leading-[1.2] xmd:tracking-[0.005rem] opacity-80'>
@@ -151,7 +136,7 @@ const StoriesBlog = ({
           </div>
           <div className=" xmd:space-y-[1.25rem] space-y-[4rem] w-full flex justify-end flex-col items-center">
             <div data-aos="fade-up"
-              data-aos-duration="550" className='xmd:w-screen mx-auto  relative saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
+              data-aos-duration="900" className='xmd:w-screen mx-auto  relative saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='xmd:hidden w-screen absolute  left-1/2  -translate-x-1/2 top-[-1rem] h-[0.0625rem] bg-[#E5E5E5]'></div>
               <div className=' mx-auto w-max flex justify-center items-start space-x-[0.94rem]'>
                 <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition1(`category-all`)}>
@@ -187,7 +172,7 @@ const StoriesBlog = ({
               </div>
             </div>
             <div data-aos="fade-up"
-              data-aos-duration="750">
+              data-aos-duration="900">
               <ListStories
                 currentCategories={currentCategories}
                 dataMainCard={

@@ -9,8 +9,6 @@ import { useSearchParams } from 'next/navigation'
 import getData from '@/lib/getData'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useGSAP } from '@gsap/react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 gsap.registerPlugin(ScrollTrigger)
 const data = Array(5).fill(0)
 const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
@@ -27,99 +25,88 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const pin2Ref = useRef()
   const pinRefMobi = useRef()
   const scrollRef = useRef()
+
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
-
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     if (listDestination?.posts?.length < 3) return
-  //     if (window.innerWidth > 768) {
-  //       ScrollTrigger.create({
-  //         trigger: scrollRef.current,
-  //         pin: pinRef.current,
-  //         start: 'top 10%',
-  //         end: () => `+=${scrollRef.current.offsetHeight} 100%`,
-  //         scrub: true,
-  //         markers: true,
-  //         pinSpacing: false,
-  //       })
-  //       ScrollTrigger.create({
-  //         trigger: scrollRef.current,
-  //         pin: pin2Ref.current,
-  //         start: 'top 10%',
-  //         end: () => `+=${scrollRef.current.offsetHeight} 100%`,
-  //         scrub: 1,
-  //         pinSpacing: false,
-  //       })
-  //     } else {
-  //       ScrollTrigger.create({
-  //         trigger: pinRefMobi.current,
-  //         pin: pinRefMobi.current,
-  //         start: '-210% 0%',
-  //         end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
-  //         toggleActions: 'restart reverse reverse reverse',
-  //         scrub: 1,
-  //         markers: true,
-  //         pinSpacing: false,
-  //         onUpdate: (self) => {
-  //           if (self.isActive) {
-  //             pinRefMobi.current.style.position = 'fixed'
-  //             pinRefMobi.current.style.top = 'auto'
-  //             pinRefMobi.current.style.bottom = '0'
-  //             pinRefMobi.current.style.left = '0'
-  //             pinRefMobi.current.style.right = '0'
-  //             pinRefMobi.current.style.zIndex = '1000'
-  //           } else {
-  //             pinRefMobi.current.style.position = ''
-  //             pinRefMobi.current.style.top = ''
-  //             pinRefMobi.current.style.bottom = ''
-  //             pinRefMobi.current.style.left = ''
-  //             pinRefMobi.current.style.right = ''
-  //             pinRefMobi.current.style.zIndex = ''
-  //           }
-  //         },
-  //       })
-  //     }
-  //   }, scrollRef)
-
-  //   return () => ctx.revert()
-  // }, [listDestination])
-
-  useGSAP(() => {
-    if (window?.innerWidth > 1024) {
-      gsap.to(pinRef.current, {
-        scrollTrigger: {
-          trigger: pinRef.current,
-          pin: true,
-          start: 'top top',
-          endTrigger: scrollRef.current,
-          end: 'bottom bottom',
+    const ctx = gsap.context(() => {
+      if (listDestination?.posts?.length < 3) return
+      if (window.innerWidth > 768) {
+        ScrollTrigger.create({
+          trigger: scrollRef.current,
+          pin: pinRef.current,
+          start: 'top 10%',
+          end: () => `+=${scrollRef.current.offsetHeight} 100%`,
+          scrub: true,
+          // markers: true,
           pinSpacing: false,
-          anticipatePin: 1
-        },
-      })
-      // gsap.to(pin2Ref.current, {
-      //   scrollTrigger: {
-      //     trigger: pin2Ref.current,
-      //     pin: true,
-      //     start: 'top top',
-      //     endTrigger: scrollRef?.current,
-      //     end: 'bottom bottom',
-      //     pinSpacing: false,
-      //     anticipatePin: 1
-      //   },
-      // })
-    }
-  }, [])
+        })
+        ScrollTrigger.create({
+          trigger: scrollRef.current,
+          pin: pin2Ref.current,
+          start: 'top 10%',
+          end: () => `+=${scrollRef.current.offsetHeight} 100%`,
+          scrub: 1,
+          pinSpacing: false,
+        })
+      } else {
+        ScrollTrigger.create({
+          trigger: pinRefMobi.current,
+          pin: pinRefMobi.current,
+          start: '-210% 0%',
+          end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
+          toggleActions: 'restart reverse reverse reverse',
+          scrub: 1,
+          // markers: true,
+          pinSpacing: false,
+          onUpdate: (self) => {
+            if (self.isActive) {
+              pinRefMobi.current.style.position = 'fixed'
+              pinRefMobi.current.style.top = 'auto'
+              pinRefMobi.current.style.bottom = '0'
+              pinRefMobi.current.style.left = '0'
+              pinRefMobi.current.style.right = '0'
+              pinRefMobi.current.style.zIndex = '1000'
+            } else {
+              pinRefMobi.current.style.position = ''
+              pinRefMobi.current.style.top = ''
+              pinRefMobi.current.style.bottom = ''
+              pinRefMobi.current.style.left = ''
+              pinRefMobi.current.style.right = ''
+              pinRefMobi.current.style.zIndex = ''
+            }
+          },
+        })
+      }
+    }, scrollRef)
+
+    return () => ctx.revert()
+  }, [listDestination])
+
+  // useGSAP(() => {
+  // if (window?.innerWidth > 1024) {
+  //   gsap.to(pinRef.current, {
+  //     scrollTrigger: {
+  //       trigger: pinRef.current,
+  //       pin: true,
+  //       start: 'top top',
+  //       endTrigger: scrollRef.current,
+  //       end: 'bottom bottom',
+  //       pinSpacing: false,
+  //       anticipatePin: 1
+  //     },
+  //   })
+  // gsap.to(pin2Ref.current, {
+  //   scrollTrigger: {
+  //     trigger: pin2Ref.current,
+  //     pin: true,
+  //     start: 'top top',
+  //     endTrigger: scrollRef?.current,
+  //     end: 'bottom bottom',
+  //     pinSpacing: false,
+  //     anticipatePin: 1
+  //   },
+  // })
+  //   }
+  // }, [])
   const container = useRef(null);
   const listContainer = useRef(null);
 

@@ -2,36 +2,39 @@
 import IconAudio from '@/components/icons/IconAudio'
 import IconMuted from '@/components/icons/IconMuted'
 import Image from 'next/image'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
 
-const ItemVideo = ({active, url}) => {
+const ItemVideo = ({ active, url }) => {
   const [isMute, setIsMute] = useState(true)
 
   if (!url) return
 
   return (
     <>
-      <ReactPlayer
-        url={url}
-        loop
-        muted={isMute}
-        playing={active}
-        playsinline
-        width='100%'
-        height='100%'
-        className='item-video w-full h-full min-w-full min-h-full rounded-[1rem] overflow-hidden'
-      />
+      <div className='relative'>
+        <video
+          type='video/mp3'
+          src={url}
+          loop
+          muted={isMute}
+          autoPlay={active}
+          playsInline
+          width='100%'
+          height='100%'
+          className='item-video w-full min-w-full min-h-full rounded-[1rem] overflow-hidden'
+        />
 
-      <div
-        onClick={() => setIsMute(!isMute)}
-        className='absolute bottom-[3.75rem] right-[6.25rem] xlg:bottom-[1rem] xlg:right-[1rem] z-[99] cursor-pointer max-md:right-[4.27rem] max-md:bottom-[5.23rem] max-lg:right-[6.25rem] max-lg:bottom-[6.75rem]'
-      >
-        {isMute ? (
-          <IconMuted className='size-[2.5rem] tablet:size-[5rem]' />
-        ) : (
-          <IconAudio className='size-[2.5rem] tablet:size-[5rem]' />
-        )}
+        <div
+          onClick={() => setIsMute(!isMute)}
+          className='absolute bottom-[8.75rem] right-[8.25rem] xlg:bottom-[6.75rem] xlg:right-[6.25rem] z-[99] cursor-pointer xmd:right-[1.27rem] xmd:bottom-[1.23rem]'
+        >
+          {isMute ? (
+            <IconMuted className='size-[2.5rem] tablet:size-[5rem]' />
+          ) : (
+            <IconAudio className='size-[2.5rem] tablet:size-[5rem]' />
+          )}
+        </div>
       </div>
       <div
         id='overlay'

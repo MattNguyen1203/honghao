@@ -4,12 +4,13 @@ import './about.css'
 import OurTeam from '@/layouts/team'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
-export default function About({data}) {
+import Aos from '@/components/Aos'
+export default function About({ data }) {
   const dataBanner = data?.acf?.banner
   const dataBannerMobi = data?.acf?.['banner-mobi']
   const dataCommit = data?.acf?.ethicalcommitments
   return (
-    <main className='about'>
+    <Aos className='about'>
       <Banner
         dataBanner={dataBanner}
         dataBannerMobi={dataBannerMobi}
@@ -20,9 +21,7 @@ export default function About({data}) {
         </Breadcrumb>
       </div>
       <Commit dataCommit={dataCommit} />
-      <div className=''>
-        <OurTeam />
-      </div>
-    </main>
+      <OurTeam />
+    </Aos>
   )
 }

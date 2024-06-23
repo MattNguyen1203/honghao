@@ -1,26 +1,27 @@
+'use client'
 import Image from 'next/image'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import useStore from '@/app/(store)/store'
-const CardOurTeam = ({data}) => {
+const CardOurTeam = ({ data }) => {
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div
       className={cn(
-        `relative bg-white cursor-pointer overflow-hidden flex w-[17.6875rem] xmd:h-[26rem] 
+        `relative bg-white cursor-pointer overflow-hidden flex  w-[17.6875rem] xmd:h-[26rem]
       h-[28.5rem] flex-col  items-center justify-between xmd:space-y-[0.75rem] space-y-[1rem] pb-[0.6875rem] rounded-3xl 
       shadow-md
     `,
-        !isMobile ? 'group' : '',
+        !isMobile ? 'group' : 'group',
       )}
     >
-      <div className=' w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-2xl overflow-hidden'>
+      <div className=' xmd:w-[17.7875rem] w-[17.6875rem] h-[24.125rem] xmd:h-[21.83156rem]  group-hover:h-[20.3125rem] duration-500 ease-linear rounded-3xl overflow-hidden'>
         <Image
           priority
           alt='ảnh'
           src={data?.img?.url || ''}
           width={300}
           height={400}
-          className='object-cover scale-110 md:group-hover:scale-101 duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
+          className='object-cover xmd:translate-x-[0.01rem]  md:scale-[1.2] md:group-hover:scale-[1.1] duration-500 ease-linear rounded-2xl h-full w-full shrink-0'
         />
       </div>
       <div className='absolute right-[1.1rem] top-[0.6rem] group-hover:opacity-100 opacity-0 duration-500 '>
@@ -56,7 +57,7 @@ const CardOurTeam = ({data}) => {
             {data?.exp}
           </div>
         </div>
-        <div className='w-[15.75rem] group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[3.5rem]  overflow-hidden h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
+        <div className='w-[15.75rem] scrollbar-custom group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[4rem]  overflow-y-scroll h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
           {data?.content}
         </div>
       </div>

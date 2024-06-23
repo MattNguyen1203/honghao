@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Button } from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,7 +10,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { cn } from '@/lib/utils'
 
-export default async function OurTeamChild({ darkTheme, dataTeam, btnHome = false }) {
+export default function OurTeamChild({ darkTheme, dataTeam, btnHome = false }) {
   useEffect(() => {
     AOS.init({
       duration: 800,

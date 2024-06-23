@@ -1,7 +1,8 @@
-'use server'
+
 import getData from '@/lib/getData'
 import Socials from './Socials'
-import {GLOBAL_PAGE_ID} from '@/lib/constants'
+import { GLOBAL_PAGE_ID } from '@/lib/constants'
+import Aos from '../Aos'
 
 const WrapSocials = async () => {
   const getDataAcf = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)
@@ -22,12 +23,14 @@ const WrapSocials = async () => {
   ])
 
   return (
-    <Socials
-      dataAcf={dataAcf?.acf}
-      listTypeofTour={listTypeofTour}
-      listTime={listTime}
-      listTours={listTours}
-    />
+    <Aos>
+      <Socials
+        dataAcf={dataAcf?.acf}
+        listTypeofTour={listTypeofTour}
+        listTime={listTime}
+        listTours={listTours}
+      />
+    </Aos>
   )
 }
 export default WrapSocials
