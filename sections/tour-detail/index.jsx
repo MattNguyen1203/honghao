@@ -9,6 +9,7 @@ import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+import Aos from '@/components/Aos'
 const TourDetail = ({
   data = {},
   dataPage = {},
@@ -16,7 +17,7 @@ const TourDetail = ({
   dataTourDetail = {},
 }) => {
   return (
-    <main className='alldestinations '>
+    <Aos className='alldestinations '>
       <section>
         <Banner
           dataAcf={data}
@@ -63,7 +64,7 @@ const TourDetail = ({
 
       <OurTeam />
       <TripsForYou dataBestTrip={dataBestTrip} />
-    </main>
+    </Aos>
   )
 }
 

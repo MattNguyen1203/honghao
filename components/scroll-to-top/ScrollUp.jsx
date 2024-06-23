@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 function ScrollUp() {
   const arrowRef = useRef()
 
@@ -51,12 +51,13 @@ function ScrollUp() {
   }, [])
   return (
     <div
+
       ref={arrowRef}
       className='relative cursor-pointer'
     >
       <svg
         id='mySVG'
-        className='w-[3.375rem] h-[3.375rem] pointer-events-none z-[9]'
+        className='size-[3.375rem] xmd:size-[2.3rem] pointer-events-none z-[9]'
         width='54'
         height='54'
         viewBox='0 0 54 54'

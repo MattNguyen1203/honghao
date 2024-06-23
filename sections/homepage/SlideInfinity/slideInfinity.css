@@ -1,5 +1,5 @@
 #wrapper_infinity {
-  animation: wrapper_infinity_loop 20s linear infinite;
+  animation: wrapper_infinity_loop 20s linear infinite alternate;
 }
 
 @keyframes wrapper_infinity_loop {

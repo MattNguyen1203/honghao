@@ -5,6 +5,7 @@ import ContactUsSection from './ContactUsSection'
 import GetInTouch from './GetInTouch'
 import './styles.css'
 import getData from '@/lib/getData'
+import Aos from '@/components/Aos'
 
 const pageId = 178
 const getContactUsData = async () => {
@@ -12,14 +13,14 @@ const getContactUsData = async () => {
 }
 
 export default async function ContactUs() {
-  const data = (await getContactUsData()).acf
+  const data = (await getContactUsData())?.acf
   return (
-    <main>
+    <Aos>
       <section>
         <Banner
           mainImg={data.banner.background_image.url}
-          mainTextMb={data.banner.text_image.url}
-          mainText={data.banner.text_image_mobile.url}
+          mainTextMb={data.banner.text_image_mobile.url}
+          mainText={data.banner.text_image.url}
         />
       </section>
       <div className='md:mb-5'>
@@ -29,6 +30,6 @@ export default async function ContactUs() {
       </div>
       <ContactUsSection data={data.contact_us} />
       <GetInTouch data={data.get_in_touch} />
-    </main>
+    </Aos>
   )
 }

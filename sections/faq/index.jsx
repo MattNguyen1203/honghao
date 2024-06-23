@@ -4,8 +4,10 @@ import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import QuestionLookHere from './QuestionLookHere'
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions'
 import './styles.css'
+
 import getData from '@/lib/getData'
 import { GLOBAL_PAGE_ID } from '@/lib/constants'
+import Aos from '@/components/Aos'
 
 const pageId = 155
 
@@ -30,7 +32,7 @@ export default async function Faq() {
   const dataQuestions = dataAskedQuestions?.acf?.faq
 
   return (
-    <main>
+    <Aos>
       <section>
         <Banner
           mainImg={data?.banner?.background_image?.url}
@@ -46,6 +48,6 @@ export default async function Faq() {
       </div>
       <QuestionLookHere data={data?.section_questions_look_here} />
       <FrequentlyAskedQuestions dataQt={dataQuestions} data={data?.section_frequently_asked_questions} />
-    </main>
+    </Aos>
   )
 }

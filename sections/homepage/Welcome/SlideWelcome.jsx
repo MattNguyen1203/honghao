@@ -1,13 +1,13 @@
-import React, {useRef, useState} from 'react'
-import {EffectFade} from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import React, { useRef, useState } from 'react'
+import { EffectFade } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import ItemVideo from './ItemVideo'
 import 'swiper/css/effect-fade'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import Image from 'next/image'
 
-const SlideWelcome = ({listVid}) => {
+const SlideWelcome = ({ listVid }) => {
   const [indexSlider, setIndexSlider] = useState(0)
   const swiperRef = useRef(null)
 

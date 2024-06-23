@@ -6,18 +6,18 @@ import getData from '@/lib/getData'
 import { GLOBAL_PAGE_ID } from '@/lib/constants'
 import { notFound } from 'next/navigation'
 
-// export async function generateMetadata({params: {slug}}) {
-//   const result = await fetchMetaData(`tours/${slug?.[0]}/`)
-//   return getMeta(result, `/tours/${slug?.[0]}`)
-// }
+export async function generateMetadata({ params: { slug } }) {
+  const result = await fetchMetaData(`tours/${slug?.[0]}/`)
+  return getMeta(result, `/tours/${slug?.[0]}`)
+}
 
-// export async function generateStaticParams() {
-//   const dataTours = await getData(`wp-json/okhub/v1/tours?page=1&per_page=100`)
+export async function generateStaticParams() {
+  const dataTours = await getData(`wp-json/okhub/v1/tours?page=1&per_page=100`)
 
-//   return dataTours?.tours?.map((tour) => ({
-//     slug: [tour?.detail_link],
-//   }))
-// }
+  return dataTours?.tours?.map((tour) => ({
+    slug: [tour?.detail_link],
+  }))
+}
 
 export default async function page({ params: { slug } }) {
   const dataAcfPage = await getData(`wp-json/acf/v3/pages/${GLOBAL_PAGE_ID}`)

@@ -1,10 +1,6 @@
 "use client"
 import SlideVideoTours from '@/components/slide-video-tour'
-
 import Image from 'next/image'
-import { useEffect } from 'react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 const data = [
   {
     icon: (
@@ -121,18 +117,8 @@ const data = [
 ]
 const Banner = ({ dataBanner }) => {
   const listsImage = dataBanner?.lists_image
-  const mainImage = dataBanner?.main_image
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      disable: function () {
-        var maxWidth = 769
-        return window.innerWidth < maxWidth
-      }
-    })
-    AOS.refresh()
-  }, [])
+  const mainImage = dataBanner?.main_image?.url
+
   return (
     <div className='relative'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Explore Ha Giang</h1>
@@ -145,7 +131,7 @@ const Banner = ({ dataBanner }) => {
       </div>
       <Image
         data-aos="fade-up"
-        data-aos-duration="750"
+        data-aos-duration="900"
         priority
         alt='ảnh'
         src={'/imgs/all-destinations/map.png'}
@@ -159,11 +145,11 @@ const Banner = ({ dataBanner }) => {
           <Image
 
             data-aos="fade-up"
-            data-aos-duration="750"
+            data-aos-duration="900"
 
             priority
             alt='ảnh title web'
-            src={'/imgs/all-destinations/main_title.png'}
+            src={dataBanner?.image_title_big?.url}
             width={840}
             height={355}
             className='absolute left-[5rem] z-50 xmd:hidden top-[9rem] w-[43.3605rem] h-[16.1875rem]'
@@ -171,7 +157,7 @@ const Banner = ({ dataBanner }) => {
           <Image
             priority
             alt='ảnh title mobi'
-            src={'/imgs/all-destinations/main-title-mobi.png'}
+            src={dataBanner?.image_title_big_mobile?.url}
             width={840}
             height={355}
             className=' left-[5rem]  xmd:mx-auto top-[9rem] md:hidden w-[20.9605rem] h-[8.65rem]'

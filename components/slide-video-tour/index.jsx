@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React, { useRef, useState, useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -81,6 +81,7 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
     }
   }
 
+  console.log({ loaded });
   return (
     <div
       ref={div1Ref}
@@ -109,11 +110,14 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
 
       {checkIsBanner && (
         <>
-          <div className='xmd:hidden absolute bottom-0 left-0 w-full h-[30rem] bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
-          {/* <div
-            className={` absolute bottom-0 z-[500] left-0 w-full h-[44.75rem] bg-[#285137] opacity-95 transition-all duration-300 ${loaded ? '!opacity-0' : 'opacity-100'}`}
-          ></div> */}
+          <div className={cn('xmd:hidden absolute bottom-0 z-[10] transition-all duration-1000  left-0 w-full h-[30rem] bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)] ',
+            loaded ? ' opacity-100' : ' opacity-0'
+          )}></div>
+          <div
+            className={` absolute bottom-0 z-[500] left-0 w-full h-[44.75rem] contrast-125 bg-conicBanner opacity-100 transition-all duration-1000 xmd:duration-500 ${loaded ? '!opacity-0 pointer-events-none' : 'opacity-100'}`}
+          ></div>
           <Image
+
             onLoadingComplete={() => setLoaded(true)}
             priority
             alt='ảnh banner'
@@ -121,10 +125,11 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
             width={1500}
             height={1500}
             className={cn(
-              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover',
+              ' w-[83.875rem] rounded-[0.75rem] h-[41.75rem] object-cover transition-all duration-1000',
               checkIsBanner
                 ? 'w-full h-[43.75rem] xmd:w-[23.40656rem] xmd:h-[20.93544rem] rounded-none'
                 : '',
+              loaded ? '' : 'blur-lg xmd:blur-sm'
             )}
           />
         </>
@@ -174,6 +179,7 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
       )}
       <div
         data-aos={checkIsBanner ? 'fade-left' : ''}
+        data-aos-duration="1000"
         onMouseLeave={checkIsBanner ? () => { } : handleMouseLeave}
         className={cn('md:absolute md:w-[10.875rem] xmd:mt-[0.2rem] z-[80] xmd:w-[23.4375rem] xmd:h-[6.35rem] right-[6rem] ',
           checkIsBanner ? 'top-0' : 'top-1/2 -translate-y-1/2'

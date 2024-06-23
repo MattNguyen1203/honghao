@@ -36,6 +36,7 @@ export default function GladdestMoment({ dataGallery }) {
               8 -
               window.innerWidth),
           repeat: 0,
+          yoyo: true,
           duration: 10,
           ease: 'linear',
           onComplete: () => {
@@ -43,7 +44,7 @@ export default function GladdestMoment({ dataGallery }) {
             setIsAnimationEnd(true)
           },
         })
-        .timeScale(1)
+      // .timeScale(1)
 
       // Hàm xử lý khi hover vào
       const handleMouseEnter = () => {

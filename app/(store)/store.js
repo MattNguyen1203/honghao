@@ -1,8 +1,17 @@
-import {create} from 'zustand'
+import { create } from 'zustand'
 
 const useStore = create((set) => ({
   isMobile: false,
   isTablet: false,
+  openbookNow: null,
+  setOpenBooknow: (data) => {
+    set((state) => {
+      return {
+        ...state,
+        openbookNow: data,
+      }
+    })
+  },
   currentCategories: '',
   setCurrentCategories: (data) => {
     set((state) => {

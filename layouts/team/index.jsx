@@ -1,4 +1,3 @@
-import React from 'react'
 import getData from '@/lib/getData'
 import OurTeamChild from './WrapperTeam'
 import { GLOBAL_PAGE_ID } from '@/lib/constants'

@@ -1,10 +1,11 @@
+"use client"
 import SlideVideoTours from '@/components/slide-video-tour'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
-
-const Banner = ({dataAcf, dataTourDetail}) => {
+import 'aos/dist/aos.css'
+const Banner = ({ dataAcf, dataTourDetail }) => {
   const data = [
     {
       icon: (
@@ -148,6 +149,8 @@ const Banner = ({dataAcf, dataTourDetail}) => {
         </Breadcrumb>
       </div>
       <Image
+        data-aos="fade-up"
+        data-aos-duration="900"
         priority
         alt='ảnh'
         src={'/imgs/all-destinations/map.png'}
@@ -157,7 +160,8 @@ const Banner = ({dataAcf, dataTourDetail}) => {
       />
       <div className='relative xmd:container xmd:mt-[1.25rem] xl:container'>
         <div className='md:absolute bottom-[2rem] z-10 left-[0rem] md:left-[4rem] xl:left-[0rem] inline-flex flex-col xmd:flex-col items-start space-y-[1.5625rem]'>
-          <div className='flex flex-col items-start space-y-3'>
+          <div data-aos="fade-up"
+            data-aos-duration="1000" className='flex flex-col items-start space-y-3'>
             <div className='flex items-center space-x-[0.85rem] self-stretch'>
               <div className='flex items-center space-x-[0.375rem]'>
                 <svg
@@ -196,7 +200,10 @@ const Banner = ({dataAcf, dataTourDetail}) => {
             </h1>
           </div>
 
-          <div className='grid grid-cols-2 xmd:grid-cols-1 md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1100"
+            className='grid grid-cols-2 xmd:grid-cols-1 md:w-[40rem] gap-x-[3rem] gap-y-[1.5rem]'>
             <div className='space-y-[1.5rem]'>
               {data?.slice(0, 2)?.map((d, i) => (
                 <div
@@ -243,10 +250,9 @@ const Banner = ({dataAcf, dataTourDetail}) => {
                     </svg>
                   </div>
                   <div
-                    className={`${
-                      i === 1 && 'xmd:pl-[0.5rem]'
-                    } tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]`}
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    className={`${i === 1 && 'xmd:pl-[0.5rem]'
+                      } tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]`}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -298,7 +304,7 @@ const Banner = ({dataAcf, dataTourDetail}) => {
                   </div>
                   <div
                     className='tour_infor list-disc xmd:text-greyscale-80 text-white text-sm not-italic font-bold leading-[150%]'
-                    dangerouslySetInnerHTML={{__html: d?.children}}
+                    dangerouslySetInnerHTML={{ __html: d?.children }}
                   />
                 </div>
               ))}
@@ -306,7 +312,10 @@ const Banner = ({dataAcf, dataTourDetail}) => {
           </div>
         </div>
 
-        <div className=' absolute z-10 xmd:left-[13.5rem]  bottom-[3rem] md:left-1/2 md:-translate-x-1/2 md:bottom-[6rem] opacity-100 duration-500 '>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          className=' absolute z-10 xmd:left-[13.5rem]  bottom-[3rem] md:left-1/2 md:-translate-x-1/2 md:bottom-[6rem] opacity-100 duration-500 '>
           <div className='relative'>
             <Image
               priority

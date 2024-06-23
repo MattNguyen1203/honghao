@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function ItemCardBestTrip({data}) {
+export default function ItemCardBestTrip({ data }) {
   return (
     <Link
       href={`/tours/${data?.detail_link}`}
@@ -10,7 +10,7 @@ export default function ItemCardBestTrip({data}) {
     >
       <div className='z-10 size-full absolute top-0 left-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_100%)]'></div>
       <Image
-        className='absolute top-0 left-0 size-full rounded-[0.75rem]'
+        className='absolute top-0 left-0 size-full object-cover rounded-[0.75rem]'
         alt='item card'
         src={data?.thumbnail || '/home/ItemCard.jpg'}
         width={757}

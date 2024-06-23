@@ -3,12 +3,13 @@ import BannerAllTour from './BannerAllTour'
 import SliderTour from './SliderTour'
 import GridCheckBox from './GridCheckBox'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+import Aos from '@/components/Aos'
 
-export default function AllTour({ dataTours, typeOfTours, dataBestTrip }) {
+export default function AllTour({ dataTourPage, dataTours, typeOfTours, dataBestTrip }) {
 
   return (
-    <main>
-      <BannerAllTour />
+    <Aos>
+      <BannerAllTour dataTourPage={dataTourPage} />
       <div>
         <Breadcrumb
           type='section'
@@ -26,6 +27,6 @@ export default function AllTour({ dataTours, typeOfTours, dataBestTrip }) {
           dataTours={dataTours}
         />
       </section>
-    </main>
+    </Aos>
   )
 }
