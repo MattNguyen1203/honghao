@@ -1,12 +1,12 @@
 'use client'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 gsap.registerPlugin(ScrollTrigger)
-const Nav = ({setOpenNav}) => {
+const Nav = ({ setOpenNav, dataContacts }) => {
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
@@ -47,11 +47,11 @@ const Nav = ({setOpenNav}) => {
       >
         <Image
           src={
-            isTransparent ? '/imgs/common/logo.png' : '/imgs/nav/logoBlack.png'
+            isTransparent ? dataContacts?.logo_white?.url : dataContacts?.logo_black?.url
           }
           alt='Hồng Hào travel'
-          width={200}
-          height={200}
+          width={500}
+          height={500}
           className='w-[9.625rem] h-[3.1875rem] object-contain xmd:w-[7.1875rem] xmd:h-[2.5625rem] tablet:w-[12rem] tablet:h-[5rem]'
         />
       </Link>

@@ -1,3 +1,4 @@
+// "use client"
 import React from 'react'
 import './tour-detail.css'
 import Breadcrumb from '@/components/breadcrumb'
@@ -10,12 +11,15 @@ import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Aos from '@/components/Aos'
+import useStore from '@/app/(store)/store'
+import StepByStepTourDt from './StepByStepTourDt'
 const TourDetail = ({
   data = {},
   dataPage = {},
   dataBestTrip = [],
   dataTourDetail = {},
 }) => {
+  // const { isMobile } = useStore(state => state)
   return (
     <Aos className='alldestinations '>
       <section>
