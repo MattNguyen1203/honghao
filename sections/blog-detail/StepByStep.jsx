@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
 // import {dataSLides} from './data'
 
 export default function StepByStep({ dataAcf, dataTourDetail }) {
@@ -55,10 +56,11 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }
 
   return (
-    <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit xmd:hidden'>
+    <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}
       <div data-aos="fade-up"
-        data-aos-duration="900" className='w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
+        data-aos-duration="900"
+        className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
           src={dataSLides?.[indexSlider]?.imgStep?.url || ''}
@@ -67,6 +69,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           height={400}
         />
       </div>
+
       {/* map */}
       <div data-aos="fade-up"
         data-aos-duration="900" className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>

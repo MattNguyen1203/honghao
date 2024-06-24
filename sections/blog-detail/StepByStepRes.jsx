@@ -3,6 +3,7 @@
 import BikeAnimationMb from '@/components/bikeAnimateMb'
 import Image from 'next/image'
 import { useState } from 'react'
+import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
 
 // import {dataSLides} from './data'
 
@@ -11,7 +12,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides || []
   return (
-    <>
+    <div className=''>
       <button
         onClick={() => setSeeLess(!seeLess)}
         className='flex w-full xmd:mt-[1.5rem] md:hidden justify-center items-center gap-[0.25rem]'
@@ -37,7 +38,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
         className={`${!seeLess && 'h-0 overflow-hidden'
           } transition-all duration-500`}
       >
-        <div className='tablet:hidden transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
+        <div className='tablet:hidden xmd:hidden transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
           <Image
             className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
             src={dataSLides?.[0]?.imgStep?.url || ''}
@@ -46,6 +47,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
             height={400}
           />
         </div>
+        <StepByStepTourDt dataSLides={dataSLides} />
         <div className='transition-all tablet:hidden absolute h-[70rem] *:h-full'>
           <BikeAnimationMb />
         </div>
@@ -94,7 +96,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 const ItemCardInfo = ({ item }) => {
