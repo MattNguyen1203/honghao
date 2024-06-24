@@ -1,10 +1,10 @@
 'use client'
 import useStore from '@/app/(store)/store'
-import React, {useEffect, useState, useRef} from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Nav from '../nav'
 import NavDropdown from '../dropdown'
 
-const WrapNav = ({dataHeader, dataBestTrip}) => {
+const WrapNav = ({ dataHeader, dataBestTrip, dataContacts }) => {
   const setIsMobile = useStore((state) => state.setIsMobile)
   const isMobile = useStore((state) => state.isMobile)
   const setIsTablet = useStore((state) => state.setIsTablet)
@@ -30,7 +30,9 @@ const WrapNav = ({dataHeader, dataBestTrip}) => {
 
   return (
     <>
-      <Nav setOpenNav={setOpenNav} />
+      <Nav
+        dataContacts={dataContacts}
+        setOpenNav={setOpenNav} />
       <NavDropdown
         setOpenNav={setOpenNav}
         openNav={openNav}

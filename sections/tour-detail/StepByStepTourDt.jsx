@@ -90,14 +90,19 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
 
   return (
     <div className='md:hidden flex flex-col space-y-10  my-[2rem]'>
-      <Image priority alt="ảnh" src={dataSLides?.[active]?.imgStep?.url}
-        width={1000} height={1000} className="w-full h-full px-[0.75rem]" />
+      <div className="relative h-[22.5rem]">
+        {data.map((d, i) => (
+          <Image priority alt="ảnh" src={dataSLides?.[i]?.imgStep?.url}
+            width={1000} height={1000} className={cn("w-full h-full px-[0.75rem]  duration-200 transition-all  absolute top-0", active === i ? 'opacity-100' : 'opacity-0')} />
+        ))}
+
+      </div>
       {/* LINEs */}
       <div className='w-full overflow-x-auto no-scrollbar' ref={containerLineRef} >
         <Image
           ref={motoRef}
           className='object-contain ml-[40px]  transition-all duration-500 mb-[0.3rem]'
-          src={'/home/xemay.png'}
+          src={'/home/icon-xemay.svg'}
           alt='motor'
           width={30}
           height={30}
@@ -242,8 +247,8 @@ const BookNow = ({ index, active }) => {
 
 const Line = ({ index, activeLine }) => {
   return (
-    <div className=" space-x-2 flex items-center">
-      <div className="size-[0.55rem] rounded-full border-[2px]  border-[#b34b1e] "></div>
+    <div className=" space-x-2 flex items-center bd border-transparent">
+      <div className="size-[0.55rem] rounded-full border-[2px] border-[#b34b1e] "></div>
       <div className="relative">
         <div className={cn("flex items-center space-x-[0.3rem]", activeLine ? '' : '')}>
           <div className="w-[0.8rem] h-[0.15rem] rounded-full  bg-[rgb(179,75,30)] opacity-20"></div>

@@ -93,7 +93,7 @@ const Welcome = ({ data }) => {
       </div>
 
       <div
-        className='h-[29.8125rem] w-[53rem] translate-y-[12rem] xlg:translate-y-[0rem] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
+        className='h-[29.8125rem] w-[53rem] !translate-y-[-0rem] xxl:translate-y-[110rem] xlg:translate-y-[0] xlg:w-full xmd:h-[13.183rem] xlg:h-[60rem] object-cover overflow-hidden'
         id='box-img'
       >
         <SlideWelcome listVid={data?.list_video} />

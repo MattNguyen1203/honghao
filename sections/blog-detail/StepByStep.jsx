@@ -65,8 +65,8 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
           src={dataSLides?.[indexSlider]?.imgStep?.url || ''}
           alt='map2'
-          width={300}
-          height={400}
+          width={800}
+          height={800}
         />
       </div>
 

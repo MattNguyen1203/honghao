@@ -27,7 +27,7 @@ const ItemVideo = ({ active, url }) => {
 
         <div
           onClick={() => setIsMute(!isMute)}
-          className='absolute bottom-[8.75rem] right-[8.25rem] xlg:bottom-[6.75rem] xlg:right-[6.25rem] z-[99] cursor-pointer xmd:right-[1.27rem] xmd:bottom-[1.23rem]'
+          className='absolute bottom-[15.75rem] right-[18.25rem] xlg:bottom-[6.75rem] xlg:right-[6.25rem] xxl:bottom-[2.75rem] xxl:right-[6.25rem]  z-[99] cursor-pointer xmd:right-[1.27rem] xmd:bottom-[1.23rem]'
         >
           {isMute ? (
             <IconMuted className='size-[2.5rem] tablet:size-[5rem]' />
