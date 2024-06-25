@@ -54,7 +54,10 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     const swiper = swiperRef.current
     swiper.slideTo(index + 1, 500)
   }
-
+  function parseItinerary(input) {
+    const [day, itinerary] = input.split(":");
+    return day
+  }
   return (
     <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}

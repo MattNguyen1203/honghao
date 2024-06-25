@@ -11,9 +11,10 @@ import Link from 'next/link'
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
-const data = Array(5).fill(0)
 
 export default function BestTrips({ listBestTrip }) {
+  // const data = Array(5).fill(0)
+  const data = listBestTrip
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)

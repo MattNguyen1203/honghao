@@ -13,7 +13,7 @@ import ItemTour from '@/components/itemtour'
 import useClickOutSide from '@/hooks/useClickOutside'
 import useStore from '@/app/(store)/store'
 
-const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip }) => {
+const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContacts }) => {
   const [openChild, setOpenChild] = useState(false)
   const [activeKey, setActiveKey] = useState('home')
   const [sideRef, isOutSide, isClick] = useClickOutSide(false)
@@ -133,7 +133,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip }) => {
         onClick={() => setOpenNav(false)}
       >
         <Image
-          src='/imgs/common/logo.png'
+          src={dataContacts?.logo_white?.url}
           alt='hong hao travel'
           width={200}
           height={200}
