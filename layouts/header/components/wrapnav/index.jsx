@@ -34,6 +34,7 @@ const WrapNav = ({ dataHeader, dataBestTrip, dataContacts }) => {
         dataContacts={dataContacts}
         setOpenNav={setOpenNav} />
       <NavDropdown
+        dataContacts={dataContacts}
         setOpenNav={setOpenNav}
         openNav={openNav}
         dataHeader={dataHeader}
