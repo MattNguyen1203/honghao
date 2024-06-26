@@ -366,7 +366,7 @@ const IconOclock = ({ className = '' }) => {
 
 const ItemCardInfo = ({ item, active }) => {
   return (
-    <article className={cn('min-h-[18.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+    <article className={cn('min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
       active ? ' border-[#23704D]' : ' border-transparent'
     )}>
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
