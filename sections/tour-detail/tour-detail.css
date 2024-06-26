@@ -57,3 +57,7 @@
     color: #262626;
   }
 }
+
+.no-scroll {
+  overflow-anchor: auto !important;
+}

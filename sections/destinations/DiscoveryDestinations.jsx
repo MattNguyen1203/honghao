@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import CardDestination from './CardDestination'
 import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PaginationV2 from '@/components/pagination'
 import { useSearchParams } from 'next/navigation'
@@ -24,58 +25,51 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const pinRefMobi = useRef()
   const scrollRef = useRef()
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (listDestination?.posts?.length < 3) return
-      if (window.innerWidth > 768) {
-        ScrollTrigger.create({
-          trigger: pinRef.current,
-          pin: pinRef.current,
-          start: 'top 10%',
-          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
-          toggleActions: 'restart reverse reverse reverse',
-          scrub: 1,
-          pinSpacing: false,
-        })
-        ScrollTrigger.create({
-          trigger: pin2Ref.current,
-          pin: pin2Ref.current,
-          start: '-1% 10%',
-          end: () => `+=${scrollRef.current.offsetHeight} 95%`,
-          toggleActions: 'restart reverse reverse reverse',
-          scrub: 1,
-          pinSpacing: false,
-        })
-      } else {
-        ScrollTrigger.create({
-          trigger: pinRefMobi.current,
-          pin: pinRefMobi.current,
-          start: '-210% 0%',
-          end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
-          toggleActions: 'restart reverse reverse reverse',
-          scrub: 1,
-          pinSpacing: false,
-          onUpdate: (self) => {
-            if (self.isActive) {
-              pinRefMobi.current.style.position = 'fixed'
-              pinRefMobi.current.style.top = 'auto'
-              pinRefMobi.current.style.bottom = '0'
-              pinRefMobi.current.style.left = '0'
-              pinRefMobi.current.style.right = '0'
-              pinRefMobi.current.style.zIndex = '1000'
-            } else {
-              pinRefMobi.current.style.position = ''
-              pinRefMobi.current.style.top = ''
-              pinRefMobi.current.style.bottom = ''
-              pinRefMobi.current.style.left = ''
-              pinRefMobi.current.style.right = ''
-              pinRefMobi.current.style.zIndex = ''
-            }
-          },
-        })
-      }
-    }, scrollRef)
-
-    return () => ctx.revert()
+    if (listDestination?.posts?.length < 3) return
+    if (window.innerWidth > 768) {
+      ScrollTrigger.create({
+        trigger: pinRef.current,
+        pin: pinRef.current,
+        start: 'top 10%',
+        end: () => `+=${scrollRef.current.offsetHeight} 95%`,
+        scrub: 1,
+        pinSpacing: false,
+      })
+      ScrollTrigger.create({
+        trigger: pin2Ref.current,
+        pin: pin2Ref.current,
+        start: '-1% 10%',
+        end: () => `+=${scrollRef.current.offsetHeight} 95%`,
+        scrub: 1,
+        pinSpacing: false,
+      })
+    } else {
+      ScrollTrigger.create({
+        trigger: pinRefMobi.current,
+        pin: pinRefMobi.current,
+        start: '-210% 0%',
+        end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
+        scrub: 1,
+        pinSpacing: false,
+        onUpdate: (self) => {
+          if (self.isActive) {
+            pinRefMobi.current.style.position = 'fixed'
+            pinRefMobi.current.style.top = 'auto'
+            pinRefMobi.current.style.bottom = '0'
+            pinRefMobi.current.style.left = '0'
+            pinRefMobi.current.style.right = '0'
+            pinRefMobi.current.style.zIndex = '1000'
+          } else {
+            pinRefMobi.current.style.position = ''
+            pinRefMobi.current.style.top = ''
+            pinRefMobi.current.style.bottom = ''
+            pinRefMobi.current.style.left = ''
+            pinRefMobi.current.style.right = ''
+            pinRefMobi.current.style.zIndex = ''
+          }
+        },
+      })
+    }
   }, [listDestination])
 
   useEffect(() => {
@@ -149,6 +143,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         </div>
         <div>
           <div
+            ref={scrollRef}
             id='destination-cards'
             className='grid  xmd:grid-cols-1 grid-cols-2 gap-[1.25rem] w-fit xmd:w-full '
           >

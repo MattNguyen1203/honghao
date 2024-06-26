@@ -21,7 +21,8 @@ const TourDetail = ({
 }) => {
   // const { isMobile } = useStore(state => state)
   return (
-    <Aos className='alldestinations '>
+    <Aos className='alldestinations'>
+
       <section>
         <Banner
           dataAcf={data}

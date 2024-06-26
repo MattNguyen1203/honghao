@@ -47,9 +47,9 @@ export const viewport = {
 }
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang='en' className=''>
       <body
-        className={`${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
+        className={` ${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <NextTopLoader
