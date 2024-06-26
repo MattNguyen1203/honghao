@@ -22,7 +22,6 @@ const Destinations = ({ dataAcf, dataListCat }) => {
           mainTextMb={textMobile}
         />
       </section>
-      {/* <section className='xmd:hidden'><Breadcrumb divider /></section> */}
       <section className=''>
         <Breadcrumb divider >
           <BreadcrumbLink href='/destination'>Destination</BreadcrumbLink>

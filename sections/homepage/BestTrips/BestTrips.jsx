@@ -18,7 +18,7 @@ export default function BestTrips({ listBestTrip }) {
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
-
+  console.log({ index });
   useGSAP(
     () => {
       if (!container.current) return
@@ -62,7 +62,7 @@ export default function BestTrips({ listBestTrip }) {
           </h2>
           <Image
             className='xmd:hidden tablet:hidden w-[29.3rem] h-[28.1rem] object-contain mt-[2.44rem]'
-            src={index % 2 === 0 ? '/home/map.png' : '/home/map1.png'}
+            src={listBestTrip?.[index]?.infos?.map_tour_image?.url}
             alt='map'
             width={500}
             height={500}

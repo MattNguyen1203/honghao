@@ -89,7 +89,7 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
   // }
 
   return (
-    <div className='md:hidden flex flex-col space-y-10  my-[2rem]'>
+    <div className='lg:hidden flex flex-col space-y-10  my-[2rem]'>
       <div className="relative h-[22.5rem]">
         {data.map((d, i) => (
           <Image priority alt="ảnh" src={dataSLides?.[i]?.imgStep?.url}
@@ -247,7 +247,7 @@ const BookNow = ({ index, active }) => {
 
 const Line = ({ index, activeLine }) => {
   return (
-    <div className=" space-x-2 flex items-center bd border-transparent">
+    <div className=" space-x-2 flex items-center border-transparent">
       <div className="size-[0.55rem] rounded-full border-[2px] border-[#b34b1e] "></div>
       <div className="relative">
         <div className={cn("flex items-center space-x-[0.3rem]", activeLine ? '' : '')}>

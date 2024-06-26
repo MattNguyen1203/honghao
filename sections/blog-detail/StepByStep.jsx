@@ -7,6 +7,8 @@ import { Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
+import { cn } from '@/lib/utils'
+import index from '../activity'
 // import {dataSLides} from './data'
 
 export default function StepByStep({ dataAcf, dataTourDetail }) {
@@ -33,6 +35,20 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     }
   }, [])
 
+  const handleClickDistrict = (index) => {
+    console.log(index);
+    const swiper = swiperRef.current
+    if (index == -1) {
+      setIndexSlider(0)
+      swiper.slideTo(0, 500)
+
+    }
+    else {
+      setIndexSlider(index + 1)
+      swiper.slideTo(index + 1, 500)
+    }
+  }
+
   const handleNextSlide = () => {
     swiper2Ref.current?.slideNext()
   }
@@ -44,29 +60,117 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     if (swiper.realIndex < dataSLides?.length) {
       setIndexSlider(swiper.realIndex)
     }
-  }
+    setIndexSlider(swiper.realIndex)
 
-  // const handleSlideChange2 = (swiper) => {
-  //   setIndexSlider2(swiper.realIndex)
-  // }
-
-  const handleClickDistrict = (index) => {
-    const swiper = swiperRef.current
-    swiper.slideTo(index + 1, 500)
   }
   function parseItinerary(input) {
     const [day, itinerary] = input.split(":");
     return day
   }
+
+  const [slidePositions, setSlidePositions] = useState([]);
+  const [isHover, setIsHover] = useState(false);
+  const bikeRef = useRef(null);
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.slides.length > 0) {
+      const swiperInstance = swiperRef.current;
+      const positions = Array.from(swiperInstance.slides).map(slide => slide.offsetTop);
+      setSlidePositions(positions);
+    }
+  }, [dataSLides]);
+
+  useEffect(() => {
+    if (indexSlider === dataSLides?.length - 1) {
+      setTimeout(() => {
+        document.documentElement.classList.remove('no-scroll');
+      }, 1000)
+    }
+    else {
+      if (isHover) {
+        document.documentElement.classList.add('no-scroll');
+      }
+    }
+  }, [indexSlider]);
+
+
+  useEffect(() => {
+    if (bikeRef.current && slidePositions.length > 0 && indexSlider <= dataSLides?.length - 1) {
+      bikeRef.current.style.top = `${slidePositions[indexSlider] - 15}px`;
+    }
+  }, [indexSlider, slidePositions]);
+
+  // Event handlers for enabling/disabling scroll
+  // box - slides
+  const handleMouseEnter = () => {
+    setIsHover(true)
+    document.documentElement.classList.add('no-scroll');
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false)
+    document.documentElement.classList.remove('no-scroll');
+  };
+
+  // const divRef = useRef(null);
+  // const [lastScrollTop, setLastScrollTop] = useState(0);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollTop = swiperRef.current.scrollTop;
+
+  //     if (scrollTop > lastScrollTop) {
+  //       console.log('Cuộn xuống');
+  //     } else {
+  //       console.log('Cuộn lên');
+  //     }
+
+  //     setLastScrollTop(scrollTop);
+  //   };
+
+  //   swiperRef.current.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     swiperRef.current.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [lastScrollTop]);
+
+
+  // const [delayReleaseOnEdges, setDelayReleaseOnEdges] = useState(false);
+
+  // console.log({ indexSlider, jddj: dataSLides?.length - 1, swiperRef: swiperRef.current });
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setDelayReleaseOnEdges(true);
+  //   }, 2000); // Set the delay time as required
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.params) {
+
+      if (indexSlider === 0 || indexSlider === dataSLides?.length - 1) {
+        setTimeout(() => {
+
+          swiperRef.current.params.mousewheel.releaseOnEdges = true;
+          swiperRef.current.update();
+        }, 1000)
+      } else {
+        swiperRef.current.params.mousewheel.releaseOnEdges = false;
+        swiperRef.current.update();
+      }
+
+    }
+  }, [indexSlider]);
+
   return (
     <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}
+      {/* <ScrollDetector /> */}
       <div data-aos="fade-up"
         data-aos-duration="900"
         className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
         <Image
           className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
-          src={dataSLides?.[indexSlider]?.imgStep?.url || ''}
+          src={indexSlider > dataSLides?.length - 1 ? (dataSLides?.[dataSLides?.length - 1]?.imgStep?.url || '') : (dataSLides?.[indexSlider]?.imgStep?.url || '')}
           alt='map2'
           width={800}
           height={800}
@@ -76,8 +180,13 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
       {/* map */}
       <div data-aos="fade-up"
         data-aos-duration="900" className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
-        <div className='!overflow-hidden bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative pt-[2.63rem] pl-[3.19rem]'>
-          <div className='flex items-center'>
+        <div
+
+          className='!overflow-hidden  bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
+          pt-[2.63rem]
+          '>
+          {/* pl-[3.19rem] */}
+          <div className='pl-[3.19rem] flex items-center'>
             <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
             <span className='text-[1rem] font-bold leading-normal text-greyscale-80'>
               Time
@@ -87,7 +196,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
               {dataAcf?.intermediate}
             </span>
           </div>
-          <div className='flex items-center justify-between mt-[0.75rem] pr-[4.81rem]'>
+          <div className='pl-[3.19rem] flex items-center justify-between mt-[0.75rem] pr-[4.81rem]'>
             <h2 className='text-[2rem] font-black leading-[1] font-londrina text-greyscale-80'>
               {dataTourDetail?.title}
             </h2>
@@ -110,128 +219,127 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
               </div>
             </div>
           </div>
-          <div className='w-full h-[65vh] mt-[2.25rem] flex justify-between pr-[4.81rem]'>
-            {/* col left */}
-            <div className='w-[8.2rem] relative h-full mr-[2.19rem] flex-shrink-0'>
-              <div className='absolute top-0 right-[-1.78rem] w-[14.32rem] h-full'>
-                <span className='text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
-                  Pick up at :
-                </span>
-                <span className='block text-center mt-[0.25rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem]'>
-                  {dataSLides?.[0]?.district}
-                </span>
-                <div className='flex mt-[0.81rem] h-full overflow-hidden relative'>
-                  {dataSLides && (
-                    <Swiper
-                      direction={'vertical'}
-                      slidesPerView={'auto'}
-                      spaceBetween={0}
-                      mousewheel={true}
-                      autoHeight={true}
-                      slideToClickedSlide={true}
-                      // onSlideChange={handleSlideChange2}
-                      onBeforeInit={(swiper) => {
-                        swiper2Ref.current = swiper
-                      }}
-                      modules={[Mousewheel]}
-                      className='size-full'
-                    >
-                      {Array(
-                        dataSLides && dataSLides?.length >= 1
-                          ? dataSLides?.length - 1
-                          : 0,
-                      )
-                        .fill(0)
-                        .map((_, index) => (
-                          <SwiperSlide
-                            className='w-full h-[9.125rem]'
-                            key={index}
-                          >
-                            <div className='flex justify-center'>
-                              <div className='h-[9.125rem] w-[2px] bg-[#C5C5C5]/50 relative'>
-                                <div
-                                  className={`${indexSlider >= index + 1
-                                    ? 'bg-[#23704D] delay-500'
-                                    : 'bg-[#C5C5C5]/80'
-                                    }  size-[0.375rem] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transition-all duration-200`}
-                                ></div>
-                                <div
-                                  className={`${indexSlider >= index + 1 ? 'h-full' : 'h-0'
-                                    } absolute top-0 z-[5] left-0 w-full bg-[#23704D] transition-all duration-500`}
-                                ></div>
-                                <div
-                                  onClick={() => handleClickDistrict(index)}
-                                  className='cursor-pointer absolute -right-[0.63rem] bottom-0 translate-y-1/2 z-10 flex flex-col translate-x-full'
-                                >
-                                  <IconMarker
-                                    className='size-[1.5rem]'
-                                    isActive={indexSlider >= index + 1}
-                                  />
-                                  <span className='text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer'>
-                                    {dataSLides?.[index + 1]?.district}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                        ))}
-                      <SwiperSlide className='w-full h-[9.125rem]'>
-                        <div className='flex justify-center item_end'>
-                          <div className='h-[9.125rem] w-[2px]relative'></div>
-                        </div>
-                        <div
-                          style={{
-                            transform: `translate(-150%,-${(dataSLides?.length - 1 - indexSlider) * 9.125
-                              }rem)`,
-                          }}
-                          className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
-                        >
-                          <Image
-                            className='object-contain'
-                            src={'/home/motor1.png'}
-                            alt='motor'
-                            width={30}
-                            height={30}
-                            quality={95}
-                          />
-                        </div>
-                      </SwiperSlide>
-                    </Swiper>
-                  )}
-                </div>
-              </div>
+          <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className='w-full h-[70vh] transition-all duration-300 box-slides mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
+            <div className=" absolute top-[-1.5rem] left-[3rem]">
+              <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
+                Pick up at :
+              </span>
+              <span className='block text-center mt-[0.25rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem]'>
+                {dataSLides?.[0]?.district}
+              </span>
             </div>
             {/* col right */}
             <Swiper
               direction={'vertical'}
               slidesPerView={'auto'}
               spaceBetween={0}
-              mousewheel={true}
+              // mousewheel={true}
               autoHeight={true}
               slideToClickedSlide={true}
               onSlideChange={handleSlideChange}
               onBeforeInit={(swiper) => {
                 swiperRef.current = swiper
               }}
+              // centeredSlides
+              mousewheel={{
+                releaseOnEdges: false,
+                forceToAxis: true,
+                sensitivity: 0,
+                threshold: -1000, // Ngưỡng di chuyển chuột (100 pixel)
+              }}
               modules={[Mousewheel]}
-              className='w-full !h-[65vh] !mx-0'
+              className={cn('w-full swiper !pl-[4.59rem] relative  transition-all duration-500 !mt-5 !mx-0',
+
+                indexSlider > 0 ? '!pt-[10rem] ' : '!pt-[1.5rem]'
+              )}
             >
+
               {dataSLides?.map((item, index) => (
                 <SwiperSlide
-                  className='w-full h-fit pb-[1.62rem] cursor-pointer'
+
+                  className={cn('w-full flex  h-fit cursor-pointer')}
                   key={index}
                 >
-                  <ItemCardInfo item={item} />
+                  <div
+                    className="flex pointer-events-none space-x-[7.87rem] relative">
+
+                    <div className=" relative w-[2rem]">
+
+                      {/* line */}
+                      {dataSLides?.length - 1 !== index && <div className={`h-full bg-[#C5C5C5]/80 absolute z-[5] left-1/2 w-[0.2rem]  transition-all duration-1000`} >
+                      </div>}
+                      {/* line active */}
+                      <div
+                        className={cn(`${indexSlider >= index + 1 && indexSlider <= dataSLides?.length - 1 ? 'h-full' : ' h-0'}  absolute z-[5] left-1/2 w-[0.2rem] bg-[#23704D] transition-all duration-1000`,
+                        )} ></div>
+                      {/* dot */}
+                      <div className={`${index <= indexSlider ? 'bg-[#23704D] delay-500' : 'bg-[#C5C5C5]/80'}  size-[0.675rem] rounded-full absolute top-0 left-[37%] z-50 transition-all duration-500`} >
+                      </div>
+                      {/* position */}
+                      {index !== 0 && <div
+                        onClick={() => handleClickDistrict(-1)}
+                        className='cursor-pointer absolute left-[2rem] top-[-1rem] z-10 flex flex-col'
+                      >
+                        <IconMarker
+                          className='size-[1.5rem]'
+                          isActive={index <= indexSlider}
+                        />
+                        <span className='text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer'>
+                          {item?.district}
+                        </span>
+                      </div>}
+                    </div>
+
+                    <ItemCardInfo item={item} active={indexSlider === index} />
+                  </div>
                 </SwiperSlide>
               ))}
-              <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide>
-              <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide>
-              <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide>
+              {/* XE MÁY */}
+              <SwiperSlide
+                ref={bikeRef}
+                className=' !absolute  !transition-all !duration-1000 left-[-2rem]'>
+                <Image
+                  className='  object-contain'
+                  src={'/home/motor1.png'}
+                  alt='motor'
+                  width={30}
+                  height={30}
+                  quality={95}
+                />
+              </SwiperSlide>
+              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
+              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide>
+              <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
+              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
+              {/* <SwiperSlide className='w-full h-[9.125rem]'>
+                <div className='flex justify-center item_end'>
+                  <div className='h-[9.125rem] w-[2px]relative'></div>
+                </div>
+                <div
+                  style={{
+                    transform: `translate(-150%,-${(dataSLides?.length - 1 - indexSlider) * 9.125
+                      }rem)`,
+                  }}
+                  className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
+                >
+                  <Image
+                    className='object-contain'
+                    src={'/home/motor1.png'}
+                    alt='motor'
+                    width={30}
+                    height={30}
+                    quality={95}
+                  />
+                </div>
+              </SwiperSlide> */}
             </Swiper>
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 const IconOclock = ({ className = '' }) => {
@@ -256,9 +364,11 @@ const IconOclock = ({ className = '' }) => {
   )
 }
 
-const ItemCardInfo = ({ item }) => {
+const ItemCardInfo = ({ item, active }) => {
   return (
-    <article className='min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative'>
+    <article className={cn('min-h-[18.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+      active ? ' border-[#23704D]' : ' border-transparent'
+    )}>
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
         {item?.title}
       </h3>
@@ -283,6 +393,7 @@ const IconMarker = ({ className = '', isActive = false }) => {
       className={className}
     >
       <path
+        className=''
         d='M20.6211 8.45C19.5711 3.83 15.5411 1.75 12.0011 1.75C12.0011 1.75 12.0011 1.75 11.9911 1.75C8.46107 1.75 4.42107 3.82 3.37107 8.44C2.20107 13.6 5.36107 17.97 8.22107 20.72C9.28107 21.74 10.6411 22.25 12.0011 22.25C13.3611 22.25 14.7211 21.74 15.7711 20.72C18.6311 17.97 21.7911 13.61 20.6211 8.45Z'
         fill={isActive ? '#E64827' : '#C5C5C5'}
       />
