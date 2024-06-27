@@ -20,29 +20,35 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const searchParams = useSearchParams()
   const currentPage = searchParams.get('page')
 
-  const pinRef = useRef()
-  const pin2Ref = useRef()
-  const pinRefMobi = useRef()
-  const scrollRef = useRef()
-  useEffect(() => {
+  const pinRef = useRef(null)
+  const pin2Ref = useRef(null)
+  const pinRefMobi = useRef(null)
+  const scrollRef = useRef(null)
+  const container = useRef(null)
+  useGSAP(() => {
     if (listDestination?.posts?.length < 3) return
     if (window.innerWidth > 768) {
       ScrollTrigger.create({
-        trigger: pinRef.current,
+        trigger: container.current,
         pin: pinRef.current,
-        start: 'top 10%',
-        end: () => `+=${scrollRef.current.offsetHeight} 95%`,
-        scrub: 1,
+        start: 'top top',
+        end: `+=${scrollRef.current.offsetHeight} 98%`,
+        // scrub: 1,
+        anticipatePin: 1,
+        markers: true,
         pinSpacing: false,
       })
       ScrollTrigger.create({
-        trigger: pin2Ref.current,
+        trigger: container.current,
         pin: pin2Ref.current,
-        start: '-1% 10%',
-        end: () => `+=${scrollRef.current.offsetHeight} 95%`,
-        scrub: 1,
+        start: 'top top',
+        end: `+=${scrollRef.current.offsetHeight} 98%`,
+        // scrub: 1,
+        anticipatePin: 1,
+        // markers: true,
         pinSpacing: false,
       })
+
     } else {
       ScrollTrigger.create({
         trigger: pinRefMobi.current,
@@ -70,6 +76,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         },
       })
     }
+
   }, [listDestination])
 
   useEffect(() => {
@@ -90,7 +97,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   }, [currentPage])
 
   return (
-    <section className='relative mt-[2.63rem]'>
+    <section ref={container} className='relative mt-[2.63rem]'>
       <Image
         ref={pinRef}
         priority
@@ -98,7 +105,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         src={'/imgs/all-destinations/discover-desti.png'}
         width={1600}
         height={900}
-        className='absolute xmd:hidden z-[-1] object-cover w-full h-[90vh]'
+        className='absolute xmd:hidden z-[-1] object-cover w-full h-[`100vh]'
       />
       <Image
         ref={pinRefMobi}
@@ -107,7 +114,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         src={'/imgs/all-destinations/discover-desti-mobi.png'}
         width={1600}
         height={900}
-        className='absolute md:hidden top-[41.53rem] z-[-1] w-full'
+        className='absolute md:hidden top-[41.53rem] z-[-1] w-full '
       />
       <Image
         priority
@@ -123,9 +130,9 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
       >
         <div
           ref={pin2Ref}
-          className=' inline-flex flex-col xmd:mt-[0.7rem] mt-[1.4rem] w-fit items-start space-y-[1.5rem]'
+          className=' inline-flex flex-col lg:mt-[4rem] xmd:mt-[0.7rem] mt-[1.4rem] w-fit items-start space-y-[1.5rem]'
         >
-          <div className='flex flex-col items-start space-y-[0.75rem]'>
+          <div className='flex flex-col items-start  space-y-[0.75rem]'>
             <div className='xmd:hidden text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
               Discovery Ha Giang
             </div>

@@ -5,8 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
+import useStore from '@/app/(store)/store'
 gsap.registerPlugin(ScrollTrigger)
 const Nav = ({ setOpenNav, dataContacts }) => {
+  const { checkOpenBookNow } = useStore(state => state)
+  console.log({ checkOpenBookNow });
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
@@ -16,7 +19,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
       start: 'top top',
       end: 99999,
       onUpdate: (self) => {
-        if (self.direction === 1) {
+        if (self.direction === 1 || checkOpenBookNow) {
           setIsHidden(true)
           setIsTransparent(false)
           // Khi cuộn xuống
@@ -30,7 +33,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
         }
       },
     })
-  }, [])
+  }, [checkOpenBookNow])
 
   return (
     <div

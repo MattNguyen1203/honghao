@@ -3,6 +3,8 @@ import { create } from 'zustand'
 const useStore = create((set) => ({
   isMobile: false,
   isTablet: false,
+
+  // mở homeForm ở activity
   openbookNow: null,
   setOpenBooknow: (data) => {
     set((state) => {
@@ -12,6 +14,18 @@ const useStore = create((set) => ({
       }
     })
   },
+
+  // khi mở formHome sẽ ẩn nav
+  checkOpenBookNow: false,
+  setCheckOpenBookNow: (data) => {
+    set((state) => {
+      return {
+        ...state,
+        checkOpenBookNow: data,
+      }
+    })
+  },
+
   currentCategories: '',
   setCurrentCategories: (data) => {
     set((state) => {

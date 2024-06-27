@@ -80,8 +80,6 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
       div3.style.top = '20%'
     }
   }
-
-  console.log({ loaded });
   return (
     <div
       ref={div1Ref}

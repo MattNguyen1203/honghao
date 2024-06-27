@@ -10,12 +10,15 @@ import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
 import { cn } from '@/lib/utils'
 import index from '../activity'
 // import {dataSLides} from './data'
-
+import useStore from '@/app/(store)/store'
 export default function StepByStep({ dataAcf, dataTourDetail }) {
+  // console.log({ checkOpenBookNow });
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
   const dataSLides = dataAcf?.dataSLides || []
+  const { setCheckOpenBookNow, checkOpenBookNow } = useStore(state => state)
+  console.log({ checkOpenBookNow });
   useEffect(() => {
     const medium = Math.ceil(dataSLides?.length / 2)
     if (swiperRef.current) {
@@ -36,7 +39,6 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }, [])
 
   const handleClickDistrict = (index) => {
-    console.log(index);
     const swiper = swiperRef.current
     if (index == -1) {
       setIndexSlider(0)
@@ -69,7 +71,6 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }
 
   const [slidePositions, setSlidePositions] = useState([]);
-  const [isHover, setIsHover] = useState(false);
   const bikeRef = useRef(null);
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.slides.length > 0) {
@@ -80,20 +81,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }, [dataSLides]);
 
   useEffect(() => {
-    if (indexSlider === dataSLides?.length - 1) {
-      setTimeout(() => {
-        document.documentElement.classList.remove('no-scroll');
-      }, 1000)
-    }
-    else {
-      if (isHover) {
-        document.documentElement.classList.add('no-scroll');
-      }
-    }
-  }, [indexSlider]);
 
-
-  useEffect(() => {
     if (bikeRef.current && slidePositions.length > 0 && indexSlider <= dataSLides?.length - 1) {
       bikeRef.current.style.top = `${slidePositions[indexSlider] - 15}px`;
     }
@@ -102,12 +90,11 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   // Event handlers for enabling/disabling scroll
   // box - slides
   const handleMouseEnter = () => {
-    setIsHover(true)
-    document.documentElement.classList.add('no-scroll');
+    setCheckOpenBookNow(true)
+    // alert(checkOpenBookNow)
   };
   const handleMouseLeave = () => {
-    setIsHover(false)
-    document.documentElement.classList.remove('no-scroll');
+
   };
 
   // const divRef = useRef(null);
@@ -133,17 +120,6 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   // }, [lastScrollTop]);
 
 
-  // const [delayReleaseOnEdges, setDelayReleaseOnEdges] = useState(false);
-
-  // console.log({ indexSlider, jddj: dataSLides?.length - 1, swiperRef: swiperRef.current });
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setDelayReleaseOnEdges(true);
-  //   }, 2000); // Set the delay time as required
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.params) {
 
@@ -161,8 +137,40 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     }
   }, [indexSlider]);
 
+
+
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  // check box onsite
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        rootMargin: '100px 0px 100px 0px',
+        threshold: 1.0,
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+  useEffect(() => {
+    const boxSlide = document.querySelector('.box-slides');
+    if (boxSlide) {
+      boxSlide.style.pointerEvents = isVisible ? 'auto' : 'none';
+    }
+  }, [isVisible]);
   return (
-    <section className='relative flex w-full h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
+    <section className='relative flex w-full  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}
       {/* <ScrollDetector /> */}
       <div data-aos="fade-up"
@@ -179,10 +187,11 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
 
       {/* map */}
       <div data-aos="fade-up"
-        data-aos-duration="900" className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
+        data-aos-duration="900"
+        className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
         <div
-
-          className='!overflow-hidden  bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
+          ref={ref}
+          className='!overflow-hidden cursor-pointer bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
           pt-[2.63rem]
           '>
           {/* pl-[3.19rem] */}
@@ -220,9 +229,10 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
             </div>
           </div>
           <div
+
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className='w-full h-[70vh] transition-all duration-300 box-slides mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
+            // onMouseLeave={handleMouseLeave}
+            className='w-full h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
             <div className=" absolute top-[-1.5rem] left-[3rem]">
               <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
                 Pick up at :
@@ -251,7 +261,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                 threshold: -1000, // Ngưỡng di chuyển chuột (100 pixel)
               }}
               modules={[Mousewheel]}
-              className={cn('w-full swiper !pl-[4.59rem] relative  transition-all duration-500 !mt-5 !mx-0',
+              className={cn('w-full swiper box-slides !pl-[4.59rem] relative  transition-all duration-500 !mt-5 !mx-0',
 
                 indexSlider > 0 ? '!pt-[10rem] ' : '!pt-[1.5rem]'
               )}
@@ -310,31 +320,6 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                   quality={95}
                 />
               </SwiperSlide>
-              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
-              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide>
-              <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
-              {/* <SwiperSlide className='w-full min-h-[10.875rem] pointer-events-none'></SwiperSlide> */}
-              {/* <SwiperSlide className='w-full h-[9.125rem]'>
-                <div className='flex justify-center item_end'>
-                  <div className='h-[9.125rem] w-[2px]relative'></div>
-                </div>
-                <div
-                  style={{
-                    transform: `translate(-150%,-${(dataSLides?.length - 1 - indexSlider) * 9.125
-                      }rem)`,
-                  }}
-                  className='absolute top-0 z-20 transition-all duration-500 size-fit left-1/2 '
-                >
-                  <Image
-                    className='object-contain'
-                    src={'/home/motor1.png'}
-                    alt='motor'
-                    width={30}
-                    height={30}
-                    quality={95}
-                  />
-                </div>
-              </SwiperSlide> */}
             </Swiper>
           </div>
         </div>
@@ -366,7 +351,7 @@ const IconOclock = ({ className = '' }) => {
 
 const ItemCardInfo = ({ item, active }) => {
   return (
-    <article className={cn('min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+    <article className={cn('min-h-[17.875rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
       active ? ' border-[#23704D]' : ' border-transparent'
     )}>
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>

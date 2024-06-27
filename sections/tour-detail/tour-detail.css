@@ -58,6 +58,13 @@
   }
 }
 
-.no-scroll {
-  overflow-anchor: auto !important;
+.event-none {
+ pointer-events: none !important;
+}
+.flip-horizontal {
+  direction: rtl;
+}
+
+.no-flip {
+  filter: none; /* Reset filter */
 }
