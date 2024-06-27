@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import useStore from '@/app/(store)/store'
 import Link from 'next/link'
-const CardDestination = ({data}) => {
+const CardDestination = ({ data }) => {
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div
@@ -43,7 +43,7 @@ const CardDestination = ({data}) => {
               className='arrowfr w-[1.5rem] object-cover h-[1.5rem] shrink-0'
             />
           </div>
-          <div className='group-hover:h-fit h-0 duration-500 ease-linear md:w-[23.5625rem] text-white text-base not-italic font-normal leading-[150%] tracking-[0.005rem]'>
+          <div className='group-hover:h-fit  line-clamp-4 h-0 duration-500 ease-linear md:w-[23.5625rem] text-white text-base not-italic font-normal leading-[150%] tracking-[0.005rem]'>
             {data?.description}
           </div>
         </div>

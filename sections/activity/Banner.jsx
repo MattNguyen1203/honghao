@@ -146,7 +146,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
 
-  const { openbookNow, setOpenBooknow } = useStore(state => state)
+  const { openbookNow, setOpenBooknow, setCheckOpenBookNow } = useStore(state => state)
   const [loaded, setLoaded] = useState(false);
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
@@ -239,7 +239,11 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
             <div
               className='xmd:!w-max xmd:!flex-1'
               href='/tours/book-now'
-              onClick={() => setOpenBooknow(true)}
+              onClick={() => {
+                setOpenBooknow(true)
+                setCheckOpenBookNow(true)
+
+              }}
             >
               <Button
                 className='xmd:!flex-1 xmd:!w-full xmd:shrink-0'

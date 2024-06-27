@@ -7,16 +7,32 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
   const data = dataSLides
 
   const [active, setActive] = useState(0)
-  const [activeArco, setActiveArco] = useState(0)
-  const [accordionOpen, setAccordionOpen] = useState(0)
-
+  const [lonhon, setLonhon] = useState(true);
+  const [nhohon, setNhohon] = useState(true);
   const [selectedNumbers, setSelectedNumbers] = useState([]);
 
-  const handleClick = (number, index) => {
-    const newNumbers = Array.from({ length: number }, (_, i) => i);
+  const handleClick = (index) => {
+    const newNumbers = Array.from({ length: index }, (_, i) => i);
     setSelectedNumbers(newNumbers);
     setActive(index)
     scrollToButton(index);
+    setTimeout(() => {
+      if (index === 0) {
+        setLonhon(true);
+        setNhohon(false);
+      }
+      if (index === dataSLides?.length - 1) {
+        setLonhon(false);
+        setNhohon(true);
+      }
+    }, 500)
+    if (index > active) {
+      setLonhon(true);
+      setNhohon(false);
+    } else if (index < active) {
+      setLonhon(false);
+      setNhohon(true);
+    };
   };
 
   console.log({ selectedNumbers, active });
@@ -78,15 +94,22 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
 
 
 
-  // const handleClickArcodion = (i) => {
-  //   if (activeArco === i) {
-  //     setAccordionOpen(false);
-  //     setActiveArco(-1);
+
+
+  // const handleClick = (number) => {
+  //   if (number > active) {
+  //     setLonhon(true);
+  //     setNhohon(false);
+  //   } else if (number < active) {
+  //     setLonhon(false);
+  //     setNhohon(true);
   //   } else {
-  //     setAccordionOpen(true);
-  //     setActiveArco(i);
+  //     setLonhon(false);
+  //     setNhohon(false);
   //   }
-  // }
+  //   setActive(number);
+  // };
+
 
   return (
     <div className='lg:hidden flex flex-col space-y-10  my-[2rem]'>
@@ -99,15 +122,18 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
       </div>
       {/* LINEs */}
       <div className='w-full overflow-x-auto no-scrollbar' ref={containerLineRef} >
+        {/* XE MAY */}
         <Image
           ref={motoRef}
-          className='object-contain ml-[40px]  transition-all duration-500 mb-[0.3rem]'
-          src={'/home/icon-xemay.svg'}
+          className={cn('object-contain ml-[40px] transition-all duration-500 mb-[0.3rem]'
+          )}
+          src={lonhon ? '/home/icon-xemay.svg' : '/home/icon-xemay-rtl.svg'}
           alt='motor'
           width={30}
           height={30}
-          quality={95}
+        // quality={95}
         />
+
         <div className=" flex items-center space-x-2 px-[3rem] w-max ">
           {data?.map((d, i) => (
             <div
@@ -126,7 +152,7 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
           {data.map((d, i) => (
             <div
               ref={(el) => buttonRefs.current[i] = el}
-              onClick={() => handleClick(i, i)} key={i}>
+              onClick={() => handleClick(i)} key={i}>
               <Button
                 data={d}
                 active={active === i ? true : false}
@@ -247,7 +273,7 @@ const BookNow = ({ index, active }) => {
 
 const Line = ({ index, activeLine }) => {
   return (
-    <div className=" space-x-2 flex items-center border-transparent">
+    <div className=" space-x-2 flex border border-transparent items-center">
       <div className="size-[0.55rem] rounded-full border-[2px] border-[#b34b1e] "></div>
       <div className="relative">
         <div className={cn("flex items-center space-x-[0.3rem]", activeLine ? '' : '')}>

@@ -12,7 +12,7 @@ const ItemVideo = ({ active, url }) => {
 
   return (
     <>
-      <div className='relative bd'>
+      <div className='relative'>
         <video
           type='video/mp3'
           src={url}
