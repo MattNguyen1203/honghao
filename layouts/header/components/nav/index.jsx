@@ -8,22 +8,39 @@ import React, { useEffect, useRef, useState } from 'react'
 import useStore from '@/app/(store)/store'
 gsap.registerPlugin(ScrollTrigger)
 const Nav = ({ setOpenNav, dataContacts }) => {
-  const { checkOpenBookNow } = useStore(state => state)
-  console.log({ checkOpenBookNow });
+  const { checkOpenBookNow, checkOpenBookNow2 } = useStore(state => state)
+  console.log({ checkOpenBookNow, checkOpenBookNow2 });
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
+
+
+  useEffect(() => {
+    if (checkOpenBookNow || (checkOpenBookNow2)) {
+
+      setIsHidden(true)
+      setIsTransparent(false)
+    } else {
+      if (checkOpenBookNow2 !== 0) {
+
+        setIsHidden(false)
+        setIsTransparent(true)
+      }
+    }
+  }, [checkOpenBookNow2, checkOpenBookNow])
 
   useEffect(() => {
     ScrollTrigger.create({
       start: 'top top',
       end: 99999,
       onUpdate: (self) => {
-        if (self.direction === 1 || checkOpenBookNow) {
+
+
+        if (self.direction === 1) {
           setIsHidden(true)
           setIsTransparent(false)
           // Khi cuộn xuống
-        } else if (self.direction === -1) {
+        } else if (self.direction === -1 && checkOpenBookNow2 !== 0) {
           // Khi cuộn lên
           setIsHidden(false)
           setIsTransparent(true)
@@ -33,16 +50,17 @@ const Nav = ({ setOpenNav, dataContacts }) => {
         }
       },
     })
-  }, [checkOpenBookNow])
+  }, [])
+
 
   return (
-    <div
+    <header
+      ref={headerRef}
       className={cn(
         'fixed top-0 left-0 z-[1001] py-[1.5rem] px-[5rem] xmd:px-[1.25rem] xmd:py-[0.5rem] flex w-full justify-between items-center transtion-all duration-500',
         isHidden ? '-translate-y-[100%]' : 'translate-y-0',
-        isTransparent ? 'bg-transparent' : ' bg-greyscale-0 shadow-md',
+        isTransparent ? 'bg-transparent' : 'bg-greyscale-0 shadow-md',
       )}
-      ref={headerRef}
     >
       <Link
         href='/'
@@ -81,7 +99,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
           Menu
         </span>
       </div>
-    </div>
+    </header>
   )
 }
 

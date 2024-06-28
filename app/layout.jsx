@@ -2,6 +2,7 @@ import { Londrina_Solid } from 'next/font/google'
 import './globals.css'
 import localFont from 'next/font/local'
 import NextTopLoader from 'nextjs-toploader'
+
 const londrina = Londrina_Solid({
   display: 'swap',
   weight: ['100', '300', '400', '900'],

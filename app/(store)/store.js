@@ -26,6 +26,16 @@ const useStore = create((set) => ({
     })
   },
 
+  // khi mở formHome sẽ ẩn nav
+  checkOpenBookNow2: -1,
+  setCheckOpenBookNow2: (data) => {
+    set((state) => {
+      return {
+        ...state,
+        checkOpenBookNow2: data,
+      }
+    })
+  },
   currentCategories: '',
   setCurrentCategories: (data) => {
     set((state) => {

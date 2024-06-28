@@ -32,7 +32,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         trigger: container.current,
         pin: pinRef.current,
         start: 'top top',
-        end: `+=${scrollRef.current.offsetHeight} 98%`,
+        end: `+=${scrollRef.current.offsetHeight} 95%`,
         // scrub: 1,
         anticipatePin: 1,
         markers: true,
@@ -42,7 +42,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         trigger: container.current,
         pin: pin2Ref.current,
         start: 'top top',
-        end: `+=${scrollRef.current.offsetHeight} 98%`,
+        end: `+=${scrollRef.current.offsetHeight} 95%`,
         // scrub: 1,
         anticipatePin: 1,
         // markers: true,
@@ -105,7 +105,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         src={'/imgs/all-destinations/discover-desti.png'}
         width={1600}
         height={900}
-        className='absolute xmd:hidden z-[-1] object-cover w-full h-[`100vh]'
+        className='absolute xmd:hidden z-[-1] object-cover w-full h-[100vh]'
       />
       <Image
         ref={pinRefMobi}
