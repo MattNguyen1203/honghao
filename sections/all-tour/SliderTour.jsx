@@ -35,7 +35,7 @@ export default function SliderTour({ type, dataBestTrip }) {
 
       <div
         data-aos="fade-up"
-        data-aos-duration="550"
+        data-aos-duration="900"
         className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
           slidesPerView={'auto'}

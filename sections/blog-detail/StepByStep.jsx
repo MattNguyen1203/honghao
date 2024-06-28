@@ -10,6 +10,7 @@ import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
 import { cn } from '@/lib/utils'
 import index from '../activity'
 // import {dataSLides} from './data'
+import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 export default function StepByStep({ dataAcf, dataTourDetail }) {
   // console.log({ checkOpenBookNow });
@@ -17,8 +18,33 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
   const dataSLides = dataAcf?.dataSLides || []
-  const { setCheckOpenBookNow, checkOpenBookNow } = useStore(state => state)
+  const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
+
   console.log({ checkOpenBookNow });
+  console.log({ checkOpenBookNow });
+
+  useEffect(() => {
+    if (divRef.current) {
+      const tl = gsap.to(divRef.current, {
+        scrollTrigger: {
+          trigger: divRef.current,
+          start: "top",
+          end: "50%",
+          scrub: true,
+          markers: true,
+          pin: true,
+        },
+        duration: 1,
+        ease: "power1.inOut",
+      });
+
+      return () => {
+        tl.kill();
+        ScrollTrigger.kill();
+      };
+    }
+  }, []);
+
   useEffect(() => {
     const medium = Math.ceil(dataSLides?.length / 2)
     if (swiperRef.current) {
@@ -61,13 +87,13 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   const handleSlideChange = (swiper) => {
     if (swiper.realIndex < dataSLides?.length) {
       setIndexSlider(swiper.realIndex)
-    }
-    setIndexSlider(swiper.realIndex)
+      // if (swiper.realIndex !== 0) {
 
-  }
-  function parseItinerary(input) {
-    const [day, itinerary] = input.split(":");
-    return day
+      setCheckOpenBookNow2(swiper.realIndex)
+      // }
+    }
+    // setIndexSlider(swiper.realIndex)
+
   }
 
   const [slidePositions, setSlidePositions] = useState([]);
@@ -79,46 +105,14 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
       setSlidePositions(positions);
     }
   }, [dataSLides]);
-
   useEffect(() => {
-
     if (bikeRef.current && slidePositions.length > 0 && indexSlider <= dataSLides?.length - 1) {
       bikeRef.current.style.top = `${slidePositions[indexSlider] - 15}px`;
     }
+    // if (indexSlider !== 0) {
+    //   setCheckOpenBookNow2(indexSlider)
+    // }
   }, [indexSlider, slidePositions]);
-
-  // Event handlers for enabling/disabling scroll
-  // box - slides
-  const handleMouseEnter = () => {
-    setCheckOpenBookNow(true)
-    // alert(checkOpenBookNow)
-  };
-  const handleMouseLeave = () => {
-
-  };
-
-  // const divRef = useRef(null);
-  // const [lastScrollTop, setLastScrollTop] = useState(0);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollTop = swiperRef.current.scrollTop;
-
-  //     if (scrollTop > lastScrollTop) {
-  //       console.log('Cuộn xuống');
-  //     } else {
-  //       console.log('Cuộn lên');
-  //     }
-
-  //     setLastScrollTop(scrollTop);
-  //   };
-
-  //   swiperRef.current.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     swiperRef.current.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [lastScrollTop]);
-
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.params) {
@@ -138,7 +132,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }, [indexSlider]);
 
 
-
+  const divRef = useRef(null);
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   // check box onsite
@@ -170,7 +164,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     }
   }, [isVisible]);
   return (
-    <section className='relative flex w-full  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
+    <section ref={divRef} className='relative flex w-full  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}
       {/* <ScrollDetector /> */}
       <div data-aos="fade-up"
@@ -188,6 +182,8 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
       {/* map */}
       <div data-aos="fade-up"
         data-aos-duration="900"
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
         className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
         <div
           ref={ref}
@@ -230,8 +226,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           </div>
           <div
 
-            onMouseEnter={handleMouseEnter}
-            // onMouseLeave={handleMouseLeave}
+
             className='w-full h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
             <div className=" absolute top-[-1.5rem] left-[3rem]">
               <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>

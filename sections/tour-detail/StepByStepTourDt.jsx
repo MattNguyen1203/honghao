@@ -134,7 +134,7 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
         // quality={95}
         />
 
-        <div className=" flex items-center space-x-2 px-[3rem] w-max ">
+        <div className=" flex items-center space-x-1 px-[3rem] w-max ">
           {data?.map((d, i) => (
             <div
               className={cn('', i === data?.length - 1 ? ' w-0 scale-0' : '')}
@@ -273,10 +273,11 @@ const BookNow = ({ index, active }) => {
 
 const Line = ({ index, activeLine }) => {
   return (
-    <div className=" space-x-2 flex border border-transparent items-center">
+    <div className=" space-x-1.5 flex border border-transparent items-center">
       <div className="size-[0.55rem] rounded-full border-[2px] border-[#b34b1e] "></div>
       <div className="relative">
         <div className={cn("flex items-center space-x-[0.3rem]", activeLine ? '' : '')}>
+          <div className="w-[0.8rem] h-[0.15rem] rounded-full  bg-[rgb(179,75,30)] opacity-20"></div>
           <div className="w-[0.8rem] h-[0.15rem] rounded-full  bg-[rgb(179,75,30)] opacity-20"></div>
           <div className="w-[0.8rem] h-[0.15rem] rounded-full  bg-[rgb(179,75,30)] opacity-20"></div>
           <div className="w-[0.8rem] h-[0.15rem] rounded-full  bg-[rgb(179,75,30)] opacity-20"></div>
