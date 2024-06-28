@@ -31,7 +31,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           start: "top",
           end: "50%",
           scrub: true,
-          markers: true,
+          // markers: true,
           pin: true,
         },
         duration: 1,

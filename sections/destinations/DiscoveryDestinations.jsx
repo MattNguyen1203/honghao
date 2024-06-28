@@ -35,7 +35,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         end: `+=${scrollRef.current.offsetHeight} 95%`,
         // scrub: 1,
         anticipatePin: 1,
-        markers: true,
+        // markers: true,
         pinSpacing: false,
       })
       ScrollTrigger.create({
