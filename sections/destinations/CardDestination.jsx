@@ -29,9 +29,9 @@ const CardDestination = ({ data }) => {
           {/* vệt sáng */}
           <div className='absolute animated-button z-50 w-[3.80475rem] h-[5.10919rem] bg-card-des rotate-[-24.824deg] shrink-0 opacity-30'></div>
         </div>
-        <div className='bg-card w-[25.5625rem] xmd:mx-auto xmd:w-[19.7375rem] group-hover:h-[12rem] xmd:h-[3.6875rem] h-[4.75rem] overflow-hidden z-50 absolute duration-500 ease-linear xmd:bottom-[1rem]  bottom-[2.5rem] left-1/2 -translate-x-1/2 inline-flex  flex-col items-start gap-[1rem] shrink-0 px-4 xmd:px-[0.75rem] xmd:py-[1.25rem] py-6 xmd:rounded-[1.19925rem] rounded-3xl'>
+        <div className='bg-card w-[25.5625rem] xmd:mx-auto xmd:w-[19.7375rem] group-hover:h-[12rem] xmd:h-[7rem] h-[4.75rem] overflow-hidden z-50 absolute duration-500 ease-linear xmd:bottom-[1rem]  bottom-[2.5rem] left-1/2 -translate-x-1/2 inline-flex  flex-col items-start gap-[1rem] shrink-0 px-4 xmd:px-[0.75rem] xmd:py-[1.25rem] py-6 xmd:rounded-[1.19925rem] rounded-3xl'>
           <div className='flex justify-between items-center self-stretch'>
-            <div className='text-white text-2xl xmd:text-[1.25rem]  not-italic font-extrabold leading-[120%] line-clamp-1 pr-[0.5rem]'>
+            <div className='text-white text-2xl xmd:text-[1.25rem]  not-italic font-extrabold leading-[120%] line-clamp-3 md:line-clamp-1 pr-[0.5rem]'>
               {data?.title}
             </div>
             <Image

@@ -1,16 +1,16 @@
 'use client'
-import {Button} from '@/components/customCn/button'
-import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
-import {generateParams, generateParamsPayment} from '@/lib/payment'
+import { Button } from '@/components/customCn/button'
+import { FORM_API, GOOGLE_KEY, paymentOnepay } from '@/lib/constants'
+import { generateParams, generateParamsPayment } from '@/lib/payment'
 // import {FORM_API} from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import CryptoJS from 'crypto-js'
-import {parseQueryString} from '@/lib/utils'
-import {useRouter} from 'next/navigation'
+import { parseQueryString } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
-const ThankYou = ({searchParams, slug}) => {
+const ThankYou = ({ searchParams, slug }) => {
   const [isSuccessfull, setIsSuccessfull] = useState(false)
 
   const router = useRouter()
@@ -92,7 +92,7 @@ const ThankYou = ({searchParams, slug}) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({slug: slug?.[0]}),
+          body: JSON.stringify({ slug: slug?.[0] }),
         })
 
         if (!res.ok) {

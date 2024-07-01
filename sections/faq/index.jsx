@@ -32,7 +32,7 @@ export default async function Faq() {
   const dataQuestions = dataAskedQuestions?.acf?.faq
 
   return (
-    <Aos>
+    <Aos className={'faq-class'}>
       <section>
         <Banner
           mainImg={data?.banner?.background_image?.url}

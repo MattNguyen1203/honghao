@@ -11,7 +11,7 @@ const Destinations = ({ dataAcf, dataListCat }) => {
   const text = dataBanner?.image_title_big?.url
   const textMobile = dataBanner?.image_title_big_mobile?.url
   return (
-    <Aos>
+    <Aos className={'alldestinations'}>
       <section className='xmd:hidden'>
         <Banner dataBanner={dataBanner} />
       </section>
