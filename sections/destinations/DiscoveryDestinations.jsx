@@ -52,32 +52,19 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
     } else {
       ScrollTrigger.create({
         trigger: pinRefMobi.current,
-        pin: pinRefMobi.current,
-        start: '-210% 0%',
-        end: () => `+=${scrollRef.current.offsetHeight} -1000%`,
+        pin: true,
+        start: '-250% top',
+        end: `+=${scrollRef.current.offsetHeight + 99999} 65%`,
         scrub: 1,
+        anticipatePin: 1,
+        // markers: true,
         pinSpacing: false,
-        onUpdate: (self) => {
-          if (self.isActive) {
-            pinRefMobi.current.style.position = 'fixed'
-            pinRefMobi.current.style.top = 'auto'
-            pinRefMobi.current.style.bottom = '0'
-            pinRefMobi.current.style.left = '0'
-            pinRefMobi.current.style.right = '0'
-            pinRefMobi.current.style.zIndex = '1000'
-          } else {
-            pinRefMobi.current.style.position = ''
-            pinRefMobi.current.style.top = ''
-            pinRefMobi.current.style.bottom = ''
-            pinRefMobi.current.style.left = ''
-            pinRefMobi.current.style.right = ''
-            pinRefMobi.current.style.zIndex = ''
-          }
-        },
       })
     }
 
   }, [listDestination])
+
+
 
   useEffect(() => {
     if (firstTimeRef.current) {
@@ -126,7 +113,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
       />
       <div
         ref={scrollRef}
-        className='xmd:mx-[1rem] xmd:mt-[3.4rem] xl:w-[93rem] mx-auto xmd:space-y-[1.7rem] flex xmd:flex-col justify-around'
+        className='xmd:mx-[1rem] xmd:mt-[3.4rem] md:space-x-[3rem] xl:w-[93rem] mx-auto xmd:space-y-[1.7rem] flex items-start xmd:flex-col justify-around'
       >
         <div
           ref={pin2Ref}
@@ -148,7 +135,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
             className=' text-green-dark-active md:w-[27.5625rem] text-[1rem] xmd:text-[0.875rem]  not-italic font-normal xmd:tracking-[0.00219rem] tracking-[0.005rem] leading-[150%]'
           ></div>
         </div>
-        <div>
+        <div className='xmd:w-full'>
           <div
             ref={scrollRef}
             id='destination-cards'

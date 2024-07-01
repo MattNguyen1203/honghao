@@ -1,17 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import {useGSAP} from '@gsap/react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/navigation'
-import {Navigation, Thumbs, FreeMode} from 'swiper/modules'
-import {useEffect, useRef, useState} from 'react'
+import { Navigation, Thumbs, FreeMode } from 'swiper/modules'
+import { useEffect, useRef, useState } from 'react'
 import useStore from '@/app/(store)/store'
 import SeasonThumbItem from '@/components/season-thumb-item/SeasonThumbItem'
 import 'swiper/css/thumbs'
 import 'swiper/css/free-mode'
-import {getCurrentDate} from '@/lib/getCurrentDate'
+import { getCurrentDate } from '@/lib/getCurrentDate'
 
 const listMonth = [
   'jan',
@@ -28,7 +28,7 @@ const listMonth = [
   'dec',
 ]
 
-export default function Season({data, dataWeather}) {
+export default function Season({ data, dataWeather }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const swiperRef = useRef(null)
   const swiperThumbMobileRef = useRef(null)
@@ -69,35 +69,34 @@ export default function Season({data, dataWeather}) {
     const animations = [
       {
         selector: '.main-cloud',
-        props: {x: '-8%', duration: 14, repeat: -1, yoyo: true, ease: 'none'},
+        props: { x: '-8%', duration: 14, repeat: -1, yoyo: true, ease: 'none' },
       },
       {
         selector: '.animate-cloud-1',
-        props: {x: '100%', duration: 18, repeat: -1, yoyo: true, ease: 'none'},
+        props: { x: '100%', duration: 18, repeat: -1, yoyo: true, ease: 'none' },
       },
       {
         selector: '.animate-cloud-2',
-        props: {x: '-100%', duration: 18, repeat: -1, yoyo: true, ease: 'none'},
+        props: { x: '-100%', duration: 18, repeat: -1, yoyo: true, ease: 'none' },
       },
       {
         selector: '.animate-cloud-4',
-        props: {x: '-100%', duration: 18, repeat: -1, yoyo: true, ease: 'none'},
+        props: { x: '-100%', duration: 18, repeat: -1, yoyo: true, ease: 'none' },
       },
     ]
 
-    animations.forEach(({selector, props}) => {
+    animations.forEach(({ selector, props }) => {
       gsap.to(selector, props)
     })
   }, [])
   useEffect(() => {
     if (!isMobile) {
       const thumbItems = document.querySelectorAll('.thumb-item')
-      const thumbItemWidth = thumbItems[0].offsetWidth
-      const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${
-        thumbItems[1].getBoundingClientRect().left -
-        thumbItems[0].getBoundingClientRect().left -
+      const thumbItemWidth = thumbItems?.[0]?.offsetWidth
+      const leftPosition = `calc(${thumbItemWidth * activeIndex}px + ${thumbItems?.[1]?.getBoundingClientRect().left -
+        thumbItems?.[0]?.getBoundingClientRect().left -
         thumbItemWidth
-      }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
+        }px * ${activeIndex} + ${thumbItemWidth / 2}px)`
       myRef.current.style.left = leftPosition
     }
   }, [activeIndex, isMobile])
@@ -160,7 +159,7 @@ export default function Season({data, dataWeather}) {
               swiperRef.current = swiper
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            thumbs={{swiper: thumbsSwiper}}
+            thumbs={{ swiper: thumbsSwiper }}
           >
             {data?.map((item, index) => (
               <SwiperSlide key={index}>
@@ -380,7 +379,7 @@ export default function Season({data, dataWeather}) {
                 {parseInt(dataWeather?.main.temp) - 273}°C
               </span>
               {dataWeather?.weather?.[0]?.main === 'Clear' ||
-              dataWeather?.weather?.[0]?.id === 801 ? (
+                dataWeather?.weather?.[0]?.id === 801 ? (
                 <Image
                   src={'/imgs/home/sun.svg'}
                   alt='sun with cloud'

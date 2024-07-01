@@ -1,11 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import AccordionCustom from '@/sections/common/accordion'
 import { regName, regPhone, regEmail } from '@/lib/reg'
 import { useToast } from '@/components/ui/use-toast'
 import Image from 'next/image'
 import { FORM_FAQ_API } from '@/lib/constants'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/customCn/dialog"
 export default function FrequentlyAskedQuestions({ data, dataQt }) {
   const { toast } = useToast()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -58,6 +70,8 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
       setIsLoading(false)
     }
   }
+
+
   return (
     <section className='kKao4-container'>
       <h3
@@ -171,11 +185,9 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
         </div>
       </div>
 
-      {isDialogOpen && (
-        <div
-          // onClick={handleClickOutside}
-          className='z-[999] fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
-        >
+      <Dialog open={isDialogOpen ? true : false}>
+        {/* <DialogTrigger>Open</DialogTrigger> */}
+        <DialogContent>
           <div className='child_video overflow-hidden rounded-[1.5rem] h-[30.3125rem] w-[47.25rem] relative bg-[linear-gradient(0deg,rgba(19,52,28,0.60)_0%,rgba(19,52,28,0.60)_100%)]'>
             <Image
               className='size-full rounded-[1.5rem]'
@@ -204,8 +216,8 @@ export default function FrequentlyAskedQuestions({ data, dataQt }) {
               height={659.181}
             />
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

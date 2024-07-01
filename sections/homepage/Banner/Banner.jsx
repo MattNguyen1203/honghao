@@ -1,16 +1,17 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Filter from './Filter'
 import Image from 'next/image'
 import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import SlideImgs from './SlideImgs'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {useSearchParams} from 'next/navigation'
-import {generateParams} from '@/lib/payment'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useSearchParams } from 'next/navigation'
+import { generateParams } from '@/lib/payment'
 import CryptoJS from 'crypto-js'
-import {paymentOnepay} from '@/lib/constants'
+import { paymentOnepay } from '@/lib/constants'
+import { useGSAP } from '@gsap/react'
 gsap.registerPlugin(ScrollTrigger)
 const Banner = ({
   dataBanner,
@@ -25,7 +26,7 @@ const Banner = ({
 
   const [animationCompleted, setAnimationCompleted] = useState(false)
 
-  useEffect(() => {
+  useGSAP(() => {
     gsap.matchMedia().add('(min-width: 1024px)', () => {
       ScrollTrigger.create({
         trigger: '#homepage__banner',
@@ -190,7 +191,7 @@ const Banner = ({
               GET READY
             </span>
             <h1
-              dangerouslySetInnerHTML={{__html: dataBanner?.heading_h1}}
+              dangerouslySetInnerHTML={{ __html: dataBanner?.heading_h1 }}
               className='homepage_heading font-black w-[44.125rem] text-center'
             ></h1>
           </div>

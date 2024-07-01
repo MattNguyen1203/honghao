@@ -12,6 +12,7 @@ import index from '../activity'
 // import {dataSLides} from './data'
 import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 export default function StepByStep({ dataAcf, dataTourDetail }) {
   // console.log({ checkOpenBookNow });
   const swiperRef = useRef(null)
@@ -38,10 +39,10 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
         ease: "power1.inOut",
       });
 
-      return () => {
-        tl.kill();
-        ScrollTrigger.kill();
-      };
+      // return () => {
+      //   tl.kill();
+      //   ScrollTrigger.kill();
+      // };
     }
   }, []);
 
@@ -292,7 +293,10 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                           className='size-[1.5rem]'
                           isActive={index <= indexSlider}
                         />
-                        <span className='text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer'>
+                        <span className={cn('text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer',
+
+                          index <= indexSlider ? 'text-[#E64827]' : 'text-[#C5C5C5]'
+                        )}>
                           {item?.district}
                         </span>
                       </div>}

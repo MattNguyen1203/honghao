@@ -15,19 +15,19 @@ const Nav = ({ setOpenNav, dataContacts }) => {
   const [isHidden, setIsHidden] = useState(false)
 
 
-  useEffect(() => {
-    if (checkOpenBookNow || (checkOpenBookNow2)) {
+  // useEffect(() => {
+  //   if (checkOpenBookNow || (checkOpenBookNow2)) {
 
-      setIsHidden(true)
-      setIsTransparent(false)
-    } else {
-      if (checkOpenBookNow2 !== 0) {
+  //     setIsHidden(true)
+  //     setIsTransparent(false)
+  //   } else {
+  //     if (checkOpenBookNow2 !== 0) {
 
-        setIsHidden(false)
-        setIsTransparent(true)
-      }
-    }
-  }, [checkOpenBookNow2, checkOpenBookNow])
+  //       setIsHidden(false)
+  //       setIsTransparent(true)
+  //     }
+  //   }
+  // }, [checkOpenBookNow2, checkOpenBookNow])
 
   useEffect(() => {
     ScrollTrigger.create({
@@ -36,11 +36,11 @@ const Nav = ({ setOpenNav, dataContacts }) => {
       onUpdate: (self) => {
 
 
-        if (self.direction === 1) {
+        if (self.direction === 1 || checkOpenBookNow || checkOpenBookNow2 !== -1) {
           setIsHidden(true)
           setIsTransparent(false)
           // Khi cuộn xuống
-        } else if (self.direction === -1 && checkOpenBookNow2 !== 0) {
+        } else if (self.direction === -1) {
           // Khi cuộn lên
           setIsHidden(false)
           setIsTransparent(true)
@@ -50,7 +50,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
         }
       },
     })
-  }, [])
+  }, [checkOpenBookNow, checkOpenBookNow2])
 
 
   return (
