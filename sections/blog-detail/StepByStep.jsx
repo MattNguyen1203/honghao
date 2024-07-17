@@ -14,16 +14,11 @@ import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 export default function StepByStep({ dataAcf, dataTourDetail }) {
-  // console.log({ checkOpenBookNow });
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
   const dataSLides = dataAcf?.dataSLides || []
   const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
-
-  console.log({ checkOpenBookNow });
-  console.log({ checkOpenBookNow });
-
   useEffect(() => {
     if (divRef.current) {
       const tl = gsap.to(divRef.current, {

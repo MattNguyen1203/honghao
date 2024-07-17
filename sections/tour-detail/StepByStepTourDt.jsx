@@ -35,7 +35,6 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
     };
   };
 
-  console.log({ selectedNumbers, active });
 
   const buttonRefs = useRef([]);
   const containerRef = useRef(null);
@@ -74,7 +73,6 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
     scrollToLine(active);
   }, [active]);
   useEffect(() => {
-    console.log({ lnn: lineRefs?.current?.[active] });
     if (motoRef.current && lineRefs.current[active]) {
       const moto = motoRef.current;
       const activeLine = lineRefs.current[active];

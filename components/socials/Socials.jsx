@@ -8,7 +8,7 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
   const phoneNumber = '0941556338'
   const { openbookNow, setOpenBooknow, setCheckOpenBookNow, checkOpenBookNow } = useStore(state => state)
   return (
-    <div className='fixed z-[300] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
+    <div className='fixed     z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
       <div
         className='w-[3.125rem]  animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
         <Dialog

@@ -52,7 +52,6 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   // }
 
   const handleClickDistrict = (index) => {
-    console.log(index);
     const swiper = swiperRef.current
     if (index == -1) {
       setIndexSlider(0)
