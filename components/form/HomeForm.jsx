@@ -78,6 +78,7 @@ export default function HomeForm({
   listTours = [],
   selfPax,
   localPax,
+  typeOfTour
 }) {
   const { toast } = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
@@ -329,7 +330,6 @@ export default function HomeForm({
   useEffect(() => {
     getIp()
   }, [])
-
   return (
     <>
       <section
@@ -444,7 +444,8 @@ export default function HomeForm({
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={listTypeofTour?.terms?.[0]?.name}
+                          // defaultValue={listTypeofTour?.terms?.[0]?.slug}
+                          defaultValue={typeOfTour ? typeOfTour : listTypeofTour?.terms?.[0]?.name}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>

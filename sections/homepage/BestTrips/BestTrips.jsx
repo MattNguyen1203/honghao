@@ -18,7 +18,6 @@ export default function BestTrips({ listBestTrip }) {
   const container = useRef(null)
   const listTourHome = useRef(null)
   const [index, setIndex] = useState(0)
-  console.log({ index });
   useGSAP(
     () => {
       if (!container.current) return

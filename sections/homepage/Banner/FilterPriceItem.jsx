@@ -1,9 +1,9 @@
 'use client'
 
 import ICQtyDown from '@/components/icons/ICQtyDown'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
-const FilterPriceItem = ({data, setOptionSelected}) => {
+const FilterPriceItem = ({ data, setOptionSelected }) => {
   const [qty, setQty] = useState(0)
   const handleInc = () => {
     setQty((prev) => prev + 1)
@@ -31,12 +31,12 @@ const FilterPriceItem = ({data, setOptionSelected}) => {
           {qty} pax
         </span>
 
-        <div className='flex flex-col'>
+        <div className='flex flex-col md: space-y-[0.3rem]'>
           <div onClick={handleInc}>
-            <ICQtyDown className='' />
+            <ICQtyDown className=' cursor-pointer' />
           </div>
           <div onClick={handleDec}>
-            <ICQtyDown className='rotate-180 mt-[0.5rem]' />
+            <ICQtyDown className='rotate-180 mt-[0.5rem] cursor-pointer' />
           </div>
         </div>
       </div>

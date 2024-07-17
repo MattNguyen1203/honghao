@@ -1,10 +1,11 @@
 'use client'
 
-import React, {useEffect, useMemo, useState} from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import FilterSelectItem from './FilterSelectItem'
 import FilterPriceItem from './FilterPriceItem'
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
+import { cn } from '@/lib/utils'
 
 const dataPrice = [
   {
@@ -17,7 +18,8 @@ const dataPrice = [
   },
 ]
 
-const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
+const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
+
   const dataFilter = [
     {
       label: 'days',
@@ -32,7 +34,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
   ]
 
   const [optionSelected, setOptionSelected] = useState({
-    type_of_tour_data: listTypeofTour?.terms?.[0]?.slug,
+    type_of_tour_data: listTypeofTour?.terms?.[0]?.name,
     time_data: listTime?.terms?.[0]?.slug,
     selfPax: 0,
     localPax: 0,
@@ -43,9 +45,9 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
   useEffect(() => {
     const tourMatch = listTours?.tours?.find(
       (item, index) =>
-        item?.time_data?.[0]?.slug === optionSelected?.time_data &&
-        item?.type_of_tour_data?.[0]?.slug ===
-          optionSelected?.type_of_tour_data,
+        item?.time_data?.[0]?.name === optionSelected?.time_data &&
+        item?.type_of_tour_data?.[0]?.name ===
+        optionSelected?.type_of_tour_data,
     )
 
     setTourSelected(tourMatch)
@@ -89,8 +91,12 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
       ))}
 
       <Dialog>
-        <DialogTrigger asChild>
-          <div className='bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer'>
+        <DialogTrigger
+          className={cn(``, totalPrice === 0 ? '!opacity-50 !cursor-not-allowed  pointer-events-none' : '')}
+          asChild>
+          <div className={cn('bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer',
+            totalPrice === 0 ? 'opacity-50 cursor-not-allowed' : ''
+          )}>
             <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
               ${totalPrice}
             </span>
@@ -117,6 +123,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             listTours={listTours?.tours}
             selfPax={optionSelected?.selfPax}
             localPax={optionSelected?.localPax}
+            typeOfTour={optionSelected?.type_of_tour_data}
           />
         </DialogContent>
       </Dialog>

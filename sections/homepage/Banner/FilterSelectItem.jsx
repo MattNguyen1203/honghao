@@ -8,14 +8,14 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-const FilterSelectItem = ({data, setOptionSelected}) => {
+const FilterSelectItem = ({ data, setOptionSelected }) => {
   return (
     <div className='w-fit min-w-[8.75rem] flex-col'>
       <span className='text-075 tracking-[0.00375rem] text-greyscale-50 uppercase'>
         {data?.label}
       </span>
       <Select
-        defaultValue={data?.content?.[0]?.slug}
+        defaultValue={data?.content?.[0]?.name}
         onValueChange={(value) => {
           setOptionSelected((prev) => {
             return {
@@ -32,7 +32,7 @@ const FilterSelectItem = ({data, setOptionSelected}) => {
         <SelectContent className='z-[100]'>
           {data?.content?.map((item, index) => (
             <SelectItem
-              value={item?.slug}
+              value={item?.name}
               key={index}
               className='custom-select text-1 font-bold text-greyscale-80 capitalize p-[1rem] border-b border-solid border-greyscale-5'
             >

@@ -9,7 +9,6 @@ import useStore from '@/app/(store)/store'
 gsap.registerPlugin(ScrollTrigger)
 const Nav = ({ setOpenNav, dataContacts }) => {
   const { checkOpenBookNow, checkOpenBookNow2 } = useStore(state => state)
-  console.log({ checkOpenBookNow, checkOpenBookNow2 });
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
