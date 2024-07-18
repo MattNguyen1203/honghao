@@ -35,7 +35,7 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
 
   const [optionSelected, setOptionSelected] = useState({
     type_of_tour_data: listTypeofTour?.terms?.[0]?.name,
-    time_data: listTime?.terms?.[0]?.slug,
+    time_data: listTime?.terms?.[0]?.name,
     selfPax: 0,
     localPax: 0,
   })
@@ -63,7 +63,7 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
       Number(localPrice) * Number(optionSelected?.localPax)
     )
   }, [tourSelected, optionSelected])
-
+  console.log(listTime, optionSelected);
   return (
     <div className='xmd:hidden flex items-center absolute bottom-[2.94rem] left-1/2 -translate-x-1/2 bg-greyscale-0 rounded-[0.75rem] py-[0.75rem] pl-[2rem] pr-[0.75rem] z-[1000]'>
       {dataFilter?.map((item, index) => (
@@ -92,10 +92,10 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
 
       <Dialog>
         <DialogTrigger
-          className={cn(``, totalPrice === 0 ? '!opacity-50 !cursor-not-allowed  pointer-events-none' : '')}
+          // className={cn(``, totalPrice === 0 ? '!opacity-50 !cursor-not-allowed  pointer-events-none' : '')}
           asChild>
           <div className={cn('bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer',
-            totalPrice === 0 ? 'opacity-50 cursor-not-allowed' : ''
+            // totalPrice === 0 ? 'opacity-50 cursor-not-allowed' : ''
           )}>
             <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
               ${totalPrice}
@@ -107,6 +107,11 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
         </DialogTrigger>
         <DialogContent className='sm:max-w-fit'>
           <HomeForm
+            listLocation={commonData?.acf}
+            listTypeofTour={listTypeofTour}
+            listTime={listTime}
+            listTours={listTours?.tours}
+
             dataFormInit={{
               titleTour: tourSelected?.title,
               typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
@@ -117,13 +122,10 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
               priceSelf: tourSelected?.gia?.self_driving,
               priceLocal: tourSelected?.gia?.local_driver,
             }}
-            listLocation={commonData?.acf}
-            listTypeofTour={listTypeofTour}
-            listTime={listTime}
-            listTours={listTours?.tours}
             selfPax={optionSelected?.selfPax}
             localPax={optionSelected?.localPax}
             typeOfTour={optionSelected?.type_of_tour_data}
+            daysOfTour={optionSelected?.time_data}
           />
         </DialogContent>
       </Dialog>
