@@ -78,7 +78,8 @@ export default function HomeForm({
   listTours = [],
   selfPax,
   localPax,
-  typeOfTour
+  typeOfTour,
+  daysOfTour
 }) {
   const { toast } = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
@@ -112,7 +113,7 @@ export default function HomeForm({
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
-
+  console.log({ daysOfTour });
   // hàm lấy tour phù hợp
   const handleChangeTourSelected = (type, time, listTours) => {
     const tourMatch = listTours?.find((tour) => {
@@ -151,17 +152,24 @@ export default function HomeForm({
 
   // kiểm tra thông tin đầu vào
   useEffect(() => {
-    if (dataFormInit) {
-      form.setValue('typeoftour', dataFormInit?.typeoftour)
-      form.setValue('choosedays', dataFormInit?.choosedays?.title)
-    } else {
-      const typeInit = listTypeofTour?.terms?.[0]?.name
-      const timeInit = listTime?.terms?.[0]?.name
-      form.setValue('typeoftour', typeInit)
-      form.setValue('choosedays', timeInit)
-      handleChangeTourSelected(typeInit, timeInit, listTours)
-    }
-  }, [dataFormInit])
+    // if (dataFormInit) {
+    //   console.log(1);
+    //   const typeInit = listTypeofTour?.terms?.[0]?.name
+    //   const timeInit = listTime?.terms?.[0]?.name
+    //   handleChangeTourSelected(typeInit, timeInit, listTours)
+
+    //   form.setValue('typeoftour', dataFormInit?.typeoftour)
+    //   form.setValue('choosedays', dataFormInit?.choosedays?.title)
+    // } else {
+    //   console.log(2);
+
+    const typeInit = listTypeofTour?.terms?.[0]?.name
+    const timeInit = listTime?.terms?.[0]?.name
+    handleChangeTourSelected(typeInit, timeInit, listTours)
+    form.setValue('typeoftour', typeOfTour ? typeOfTour : typeInit)
+    form.setValue('choosedays', daysOfTour ? daysOfTour : timeInit)
+    // }
+  }, [])
 
   // lấy lại tour phù hợp khi thay đổi thông tin
   useEffect(() => {
@@ -484,7 +492,7 @@ export default function HomeForm({
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={listTime?.terms?.[0]?.name}
+                          defaultValue={daysOfTour ? daysOfTour : listTime?.terms?.[0]?.name}
                           className='aa'
                         >
                           <FormControl>
