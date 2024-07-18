@@ -12,7 +12,7 @@ const ItemVideo = ({ active, url }) => {
 
   return (
     <>
-      <div className='relative'>
+      <div className='relative !z-[1000]'>
         <video
           type='video/mp3'
           src={url}
@@ -22,7 +22,7 @@ const ItemVideo = ({ active, url }) => {
           playsInline
           width='100%'
           height='100%'
-          className='item-video w-full min-w-full min-h-full rounded-[1rem] overflow-hidden'
+          className='item-video !z-[1000] w-full min-w-full min-h-full rounded-[1rem] overflow-hidden'
         />
 
         <div

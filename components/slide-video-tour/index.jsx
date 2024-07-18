@@ -204,7 +204,7 @@ const SlideVideoTours = ({ type, data = [], mainImage }) => {
           }}
           centeredSlides={checkIsBanner ? true : false}
           mousewheel={true}
-          speed={checkIsBanner ? 1500 : 1500}
+          speed={checkIsBanner ? 3000 : 1500}
           // initialSlide={3}
           slidesPerView={2.12}
           onSwiper={setThumbsSwiper}

@@ -285,6 +285,8 @@ const SheetCp = ({ children, isLearnMore, dataDiscover, setCurrenImages, currenI
   }
   const swiperRef = useRef(null);
   const handleClick = (i) => {
+    const scrollY = window.scrollY;
+    setTimeout(() => window.scrollTo(0, scrollY - 2), 0);
     setTimeout(() => {
       if (swiperRef.current && swiperRef.current.swiper) {
         swiperRef.current.swiper.slideTo(i);
@@ -609,9 +611,7 @@ const Discover = ({ dataDiscover }) => {
 
                     priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
                 </VideoPopoup>
-                {/* <Video dataMenu={dataDiscover?.lists_tabs} listsImageCurrent={listsImageCurrent}>
-                  {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
-                </Video> */}
+
                 <SheetCp index={1} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>
                     {listsImageCurrent?.[1] && <Image

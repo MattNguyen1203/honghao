@@ -111,16 +111,16 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
             listTime={listTime}
             listTours={listTours?.tours}
 
-            dataFormInit={{
-              titleTour: tourSelected?.title,
-              typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
-              choosedays: {
-                title: tourSelected?.time_data?.[0]?.name,
-                day: tourSelected?.infos?.number_day,
-              },
-              priceSelf: tourSelected?.gia?.self_driving,
-              priceLocal: tourSelected?.gia?.local_driver,
-            }}
+            // dataFormInit={{
+            //   titleTour: tourSelected?.title,
+            //   typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
+            //   choosedays: {
+            //     title: tourSelected?.time_data?.[0]?.name,
+            //     day: tourSelected?.infos?.number_day,
+            //   },
+            //   priceSelf: tourSelected?.gia?.self_driving,
+            //   priceLocal: tourSelected?.gia?.local_driver,
+            // }}
             selfPax={optionSelected?.selfPax}
             localPax={optionSelected?.localPax}
             typeOfTour={optionSelected?.type_of_tour_data}

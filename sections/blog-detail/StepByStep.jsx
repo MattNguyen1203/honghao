@@ -6,38 +6,32 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
 import { cn } from '@/lib/utils'
-import index from '../activity'
-// import {dataSLides} from './data'
 import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+// import ScrollTrigger from 'gsap/ScrollTrigger'
 export default function StepByStep({ dataAcf, dataTourDetail }) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
   const dataSLides = dataAcf?.dataSLides || []
   const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
-  useEffect(() => {
+  useGSAP(() => {
     if (divRef.current) {
-      const tl = gsap.to(divRef.current, {
+      gsap.to(divRef.current, {
         scrollTrigger: {
           trigger: divRef.current,
           start: "top",
           end: "50%",
-          scrub: true,
+          // scrub: true,
           // markers: true,
           pin: true,
         },
-        duration: 1,
-        ease: "power1.inOut",
+        // duration: 1,
+        // ease: "power1.inOut",
       });
 
-      // return () => {
-      //   tl.kill();
-      //   ScrollTrigger.kill();
-      // };
     }
   }, []);
 

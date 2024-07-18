@@ -54,7 +54,7 @@ const StoriesBlog = ({
 }) => {
   const categories = dataCategorisAndFirstpost?.categories
   const firstPost = dataCategorisAndFirstpost?.posts
-  const { shouldFetch, setShouldFetch } = useStore((state) => state)
+  const { shouldFetch, setShouldFetch, isMobile } = useStore((state) => state)
   const pathName = usePathname()
   const [currentCategories, setCurrentCategories] = useState(null)
   const router = useRouter()
@@ -112,6 +112,8 @@ const StoriesBlog = ({
       setCurrentTab(pathName)
     }
   }, [pathName])
+
+
   return (
     <section>
       <div className='flex flex-col xmd:relative items-center gap-[3.9375rem]'>
@@ -139,7 +141,8 @@ const StoriesBlog = ({
               data-aos-duration="900" className='xmd:w-screen mx-auto  relative saveposition xmd:overflow-auto xmd:no-scrollbar xmd:px-[1rem] '>
               <div className='xmd:hidden w-screen absolute  left-1/2  -translate-x-1/2 top-[-1rem] h-[0.0625rem] bg-[#E5E5E5]'></div>
               <div className=' mx-auto w-max flex justify-center items-start space-x-[0.94rem]'>
-                <Link href={`/blog`} prefetch={true} scroll={false} onClick={() => saveScrollPosition1(`category-all`)}>
+                <Link href={`/blog`} prefetch={true} scroll={false}
+                  onClick={() => saveScrollPosition1(`category-all`)}>
                   <div className={cn('flex duration-200 ease-out justify-center text-white bg-orange-normal items-center gap-2.5 px-[2.125rem] py-[0.8125rem] rounded-[62.5rem]',
                     currentTab !== `all` ? 'bg-[#FCF8F7] text-black md:hover:bg-orange-normal md:hover:text-white' : ''
                   )}>
@@ -154,8 +157,12 @@ const StoriesBlog = ({
                   </div>
                 </Link>
                 {categories?.filter((c) => c?.slug !== 'uncategorized')?.map((d, i) => (
-                  <Link key={i} href={`/blog/${d?.slug}`} prefetch={true} scroll={false}
-                    onClick={() => saveScrollPosition1(`category-${d?.id}`)}
+                  <Link key={i} href={`/blog/${d?.slug}`} scroll={false}
+                    onClick={
+                      // isMobile ?
+                      () => saveScrollPosition1(`category-${d?.id}`)
+                      // :null
+                    }
                   >
                     <div
                       id={`category-${d?.id}`}

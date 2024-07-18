@@ -1,4 +1,4 @@
-
+"use client"
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
@@ -15,6 +15,7 @@ export default function Booking({ data, dataTourDetail, dataPage }) {
     priceLocal: data?.gia?.local_driver,
   }
 
+  // console.log(dataFormInit);
   return (
     <div className='relative h-[80rem] xmd:h-fit flex bg-white'>
       <div className='xmd:hidden absolute size-full top-0 left-0'>
@@ -41,6 +42,14 @@ export default function Booking({ data, dataTourDetail, dataPage }) {
             isTourDetail
             dataFormInit={dataFormInit}
             listLocation={dataPage}
+
+            // selfPax={dataFormInit?.priceSelf}
+            // localPax={dataFormInit?.priceLocal}
+            typeOfTour={dataFormInit?.typeoftour}
+            daysOfTour={dataFormInit?.choosedays?.title}
+
+          // priceSeftTourDetail={dataFormInit?.priceSelf}
+          // priceLLocalTourDetail={dataFormInit?.priceLocal}
           />
         </div>
       </div>

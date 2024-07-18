@@ -7,10 +7,11 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { formatCurrencyVND } from '@/lib/utils'
-import { flattenDiagnosticMessageText } from 'typescript'
+
 
 export default function InformationForm({
   dataForm = {},
+  dataFormInit,
   titleTour,
   data,
   paxValueLocal,
@@ -27,13 +28,19 @@ export default function InformationForm({
   }
 
   const totalPrice =
-    paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal
+    paxValueSelf
+    *
+    (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : data?.priceSelf)
+    +
+    paxValueLocal
+    *
+    (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : data?.priceLocal)
 
 
 
   // ----------------- On And Off service Change--------------------
   const serviceCharge = 3
-  const hiddenServiceChange = flattenDiagnosticMessageText
+  const hiddenServiceChange = false
   // ---------------------------------------------------------------
   const totalsvchange = (totalPrice / 100) * serviceCharge
   return (
@@ -57,7 +64,7 @@ export default function InformationForm({
             Type of tour
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
-            {titleTour}: {dataForm?.typeoftour}{' '}
+            {dataFormInit?.titleTour ? dataFormInit?.titleTour : titleTour}: {dataForm?.typeoftour}{' '}
             {dataForm?.typeoftour && dataForm?.choosedays && 'in '}
             {dataForm?.choosedays}
           </div>
@@ -147,7 +154,7 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${data?.priceSelf} x {paxValueSelf}
+              ${dataFormInit?.priceSelf ? dataFormInit?.priceSelf : data?.priceSelf} x {paxValueSelf}
             </p>
           </div>
         </div>
@@ -157,7 +164,7 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${data?.priceLocal} x {paxValueLocal}
+              ${dataFormInit?.priceLocal ? dataFormInit?.priceLocal : data?.priceLocal} x {paxValueLocal}
             </p>
           </div>
         </div>
