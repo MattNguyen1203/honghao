@@ -7,6 +7,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { formatCurrencyVND } from '@/lib/utils'
+import { flattenDiagnosticMessageText } from 'typescript'
 
 export default function InformationForm({
   dataForm = {},
@@ -25,13 +26,15 @@ export default function InformationForm({
     return `${day}/${month}/${year}`
   }
 
-  const serviceCharge = 3
   const totalPrice =
     paxValueSelf * data?.priceSelf + paxValueLocal * data?.priceLocal
 
 
 
-  const hiddenServiceChange = false
+  // ----------------- On And Off service Change--------------------
+  const serviceCharge = 3
+  const hiddenServiceChange = flattenDiagnosticMessageText
+  // ---------------------------------------------------------------
   const totalsvchange = (totalPrice / 100) * serviceCharge
   return (
     <div
