@@ -91,7 +91,6 @@ export default function HomeForm({
   const [notFoundTour, setNotFoundTour] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isPayNow, setIsPayNow] = useState(null)
-
   const [ip, setIp] = useState('')
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -113,7 +112,6 @@ export default function HomeForm({
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
-  console.log({ daysOfTour });
   // hàm lấy tour phù hợp
   const handleChangeTourSelected = (type, time, listTours) => {
     const tourMatch = listTours?.find((tour) => {
@@ -338,6 +336,19 @@ export default function HomeForm({
   useEffect(() => {
     getIp()
   }, [])
+
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false)
+    const div = document.querySelector('div[data-state="open"]');
+    if (div) {
+      div.setAttribute('data-state', '');
+    }
+  }
+  const totalPrice = paxValueSelf * tourSelected?.priceSelf + paxValueLocal * tourSelected?.priceLocal
+
+  console.log(totalPrice);
+
   return (
     <>
       <section
@@ -960,9 +971,9 @@ export default function HomeForm({
                 } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
-                disabled={notFoundTour}
+                disabled={notFoundTour || totalPrice === 0}
                 className={`${isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
-                  } hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
+                  }  hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
                 type='submit'
                 onClick={form.handleSubmit((values) =>
                   onSubmit(values, 'Pay Later'),
@@ -978,7 +989,7 @@ export default function HomeForm({
                 )}
               </Button>
               <Button
-                disabled={notFoundTour}
+                disabled={notFoundTour || totalPrice === 0}
                 className={`${isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
                   } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
                 type='submit'
@@ -1081,6 +1092,8 @@ export default function HomeForm({
           paxValueLocal={paxValueLocal}
           exchangeRate={listLocation?.ti_gia}
         />
+
+
       </section>
       {isDialogOpen && (
         <div
@@ -1100,8 +1113,9 @@ export default function HomeForm({
                 {isDialogText}
               </span>
               <Link
+                onClick={handleCloseDialog}
                 href='/'
-                className='flex items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
+                className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
               >
                 Homepage
               </Link>
