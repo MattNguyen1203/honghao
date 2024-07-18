@@ -5,9 +5,9 @@ import {
   PaginationItem,
   PaginationLink,
 } from '@/components/ui/pagination'
-import {useRouter, useSearchParams} from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function PaginationV2({href, pagination}) {
+export default function PaginationV2({ href, pagination }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const className = {
@@ -19,37 +19,37 @@ export default function PaginationV2({href, pagination}) {
   const handlePushParam = (index) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', index)
-    router.push(`?${params.toString()}`, {scroll: false})
+    router.push(`?${params.toString()}`, { scroll: false })
   }
   return (
     <>
-      {/* {pagination?.total_pages>1&& */}
-      <Pagination className={'mt-[2rem] paginationcustom'}>
-        <PaginationContent>
-          {new Array(pagination?.total_pages).fill(0)?.map((d, i) => (
-            <PaginationItem
-              onClick={() => handlePushParam(i + 1)}
-              key={i}
-              className={
-                (pagination?.current_page || 1) === i + 1
-                  ? className.active
-                  : className.base
-              }
-            >
-              <PaginationLink
-                isActive={true}
+      {pagination?.total_pages > 1 &&
+        <Pagination className={'mt-[2rem] paginationcustom'}>
+          <PaginationContent>
+            {new Array(pagination?.total_pages).fill(0)?.map((d, i) => (
+              <PaginationItem
+                onClick={() => handlePushParam(i + 1)}
+                key={i}
                 className={
-                  '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
+                  (pagination?.current_page || 1) === i + 1
+                    ? className.active
+                    : className.base
                 }
-                href={href || '/'}
               >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-        </PaginationContent>
-      </Pagination>
-      {/* } */}
+                <PaginationLink
+                  isActive={true}
+                  className={
+                    '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
+                  }
+                  href={href || '/'}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+          </PaginationContent>
+        </Pagination>
+      }
     </>
   )
 }

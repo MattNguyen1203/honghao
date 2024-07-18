@@ -8,15 +8,15 @@ import { usePathname } from 'next/navigation'
 import useChangePage from '@/hooks/useChangePage'
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, ScrollToPlugin)
 export const scrollSmootherConfig = {
-  speed: 1,
-  effects: false,
+  speed: 0.9,
+  effects: true,
 }
 export default function GsapWrap({ children, isMobile }) {
   const pathname = usePathname()
   // useChangePage()
   useGSAP(() => {
     ScrollSmoother.create(scrollSmootherConfig)
-  }, [pathname])
+  }, [])
   return (
     <div
       id='smooth-wrapper'

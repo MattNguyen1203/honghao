@@ -36,7 +36,6 @@ import CryptoJS from 'crypto-js'
 import { usePathname, useRouter } from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
 import Loading from '../loading/Loading'
-
 const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
@@ -114,13 +113,13 @@ export default function HomeForm({
   const router = useRouter()
   // hàm lấy tour phù hợp
   const handleChangeTourSelected = (type, time, listTours) => {
-    const tourMatch = listTours?.find((tour) => {
+    const tourMatch = listTours?.find((tour, index) => {
       return (
         tour?.type_of_tour_data?.[0]?.name === type &&
         tour?.time_data?.[0]?.name === time
       )
     })
-
+    // console.log('tourMatch', type, time, listTours);
     if (tourMatch) {
       setTourSelected({
         titleTour: tourMatch?.title,
@@ -179,19 +178,22 @@ export default function HomeForm({
       listTours,
     )
   }, [dataForm?.choosedays, dataForm?.typeoftour])
-
+  // console.log(tourSelected?.choosedays?.day, dataFormInit?.choosedays?.day, dataForm?.choosedays);
   // tính ngày enddate theo tour
   useEffect(() => {
     let startDate = dataForm?.dob
     let endDateUse = new Date(startDate)
     if (dataForm?.dob && dataForm?.choosedays) {
-      const dayValue = Number(tourSelected?.choosedays?.day)
+      const dayValue = Number(
+        dataFormInit?.choosedays?.day ?
+          dataFormInit?.choosedays?.day :
+          tourSelected?.choosedays?.day)
 
       endDateUse.setDate(startDate?.getDate() + dayValue || 0)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
     }
-  }, [dataForm?.choosedays, dataForm?.dob, tourSelected?.choosedays])
+  }, [dataForm?.choosedays, dataForm?.dob, tourSelected?.choosedays, dataFormInit, dataFormInit?.choosedays?.day])
 
   //lấy data từ droff
   useEffect(() => {
@@ -222,7 +224,7 @@ export default function HomeForm({
     setPaxValueSelf(1)
     setPaxValueLocal(0)
   }
-
+  // console.log(endDate, dataForm?.dob);
   // post gg form + gg sheet
   const postFile = useCallback(
     async (newvalue, status, orderId, method, setIsLoading) => {
@@ -247,10 +249,10 @@ export default function HomeForm({
         address: newvalue?.address,
         destination: newvalue?.destination,
         totalPax: paxValueLocal + paxValueSelf,
-        titleTour: tourSelected?.titleTour,
+        titleTour: dataFormInit?.titleTour ? dataFormInit?.titleTour : tourSelected?.titleTour,
         totalPrice:
-          paxValueSelf * tourSelected?.priceSelf +
-          paxValueLocal * tourSelected?.priceLocal,
+          paxValueSelf * (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : tourSelected?.priceSelf) +
+          paxValueLocal * (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : tourSelected?.priceLocal),
         paxValueLocal: paxValueLocal,
         paxValueSelf: paxValueSelf,
         status: status,
@@ -338,17 +340,16 @@ export default function HomeForm({
   }, [])
 
 
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false)
-    const div = document.querySelector('div[data-state="open"]');
-    if (div) {
-      div.setAttribute('data-state', '');
-    }
-  }
-  const totalPrice = paxValueSelf * tourSelected?.priceSelf + paxValueLocal * tourSelected?.priceLocal
 
-  console.log(totalPrice);
+  const totalPrice = paxValueSelf *
+    (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : tourSelected?.priceSelf) + paxValueLocal *
+    (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : tourSelected?.priceLocal)
 
+  // console.log(totalPrice);
+  const handleClick = () => {
+    const scrollY = window.scrollY;
+    setTimeout(() => window.scrollTo(0, scrollY + 2), 1);
+  };
   return (
     <>
       <section
@@ -371,7 +372,7 @@ export default function HomeForm({
                   Type of tour:
                 </span>
                 <span className='text-1 text-[#727272]'>
-                  {tourSelected?.titleTour}
+                  {dataFormInit?.titleTour ? dataFormInit?.titleTour : tourSelected?.titleTour}
                 </span>
               </div>
             )}
@@ -463,7 +464,6 @@ export default function HomeForm({
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          // defaultValue={listTypeofTour?.terms?.[0]?.slug}
                           defaultValue={typeOfTour ? typeOfTour : listTypeofTour?.terms?.[0]?.name}
                         >
                           <FormControl>
@@ -578,6 +578,14 @@ export default function HomeForm({
                       </FormItem>
                     )}
                   />
+
+
+
+
+
+
+
+
                   <FormField
                     control={form.control}
                     name='dob'
@@ -590,6 +598,13 @@ export default function HomeForm({
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
+                                onClick={handleClick}
+                                // onClick={(event) => {
+                                //   event.preventDefault();
+                                //   event.stopPropagation();
+                                // }}
+
+
                                 variant={'outline'}
                                 className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${!field?.value && 'text-muted-foreground'
                                   }`}
@@ -715,8 +730,9 @@ export default function HomeForm({
                               <Button
                                 disabled
                                 variant={'outline'}
-                                className={`flex justify-center items-center bg-greyscale-5 !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 text-left font-normal text-0875 text-greyscale-60 ${!field?.value && 'text-muted-foreground'
-                                  }`}
+                                className={`flex justify-center items-center bg-greyscale-5 !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 text-left font-normal text-0875 text-greyscale-60 
+                                ${!field?.value && 'text-muted-foreground'}`
+                                }
                               >
                                 {dataForm?.dob && endDate ? (
                                   <span className='text-center font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
@@ -756,7 +772,7 @@ export default function HomeForm({
                             />
                           </PopoverContent>
                         </Popover>
-                        <FormMessage />
+                        {/* <FormMessage /> */}
                       </FormItem>
                     )}
                   />
@@ -814,7 +830,7 @@ export default function HomeForm({
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                      ${tourSelected?.priceSelf}
+                      ${dataFormInit?.priceSelf ? dataFormInit?.priceSelf : tourSelected?.priceSelf}
                     </span>
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
@@ -886,7 +902,7 @@ export default function HomeForm({
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                      ${tourSelected?.priceLocal}
+                      ${dataFormInit?.priceLocal ? dataFormInit?.priceLocal : tourSelected?.priceLocal}
                     </span>
                     <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
                     <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
@@ -959,8 +975,11 @@ export default function HomeForm({
                 </span>
                 <span className='w-[10.5625rem] py-[0.25rem] px-[0.5rem] rounded-[0.25rem] bg-greyscale-5 flex justify-center items-center text-125 font-bold text-greyscale-80'>
                   $
-                  {paxValueSelf * tourSelected?.priceSelf +
-                    paxValueLocal * tourSelected?.priceLocal}
+                  {paxValueSelf *
+                    (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : tourSelected?.priceSelf) +
+                    paxValueLocal *
+                    (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : tourSelected?.priceLocal)
+                  }
                 </span>
               </div>
             </div>
@@ -971,7 +990,7 @@ export default function HomeForm({
                 } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
-                disabled={notFoundTour || totalPrice === 0}
+                disabled={(notFoundTour && !isTourDetail) || totalPrice === 0}
                 className={`${isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
                   }  hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
                 type='submit'
@@ -989,7 +1008,7 @@ export default function HomeForm({
                 )}
               </Button>
               <Button
-                disabled={notFoundTour || totalPrice === 0}
+                disabled={(notFoundTour && !isTourDetail) || totalPrice === 0}
                 className={`${isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
                   } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
                 type='submit'
@@ -1084,6 +1103,7 @@ export default function HomeForm({
           </form>
         </Form>
         <InformationForm
+          dataFormInit={dataFormInit}
           isTourDetail={isTourDetail}
           titleTour={tourSelected?.titleTour}
           dataForm={dataForm}
@@ -1113,7 +1133,6 @@ export default function HomeForm({
                 {isDialogText}
               </span>
               <Link
-                onClick={handleCloseDialog}
                 href='/'
                 className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
               >

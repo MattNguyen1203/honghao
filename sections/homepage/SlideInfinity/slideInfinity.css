@@ -1,11 +1,12 @@
 #wrapper_infinity {
-  animation: wrapper_infinity_loop 20s linear infinite alternate;
+  animation: wrapper_infinity_loop 30s linear infinite alternate;
 }
 
 @keyframes wrapper_infinity_loop {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-75%);
   }
@@ -16,6 +17,7 @@
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-50%);
     }

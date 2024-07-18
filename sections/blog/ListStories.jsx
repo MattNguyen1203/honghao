@@ -3,12 +3,12 @@ import CardBlog from './CardBlog'
 import PaginationCustom from '@/components/paginationcustom'
 import useSWR from 'swr'
 import Link from 'next/link'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import useStore from '@/app/(store)/store'
-import {usePathname, useSearchParams} from 'next/navigation'
-import {Skeleton} from '@/components/ui/skeleton'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { Skeleton } from '@/components/ui/skeleton'
 
-const CardMain = ({singlePost}) => {
+const CardMain = ({ singlePost }) => {
   return (
     <Link href={`/${singlePost?.post_slug}`}>
       <div className='xmd:hidden relative rounded-md overflow-hidden group'>
@@ -53,7 +53,7 @@ const ListStories = ({
 }) => {
   const listPost = dataGetAllPostsByCategories?.posts
   const pagination = dataGetAllPostsByCategories?.pagination
-  const {shouldFetch, setShouldFetch} = useStore((state) => state)
+  const { shouldFetch, setShouldFetch } = useStore((state) => state)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const search = searchParams.get('page')
@@ -62,7 +62,7 @@ const ListStories = ({
   const [loading, setLoading] = useState(false)
 
   const fetcher = (url) => fetch(url).then((r) => r.json())
-  const {data, error, isLoading} = useSWR(
+  const { data, error, isLoading } = useSWR(
     shouldFetch
       ? pathname !== '/blog'
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/get-posts-by-category/1?cat_id=${currentCategories}&page=${search}&posts_per_page=8`
@@ -95,7 +95,7 @@ const ListStories = ({
   return (
     <div
       id='list-stories'
-      className='flex flex-col items-start md:space-y-[2.62rem]'
+      className='list-stories flex flex-col items-start md:space-y-[2.62rem]'
     >
       <CardMain singlePost={dataMainCard} />
       {!loading ? (

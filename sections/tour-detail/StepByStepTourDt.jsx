@@ -114,7 +114,7 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
       <div className="relative h-[22.5rem]">
         {data.map((d, i) => (
           <Image priority alt="ảnh" src={dataSLides?.[i]?.imgStep?.url}
-            width={1000} height={1000} className={cn("w-full h-full px-[0.75rem]  duration-200 transition-all  absolute top-0", active === i ? 'opacity-100' : 'opacity-0')} />
+            width={1000} height={1000} className={cn("w-full h-full px-[0.75rem] absolute top-0", active === i ? 'opacity-100' : 'opacity-0')} />
         ))}
 
       </div>
@@ -159,76 +159,6 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
           ))}
         </div>
       </div>
-
-      {/* BUTTON BOOK NOW */}
-      {/* <BookNow active /> */}
-
-
-      {/* <div className=" flex flex-col">
-        {data.map((d, i) => (
-          <div onClick={() => handleClickArcodion(i)} key={i} className="px-[0.75rem] flex flex-col">
-            <div onClick={() => setAccordionOpen(!accordionOpen)} className={'flex group relative rounded-full justify-between items-center '}>
-              <div className=" flex flex-1 flex-col">
-
-                <div className=" text-[1.18384rem] font-[600] leading-normal tracking-[0.00531rem] font-poppins text-gray-scale-80 aos-init aos-animate">
-                  DAY 1.
-                </div>
-                <div className={cn(' text-greyscale-50 md:hidden  transition-all duration-500 text-[1rem] max-lg:text-[1.875rem] leading-normal tracking-[0.0125rem] font-[600] font-poppins max-md:text-[3.5rem] max-md:leading-[1.42] max-md:tracking-[0.03733rem]',
-                  accordionOpen && activeArco === i ? 'text-black' : ''
-                )}>
-                  Dong Van Town - Ma pi Leng pass - Meo Vac - Du Gia village
-                </div>
-
-              </div>
-              <div className='flex flex-1 max-w-max group-hover:scale-110 ease-linear rounded-full bg-red-500 duration-100 justify-center items-center'>
-                <svg
-
-                  className="fill-white shrink-0 scale-75"
-                  width="16"
-                  height="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    y="7"
-                    width="16"
-                    height="2"
-                    rx="1"
-                    className={`transform origin-center transition duration-200 ease-out ${accordionOpen && activeArco === i && "!rotate-180"
-                      }`}
-                  />
-                  <rect
-                    y="7"
-                    width="16"
-                    height="2"
-                    rx="1"
-                    className={`transform origin-center rotate-90 transition duration-200 ease-out ${accordionOpen && activeArco === i && "!rotate-180"
-                      }`}
-                  />
-                </svg>
-              </div>
-
-            </div>
-            <div
-              className={`grid overflow-hidden transition-all duration-500 relative ease-in-out text-slate-600 text-sm 
-                      ${accordionOpen && activeArco === i
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "grid-rows-[0fr] opacity-0"
-                }`}
-            >
-              <div className="overflow-hidden">
-                ashoashoahfoahfoahfoa
-                ashoashoahfoahfoahfoa
-                ashoashoahfoahfoahfoa
-                ashoashoahfoahfoahfoa
-                ashoashoahfoahfoahfoa
-                ashoashoahfoahfoahfoa
-              </div>
-
-            </div>
-            <div className=" w-full border-t borde-orange-500 my-[0.5rem] "></div>
-          </div>
-        ))}
-      </div> */}
 
     </div >
   )
