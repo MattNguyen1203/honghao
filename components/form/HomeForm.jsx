@@ -1,5 +1,5 @@
 'use client'
-
+import gsap from "gsap";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -33,6 +33,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { generateParamsPayment } from '@/lib/payment'
 import CryptoJS from 'crypto-js'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname, useRouter } from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
 import Loading from '../loading/Loading'
@@ -348,8 +349,16 @@ export default function HomeForm({
   // console.log(totalPrice);
   const handleClick = () => {
     const scrollY = window.scrollY;
-    setTimeout(() => window.scrollTo(0, scrollY + 2), 1);
+    setTimeout(() => window.scrollTo(0, scrollY + 2), 70);
   };
+
+
+  // useEffect(() => {
+  //   gsap.to(window, {
+  //     scrollTo: { y: ".box", offsetY: 0 },
+  //     duration: 0, // Set duration to 0 to disable smooth scroll for this specific case
+  //   });
+  // }, []);
   return (
     <>
       <section
@@ -580,17 +589,12 @@ export default function HomeForm({
                   />
 
 
-
-
-
-
-
-
                   <FormField
+                    // className='box'
                     control={form.control}
                     name='dob'
                     render={({ field }) => (
-                      <FormItem className='!space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
+                      <FormItem className='box !space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Departure date
                         </FormLabel>

@@ -120,7 +120,7 @@ const FaqAboutTrip = ({ dataAcfPage, videoAndImage }) => {
               />
               <div className='w-full h-full cursor-pointer absolute top-0 left-0 duration-200 transition-all group-hover:bg-black bg-transparent group-hover:bg-opacity-30 z-50'></div>
 
-              <div className=' group/start'>
+              <div className=' group/start  cursor-pointer'>
                 <svg
                   className='size-[3.125rem] group-hover/start:scale-75 z-[51] duration-500 transition-all absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   xmlns='http://www.w3.org/2000/svg'

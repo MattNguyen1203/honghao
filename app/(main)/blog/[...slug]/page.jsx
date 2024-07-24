@@ -1,10 +1,10 @@
 import Blog from '@/sections/blog'
-import React, {Suspense} from 'react'
+import React, { Suspense } from 'react'
 import getData from '@/lib/getData'
-import {PAGE_BLOG_ID} from '@/lib/constants'
-import {fetchMetaData} from '@/lib/fetchMetadata'
-import {getMeta} from '@/lib/getMeta'
-import {notFound} from 'next/navigation'
+import { PAGE_BLOG_ID } from '@/lib/constants'
+import { fetchMetaData } from '@/lib/fetchMetadata'
+import { getMeta } from '@/lib/getMeta'
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const dataDetailPost = await getData(
@@ -16,12 +16,12 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({params: {slug}}) {
+export async function generateMetadata({ params: { slug } }) {
   const result = await fetchMetaData(`category/${slug?.[0]}/`)
   return getMeta(result, `/blog/${slug?.[0]}`)
 }
 
-const page = async ({params, searchParams}) => {
+const page = async ({ params, searchParams }) => {
   const dataAcf = await getData(`wp-json/acf/v3/pages/${PAGE_BLOG_ID}`)
   const dataCategorisAndFirstpost = await getData(
     `wp-json/okhub/v1/get-list-cat-and-first-posts?per_page=8`,
