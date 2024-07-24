@@ -9,7 +9,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <section className='relative'>
+    <section className='relative   shadow-sm'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Blog</h1>
       <div
         className={` absolute top-0 left-0 w-full h-full z-50  bg-conicBanner opacity-100 transition-all duration-1000 xmd:duration-500 ${loaded ? '!opacity-0 pointer-events-none' : 'opacity-100'}`}
