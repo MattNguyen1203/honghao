@@ -18,20 +18,23 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   const dataSLides = dataAcf?.dataSLides || []
   const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
   useGSAP(() => {
-    if (divRef.current) {
-      gsap.to(divRef.current, {
-        scrollTrigger: {
-          trigger: divRef.current,
-          start: "top",
-          end: "50%",
-          // scrub: true,
-          // markers: true,
-          pin: true,
-        },
-        // duration: 1,
-        // ease: "power1.inOut",
-      });
+    if (window.innerWidth > 1023) {
 
+      if (divRef.current) {
+        gsap.to(divRef.current, {
+          scrollTrigger: {
+            trigger: divRef.current,
+            start: "top",
+            end: "50%",
+            // scrub: true,
+            // markers: true,
+            pin: true,
+          },
+          // duration: 1,
+          // ease: "power1.inOut",
+        });
+
+      }
     }
   }, []);
 
@@ -97,7 +100,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   }, [dataSLides]);
   useEffect(() => {
     if (bikeRef.current && slidePositions.length > 0 && indexSlider <= dataSLides?.length - 1) {
-      bikeRef.current.style.top = `${slidePositions[indexSlider] - 15}px`;
+      bikeRef.current.style.top = `${slidePositions[indexSlider] - 5}px`;
     }
     // if (indexSlider !== 0) {
     //   setCheckOpenBookNow2(indexSlider)
@@ -154,14 +157,14 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     }
   }, [isVisible]);
   return (
-    <section ref={divRef} className='relative flex w-full  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
+    <section ref={divRef} className='relative flex w-full xmd:hidden  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
       {/* map */}
       {/* <ScrollDetector /> */}
       <div data-aos="fade-up"
         data-aos-duration="900"
-        className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
+        className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:px-[1.41rem]'>
         <Image
-          className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain xlg:w-full'
+          className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain'
           src={indexSlider > dataSLides?.length - 1 ? (dataSLides?.[dataSLides?.length - 1]?.imgStep?.url || '') : (dataSLides?.[indexSlider]?.imgStep?.url || '')}
           alt='map2'
           width={800}
@@ -172,12 +175,10 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
       {/* map */}
       <div data-aos="fade-up"
         data-aos-duration="900"
-        // onMouseEnter={handleMouseEnter}
-        // onMouseLeave={handleMouseLeave}
-        className='ml-[3rem] flex items-center w-full xlg:hidden pb-[2rem]'>
+        className='ml-[3rem] flex items-center w-full  pb-[2rem]'>
         <div
           ref={ref}
-          className='!overflow-hidden cursor-pointer bg-[#FAFAFA] h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
+          className='!overflow-hidden cursor-pointer bg-[#FAFAFA] tablet:h-[35vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
           pt-[2.63rem]
           '>
           {/* pl-[3.19rem] */}
@@ -217,7 +218,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           <div
 
 
-            className='w-full h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
+            className='w-full tablet:h-[30vh] h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
             <div className=" absolute top-[-1.5rem] left-[3rem]">
               <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
                 Pick up at :
@@ -298,7 +299,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
               {/* XE MÁY */}
               <SwiperSlide
                 ref={bikeRef}
-                className=' !absolute  !transition-all !duration-1000 left-[-2rem]'>
+                className=' !absolute  !transition-all !duration-1000 tablet:left-[-4rem] left-[-2rem]'>
                 <Image
                   className='  object-contain'
                   src={'/home/motor1.png'}
@@ -339,7 +340,7 @@ const IconOclock = ({ className = '' }) => {
 
 const ItemCardInfo = ({ item, active }) => {
   return (
-    <article className={cn('min-h-[17.875rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+    <article className={cn('min-h-[17.875rem] tablet:overflow-hidden tablet:h-[10rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
       active ? ' border-[#23704D]' : ' border-transparent'
     )}>
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
