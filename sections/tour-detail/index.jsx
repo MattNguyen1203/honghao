@@ -17,13 +17,15 @@ const TourDetail = ({
   dataTourDetail = {},
 }) => {
   return (
-    <Aos className='alldestinations'>
+    <div className='alldestinations'>
 
       <section>
-        <Banner
-          dataAcf={data}
-          dataTourDetail={dataTourDetail}
-        />
+        <Aos className='alldestinations'>
+
+          <Banner
+            dataAcf={data}
+            dataTourDetail={dataTourDetail}
+          /></Aos>
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb
@@ -65,7 +67,7 @@ const TourDetail = ({
 
       <OurTeam />
       <TripsForYou dataBestTrip={dataBestTrip} />
-    </Aos>
+    </div>
   )
 }
 

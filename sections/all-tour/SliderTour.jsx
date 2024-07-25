@@ -19,23 +19,17 @@ export default function SliderTour({ type, dataBestTrip }) {
       </div>
       {isAllTourPage ? (
         <h2
-          data-aos="fade-up"
-          data-aos-duration="900"
           className='xmd:container text-3 xmd:text-25 font-black text-greyscale-80'>
           BEST TRIPS <br className='md:hidden' /> FOR YOU
         </h2>
       ) : (
         <h2
-          data-aos="fade-up"
-          data-aos-duration="900"
           className='xmd:container text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
           TRIPS FOR YOU
         </h2>
       )}
 
       <div
-        data-aos="fade-up"
-        data-aos-duration="900"
         className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
           slidesPerView={'auto'}
