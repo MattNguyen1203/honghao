@@ -86,7 +86,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
               </span>
             </div>
           </div>
-          <div className='flex bg-[#13341c] xmd:px-[0.75rem] xmd:pb-[1rem] flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
+          <div className='flex bg-[#13341c] p-[2rem] rounded-[1rem] xmd:px-[0.75rem] xmd:pb-[1rem] flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
             {dataSLides?.map((item, index) => (
               <ItemCardInfo
                 key={index}

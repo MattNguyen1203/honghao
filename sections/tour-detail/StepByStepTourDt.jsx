@@ -89,28 +89,8 @@ const StepByStepTourDt = ({ dataSLides, dataAcf, dataTourDetail }) => {
     }
   }, [active]);
 
-
-
-
-
-
-  // const handleClick = (number) => {
-  //   if (number > active) {
-  //     setLonhon(true);
-  //     setNhohon(false);
-  //   } else if (number < active) {
-  //     setLonhon(false);
-  //     setNhohon(true);
-  //   } else {
-  //     setLonhon(false);
-  //     setNhohon(false);
-  //   }
-  //   setActive(number);
-  // };
-
-
   return (
-    <div className='lg:hidden flex flex-col space-y-10  my-[2rem]'>
+    <div className='md:hidden flex flex-col space-y-10  my-[2rem]'>
       <div className="relative h-[22.5rem]">
         {data.map((d, i) => (
           <Image priority alt="ảnh" src={dataSLides?.[i]?.imgStep?.url}
