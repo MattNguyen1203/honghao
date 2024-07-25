@@ -733,9 +733,11 @@ export default function HomeForm({
                             <FormControl>
                               <Button
                                 disabled
+
                                 variant={'outline'}
                                 className={`flex justify-center items-center bg-greyscale-5 !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 text-left font-normal text-0875 text-greyscale-60 
-                                ${!field?.value && 'text-muted-foreground'}`
+                                ${!field?.value && 'text-muted-foreground'}
+                                `
                                 }
                               >
                                 {dataForm?.dob && endDate ? (
@@ -788,10 +790,11 @@ export default function HomeForm({
                     <FormItem className='flex-1'>
                       <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                         Address *
+                        {/* dataForm?.droff */}
                       </FormLabel>
                       <Select onValueChange={field.onChange}>
                         <FormControl>
-                          <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
+                          <SelectTrigger disabled={dataForm?.droff ? false : true} className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                             <SelectValue
                               className='text-greyscale-10 text-0875 flex-1'
                               placeholder={'Please Select Droff'}
@@ -830,7 +833,9 @@ export default function HomeForm({
               >
                 <div className='flex justify-between items-center'>
                   <span className='text-0875 text-greyscale-60 font-normal'>
-                    4 days of self-driving
+                    {dataFormInit?.choosedays?.day ?
+                      dataFormInit?.choosedays?.day :
+                      tourSelected?.choosedays?.day} days of self-driving
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
@@ -902,7 +907,9 @@ export default function HomeForm({
                 />
                 <div className='flex justify-between items-center'>
                   <span className='text-0875 text-greyscale-60 font-normal '>
-                    4 days with local driver
+                    {dataFormInit?.choosedays?.day ?
+                      dataFormInit?.choosedays?.day :
+                      tourSelected?.choosedays?.day} days with local driver
                   </span>
                   <div className='flex items-center'>
                     <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
