@@ -348,8 +348,10 @@ export default function HomeForm({
 
   // console.log(totalPrice);
   const handleClick = () => {
-    const scrollY = window.scrollY;
-    setTimeout(() => window.scrollTo(0, scrollY + 2), 70);
+    if (typeof window !== 'undefined') {
+      const scrollY = window?.scrollY;
+      setTimeout(() => window?.scrollTo(0, scrollY + 2), 70);
+    }
   };
 
 
