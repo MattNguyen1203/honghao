@@ -87,7 +87,7 @@ const FaqAboutTrip = ({ dataAcfPage, videoAndImage }) => {
           <div className='w-[42.8125rem]'>
             <AccordionCustom data={dataAcfPage} />
           </div>
-          <div className='bd relative w-[42.4485rem] h-[26.69638rem]'>
+          <div className='relative w-[42.4485rem] h-[26.69638rem]'>
             {/* <div className='size-[4rem] flex items-center justify-center rounded-full bg-opacity-30 bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
               <svg
                 width='24'
