@@ -18,7 +18,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
   const dataSLides = dataAcf?.dataSLides || []
   const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
   useGSAP(() => {
-    if (window.innerWidth > 1023) {
+    if (typeof window !== 'undefined' && window.innerWidth > 1023) {
 
       if (divRef.current) {
         gsap.to(divRef.current, {
@@ -178,7 +178,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
         className='ml-[3rem] flex items-center w-full  pb-[2rem]'>
         <div
           ref={ref}
-          className='!overflow-hidden cursor-pointer bg-[#FAFAFA] tablet:h-[35vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
+          className='!overflow-hidden cursor-pointer bg-[#FAFAFA] tablet:h-[50vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] overflow-y-auto relative 
           pt-[2.63rem]
           '>
           {/* pl-[3.19rem] */}
@@ -218,7 +218,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           <div
 
 
-            className='w-full tablet:h-[30vh] h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
+            className='w-full tablet:h-[40vh] h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
             <div className=" absolute top-[-1.5rem] left-[3rem]">
               <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
                 Pick up at :
