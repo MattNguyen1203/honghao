@@ -10,6 +10,7 @@ import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Aos from '@/components/Aos'
+import GsapWrap from '@/components/gsap-wrap/GsapWrap'
 const TourDetail = ({
   data = {},
   dataPage = {},
@@ -43,10 +44,13 @@ const TourDetail = ({
           </BreadcrumbLink>
         </Breadcrumb>
       </section>
+      {/* <GsapWrap> */}
+
       <StepByStep
         dataAcf={data}
         dataTourDetail={dataTourDetail}
       />
+      {/* </GsapWrap> */}
       <StepByStepRes
         dataAcf={data}
         dataTourDetail={dataTourDetail}
@@ -67,7 +71,7 @@ const TourDetail = ({
 
       <OurTeam />
       <TripsForYou dataBestTrip={dataBestTrip} />
-    </div>
+    </div >
   )
 }
 

@@ -18,6 +18,7 @@ export default function InformationForm({
   paxValueSelf,
   isTourDetail = false,
   exchangeRate,
+  endDate
 }) {
   const formattedDate = (date) => {
     let newDate = new Date(date || 0)
@@ -101,7 +102,7 @@ export default function InformationForm({
                 <div className='max-w-[20rem] xmd:max-w-[14.53125rem] xmd:h-[3.625rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
                   <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
                     <span className='text-0875 font-semibold text-greyscale-80'>
-                      {dataForm?.dob ? formattedDate(dataForm?.dob) : ''}
+                      {(dataForm?.dob) ? formattedDate(dataForm?.dob) : ''}
                     </span>
                     {dataForm?.pickup && ' from '}
                     <span className='text-0875 font-semibold text-greyscale-80'>
@@ -141,7 +142,7 @@ export default function InformationForm({
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] xmd:h-[3.625rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
             <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
               <span className='text-0875 font-semibold text-greyscale-80'>
-                {dataForm?.dob ? formattedDate(dataForm?.dob) : ''}
+                {(dataForm?.dob && endDate) ? endDate : ''}
               </span>
               {dataForm?.droff && ' - '} {dataForm?.droff}{' '}
               {dataForm?.destination && ' , '} {dataForm?.destination}
