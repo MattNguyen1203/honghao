@@ -112,6 +112,7 @@ export default function HomeForm({
   const dataForm = form.watch()
   const [endDate, setEndDate] = useState(null)
   const router = useRouter()
+
   // hàm lấy tour phù hợp
   const handleChangeTourSelected = (type, time, listTours) => {
     const tourMatch = listTours?.find((tour, index) => {
@@ -181,6 +182,7 @@ export default function HomeForm({
   }, [dataForm?.choosedays, dataForm?.typeoftour])
   // console.log(tourSelected?.choosedays?.day, dataFormInit?.choosedays?.day, dataForm?.choosedays);
   // tính ngày enddate theo tour
+  console.log(dataForm);
   useEffect(() => {
     let startDate = dataForm?.dob
     let endDateUse = new Date(startDate)
@@ -190,6 +192,7 @@ export default function HomeForm({
           dataFormInit?.choosedays?.day :
           tourSelected?.choosedays?.day)
 
+      console.log('dayValue', dayValue);
       endDateUse.setDate(startDate?.getDate() + dayValue || 0)
       setEndDate(endDateUse)
       form.setValue('enddate', endDateUse)
@@ -596,24 +599,81 @@ export default function HomeForm({
                     control={form.control}
                     name='dob'
                     render={({ field }) => (
+                      // <FormItem className='box !space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
+                      //   <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
+                      //     Departure date
+                      //   </FormLabel>
+                      //   <FormControl>
+                      //     <Popover>
+                      //       <PopoverTrigger asChild>
+
+                      //         <Button
+                      //           onClick={handleClick}
+                      //           // onClick={(event) => {
+                      //           //   event.preventDefault();
+                      //           //   event.stopPropagation();
+                      //           // }}
+
+
+                      //           variant={'outline'}
+                      //           className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${!field?.value && 'text-muted-foreground'
+                      //             }`}
+                      //         >
+                      //           {dataForm?.dob ? (
+                      //             <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                      //               {format(dataForm?.dob, 'dd/M/yyyy')}
+                      //             </span>
+                      //           ) : (
+                      //             <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                      //               Pick a date
+                      //             </span>
+                      //           )}
+                      //           <svg
+                      //             className='w-[0.96294rem] h-[1rem]'
+                      //             xmlns='http://www.w3.org/2000/svg'
+                      //             width='16'
+                      //             height='16'
+                      //             viewBox='0 0 16 16'
+                      //             fill='none'
+                      //           >
+                      //             <path
+                      //               d='M2.41836 16.0001H13.5828C14.7532 16.0001 15.7043 15.049 15.7043 13.8786V3.30667C15.7043 2.1363 14.7532 1.18517 13.5828 1.18517H12.7413V0.592585C12.7413 0.266653 12.4746 0 12.1487 0C11.8228 0 11.5561 0.266653 11.5561 0.592585V1.18517H4.44504V0.592585C4.44504 0.266653 4.17834 0 3.85241 0C3.52648 0 3.25983 0.266653 3.25983 0.592585V1.18517H2.41836C1.24799 1.18517 0.296875 2.1363 0.296875 3.30667V13.8786C0.296875 15.049 1.24799 16.0001 2.41836 16.0001ZM1.48209 3.30667C1.48209 2.79113 1.90282 2.37039 2.41836 2.37039H3.25983V2.96298C3.25983 3.28891 3.52648 3.55556 3.85241 3.55556C4.17834 3.55556 4.445 3.28891 4.445 2.96298V2.37039H11.5561V2.96298C11.5561 3.28891 11.8228 3.55556 12.1487 3.55556C12.4746 3.55556 12.7413 3.28891 12.7413 2.96298V2.37039H13.5828C14.0983 2.37039 14.519 2.79113 14.519 3.30667V5.03707H1.48209V3.30667ZM1.48209 6.22224H14.5191V13.8786C14.5191 14.3941 14.0984 14.8149 13.5829 14.8149H2.41836C1.90282 14.8149 1.48209 14.3941 1.48209 13.8786V6.22224Z'
+                      //               fill='#E64827'
+                      //             />
+                      //           </svg>
+                      //         </Button>
+                      //       </PopoverTrigger>
+
+                      //       <PopoverContent
+                      //         align='start'
+                      //         className='w-auto p-0'
+                      //       >
+                      //         <Calendar
+                      //           mode='single'
+                      //           selected={field.value}
+                      //           onSelect={field.onChange}
+                      //           disabled={(date) =>
+                      //             date <= new Date().setHours(0, 0, 0, 0)
+                      //           }
+                      //         initialFocus
+                      //         />
+                      //       </PopoverContent>
+                      //     </Popover>
+                      //   </FormControl>
+                      //   <FormMessage />
+                      // </FormItem>
+
                       <FormItem className='box !space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Departure date
                         </FormLabel>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                onClick={handleClick}
-                                // onClick={(event) => {
-                                //   event.preventDefault();
-                                //   event.stopPropagation();
-                                // }}
-
-
-                                variant={'outline'}
-                                className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${!field?.value && 'text-muted-foreground'
-                                  }`}
+                        <FormControl>
+                          <Select>
+                            <SelectTrigger className={`flex justify-around bd items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${!field?.value && 'text-muted-foreground'
+                              }`}>
+                              <div
+                                onClick={handleClick()}
+                                className="flex"
                               >
                                 {dataForm?.dob ? (
                                   <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
@@ -637,8 +697,65 @@ export default function HomeForm({
                                     fill='#E64827'
                                   />
                                 </svg>
-                              </Button>
-                            </FormControl>
+                              </div>
+
+                            </SelectTrigger>
+                            <SelectContent>
+                              <Calendar
+                                mode='single'
+                                selected={field.value}
+                                onSelect={field.onChange}
+                                disabled={(date) =>
+                                  date <= new Date().setHours(0, 0, 0, 0)
+                                }
+                                initialFocus
+                              />
+                            </SelectContent>
+                          </Select>
+                          {/* <Button
+                            // onClick={handleClick}.
+                            // onClick={(event) => {
+                            //   event.preventDefault();
+                            //   event.stopPropagation();
+                            // }}
+
+
+                            variant={'outline'}
+                            className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 
+                            // ${!field?.value && 'text-muted-foreground'
+                              }`}
+                          >
+                            {dataForm?.dob ? (
+                              <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                                {format(dataForm?.dob, 'dd/M/yyyy')}
+                              </span>
+                            ) : (
+                              <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
+                                Pick a date
+                              </span>
+                            )}
+                            <svg
+                              className='w-[0.96294rem] h-[1rem]'
+                              xmlns='http://www.w3.org/2000/svg'
+                              width='16'
+                              height='16'
+                              viewBox='0 0 16 16'
+                              fill='none'
+                            >
+                              <path
+                                d='M2.41836 16.0001H13.5828C14.7532 16.0001 15.7043 15.049 15.7043 13.8786V3.30667C15.7043 2.1363 14.7532 1.18517 13.5828 1.18517H12.7413V0.592585C12.7413 0.266653 12.4746 0 12.1487 0C11.8228 0 11.5561 0.266653 11.5561 0.592585V1.18517H4.44504V0.592585C4.44504 0.266653 4.17834 0 3.85241 0C3.52648 0 3.25983 0.266653 3.25983 0.592585V1.18517H2.41836C1.24799 1.18517 0.296875 2.1363 0.296875 3.30667V13.8786C0.296875 15.049 1.24799 16.0001 2.41836 16.0001ZM1.48209 3.30667C1.48209 2.79113 1.90282 2.37039 2.41836 2.37039H3.25983V2.96298C3.25983 3.28891 3.52648 3.55556 3.85241 3.55556C4.17834 3.55556 4.445 3.28891 4.445 2.96298V2.37039H11.5561V2.96298C11.5561 3.28891 11.8228 3.55556 12.1487 3.55556C12.4746 3.55556 12.7413 3.28891 12.7413 2.96298V2.37039H13.5828C14.0983 2.37039 14.519 2.79113 14.519 3.30667V5.03707H1.48209V3.30667ZM1.48209 6.22224H14.5191V13.8786C14.5191 14.3941 14.0984 14.8149 13.5829 14.8149H2.41836C1.90282 14.8149 1.48209 14.3941 1.48209 13.8786V6.22224Z'
+                                fill='#E64827'
+                              />
+                            </svg>
+                          </Button>
+                          <bu className="w-[5rem] h-[2rem] bg-black">
+
+                          </bu> */}
+                        </FormControl>
+
+                        {/* <Popover>
+                          <PopoverTrigger asChild>
+
                           </PopoverTrigger>
                           <PopoverContent
                             align='start'
@@ -651,10 +768,10 @@ export default function HomeForm({
                               disabled={(date) =>
                                 date <= new Date().setHours(0, 0, 0, 0)
                               }
-                              initialFocus
+                            // initialFocus
                             />
                           </PopoverContent>
-                        </Popover>
+                        </Popover> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -1121,6 +1238,7 @@ export default function HomeForm({
           titleTour={tourSelected?.titleTour}
           dataForm={dataForm}
           data={tourSelected}
+          endDate={endDate ? format(endDate, 'dd/M/yyyy') : ''}
           paxValueSelf={paxValueSelf}
           paxValueLocal={paxValueLocal}
           exchangeRate={listLocation?.ti_gia}
