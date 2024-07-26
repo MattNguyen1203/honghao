@@ -1,25 +1,30 @@
 'use client'
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/customCn/dialogFormhome'
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
 import useStore from '@/app/(store)/store'
-import { useState } from 'react'
-const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
+import {useState} from 'react'
+const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
   const phoneNumber = '0941556338'
-  const { openbookNow, setOpenBooknow, setCheckOpenBookNow, checkOpenBookNow } = useStore(state => state)
+  const {openbookNow, setOpenBooknow, setCheckOpenBookNow, checkOpenBookNow} =
+    useStore((state) => state)
   return (
     <div className='fixed     z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
-      <div
-        className='w-[3.125rem]  animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
+      <div className='w-[3.125rem]  animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
         <Dialog
           onOpenChange={(open) => setCheckOpenBookNow(open)}
-          open={openbookNow ? true : undefined}>
+          open={openbookNow ? true : undefined}
+        >
           <DialogTrigger asChild>
             <div
-
-              data-aos="fade-up"
-              data-aos-duration="900"
-              className='text-[color:var(--Gray-Scale-0,#FFF)] cursor-pointer text-center text-[0.625rem] not-italic font-black leading-[0.8125rem] tracking-[0.03125rem]'>
+              data-aos='fade-up'
+              data-aos-duration='900'
+              className='text-[color:var(--Gray-Scale-0,#FFF)] cursor-pointer text-center text-[0.625rem] not-italic font-black leading-[0.8125rem] tracking-[0.03125rem]'
+            >
               BOOK NOW
             </div>
           </DialogTrigger>
@@ -29,15 +34,17 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
               listTypeofTour={listTypeofTour}
               listTime={listTime}
               listTours={listTours?.tours}
+              // setCheckOpenBookNow={setCheckOpenBookNow}
             />
           </DialogContent>
         </Dialog>
       </div>
       {/* Call me bb */}
       <a
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        href={`tel:${phoneNumber}`}
+        data-aos='fade-up'
+        data-aos-duration='1000'
+        href={`https://wa.me/${phoneNumber}`}
+        target='_blank'
         className='cursor-pointer'
       >
         <div className='relative cursor-pointer'>
@@ -118,11 +125,13 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
         </div>
       </a>
 
-      <div data-aos="fade-up"
-        data-aos-duration="900">
+      <div
+        data-aos='fade-up'
+        data-aos-duration='900'
+      >
         <ScrollUp />
       </div>
-    </div >
+    </div>
   )
 }
 

@@ -1,11 +1,15 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import FilterSelectItem from './FilterSelectItem'
 import FilterPriceItem from './FilterPriceItem'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/customCn/dialogFormhome'
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 
 const dataPrice = [
   {
@@ -18,8 +22,7 @@ const dataPrice = [
   },
 ]
 
-const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
-
+const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
   const dataFilter = [
     {
       label: 'days',
@@ -47,7 +50,7 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
       (item, index) =>
         item?.time_data?.[0]?.name === optionSelected?.time_data &&
         item?.type_of_tour_data?.[0]?.name ===
-        optionSelected?.type_of_tour_data,
+          optionSelected?.type_of_tour_data,
     )
 
     setTourSelected(tourMatch)
@@ -89,13 +92,13 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
         </div>
       ))}
 
-      <Dialog
-
-      >
-        <DialogTrigger
-          asChild>
-          <div className={cn('bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer',
-          )}>
+      <Dialog>
+        <DialogTrigger asChild>
+          <div
+            className={cn(
+              'bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer',
+            )}
+          >
             <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
               ${totalPrice}
             </span>
@@ -110,17 +113,6 @@ const Filter = ({ listTypeofTour, listTime, listTours, commonData }) => {
             listTypeofTour={listTypeofTour}
             listTime={listTime}
             listTours={listTours?.tours}
-
-            // dataFormInit={{
-            //   titleTour: tourSelected?.title,
-            //   typeoftour: tourSelected?.type_of_tour_data?.[0]?.name,
-            //   choosedays: {
-            //     title: tourSelected?.time_data?.[0]?.name,
-            //     day: tourSelected?.infos?.number_day,
-            //   },
-            //   priceSelf: tourSelected?.gia?.self_driving,
-            //   priceLocal: tourSelected?.gia?.local_driver,
-            // }}
             selfPax={optionSelected?.selfPax}
             localPax={optionSelected?.localPax}
             typeOfTour={optionSelected?.type_of_tour_data}
