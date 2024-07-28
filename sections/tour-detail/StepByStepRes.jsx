@@ -3,7 +3,7 @@
 import BikeAnimationMb from '@/components/bikeAnimateMb'
 import Image from 'next/image'
 import { useState } from 'react'
-import StepByStepTourDt from '../tour-detail/StepByStepTourDt'
+import StepByStepTourDt from './StepByStepTourDt'
 
 // import {dataSLides} from './data'
 

@@ -210,7 +210,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   --radix-navigation-menu-viewport-width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @media (max-width: 767px) {

@@ -2,24 +2,30 @@
   0% {
     transform: translateX(0px);
   }
+
   50% {
     transform: translateX(5px);
   }
+
   100% {
     transform: translateX(0px);
   }
 }
+
 .alldestinations .arrowfr {
   animation: keyArrow 1.5s ease-in-out infinite;
 }
+
 @keyframes slide-background {
   from {
     left: -100%;
   }
+
   to {
     left: 100%;
   }
 }
+
 .animated-button {
   animation: slide-background 3s linear infinite;
 }
@@ -28,13 +34,16 @@
   0% {
     transform: translateX(-3px);
   }
+
   50% {
     transform: translateX(6px);
   }
+
   100% {
     transform: translateX(-3px);
   }
 }
+
 .arrowfr {
   animation: keyArrow 1s ease-in-out infinite;
 }
@@ -43,6 +52,7 @@
   padding-left: 1.6rem;
   width: 19rem;
 }
+
 .tour_infor ul li {
   color: white;
   line-height: 150%;
@@ -59,12 +69,23 @@
 }
 
 .event-none {
- pointer-events: none !important;
+  pointer-events: none !important;
 }
+
 .flip-horizontal {
   direction: rtl;
 }
 
 .no-flip {
-  filter: none; /* Reset filter */
+  filter: none;
+  /* Reset filter */
+}
+
+.sticky-class {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0rem;
+  /* background-color: yellow; */
+  /* padding: 50px; */
+  /* font-size: 20px; */
 }

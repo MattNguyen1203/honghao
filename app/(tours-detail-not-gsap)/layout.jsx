@@ -8,10 +8,10 @@ export default async function MainLayout({ children }) {
     <main className=''>
       <Header />
       <WrapSocials />
-      <GsapWrap >
-        {children}
-        <Footer />
-      </GsapWrap>
+      {/* <GsapWrap > */}
+      {children}
+      <Footer />
+      {/* </GsapWrap> */}
 
 
       <Toaster />

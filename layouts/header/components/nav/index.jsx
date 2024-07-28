@@ -14,19 +14,6 @@ const Nav = ({ setOpenNav, dataContacts }) => {
   const [isHidden, setIsHidden] = useState(false)
 
 
-  // useEffect(() => {
-  //   if (checkOpenBookNow || (checkOpenBookNow2)) {
-
-  //     setIsHidden(true)
-  //     setIsTransparent(false)
-  //   } else {
-  //     if (checkOpenBookNow2 !== 0) {
-
-  //       setIsHidden(false)
-  //       setIsTransparent(true)
-  //     }
-  //   }
-  // }, [checkOpenBookNow2, checkOpenBookNow])
 
   useEffect(() => {
     ScrollTrigger.create({

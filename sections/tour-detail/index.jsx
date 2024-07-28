@@ -3,8 +3,8 @@ import './tour-detail.css'
 import Breadcrumb from '@/components/breadcrumb'
 import Banner from './Banner'
 import FaqAboutTrip from './FaqAboutTrip'
-import StepByStep from '../blog-detail/StepByStep'
-import StepByStepRes from '../blog-detail/StepByStepRes'
+import StepByStep from './StepByStep'
+import StepByStepRes from '@/sections/tour-detail/StepByStepRes'
 import OurTeam from '@/layouts/team'
 import Booking from './Booking'
 import TripsForYou from '@/layouts/trip'
@@ -18,15 +18,15 @@ const TourDetail = ({
   dataTourDetail = {},
 }) => {
   return (
-    <div className='alldestinations'>
+    <Aos className='alldestinations relative'>
 
       <section>
-        <Aos className='alldestinations'>
 
-          <Banner
-            dataAcf={data}
-            dataTourDetail={dataTourDetail}
-          /></Aos>
+        <Banner
+          dataAcf={data}
+          dataTourDetail={dataTourDetail}
+        />
+
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb
@@ -71,7 +71,7 @@ const TourDetail = ({
 
       <OurTeam />
       <TripsForYou dataBestTrip={dataBestTrip} />
-    </div >
+    </Aos>
   )
 }
 
