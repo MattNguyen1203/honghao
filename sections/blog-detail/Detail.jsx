@@ -33,6 +33,21 @@ const Detail = ({ dataDetailPost }) => {
     setIsVisible(true)
     setHeadingTexts(headings)
   }, [])
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    if (dataDetailPost?.content) {
+      let updatedContent = dataDetailPost.content;
+
+      // Thay thế các thẻ video shortcode thành thẻ video HTML5 với thuộc tính src
+      updatedContent = updatedContent.replace(
+        /\[video\s+width="(\d+)"\s+height="(\d+)"\s+mp4="([^"]+)"\s*\]\[\/video\]/g,
+        '<video controls width="$1" height="$2" autoplay><source src="$3" type="video/mp4"></video>'
+      );
+
+      setContent(updatedContent);
+    }
+  }, [dataDetailPost]);
 
   const Share = () => {
     return (
@@ -78,6 +93,9 @@ const Detail = ({ dataDetailPost }) => {
       </div>
     )
   }
+
+
+  // const content = replaceShortcodes(dataDetailPost?.content);
   return (
     <section className=' w-full md:border-b md:border-[#E5E5E5]'>
       {dataDetailPost?.thumbnail && (
@@ -109,6 +127,9 @@ const Detail = ({ dataDetailPost }) => {
           </BreadcrumbLink>
         </Breadcrumb>
       </div>
+
+
+
       <div className='container detail relative md:border-l md:border-r md:border-[#E5E5E5] mx-auto'>
         <h1 className='w-[65.6875rem] font-londrina xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]'>
           {dataDetailPost?.title}
@@ -132,7 +153,7 @@ const Detail = ({ dataDetailPost }) => {
         </div>
         <div
           className='paragraph mt-[2.5rem] xmd:pb-[1rem] pb-[5rem] mx-auto w-[65.6875rem] flex flex-col space-y-[1.87rem]'
-          dangerouslySetInnerHTML={{ __html: dataDetailPost?.content }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
         <div className='xmd:hidden'>
           <Share />

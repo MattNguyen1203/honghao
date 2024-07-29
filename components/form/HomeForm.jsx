@@ -1267,9 +1267,9 @@ export default function HomeForm({
       {isDialogOpen && (
         <div
           onClick={handleClickOutside}
-          className=' fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
+          className=' fixed z-[1000] top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2  size-full flex items-center justify-center bg-greyscale-60/70'
         >
-          <div className='child_video overflow-hidden rounded-[1.5rem] h-[30.3125rem] w-[47.25rem] relative bg-[linear-gradient(0deg,rgba(19,52,28,0.60)_0%,rgba(19,52,28,0.60)_100%)]'>
+          <div className='child_video z-[1000] overflow-hidden rounded-[1.5rem] h-[30.3125rem] w-[47.25rem] relative bg-[linear-gradient(0deg,rgba(19,52,28,0.60)_0%,rgba(19,52,28,0.60)_100%)]'>
             <Image
               className='size-full rounded-[1.5rem]'
               alt='successfully'

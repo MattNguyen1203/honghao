@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import useStore from '@/app/(store)/store'
 gsap.registerPlugin(ScrollTrigger)
 const Nav = ({ setOpenNav, dataContacts }) => {
-  const { checkOpenBookNow, checkOpenBookNow2 } = useStore(state => state)
+  const { checkOpenBookNow } = useStore(state => state)
   const headerRef = useRef()
   const [isTransparent, setIsTransparent] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
@@ -22,7 +22,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
       onUpdate: (self) => {
 
 
-        if (self.direction === 1 || checkOpenBookNow || checkOpenBookNow2 !== -1) {
+        if (self.direction === 1 || checkOpenBookNow) {
           setIsHidden(true)
           setIsTransparent(false)
           // Khi cuộn xuống
@@ -36,7 +36,7 @@ const Nav = ({ setOpenNav, dataContacts }) => {
         }
       },
     })
-  }, [checkOpenBookNow, checkOpenBookNow2])
+  }, [checkOpenBookNow])
 
 
   return (
@@ -62,6 +62,8 @@ const Nav = ({ setOpenNav, dataContacts }) => {
           className='w-[9.625rem] h-[3.1875rem] object-contain xmd:w-[7.1875rem] xmd:h-[2.5625rem] tablet:w-[12rem] tablet:h-[5rem]'
         />
       </Link>
+
+
 
       <div
         className={cn(
