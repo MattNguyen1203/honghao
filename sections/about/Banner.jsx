@@ -20,7 +20,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
         src={dataBanner?.image}
         width={1600}
         height={1935}
-        className={cn(' xmd:hidden absolute z-0 h-full w-full', loaded ? '' : 'blur-lg xmd:blur-sm')}
+        className={cn(' xmd:hidden absolute z-0 object-cover h-full w-full', loaded ? '' : 'blur-lg xmd:blur-sm')}
         onLoadingComplete={() => setLoaded(true)}
       />
 
@@ -122,7 +122,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
             <div data-aos="fade-up"
               data-aos-duration="900" className='xmd:top-[7.5rem] xmd:left-[9rem]  md:left-[63rem] absolute flex flex-col items-end xmd:space-y-[0.75rem]'>
               <h2 className=' text-linear bg-[linear-gradient(180deg,#FFF_30.31%,rgba(255,255,255,0.00)_87.67%)] bg-clip-text font-tripsans text-[7.25rem] xmd:text-[3.5rem]  not-italic font-bold leading-[100%] uppercase relative'>
-                10.000
+                {dataBanner?.info1}
               </h2>
               <div
                 className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
@@ -163,7 +163,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
             <div data-aos="fade-up"
               data-aos-duration="900" className='xmd:top-[4.5rem] left-[3.5rem] top-[4.3rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] '>
               <div className=' text-linear bg-[linear-gradient(180deg,#FFF_30.31%,rgba(255,255,255,0.00)_87.67%)] bg-clip-text w-max text-[7.25rem] xmd:text-[3.5rem]  not-italic font-bold leading-[100%] uppercase relative'>
-                13 year
+                {dataBanner?.info2}
               </div>
               <div
                 className='text-white w-fit z-[500] bg-clip-border text-lg not-italic font-bold leading-[120%] flex 
@@ -176,7 +176,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
         </div>
         <div data-aos="fade-up"
           data-aos-duration="900" className='absolute xmd:hidden xl:right-[3rem] md:right-[10rem] xmd:bottom-[9rem] bottom-[16.19rem] md:w-[38.0625rem] text-white xmd:text-left xmd:container text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-[0.00219rem]  tracking-[0.005rem]'>
-          {dataBanner?.desc_text}
+          {dataBanner?.desc_text_bottom}
         </div>
       </div>
     </section>
