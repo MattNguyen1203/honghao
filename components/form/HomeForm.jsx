@@ -368,6 +368,8 @@ export default function HomeForm({
   return (
     <>
       <section
+        data-aos="fade-up"
+        data-aos-duration="900"
         className={`${isTourDetail
           ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
           : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
@@ -578,7 +580,7 @@ export default function HomeForm({
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                               <SelectValue
                                 className='text-greyscale-10 text-0875 flex-1'
-                                placeholder='Select Pick up'
+                                placeholder='Pick up'
                               />
                             </SelectTrigger>
                           </FormControl>
@@ -814,7 +816,7 @@ export default function HomeForm({
                     render={({ field }) => (
                       <FormItem className='flex-1'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
-                          Droff
+                          Drop off
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
@@ -824,7 +826,7 @@ export default function HomeForm({
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
                               <SelectValue
                                 className='text-greyscale-10 text-0875 flex-1'
-                                placeholder='Select Droff'
+                                placeholder='Drop off'
                               />
                             </SelectTrigger>
                           </FormControl>

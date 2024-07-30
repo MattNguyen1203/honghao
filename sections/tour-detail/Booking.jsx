@@ -17,15 +17,17 @@ export default function Booking({ data, dataTourDetail, dataPage }) {
 
   // console.log(dataFormInit);
   return (
-    <div className='relative h-[80rem] xmd:h-fit flex bg-white'>
+    <div
+
+      className='relative h-[80rem] xmd:h-fit flex bg-white'>
       <div className='xmd:hidden absolute size-full top-0 left-0'>
         <BikeAnimation />
       </div>
       <div className='xmd:hidden absolute bottom-0 left-0 w-full h-[70%] bg-[#13341C]'></div>
       <div className='flex container flex-col justify-end md:pb-[7rem] tablet:pb-[2rem] xmd:mt-[0.88rem]'>
         <div
-          // data-aos="fade-up"
-          // data-aos-duration="900"
+          data-aos="fade-up"
+          data-aos-duration="900"
           className='xmd:hidden flex flex-col items-start space-y-[0.75rem] h-[5.625rem] opacity-90 mb-[3.25rem] xmd:mb-[2rem]'>
           <span className='text-1125 xmd:text-0875 font-extrabold text-white opacity-40'>
             EASY WITH HONG HA TRAVEL

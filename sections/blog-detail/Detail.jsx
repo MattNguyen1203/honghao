@@ -4,8 +4,17 @@ import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { toast } from "sonner"
+import {
+  FacebookShareButton,
+  FacebookIcon,
+} from 'next-share'
 const Detail = ({ dataDetailPost }) => {
+  const pathName = usePathname()
+  const router = useRouter()
+  // console.log(pathName, window.location.href);
   const { currentCategories, setCurrentCategories } = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
   const [isVisible, setIsVisible] = useState(false)
@@ -42,12 +51,20 @@ const Detail = ({ dataDetailPost }) => {
       // Thay thế các thẻ video shortcode thành thẻ video HTML5 với thuộc tính src
       updatedContent = updatedContent.replace(
         /\[video\s+width="(\d+)"\s+height="(\d+)"\s+mp4="([^"]+)"\s*\]\[\/video\]/g,
-        '<video controls width="$1" height="$2" autoplay><source src="$3" type="video/mp4"></video>'
+        '<video controls width="$1" height="$2"><source src="$3" type="video/mp4"></video>'
       );
 
       setContent(updatedContent);
     }
   }, [dataDetailPost]);
+  const copyToClipboard = (link) => {
+    console.log(link);
+    navigator.clipboard.writeText(link).then(() => {
+      toast("Copy link thành công")
+    }).catch(err => {
+      console.error('Lỗi sao chép link: ', err);
+    });
+  };
 
   const Share = () => {
     return (
@@ -57,20 +74,29 @@ const Detail = ({ dataDetailPost }) => {
             <div className='w-max '>Chia sẻ:</div>
           </div>
           <div className='flex w-[4.3125rem] justify-center items-center gap-[0.5625rem] shrink-0'>
-            <svg
-              className='size-[2rem]'
-              xmlns='http://www.w3.org/2000/svg'
-              width='32'
-              height='33'
-              viewBox='0 0 32 33'
-              fill='none'
+
+
+            <FacebookShareButton
+              url={`https://honghao.vercel.app/${dataDetailPost?.slug}`}
+              quote={dataDetailPost?.title}
+              hashtag={'#honghaotravel'}
             >
-              <path
-                d='M30 16.5898C30 23.7898 24.6 29.6898 17.7 30.4898V19.6898H21L21.5 15.8898H17.8V13.5898C17.8 12.4898 18.1 11.7898 19.7 11.7898H21.7V8.28984C20.7 8.18984 19.8 8.18984 18.8 8.18984C15.9 8.18984 13.9 9.98984 13.9 13.1898V15.9898H10.6V19.7898H13.9V30.4898C7.1 29.3898 2 23.5898 2 16.5898C2 8.88984 8.3 2.58984 16 2.58984C23.7 2.58984 30 8.88984 30 16.5898Z'
-                fill='#454545'
-              />
-            </svg>
-            <div className='size-[1.79rem] bg-greyscale-50 rounded-full flex justify-center items-center'>
+              <svg
+                className='size-[2rem]'
+                xmlns='http://www.w3.org/2000/svg'
+                width='32'
+                height='33'
+                viewBox='0 0 32 33'
+                fill='none'
+              >
+                <path
+                  d='M30 16.5898C30 23.7898 24.6 29.6898 17.7 30.4898V19.6898H21L21.5 15.8898H17.8V13.5898C17.8 12.4898 18.1 11.7898 19.7 11.7898H21.7V8.28984C20.7 8.18984 19.8 8.18984 18.8 8.18984C15.9 8.18984 13.9 9.98984 13.9 13.1898V15.9898H10.6V19.7898H13.9V30.4898C7.1 29.3898 2 23.5898 2 16.5898C2 8.88984 8.3 2.58984 16 2.58984C23.7 2.58984 30 8.88984 30 16.5898Z'
+                  fill='#454545'
+                />
+              </svg>
+            </FacebookShareButton>
+
+            <div onClick={() => copyToClipboard(`https://honghao.vercel.app/${dataDetailPost?.slug}`)} className='size-[1.79rem] cursor-pointer bg-greyscale-50 rounded-full flex justify-center items-center'>
               <svg
                 className='size-[0.875rem]'
                 xmlns='http://www.w3.org/2000/svg'
@@ -93,6 +119,7 @@ const Detail = ({ dataDetailPost }) => {
       </div>
     )
   }
+
 
 
   // const content = replaceShortcodes(dataDetailPost?.content);
