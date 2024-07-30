@@ -171,7 +171,7 @@ export default function HomeForm({
   }, [dataForm?.choosedays, dataForm?.typeoftour])
   // console.log(tourSelected?.choosedays?.day, dataFormInit?.choosedays?.day, dataForm?.choosedays);
   // tính ngày enddate theo tour
-  console.log(dataForm)
+  // console.log(dataForm)
   useEffect(() => {
     let startDate = dataForm?.dob
     let endDateUse = new Date(startDate)

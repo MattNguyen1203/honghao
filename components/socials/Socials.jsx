@@ -25,7 +25,7 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
     }
     return phoneNumber;
   }
-  console.log('dataAcf', dataAcf?.contact_info);
+  // console.log('dataAcf', dataAcf?.contact_info);
   return (
     <div className='fixed     z-[50] xmd:bottom-[5.2rem] bottom-[3.7rem] xmd:right-[0.5rem] right-[1.5rem] flex flex-col items-center xmd:space-y-[0.5rem] space-y-[1rem]'>
       <div className='w-[3.125rem]  animate-bounce rounded-full flex justify-center items-center h-[3.125rem] shrink-0 bg-[#e64827]'>
