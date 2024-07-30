@@ -2,7 +2,7 @@ import { Londrina_Solid } from 'next/font/google'
 import './globals.css'
 import localFont from 'next/font/local'
 import NextTopLoader from 'nextjs-toploader'
-
+import { Toaster } from "@/components/ui/sonner"
 const londrina = Londrina_Solid({
   display: 'swap',
   weight: ['100', '300', '400', '900'],
@@ -59,6 +59,7 @@ export default function RootLayout({ children }) {
           crawlSpeed={200}
           height={5}
         />
+        <Toaster />
         {children}
       </body>
     </html>

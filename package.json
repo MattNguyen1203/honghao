@@ -29,6 +29,8 @@
     "gsap": "npm:@gsap/shockingly@^3.12.5",
     "lucide-react": "^0.372.0",
     "next": "14.2.2",
+    "next-share": "^0.27.0",
+    "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.12",
     "npx": "^10.2.2",
     "react": "^18",
@@ -39,6 +41,7 @@
     "react-player": "^2.16.0",
     "shadcn-ui": "^0.8.0",
     "skeleton": "^0.1.2",
+    "sonner": "^1.5.0",
     "swiper": "^11.1.3",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
@@ -47,9 +50,9 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
     "@types/node": "20.14.0",
     "@types/react": "18.3.3",
+    "gsap": "npm:@gsap/shockingly@^3.12.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "5.4.5"

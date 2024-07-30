@@ -80,10 +80,15 @@ const FaqAboutTrip = ({ dataAcfPage, videoAndImage }) => {
     <section className='flex justify-center'>
       <div className='flex mt-[5.63rem] xl:container xmd:hidden flex-col items-start space-y-[3rem]'>
         <div
+          data-aos="fade-up"
+          data-aos-duration="900"
           className='text-greyscale-80 w-full text-[3.5rem] not-italic font-black leading-[100%]'>
           FAQ about the trip
         </div>
-        <div className='flex items-start w-full  justify-between space-x-[4.68rem]'>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="900"
+          className='flex items-start w-full  justify-between space-x-[4.68rem]'>
           <div className='w-[42.8125rem]'>
             <AccordionCustom data={dataAcfPage} />
           </div>
