@@ -7,23 +7,25 @@ import {
 } from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
 import useStore from '@/app/(store)/store'
-import { useState } from 'react'
+import {useState} from 'react'
 import Image from 'next/image'
-const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
-  const { openbookNow, setCheckOpenBookNow } =
-    useStore((state) => state)
-  function Mailto({ email, subject, body, ...props }) {
+const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
+  const {openbookNow, setCheckOpenBookNow} = useStore((state) => state)
+  function Mailto({email, subject, body, ...props}) {
     return (
-      <a className=' animate-bounce-gmail' href={`mailto:${email}?subject=${subject || ""}&body=${body || ""}`}>
+      <a
+        className=' animate-bounce-gmail'
+        href={`mailto:${email}?subject=${subject || ''}&body=${body || ''}`}
+      >
         {props.children}
       </a>
-    );
+    )
   }
   function convertInternationalToLocal(phoneNumber) {
     if (phoneNumber.startsWith('+84')) {
-      return '0' + phoneNumber.slice(3);
+      return '0' + phoneNumber.slice(3)
     }
-    return phoneNumber;
+    return phoneNumber
   }
   // console.log('dataAcf', dataAcf?.contact_info);
   return (
@@ -48,7 +50,7 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
               listTypeofTour={listTypeofTour}
               listTime={listTime}
               listTours={listTours?.tours}
-            // setCheckOpenBookNow={setCheckOpenBookNow}
+              // setCheckOpenBookNow={setCheckOpenBookNow}
             />
           </DialogContent>
         </Dialog>
@@ -57,7 +59,7 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
       <a
         data-aos='fade-up'
         data-aos-duration='1000'
-        href={`https://wa.me/${convertInternationalToLocal(dataAcf?.contact_info?.phone)}`}
+        href={`https://wa.me/${dataAcf?.contact_info?.phone}`}
         target='_blank'
         className='cursor-pointer'
       >
@@ -138,12 +140,29 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
           <div className='absolute z-10 top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 w-[3.125rem] h-[3.125rem] shrink-0 blur-none rounded-[6.25rem] border-[4px] border-[rgba(255,255,255,0.15)]'></div>
         </div>
       </a>
-      <Mailto email={dataAcf?.contact_info?.email} subject="Hello" body="Hello HongHao">
+      {/* <Mailto
+        email={dataAcf?.contact_info?.email}
+        // subject='Hello'
+        // body='Hello HongHao'
+      > */}
+      <a
+        className=''
+        href={`mailto:${dataAcf?.contact_info?.email}`}
+        // href={`https://mail.google.com/mail/?view=cm&fs=1&to=${dataAcf?.contact_info?.email}`}
+        target='_blank'
+      >
         <Image
           data-aos='fade-up'
           data-aos-duration='900'
-          priority alt="ảnh" src={'/home/gmail.svg'} width={50} height={50} className="size-[3.625rem]" />
-      </Mailto>
+          priority
+          alt='ảnh'
+          src={'/home/gmail.svg'}
+          width={50}
+          height={50}
+          className='size-[3.625rem]'
+        />
+      </a>
+      {/* </Mailto> */}
 
       <div
         data-aos='fade-up'
