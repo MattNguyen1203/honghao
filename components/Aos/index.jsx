@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 const Aos = ({ children, className }) => {
   useEffect(() => {
     AOS.init({
-      // duration: 800,
       once: true,
       disable: function () {
         var maxWidth = 769
