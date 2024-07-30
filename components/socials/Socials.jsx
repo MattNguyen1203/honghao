@@ -14,7 +14,7 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
     useStore((state) => state)
   function Mailto({ email, subject, body, ...props }) {
     return (
-      <a className=' animate-cloud' href={`mailto:${email}?subject=${subject || ""}&body=${body || ""}`}>
+      <a className=' animate-bounce-gmail' href={`mailto:${email}?subject=${subject || ""}&body=${body || ""}`}>
         {props.children}
       </a>
     );

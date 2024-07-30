@@ -286,7 +286,7 @@ const SheetCp = ({ children, isLearnMore, dataDiscover, setCurrenImages, currenI
   const swiperRef = useRef(null);
   const handleClick = (i) => {
     const scrollY = window.scrollY;
-    setTimeout(() => window.scrollTo(0, scrollY - 2), 0);
+    setTimeout(() => window.scrollTo(0, scrollY - 2), 50);
     setTimeout(() => {
       if (swiperRef.current && swiperRef.current.swiper) {
         swiperRef.current.swiper.slideTo(i);
@@ -490,7 +490,10 @@ const Discover = ({ dataDiscover }) => {
 
 
 
-
+  const handleClick = () => {
+    const scrollY = window.scrollY;
+    setTimeout(() => window.scrollTo(0, scrollY - 2), 50);
+  }
 
 
   return (
@@ -725,7 +728,9 @@ const Discover = ({ dataDiscover }) => {
               dataDiscover={dataDiscover}
               isLearnMore
               listsImageCurrent={listsImageCurrent}>
-              <div className='text-[0.875rem] mb-[1rem] hover:bg-orange-hover duration-300 ease-linear hover:text-white text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid'>
+              <div
+                onClick={handleClick}
+                className='text-[0.875rem] mb-[1rem] hover:bg-orange-hover duration-300 ease-linear hover:text-white text-greyscale-40 font-semibold leading-[1.2] text-greyscaletext-40 uppercase flex h-11 justify-center items-center gap-2 border  border-grey-grey-100 px-5 py-2.5 rounded-lg border-solid'>
                 Learn more
               </div>
             </SheetCp>

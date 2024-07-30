@@ -376,7 +376,7 @@ export default function Season({ data, dataWeather }) {
             </button>
             <div className='absolute top-3 left-3 md:top-9 md:left-9 md:w-[9.375rem] rounded-[0.44rem] md:rounded-[0.7rem] bg-[rgba(255,255,255,0.2)] px-[0.52rem] xmd:py-[0.45rem] md:pt-4 md:pb-2 flex md:flex-col md:space-y-3 z-10 items-center border-[0.5px] border-greyscale-0/40'>
               <span className='font-extrabold text-center font-tripsans text-1.23 md:text-2 text-greyscale-0 xmd:ml-[0.46rem]'>
-                {parseInt(dataWeather?.main.temp) - 273}°C
+                {parseInt(dataWeather?.main?.temp) - 273}°C
               </span>
               {dataWeather?.weather?.[0]?.main === 'Clear' ||
                 dataWeather?.weather?.[0]?.id === 801 ? (
@@ -411,6 +411,8 @@ export default function Season({ data, dataWeather }) {
                 {getCurrentDate()}
               </p>
             </div>
+
+
             {/* thumbs */}
             <div className='absolute bottom-[1.63rem] left-0 px-[2.5rem] w-full z-10 xmd:hidden'>
               <div className='relative w-full h-px mb-6 bg-greyscale-0/80'>
