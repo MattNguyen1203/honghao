@@ -13,6 +13,7 @@ import BestTrips from './BestTrips/BestTrips'
 import GladdestMoment from './GladdestMomment/GladdestMoment'
 import GladdestMomentRes from './GladdestMomment/GladdestMomentRes'
 import BestTripsMb from './BestTrips/BestTripsMb'
+import Aos from '@/components/Aos'
 
 const Homepage = ({
   dataAcf,
