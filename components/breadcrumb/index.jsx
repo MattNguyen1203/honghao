@@ -9,7 +9,9 @@ const Breadcrumb = ({ divider, className, isBanner, children }) => {
     <>
       <div
         className={cn(
-          'flex flex-col items-start gap-5 mx-auto md:h-14 kKao4-container  xmd:pb-2 pt-2 md:pt-5',
+
+
+          ' line-clamp-3 flex flex-col items-start gap-5 mx-auto md:h-14 kKao4-container  xmd:pb-2 pt-2 md:pt-5',
           className
         )}
       >
