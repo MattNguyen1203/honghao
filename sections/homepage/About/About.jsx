@@ -1,19 +1,19 @@
 'use client'
 
-import {Button} from '@/components/customCn/button'
+import { Button } from '@/components/customCn/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 
 import MotoAnimate from './motoAnimate'
 import CloudAnimate from './CloudAnimate'
 import Welcome from '../Welcome/Welcome'
 
-const About = ({dataAbout}) => {
+const About = ({ dataAbout }) => {
   const nextSectionRef = useRef()
 
   const handleScrollDown = () => {
-    nextSectionRef.current.scrollIntoView({behavior: 'smooth'})
+    nextSectionRef.current.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -80,14 +80,14 @@ const About = ({dataAbout}) => {
                 key={index}
               >
                 <div className='animate-spin flex size-full rounded-full border border-dashed border-greyscale-0 absolute top-0 left-0'></div>
-                <div className='relative overflow-hidden w-full h-[2.125rem]'>
+                <div className='relative overflow-hidden w-full h-[4.6rem]'>
                   <div
-                    dangerouslySetInnerHTML={{__html: item?.text}}
-                    className='text-center group-hover:translate-y-[-200%] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'
+                    dangerouslySetInnerHTML={{ __html: item?.text }}
+                    className='text-center group-hover:translate-y-[-7rem] xlg:!-translate-y-1/2 -translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'
                   />
                   <div
-                    dangerouslySetInnerHTML={{__html: item?.text}}
-                    className='xlg:hidden translate-y-[100%] group-hover:-translate-y-1/2 xlg:!-translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'
+                    dangerouslySetInnerHTML={{ __html: item?.text }}
+                    className='xlg:hidden translate-y-[7rem] group-hover:-translate-y-1/2 xlg:!-translate-y-1/2 transition-all duration-500 absolute top-1/2 left-0 w-full'
                   />
                 </div>
               </div>
