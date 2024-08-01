@@ -1,6 +1,7 @@
 'use client'
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
 import {
+  DialogClose,
   Dialog,
   DialogContent,
   DialogTrigger,
@@ -10,7 +11,7 @@ import useStore from '@/app/(store)/store'
 import { useState } from 'react'
 import Image from 'next/image'
 const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
-  const { openbookNow, setCheckOpenBookNow } =
+  const { openbookNow, setCheckOpenBookNow, setOpenBooknow } =
     useStore((state) => state)
   function Mailto({ email, subject, body, ...props }) {
     return (
