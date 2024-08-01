@@ -4,7 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { format } from 'date-fns'
-
+import {
+  DialogClose
+} from '@/components/customCn/dialogFormhome'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -1284,17 +1286,25 @@ export default function HomeForm({
               <span className='w-[21.8125rem] text-35 font-black text-[#FFF] text-center'>
                 {isDialogText}
               </span>
-              <Link
-                href='/'
-                onClick={() => {
-                  if (window && router.pathname === '/') {
-                    window.location.reload()
-                  }
-                }}
-                className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
-              >
-                Homepage
-              </Link>
+
+
+              <DialogClose asChild>
+
+                <Link
+                  href='/'
+                  onClick={() => {
+                    setIsDialogOpen(false)
+                    setOpenBooknow(false)
+                    // if (window && router.pathname === '/') {
+                    //   window.location.reload()
+                    // }
+                  }}
+                  className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
+                >
+                  Homepage
+                </Link>
+              </DialogClose>
+
             </div>
             <Image
               id='may_ig'
