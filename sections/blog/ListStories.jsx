@@ -29,7 +29,7 @@ const CardMain = ({ singlePost }) => {
                     {singlePost?.primary_category?.name}
                   </div>
                 </button>
-                <div className='w-[21.82813rem] line-clamp-3 shrink-0 text-[#FCF8F7] text-[2.5rem] not-italic font-black leading-[100%]'>
+                <div className='w-[21.82813rem] scrollbar-dichvu max-h-[15rem] overflow-y-auto shrink-0 text-[#FCF8F7] text-[2.5rem] not-italic font-black leading-[100%]'>
                   {singlePost?.title}
                 </div>
               </div>
@@ -97,7 +97,7 @@ const ListStories = ({
       id='list-stories'
       className='list-stories flex flex-col items-start md:space-y-[2.62rem]'
     >
-      <CardMain singlePost={dataMainCard} />
+      <CardMain singlePost={dataBlogClient?.length > 0 ? dataMainCard : listPost?.[0]} />
       {!loading ? (
         <div className='grid grid-cols-2 xmd:grid-cols-1 xmd:gap-y-[1rem] gap-y-[2.12rem] gap-x-[1.45rem]'>
           {(dataBlogClient?.length > 0 ? dataBlogClient : listPost)?.map(

@@ -9,3 +9,12 @@
 .blog .circular-infinity {
   animation: rotateForever 8s linear infinite;
 }
+.scrollbar-dichvu::-webkit-scrollbar {
+  width: 0.1875rem;
+  height: 1rem;
+}
+
+
+.scrollbar-dichvu::-webkit-scrollbar-thumb {
+  background-color: #071d13 !important;
+}

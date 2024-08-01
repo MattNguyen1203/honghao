@@ -5,6 +5,7 @@ import { useState } from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
 import { useToast } from '@/components/ui/use-toast'
 export default function ContactForm({ data }) {
+  console.log(data);
   const { toast } = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
@@ -179,30 +180,18 @@ export default function ContactForm({ data }) {
                 },
               )}
             >
-              <li
-                className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'
-                onClick={() => setCountry('America')}
-              >
-                America
-              </li>
-              <li
-                className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'
-                onClick={() => setCountry('France')}
-              >
-                France
-              </li>
-              <li
-                className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'
-                onClick={() => setCountry('Canada')}
-              >
-                Canada
-              </li>
-              <li
-                className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'
-                onClick={() => setCountry('Japan')}
-              >
-                Japan
-              </li>
+
+              {data?.countries.map((d, i) => (
+                <li
+                  key={i}
+                  className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'
+                  onClick={() => setCountry(d?.name)}
+                >
+                  {d?.name}
+                </li>
+              ))}
+
+
             </ul>
           </button>
         </div>
