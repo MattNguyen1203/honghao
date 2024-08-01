@@ -1,17 +1,19 @@
 'use client'
 import ScrollUp from '@/components/scroll-to-top/ScrollUp'
 import {
+  DialogClose,
   Dialog,
   DialogContent,
   DialogTrigger,
 } from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
 import useStore from '@/app/(store)/store'
-import {useState} from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
-  const {openbookNow, setCheckOpenBookNow} = useStore((state) => state)
-  function Mailto({email, subject, body, ...props}) {
+const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
+  const { openbookNow, setCheckOpenBookNow, setOpenBooknow } =
+    useStore((state) => state)
+  function Mailto({ email, subject, body, ...props }) {
     return (
       <a
         className=' animate-bounce-gmail'
@@ -43,7 +45,7 @@ const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
               listTypeofTour={listTypeofTour}
               listTime={listTime}
               listTours={listTours?.tours}
-              // setCheckOpenBookNow={setCheckOpenBookNow}
+            // setCheckOpenBookNow={setCheckOpenBookNow}
             />
           </DialogContent>
         </Dialog>

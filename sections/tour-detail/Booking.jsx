@@ -2,7 +2,9 @@
 import BikeAnimation from '@/components/bikeAnimate'
 import Image from 'next/image'
 import HomeForm from '@/components/form/HomeForm'
-
+import {
+  Dialog
+} from '@/components/customCn/dialogFormhome'
 export default function Booking({ data, dataTourDetail, dataPage }) {
   const dataFormInit = {
     titleTour: dataTourDetail?.title,
@@ -40,19 +42,21 @@ export default function Booking({ data, dataTourDetail, dataPage }) {
         // data-aos="fade-up"
         // data-aos-duration="900"
         >
-          <HomeForm
-            isTourDetail
-            dataFormInit={dataFormInit}
-            listLocation={dataPage}
+          <Dialog>
+            <HomeForm
+              isTourDetail
+              dataFormInit={dataFormInit}
+              listLocation={dataPage}
 
-            // selfPax={dataFormInit?.priceSelf}
-            // localPax={dataFormInit?.priceLocal}
-            typeOfTour={dataFormInit?.typeoftour}
-            daysOfTour={dataFormInit?.choosedays?.title}
+              // selfPax={dataFormInit?.priceSelf}
+              // localPax={dataFormInit?.priceLocal}
+              typeOfTour={dataFormInit?.typeoftour}
+              daysOfTour={dataFormInit?.choosedays?.title}
 
-          // priceSeftTourDetail={dataFormInit?.priceSelf}
-          // priceLLocalTourDetail={dataFormInit?.priceLocal}
-          />
+            // priceSeftTourDetail={dataFormInit?.priceSelf}
+            // priceLLocalTourDetail={dataFormInit?.priceLocal}
+            />
+          </Dialog>
         </div>
       </div>
     </div>

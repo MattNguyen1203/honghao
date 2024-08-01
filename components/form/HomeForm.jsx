@@ -1,11 +1,11 @@
 'use client'
 import gsap from 'gsap'
-import {zodResolver} from '@hookform/resolvers/zod'
-import {useForm} from 'react-hook-form'
-import {z} from 'zod'
-import {format} from 'date-fns'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { format } from 'date-fns'
 
-import {Button} from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -21,36 +21,37 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {Calendar} from '@/components/ui/calendar'
-import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover'
-import {Input} from '@/components/ui/input'
-import {Textarea} from '@/components/ui/textarea'
-import {useCallback, useEffect, useState} from 'react'
+import { Calendar } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { useCallback, useEffect, useState } from 'react'
 import InformationForm from './InformationForm'
-import {paymentOnepay} from '@/lib/constants'
-import {useToast} from '@/components/ui/use-toast'
+import { paymentOnepay } from '@/lib/constants'
+import { useToast } from '@/components/ui/use-toast'
 import Image from 'next/image'
 import Link from 'next/link'
-import {generateParamsPayment} from '@/lib/payment'
+import { generateParamsPayment } from '@/lib/payment'
 import CryptoJS from 'crypto-js'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {usePathname, useRouter} from 'next/navigation'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePathname, useRouter } from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
 import Loading from '../loading/Loading'
+import useStore from '@/app/(store)/store'
 const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
   email: z
     .string()
-    .min(1, {message: 'Please enter your email!'})
-    .email({message: 'Enter the correct email format!'}),
+    .min(1, { message: 'Please enter your email!' })
+    .email({ message: 'Enter the correct email format!' }),
   phone: z
     .string()
-    .min(1, {message: 'Please enter your phone number.'})
+    .min(1, { message: 'Please enter your phone number.' })
     .regex(
       /^(999|998|997|996|995|994|993|992|991|990|979|978|977|976|975|974|973|972|971|970|969|968|967|966|965|964|963|962|961|960|899|898|897|896|895|894|893|892|891|890|889|888|887|886|885|884|883|882|881|880|879|878|877|876|875|874|873|872|871|870|859|858|857|856|855|854|853|852|851|850|839|838|837|836|835|834|833|832|831|830|809|808|807|806|805|804|803|802|801|800|699|698|697|696|695|694|693|692|691|690|689|688|687|686|685|684|683|682|681|680|679|678|677|676|675|674|673|672|671|670|599|598|597|596|595|594|593|592|591|590|509|508|507|506|505|504|503|502|501|500|429|428|427|426|425|424|423|422|421|420|389|388|387|386|385|384|383|382|381|380|379|378|377|376|375|374|373|372|371|370|359|358|357|356|355|354|353|352|351|350|299|298|297|296|295|294|293|292|291|290|289|288|287|286|285|284|283|282|281|280|269|268|267|266|265|264|263|262|261|260|259|258|257|256|255|254|253|252|251|250|249|248|247|246|245|244|243|242|241|240|239|238|237|236|235|234|233|232|231|230|229|228|227|226|225|224|223|222|221|220|219|218|217|216|215|214|213|212|211|210|98|95|94|93|92|91|90|86|84|0|82|81|66|65|64|63|62|61|60|58|57|56|55|54|53|52|51|49|48|47|46|45|44|43|41|40|39|36|34|33|32|31|30|27|20|7|1)[0-9]{0,14}$/,
-      {message: 'Invalid format!'},
+      { message: 'Invalid format!' },
     ),
   message: z.string(),
   typeoftour: z.string().min(1, 'Please fill out this field'),
@@ -82,7 +83,7 @@ export default function HomeForm({
   daysOfTour,
   setIsOpen,
 }) {
-  const {toast} = useToast()
+  const { toast } = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
   const [paxValueLocal, setPaxValueLocal] = useState(localPax || 0)
   const [dataDestination, setDataDestination] = useState([])
@@ -93,6 +94,7 @@ export default function HomeForm({
   const [isLoading, setIsLoading] = useState(false)
   const [isPayNow, setIsPayNow] = useState(null)
   const [ip, setIp] = useState('')
+  const { setOpenBooknow } = useStore((state) => state)
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -255,13 +257,13 @@ export default function HomeForm({
           : tourSelected?.titleTour,
         totalPrice:
           paxValueSelf *
-            (dataFormInit?.priceSelf
-              ? dataFormInit?.priceSelf
-              : tourSelected?.priceSelf) +
+          (dataFormInit?.priceSelf
+            ? dataFormInit?.priceSelf
+            : tourSelected?.priceSelf) +
           paxValueLocal *
-            (dataFormInit?.priceLocal
-              ? dataFormInit?.priceLocal
-              : tourSelected?.priceLocal),
+          (dataFormInit?.priceLocal
+            ? dataFormInit?.priceLocal
+            : tourSelected?.priceLocal),
         paxValueLocal: paxValueLocal,
         paxValueSelf: paxValueSelf,
         status: status,
@@ -350,13 +352,13 @@ export default function HomeForm({
 
   const totalPrice =
     paxValueSelf *
-      (dataFormInit?.priceSelf
-        ? dataFormInit?.priceSelf
-        : tourSelected?.priceSelf) +
+    (dataFormInit?.priceSelf
+      ? dataFormInit?.priceSelf
+      : tourSelected?.priceSelf) +
     paxValueLocal *
-      (dataFormInit?.priceLocal
-        ? dataFormInit?.priceLocal
-        : tourSelected?.priceLocal)
+    (dataFormInit?.priceLocal
+      ? dataFormInit?.priceLocal
+      : tourSelected?.priceLocal)
 
   // console.log(totalPrice);
   const handleClick = () => {
@@ -371,20 +373,18 @@ export default function HomeForm({
       <section
         data-aos='fade-up'
         data-aos-duration='900'
-        className={`${
-          isTourDetail
+        className={`${isTourDetail
             ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
             : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
-        } flex xmd:flex-col w-fit xmd:rounded-none !rounded-[1.5rem] relative`}
+          } flex xmd:flex-col w-fit xmd:rounded-none !rounded-[1.5rem] relative`}
       >
         <Form {...form}>
           <form
             // onSubmit={}
-            className={`${
-              isTourDetail
+            className={`${isTourDetail
                 ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
                 : 'w-[34.75rem] xmd:!p-0'
-            } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
+              } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
           >
             {isTourDetail && (
               <div className='xmd:hidden order-1 flex justify-start items-center w-full space-x-[1.25rem]'>
@@ -399,14 +399,13 @@ export default function HomeForm({
               </div>
             )}
             <div
-              className={`${
-                isTourDetail && 'order-3 xmd:order-1'
-              } space-y-[0.75rem] rounded-lg`}
+              className={`${isTourDetail && 'order-3 xmd:order-1'
+                } space-y-[0.75rem] rounded-lg`}
             >
               <FormField
                 control={form.control}
                 name='username'
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className='text-0875 font-bold xmd:font-extrabold text-[#2E2E2E] mb-[0.5rem]'>
                       Customer information:
@@ -427,7 +426,7 @@ export default function HomeForm({
                 <FormField
                   control={form.control}
                   name='phone'
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem className='flex-1'>
                       <FormControl>
                         <Input
@@ -444,7 +443,7 @@ export default function HomeForm({
                 <FormField
                   control={form.control}
                   name='email'
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem className='flex-1'>
                       <FormControl>
                         <Input
@@ -462,7 +461,7 @@ export default function HomeForm({
               <FormField
                 control={form.control}
                 name='message'
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Textarea
@@ -480,7 +479,7 @@ export default function HomeForm({
                   <FormField
                     control={form.control}
                     name='typeoftour'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='flex-1'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Type of tour:
@@ -523,7 +522,7 @@ export default function HomeForm({
                   <FormField
                     control={form.control}
                     name='choosedays'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='flex-1'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Choose days
@@ -570,7 +569,7 @@ export default function HomeForm({
                   <FormField
                     control={form.control}
                     name='pickup'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='flex-1'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Pick up
@@ -578,7 +577,7 @@ export default function HomeForm({
                         <Select
                           className=''
                           onValueChange={field.onChange}
-                          // defaultValue={field.value}
+                        // defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -612,7 +611,7 @@ export default function HomeForm({
                     // className='box'
                     control={form.control}
                     name='dob'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='box !space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Departure date
@@ -628,9 +627,8 @@ export default function HomeForm({
                                 // // }}
 
                                 variant={'outline'}
-                                className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${
-                                  !field?.value && 'text-muted-foreground'
-                                }`}
+                                className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 ${!field?.value && 'text-muted-foreground'
+                                  }`}
                               >
                                 {dataForm?.dob ? (
                                   <span className='font-normal text-0875 text-greyscale-60 mr-[0.5rem]'>
@@ -793,7 +791,7 @@ export default function HomeForm({
                 <FormField
                   control={form.control}
                   name='address'
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem className='flex-1'>
                       <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                         Address *
@@ -816,14 +814,14 @@ export default function HomeForm({
                   <FormField
                     control={form.control}
                     name='droff'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='flex-1'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           Drop off
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          // defaultValue={field.value}
+                        // defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger className='border-[2px] border-solid focus:border-orange-normal border-greyscale-5 focus:ring-transparent'>
@@ -855,7 +853,7 @@ export default function HomeForm({
                   <FormField
                     control={form.control}
                     name='enddate'
-                    render={({field}) => (
+                    render={({ field }) => (
                       <FormItem className='!space-y-[0.4rem] flex flex-col justify-start flex-1 pt-[0.25rem]'>
                         <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                           End date
@@ -917,7 +915,7 @@ export default function HomeForm({
                 <FormField
                   control={form.control}
                   name='destination'
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem className='flex-1'>
                       <FormLabel className='text-0875 font-bold text-greyscale-80 mb-[0.5rem]'>
                         Address *{/* dataForm?.droff */}
@@ -957,14 +955,12 @@ export default function HomeForm({
               </div>
             </div>
             <div
-              className={`${
-                isTourDetail && 'order-2'
-              } w-full space-y-[0.75rem]`}
+              className={`${isTourDetail && 'order-2'
+                } w-full space-y-[0.75rem]`}
             >
               <div
-                className={`${
-                  isTourDetail && 'md:px-[1rem]'
-                }flex flex-col py-[0.75rem] xmd:pt-[1.75rem] rounded-[0.5rem] bg-white`}
+                className={`${isTourDetail && 'md:px-[1rem]'
+                  }flex flex-col py-[0.75rem] xmd:pt-[1.75rem] rounded-[0.5rem] bg-white`}
               >
                 <div className='flex justify-between items-center'>
                   <span className='text-0875 text-greyscale-60 font-normal'>
@@ -1041,9 +1037,8 @@ export default function HomeForm({
                   </div>
                 )}
                 <hr
-                  className={`${
-                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
-                  } h-[0.0625rem] my-[0.75rem]`}
+                  className={`${isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
+                    } h-[0.0625rem] my-[0.75rem]`}
                 />
                 <div className='flex justify-between items-center'>
                   <span className='text-0875 text-greyscale-60 font-normal '>
@@ -1120,9 +1115,8 @@ export default function HomeForm({
                   </div>
                 )}
                 <hr
-                  className={`${
-                    isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
-                  } h-[0.0625rem] my-[0.75rem]`}
+                  className={`${isTourDetail ? 'w-[49.1875rem]' : 'w-[32.5rem] xmd:w-full'
+                    } h-[0.0625rem] my-[0.75rem]`}
                 />
               </div>
               <div className='w-full flex justify-between items-center'>
@@ -1136,24 +1130,22 @@ export default function HomeForm({
                       ? dataFormInit?.priceSelf
                       : tourSelected?.priceSelf) +
                     paxValueLocal *
-                      (dataFormInit?.priceLocal
-                        ? dataFormInit?.priceLocal
-                        : tourSelected?.priceLocal)}
+                    (dataFormInit?.priceLocal
+                      ? dataFormInit?.priceLocal
+                      : tourSelected?.priceLocal)}
                 </span>
               </div>
             </div>
             <div
-              className={`${
-                isTourDetail
+              className={`${isTourDetail
                   ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
                   : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
-              } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
+                } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
                 disabled={(notFoundTour && !isTourDetail) || totalPrice === 0}
-                className={`${
-                  isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
-                }  hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
+                className={`${isTourDetail && 'order-2 xmd:order-1 ml-[0.5rem] xmd:ml-0'
+                  }  hover:bg-orange-normal-hover text-0875 font-extrabold text-white uppercase h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover bg-orange-normal`}
                 type='submit'
                 onClick={form.handleSubmit((values) =>
                   onSubmit(values, 'Pay Later'),
@@ -1170,9 +1162,8 @@ export default function HomeForm({
               </Button>
               <Button
                 disabled={(notFoundTour && !isTourDetail) || totalPrice === 0}
-                className={`${
-                  isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
-                } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
+                className={`${isTourDetail && 'order-1 xmd:order-2 w-[16.5625rem]'
+                  } hover:bg-orange-normal-hover hover:text-white text-0875 font-extrabold uppercase bg-white text-orange-normal-hover h-[3.5rem] py-[1rem] px-[2rem] flex-1 flex justify-center items-center rounded-[0.5rem] border-[1px] border-solid border-orange-normal-hover`}
                 type='submit'
                 onClick={form.handleSubmit((values) =>
                   onSubmit(values, 'onepay'),
@@ -1296,7 +1287,9 @@ export default function HomeForm({
               <Link
                 href='/'
                 onClick={() => {
-                  setIsOpen && setIsOpen(false)
+                  if (window && router.pathname === '/') {
+                    window.location.reload()
+                  }
                 }}
                 className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
               >
