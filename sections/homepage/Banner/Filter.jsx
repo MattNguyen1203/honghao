@@ -44,6 +44,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
   })
 
   const [tourSelected, setTourSelected] = useState({})
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const tourMatch = listTours?.tours?.find(
@@ -66,6 +67,8 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
       Number(localPrice) * Number(optionSelected?.localPax)
     )
   }, [tourSelected, optionSelected])
+
+  console.log('isOpen', isOpen)
   return (
     <div className='xmd:hidden flex items-center absolute bottom-[2.94rem] left-1/2 -translate-x-1/2 bg-greyscale-0 rounded-[0.75rem] py-[0.75rem] pl-[2rem] pr-[0.75rem] z-[1000]'>
       {dataFilter?.map((item, index) => (
@@ -92,7 +95,10 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
         </div>
       ))}
 
-      <Dialog>
+      <Dialog
+        onOpenChange={(open) => setIsOpen(open)}
+        open={isOpen}
+      >
         <DialogTrigger asChild>
           <div
             className={cn(
@@ -117,6 +123,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             localPax={optionSelected?.localPax}
             typeOfTour={optionSelected?.type_of_tour_data}
             daysOfTour={optionSelected?.time_data}
+            setIsOpen={setIsOpen}
           />
         </DialogContent>
       </Dialog>

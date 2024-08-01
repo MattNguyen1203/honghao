@@ -4,9 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { format } from 'date-fns'
-import {
-  DialogClose
-} from '@/components/customCn/dialogFormhome'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -83,6 +81,7 @@ export default function HomeForm({
   localPax,
   typeOfTour,
   daysOfTour,
+  setIsOpen,
 }) {
   const { toast } = useToast()
   const [paxValueSelf, setPaxValueSelf] = useState(selfPax || 1)
@@ -372,19 +371,19 @@ export default function HomeForm({
   return (
     <>
       <section
-        data-aos="fade-up"
-        data-aos-duration="900"
+        data-aos='fade-up'
+        data-aos-duration='900'
         className={`${isTourDetail
-          ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
-          : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
+            ? 'xmd:bg-white xmd:!pb-[4rem] xmd:w-full xmd:space-y-[8rem]'
+            : 'bg-white xmd:!pb-[7.5rem] xmd:w-[20.5rem] xmd:space-y-[4rem]'
           } flex xmd:flex-col w-fit xmd:rounded-none !rounded-[1.5rem] relative`}
       >
         <Form {...form}>
           <form
             // onSubmit={}
             className={`${isTourDetail
-              ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
-              : 'w-[34.75rem] xmd:!p-0'
+                ? 'w-[54.1875rem] md:!pr-[1.5rem] xmd:!p-0'
+                : 'w-[34.75rem] xmd:!p-0'
               } space-y-[0.75rem] xmd:w-full xmd:space-y-0 rounded-[1.5rem] bg-white py-[1.5rem] xmd:pb-[0.75rem] xmd:pt-[0.75rem] pr-[0.75rem] pl-[1.5rem] xmd:pl-[0.75rem] flex flex-col`}
           >
             {isTourDetail && (
@@ -620,7 +619,6 @@ export default function HomeForm({
                         <FormControl>
                           <Popover>
                             <PopoverTrigger asChild>
-
                               <Button
                                 // onClick={handleClick}
                                 // // onClick={(event) => {
@@ -733,9 +731,8 @@ export default function HomeForm({
                       //       //   event.stopPropagation();
                       //       // }}
 
-
                       //       variant={'outline'}
-                      //       className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0 
+                      //       className={`flex justify-center items-center !h-[2.5rem] space-x-[0.25rem] border-[2px] border-solid border-greyscale-5 focus:border-orange-normal px-0 py-0
                       //       // ${!field?.value && 'text-muted-foreground'
                       //         }`}
                       //     >
@@ -1141,8 +1138,8 @@ export default function HomeForm({
             </div>
             <div
               className={`${isTourDetail
-                ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
-                : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
+                  ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
+                  : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
                 } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
             >
               <Button
@@ -1287,25 +1284,17 @@ export default function HomeForm({
               <span className='w-[21.8125rem] text-35 font-black text-[#FFF] text-center'>
                 {isDialogText}
               </span>
-
-
-              <DialogClose asChild>
-
-                <Link
-                  href='/'
-                  onClick={() => {
-                    setIsDialogOpen(false)
-                    setOpenBooknow(false)
-                    // if (window && router.pathname === '/') {
-                    //   window.location.reload()
-                    // }
-                  }}
-                  className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
-                >
-                  Homepage
-                </Link>
-              </DialogClose>
-
+              <Link
+                href='/'
+                onClick={() => {
+                  if (window && router.pathname === '/') {
+                    window.location.reload()
+                  }
+                }}
+                className='flex md:translate-y-[-1rem] items-center justify-center w-[13.4375rem] h-[3.5rem] py-[1rem] px-[2rem] rounded-[0.5rem] bg-[#DA4B19] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'
+              >
+                Homepage
+              </Link>
             </div>
             <Image
               id='may_ig'
