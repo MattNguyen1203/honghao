@@ -181,7 +181,7 @@ export default function ContactForm({ data }) {
               )}
             >
 
-              {data?.countries.map((d, i) => (
+              {data?.countries?.map((d, i) => (
                 <li
                   key={i}
                   className='w-full py-2.5 text-greyscale-80 hover:bg-greyscale-10/50 transition-400 rounded-[0.5rem] text-start px-3'

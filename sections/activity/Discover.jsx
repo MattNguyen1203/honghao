@@ -348,7 +348,7 @@ const SheetCp = ({ children, isLearnMore, dataDiscover, setCurrenImages, currenI
               speed={500}
               slidesPerView={1.2}
               spaceBetween={20}
-              className='!pl-10 xmd:!pl-2  !w-full '
+              className='!pl-10 xmd:!pl-2 swipersheet !w-full '
               loop={false}
               modules={[FreeMode]}
             >
@@ -469,6 +469,10 @@ const Discover = ({ dataDiscover }) => {
     return () => ctx.revert()
   }, [])
   const scrollToElement = (d) => {
+    const swiperElement = document.querySelector('.swipersheet');
+    console.log(swiperElement);
+
+
     if (d !== '') {
       setCurrenImages(d)
     } else {
@@ -585,10 +589,17 @@ const Discover = ({ dataDiscover }) => {
             >
               {listsImageCurrent?.map((d, i) => (
                 <SwiperSlide className={(i === 0 ? "!pl-[0.7rem]" : "!pl-[0.3rem]") + " !flex  !items-end !justify-end"}>
-                  {i === 0 && isMobile &&
+                  {i === 0 && isMobile && VideoCurrent &&
                     <VideoPopoup video={VideoCurrent?.url}>
                       {listsImageCurrent?.[0] && <Image priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
-                    </VideoPopoup>}
+                    </VideoPopoup>
+                  }
+
+                  {i === 0 && isMobile && !VideoCurrent && <ImageNormal>
+                    <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
+                      className=" w-full h-full object-cover" />
+                  </ImageNormal>}
+
                   {i !== 0 && isMobile &&
                     <ImageNormal>
                       <Image priority alt="ảnh" src={d?.url} width={1600} height={1400}
@@ -610,12 +621,11 @@ const Discover = ({ dataDiscover }) => {
                 className="space-y-[4.69rem] flex flex-col justify-end items-end">
 
 
-                {VideoCurrent?.url ? <VideoPopoup video={VideoCurrent?.url}>
-                  {listsImageCurrent?.[0] && <Image
-
-
-                    priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
-                </VideoPopoup> :
+                {VideoCurrent ?
+                  <VideoPopoup video={VideoCurrent?.url}>
+                    {listsImageCurrent?.[0] && <Image
+                      priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
+                  </VideoPopoup> :
                   <SheetCp index={0} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                     <ImageBig>
                       {listsImageCurrent?.[0] && <Image
