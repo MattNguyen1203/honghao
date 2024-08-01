@@ -4,6 +4,9 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Breadcrumb from '@/components/breadcrumb'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
+
+
+
 const Banner = ({ dataBanner, dataBannerMobi }) => {
 
   const [loaded, setLoaded] = useState(false);

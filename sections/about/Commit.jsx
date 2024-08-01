@@ -81,7 +81,7 @@ export default function Commit({ dataCommit }) {
               <Image
                 className='h-[26.375rem] object-cover xmd:-translate-x-[0.02rem] w-[41.9375rem] xmd:h-[14.74013rem] xmd:w-[23.4375rem] md:rounded-[1.25rem] shadow-[90px_128px_44px_0px_rgba(66,72,66,0.00),57px_82px_40px_0px_rgba(66,72,66,0.01),32px_46px_34px_0px_rgba(66,72,66,0.05),14px_20px_25px_0px_rgba(66,72,66,0.09),4px_5px_14px_0px_rgba(66,72,66,0.10)]'
                 alt='ảnh content cam kết'
-                src={'/imgs/about/bannercommitmbb.png'}
+                src={dataCommit?.image?.url || '/imgs/about/bannercommitmbb.png'}
                 width={671}
                 height={422}
               />

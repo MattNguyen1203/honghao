@@ -6,8 +6,8 @@ import {
   PaginationLink,
 } from '@/components/ui/pagination'
 import { useRouter, useSearchParams } from 'next/navigation'
-
-export default function PaginationV2({ href, pagination }) {
+import { useEffect } from 'react'
+export default function PaginationV2({ href, pagination, isLoading }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const className = {
@@ -20,7 +20,23 @@ export default function PaginationV2({ href, pagination }) {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', index)
     router.push(`?${params.toString()}`, { scroll: false })
+
+
+
   }
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTimeout(() => {
+        const element = document.getElementById(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          console.error(`Element with id '${href}' not found.`);
+        }
+      }, 2000);
+    }
+  }, [isLoading, href]);
   return (
     <>
       {pagination?.total_pages > 1 &&
@@ -41,7 +57,7 @@ export default function PaginationV2({ href, pagination }) {
                   className={
                     '!border-none  rounded-lg hover:bg-orange-normal-active hover:text-white bg-transparent'
                   }
-                  href={href || '/'}
+                  href={href}
                 >
                   {i + 1}
                 </PaginationLink>

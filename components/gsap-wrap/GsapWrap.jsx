@@ -13,7 +13,7 @@ export const scrollSmootherConfig = {
 }
 export default function GsapWrap({ children, isMobile }) {
   const pathname = usePathname()
-  // useChangePage()
+  useChangePage()
   useGSAP(() => {
     ScrollSmoother.create(scrollSmootherConfig)
   }, [])

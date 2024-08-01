@@ -608,12 +608,27 @@ const Discover = ({ dataDiscover }) => {
               <div
 
                 className="space-y-[4.69rem] flex flex-col justify-end items-end">
-                <VideoPopoup video={VideoCurrent?.url}>
+
+
+                {VideoCurrent?.url ? <VideoPopoup video={VideoCurrent?.url}>
                   {listsImageCurrent?.[0] && <Image
 
 
                     priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full !h-full absolute top-0 bottom-0 left-0 duration-500 transition-all  cursor-pointer " />}
-                </VideoPopoup>
+                </VideoPopoup> :
+                  <SheetCp index={0} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
+                    <ImageBig>
+                      {listsImageCurrent?.[0] && <Image
+
+
+                        priority alt="ảnh" src={listsImageCurrent[0]?.url} width={1000} height={1000} className=" object-cover group-hover:scale-110 w-full h-full duration-500 transition-all  cursor-pointer " />}
+                    </ImageBig>
+                  </SheetCp>
+                }
+
+
+
+
 
                 <SheetCp index={1} setCurrenImages={setCurrenImages} currenImages={currenImages} dataDiscover={dataDiscover} listsImageCurrent={listsImageCurrent}>
                   <ImageBig>

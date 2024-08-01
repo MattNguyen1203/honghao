@@ -9,7 +9,8 @@ import PaginationV2 from '@/components/pagination'
 import { useSearchParams } from 'next/navigation'
 import getData from '@/lib/getData'
 import { Skeleton } from '@/components/ui/skeleton'
-gsap.registerPlugin(ScrollTrigger)
+import { cn } from '@/lib/utils'
+// gsap.registerPlugin(ScrollTrigger)
 const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const firstTimeRef = useRef(true)
   const [listDestination, setListDestination] = useState({
@@ -26,15 +27,20 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const scrollRef = useRef(null)
   const container = useRef(null)
   useGSAP(() => {
-    if (listDestination?.posts?.length < 3) return
+    if (listDestination?.posts?.length < 3) {
+      ScrollTrigger.killAll()
+    }
+
+
     if (window.innerWidth > 768) {
+      console.log('gsap');
       ScrollTrigger.create({
         trigger: container.current,
         pin: pinRef.current,
         start: 'top top',
         end: `+=${scrollRef.current.offsetHeight} 95%`,
         // scrub: 1,
-        anticipatePin: 1,
+        // anticipatePin: 1,
         // markers: true,
         pinSpacing: false,
       })
@@ -44,7 +50,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         start: 'top top',
         end: `+=${scrollRef.current.offsetHeight} 95%`,
         // scrub: 1,
-        anticipatePin: 1,
+        // anticipatePin: 1,
         // markers: true,
         pinSpacing: false,
       })
@@ -61,9 +67,10 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         pinSpacing: false,
       })
     }
+    // } else {
 
-  }, [listDestination])
-
+    // }
+  }, [listDestination, searchParams])
 
 
   useEffect(() => {
@@ -73,7 +80,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
       const fetchData = async () => {
         setIsLoading(true)
         const res = await getData(
-          `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=${currentPage}&posts_per_page=4`,
+          `wp-json/okhub/v1/get-posts-by-category/1?cat_id=3&page=${currentPage}&posts_per_page=8`,
         )
         setListDestination(res)
         setIsLoading(false)
@@ -92,7 +99,10 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         src={'/imgs/all-destinations/discover-desti.png'}
         width={1600}
         height={900}
-        className='absolute xmd:hidden z-[-1] object-cover w-full h-[100vh]'
+        className={cn('absolute xmd:hidden z-[-1] object-cover w-full h-[100vh]',
+
+          listDestination?.posts?.length < 3 ? ' pb-[3rem]' : ''
+        )}
       />
       <Image
         ref={pinRefMobi}
@@ -158,6 +168,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
           </div>
 
           <PaginationV2
+            isLoading={isLoading}
             href='#destination-cards'
             pagination={listDestination?.pagination}
           />
