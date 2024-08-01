@@ -25,18 +25,18 @@ export default function PaginationV2({ href, pagination, isLoading }) {
 
   }
 
-  useEffect(() => {
-    if (!isLoading) {
-      setTimeout(() => {
-        const element = document.getElementById(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          console.error(`Element with id '${href}' not found.`);
-        }
-      }, 2000);
-    }
-  }, [isLoading, href]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     setTimeout(() => {
+  //       const element = document.getElementById(href);
+  //       if (element) {
+  //         element.scrollIntoView({ behavior: 'smooth' });
+  //       } else {
+  //         console.error(`Element with id '${href}' not found.`);
+  //       }
+  //     }, 2000);
+  //   }
+  // }, [isLoading, href]);
   return (
     <>
       {pagination?.total_pages > 1 &&

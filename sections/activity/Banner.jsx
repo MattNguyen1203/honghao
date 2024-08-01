@@ -357,7 +357,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                   Experience
                 </div>
               </div>
-              <div className='overflow-y-scroll scrollbar-dichvu max-h-[18rem] flex xmd:w-[14.6875rem] w-[30.6875rem] items-start content-start gap-2 flex-wrap'>
+              <div className='overflow-y-scroll scrollbar-dichvu xmd:max-h-[5.5rem] max-h-[18rem] flex xmd:w-[14.6875rem] w-[30.6875rem] items-start content-start gap-2 flex-wrap'>
                 {dataMoto?.lists_place?.map((d, i) => (
                   <Link
                     href={`/${d?.link}`}
@@ -452,7 +452,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                   Experience
                 </div>
               </div>
-              <div className='flex overflow-y-scroll scrollbar-dichvu max-h-[18rem] xmd:w-[14.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
+              <div className='flex overflow-y-scroll scrollbar-dichvu xmd:max-h-[8rem] bd max-h-[18rem] xmd:w-[13.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
                 {dataHiking?.lists_place?.map((d, i) => (
                   <Link
                     href={`/${d?.link}`}

@@ -16,11 +16,10 @@ const useChangePage = () => {
     { title: '/blog/travel' },
 
   ]
-  const params = useParams()
-  const searchParams = useSearchParams()
+  // const params = useParams()
+  // const searchParams = useSearchParams()
   useGSAP(() => {
     const shouldSkipScroll = dontShouldScroll.some(item => item.title === pathName);
-    console.log('usecHang');
     if (!shouldSkipScroll) {
       gsap.to(window, { duration: 0, scrollTo: 0 });
     }
