@@ -1,12 +1,12 @@
 'use client'
-import {Autoplay, EffectFade} from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import { Autoplay, EffectFade } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
-import {cn} from '@/lib/utils'
-import {useEffect, useRef, useState} from 'react'
+import { cn } from '@/lib/utils'
+import { useEffect, useRef, useState } from 'react'
 
 const listDotPosition = [
   {
@@ -35,7 +35,12 @@ const listDotPosition = [
   },
 ]
 
-const SlideImgs = ({animationCompleted, listImg = []}) => {
+const moreThan6 = {
+  top: '24.5rem',
+  right: '14.5rem',
+}
+
+const SlideImgs = ({ animationCompleted, listImg = [] }) => {
   const slideImgRef = useRef()
 
   const [dotPositionIndex, setDotPositionIndex] = useState(0)
@@ -44,7 +49,7 @@ const SlideImgs = ({animationCompleted, listImg = []}) => {
       slideImgRef.current.autoplay.start()
     }
   }, [animationCompleted, slideImgRef])
-
+  console.log(dotPositionIndex);
   return (
     <>
       <Swiper
@@ -53,9 +58,9 @@ const SlideImgs = ({animationCompleted, listImg = []}) => {
         autoplay={
           animationCompleted
             ? {
-                delay: 3000,
-                disableOnInteraction: false,
-              }
+              delay: 3000,
+              disableOnInteraction: false,
+            }
             : false
         }
         onBeforeInit={(swiper) => {
@@ -105,8 +110,8 @@ const SlideImgs = ({animationCompleted, listImg = []}) => {
             'size-[1.5rem] absolute z-30 transition-all duration-500',
           )}
           style={{
-            top: listDotPosition?.[dotPositionIndex]?.top,
-            right: listDotPosition?.[dotPositionIndex]?.right,
+            top: dotPositionIndex > 5 ? moreThan6.top : listDotPosition?.[dotPositionIndex]?.top,
+            right: dotPositionIndex > 5 ? moreThan6.right : listDotPosition?.[dotPositionIndex]?.right,
           }}
         />
       </div>
