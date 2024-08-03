@@ -10,30 +10,40 @@ import { useEffect, useRef, useState } from 'react'
 
 const listDotPosition = [
   {
-    top: '19rem',
-    right: '12.5rem',
+    // hagiang
+    top: '28.5rem',
+    right: '17.5rem',
   },
   {
-    top: '17rem',
-    right: '5.5rem',
-  },
-  {
+    // tamson
     top: '21.5rem',
     right: '17.5rem',
   },
   {
+    // yenminh
+    top: '19rem',
+    right: '12.5rem',
+  },
+
+  {
+    // dong van
     top: '13.5rem',
     right: '6.5rem',
   },
   {
+    // meo vac
+    top: '17rem',
+    right: '5.5rem',
+  },
+
+  {
+    // du gia
     top: '27.5rem',
     right: '10.5rem',
   },
-  {
-    top: '28.5rem',
-    right: '17.5rem',
-  },
+
 ]
+
 
 const moreThan6 = {
   top: '24.5rem',
@@ -42,17 +52,19 @@ const moreThan6 = {
 
 const SlideImgs = ({ animationCompleted, listImg = [] }) => {
   const slideImgRef = useRef()
-
   const [dotPositionIndex, setDotPositionIndex] = useState(0)
+
+  // console.log(listDotPosition?.[dotPositionIndex]?.top);
   useEffect(() => {
     if (animationCompleted && slideImgRef.current) {
       slideImgRef.current.autoplay.start()
     }
   }, [animationCompleted, slideImgRef])
-  console.log(dotPositionIndex);
+  // console.log(dotPositionIndex);
   return (
     <>
       <Swiper
+        loop
         effect={'fade'}
         modules={[EffectFade, Autoplay]}
         autoplay={
@@ -72,7 +84,7 @@ const SlideImgs = ({ animationCompleted, listImg = [] }) => {
         className='w-[71rem] h-[35rem] tablet:h-[80rem] relative translate-y-[100vh] xlg:w-full xmd:h-[30rem] xlg:translate-y-[0]'
         id='homepage_banner-swiper'
       >
-        {listImg?.map((item, index) => (
+        {listImg?.slice(0, 6)?.map((item, index) => (
           <SwiperSlide
             key={index}
             className='select-none'

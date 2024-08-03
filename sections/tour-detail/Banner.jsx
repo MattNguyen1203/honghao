@@ -153,7 +153,7 @@ const Banner = ({ dataAcf, dataTourDetail }) => {
         data-aos-duration="900"
         priority
         alt='ảnh'
-        src={'/imgs/all-destinations/map.png'}
+        src={'/map.png'}
         width={401}
         height={401}
         className='w-[24.4375rem] xmd:hidden h-[24.75rem] shrink-0 absolute bottom-[13rem] z-10 right-[18.72rem]'
