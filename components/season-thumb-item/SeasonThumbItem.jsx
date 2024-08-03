@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 export default function SeasonThumbItem({
   handleOnClick,
+  index,
   active,
   isMobile,
   item,
@@ -11,7 +12,7 @@ export default function SeasonThumbItem({
   return (
     <div
       className={cn(
-        'relative flex-1  backdrop-blur-sm bg-[linear-gradient(180deg,rgba(125,125,125,0.50)_20%,rgba(255,255,255,0.20)_80%)] pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item px-4 md:px-3.5 transition-400 border',
+        'relative xmd:flex-none flex-1  backdrop-blur-sm bg-[linear-gradient(180deg,rgba(125,125,125,0.50)_20%,rgba(255,255,255,0.20)_80%)] pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item px-4 md:px-3.5 transition-400 border',
         {
           'bg-elevation-30 thumb-item-mobile': isMobile,
           'border-greyscale-0/20': !isMobile,

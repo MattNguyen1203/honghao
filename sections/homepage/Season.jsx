@@ -115,6 +115,9 @@ export default function Season({ data, dataWeather }) {
     }
   }, [activeIndex, isMobile])
 
+  const handleOnClick = (index) => {
+    setActiveIndex(index)
+  }
   console.log(activeIndex);
   return (
     <>
@@ -465,7 +468,7 @@ export default function Season({ data, dataWeather }) {
               </div>
             </div>
           </Swiper>
-          <div className='z-10 w-full flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
+          <div className='z-10 w-full flex flex-row px-3 mt-4 space-x-3 overflow-auto flex-nowrap md:hidden'>
             {/* <Swiper
               slidesPerView={12}
               onSwiper={setThumbsSwiper}
@@ -482,6 +485,8 @@ export default function Season({ data, dataWeather }) {
                 // <SwiperSlide key={i}>
                 <SeasonThumbItem
                   item={item}
+                  handleOnClick={() => swiperRef.current?.slideTo(i)}
+                  index={i}
                   active={activeIndex === i}
                   isMobile={isMobile}
                   title={listMonth?.[i]}
