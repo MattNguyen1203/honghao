@@ -152,7 +152,7 @@ const Button = ({ index, active, data }) => {
     return day
   }
   return (
-    <div className={cn("flex justify-center  transition-all duration-300  bg-[#f9f9f9]  items-center gap-2.5 px-[2rem] py-[0.9875rem] rounded-[0.5rem]",
+    <div className={cn("flex justify-center  flex-col transition-all duration-300  bg-[#f9f9f9]  items-center px-[2rem] py-[0.9875rem] rounded-[0.5rem]",
       active ? 'bg-[#b34b1e]' : ''
     )}>
       <div className={cn(" text-[#898989]  transition-all duration-300  text-center text-[0.87rem] not-italic font-semibold leading-4 tracking-[0.03125rem] uppercase",
@@ -160,6 +160,12 @@ const Button = ({ index, active, data }) => {
       )}>
         {parseItinerary(data?.title)}
       </div>
+      <div className={cn(" text-[#a2a1a1]  transition-all duration-300  text-center text-[0.87rem] not-italic font-medium leading-4 tracking-[0.03125rem] uppercase",
+        active ? 'text-[#FCF8F7]' : ''
+      )}>
+        ({data?.distance})
+      </div>
+
     </div>
   )
 }

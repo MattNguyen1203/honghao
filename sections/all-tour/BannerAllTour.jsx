@@ -40,7 +40,7 @@ export default function BannerAllTour({ dataTourPage }) {
         data-aos-duration="900"
         className='xmd:hidden absolute z-[5] object-contain right-[4.06rem] top-[20%] w-[24.4375rem] h-[24.75rem]'
         alt='image map'
-        src={'/imgs/all-tour/Map.png'}
+        src={'/map.png'}
         width={391}
         height={396}
       />

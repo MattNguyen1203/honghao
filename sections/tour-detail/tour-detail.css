@@ -89,3 +89,12 @@
   /* padding: 50px; */
   /* font-size: 20px; */
 }
+.scrollbar-popup-tour-detail::-webkit-scrollbar {
+  width: 0.1875rem;
+  height: 1rem;
+}
+
+
+.scrollbar-popup-tour-detail::-webkit-scrollbar-thumb {
+  background-color: #23704D !important;
+}

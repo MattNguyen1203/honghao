@@ -115,7 +115,7 @@ export default function Season({ data, dataWeather }) {
     }
   }, [activeIndex, isMobile])
 
-
+  console.log(activeIndex);
   return (
     <>
       <div className='w-full h-[4rem] md:h-[13.5rem] z-10 relative bg-transparent -translate-y-full demo'>
@@ -465,9 +465,9 @@ export default function Season({ data, dataWeather }) {
               </div>
             </div>
           </Swiper>
-          <div className='z-10 flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
-            <Swiper
-              slidesPerView={3}
+          <div className='z-10 w-full flex flex-row px-3 mt-4 -mx-3 space-x-3 overflow-auto flex-nowrap md:hidden'>
+            {/* <Swiper
+              slidesPerView={12}
               onSwiper={setThumbsSwiper}
               freeMode={true}
               spaceBetween={12}
@@ -476,20 +476,20 @@ export default function Season({ data, dataWeather }) {
                 swiperThumbMobileRef.current = swiper
               }}
               modules={[FreeMode, Thumbs]}
-            >
-              {data?.map((item, i) => {
-                return (
-                  <SwiperSlide key={i}>
-                    <SeasonThumbItem
-                      item={item}
-                      active={activeIndex === i}
-                      isMobile={isMobile}
-                      title={listMonth?.[i]}
-                    />
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
+            > */}
+            {data?.map((item, i) => {
+              return (
+                // <SwiperSlide key={i}>
+                <SeasonThumbItem
+                  item={item}
+                  active={activeIndex === i}
+                  isMobile={isMobile}
+                  title={listMonth?.[i]}
+                />
+                // </SwiperSlide>
+              )
+            })}
+            {/* </Swiper> */}
           </div>
         </div>
       </section>

@@ -11,6 +11,17 @@ import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
 import { useGSAP } from '@gsap/react'
 // import ScrollTrigger from 'gsap/ScrollTrigger'
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/customCn/dialog"
+
 export default function StepByStep({ dataAcf, dataTourDetail }) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
@@ -204,7 +215,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           className='ml-[3rem]   flex items-center w-full  pb-[2rem]'>
           <div
             ref={ref}
-            className='!overflow-hidde cursor-pointer bg-[#FAFAFA] tablet:h-[35vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] 
+            className='!overflow-hidde cursor-pointer bg-[#FAFAFA] tablet:h-[40vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] 
             pt-[2.63rem]
             '>
             {/* pl-[3.19rem] */}
@@ -284,7 +295,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                     key={index}
                   >
                     <div
-                      className="flex pointer-events-none space-x-[7.87rem] relative">
+                      className="flex space-x-[7.87rem] relative">
 
                       <div className=" relative w-[2rem]">
 
@@ -338,7 +349,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
           </div>
         </div>
       </section >
-      <div className="h-[25rem]"></div>
+      <div className="h-[25rem] xlg:hidden"></div>
 
     </div>
   )
@@ -365,21 +376,68 @@ const IconOclock = ({ className = '' }) => {
   )
 }
 
-const ItemCardInfo = ({ item, active }) => {
+const ItemCardInfo = ({ item, active, dialog }) => {
+
+
+
+  const articleRef = useRef(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      const el = articleRef.current;
+      if (el) {
+        // Kiểm tra overflow theo chiều dọc
+        const hasOverflow = el.scrollHeight > 25 * 16; // 25rem = 25 * 16px
+        setIsOverflowing(hasOverflow);
+      }
+    };
+
+    checkOverflow();
+
+    // Kiểm tra lại khi cửa sổ thay đổi kích thước
+    window.addEventListener('resize', checkOverflow);
+
+    return () => {
+      window.removeEventListener('resize', checkOverflow);
+    };
+  }, []);
   return (
-    <article className={cn('min-h-[17.875rem] tablet:overflow-hidden tablet:h-[10rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
-      active ? ' border-[#23704D]' : ' border-transparent'
-    )}>
-      <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
+    <article
+      ref={articleRef}
+      className={cn('min-h-[17.875rem] scrollbar-popup-tour-detail  tablet:overflow-hidden tablet:h-[10rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+        active ? ' border-[#23704D]' : ' border-transparent',
+        dialog ? 'max-h-[40rem] overflow-auto ' : 'lg:overflow-hidden max-h-[25rem] '
+
+      )}>
+      <h3 className='text-[1.25rem] md:w-[30rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
         {item?.title}
       </h3>
       <div
         className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
         dangerouslySetInnerHTML={{ __html: item?.descriptions_text }}
       />
-      <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>
-        ( {item?.distance} )
+      <div className=' rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex 
+      justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.3rem]'>
+        {item?.distance}
       </div>
+
+      {
+
+        isOverflowing && !dialog &&
+        <Dialog>
+          <DialogTrigger asChild>
+            <div
+              className=' text-orange-normal text-[0.875rem] font-bold uppercase z-[10000] absolute bottom-[1rem] right-[1rem]'>
+              Xem thêm
+            </div>
+          </DialogTrigger>
+          <DialogContent>
+            <ItemCardInfo item={item} dialog />
+          </DialogContent>
+        </Dialog>
+      }
+      {isOverflowing && !dialog && <div className='absolute bottom-0 left-0 w-full h-[4rem] bg-gradient-to-t from-white to-transparent pointer-events-none'></div>}
     </article>
   )
 }

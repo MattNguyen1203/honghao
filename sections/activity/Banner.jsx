@@ -229,7 +229,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           <div
             data-aos="fade-up"
             data-aos-duration="1000"
-            className='md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
+            className='xmd:max-h-[9rem] xmd:overflow-y-auto md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
             {dataBaner?.desc_text}
           </div>
           <div data-aos="fade-up"
@@ -272,7 +272,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           data-aos-duration="1200"
           priority
           alt='map'
-          src={'/imgs/activity/map.png'}
+          src={'/map2.png'}
           width={9950}
           height={9950}
           className='w-[57rem] left-[35%] xmd:hidden h-[82rem] absolute bottom-0'
@@ -281,7 +281,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         <Image
           priority
           alt='map mobi'
-          src={'/imgs/activity/map-mobi.png'}
+          src={'/map2-mobi.png'}
           width={9950}
           height={9950}
           className=' mx-auto mt-[3.25rem] h-[55rem] px-[2rem] absolute top-[25.2rem] left-0 md:hidden'
@@ -481,7 +481,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         <div
           data-aos="fade-up"
           data-aos-duration="900"
-          className='xmd:pr-[0.75rem] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+          className='xmd:pr-[0.75rem]  line-clamp-[9] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
           {dataBaner?.desc_text_bottom}
         </div>
       </div>

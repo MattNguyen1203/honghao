@@ -50,7 +50,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
           <div
             data-aos="fade-up"
             data-aos-duration="1000"
-            className=' xmd:w-[19.9rem] md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
+            className=' xmd:w-[19.9rem] max-h-[10rem] overflow-y-auto md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-[0.00219rem] tracking-[0.005rem]'>
             {dataBanner?.desc_text}
           </div>
           <div
@@ -78,7 +78,7 @@ const Banner = ({ dataBanner, dataBannerMobi }) => {
           data-aos-duration="1200"
           priority
           alt='map'
-          src={'/imgs/activity/map.png'}
+          src={'/map2.png'}
           width={9950}
           height={9950}
           className='w-[57rem] left-[33%] xmd:hidden h-[82rem] absolute bottom-0'

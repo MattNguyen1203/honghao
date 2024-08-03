@@ -11,7 +11,7 @@ export default function SeasonThumbItem({
   return (
     <div
       className={cn(
-        'relative bg-[linear-gradient(180deg,rgba(125,125,125,0.50)_20%,rgba(255,255,255,0.20)_80%)] min-w-fit pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item flex-none px-4 md:px-3.5 transition-400 border',
+        'relative flex-1  backdrop-blur-sm bg-[linear-gradient(180deg,rgba(125,125,125,0.50)_20%,rgba(255,255,255,0.20)_80%)] pt-[0.5rem] pb-[0.44rem] md:pb-2 rounded-[0.7rem] flex flex-col items-center space-y-1 transition-400 cursor-pointer overflow-hidden thumb-item px-4 md:px-3.5 transition-400 border',
         {
           'bg-elevation-30 thumb-item-mobile': isMobile,
           'border-greyscale-0/20': !isMobile,
@@ -29,10 +29,10 @@ export default function SeasonThumbItem({
                 'opacity-0': !active,
               },
             )}
-            // style={{
-            //   background:
-            //     'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%)',
-            // }}
+          // style={{
+          //   background:
+          //     'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%)',
+          // }}
           />
           <div
             className={cn(
@@ -41,10 +41,10 @@ export default function SeasonThumbItem({
                 'opacity-0': active,
               },
             )}
-            // style={{
-            //   background:
-            //     'linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)',
-            // }}
+          // style={{
+          //   background:
+          //     'linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)',
+          // }}
           />
         </>
       )}
