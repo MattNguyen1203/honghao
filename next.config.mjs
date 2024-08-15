@@ -9,6 +9,7 @@ const nextConfig = {
     remotePatterns: [{protocol: 'https', hostname: '**'}],
   },
   reactStrictMode: false,
+  output: 'standalone',
 }
 
 export default nextConfig

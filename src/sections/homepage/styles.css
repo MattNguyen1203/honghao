@@ -1,0 +1,54 @@
+.cut-img {
+  mask-image: url('/public/imgs/home/england-shape.png');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 100%;
+}
+
+.slide-season {
+  border-radius: 1.5rem !important;
+}
+.slide-season .swiper-wrapper {
+  position: relative;
+}
+
+.slide-season .swiper-slide {
+  position: relative;
+  height: 44rem !important;
+}
+
+@media (max-width: 767px) {
+  .slide-season {
+    border-radius: 0.5rem !important;
+  }
+  .slide-season .swiper-slide {
+    height: 12.88rem !important;
+  }
+}
+
+.content-container::-webkit-scrollbar {
+  width: 0.1875rem;
+  height: 6rem;
+}
+
+.content-container::-webkit-scrollbar-track {
+  background-color: #a9a9a9;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+}
+
+.swiper-client-say {
+  z-index: -10 !important;
+}
+
+.swiper-client-say .swiper-slide {
+  height: 29.875rem !important;
+}
+
+.swiper-thumb-mobile .swiper-slide {
+  min-width: fit-content !important;
+}
