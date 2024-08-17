@@ -1,36 +1,34 @@
 'use client'
 
-import { Navigation } from 'swiper/modules'
+import {Navigation} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import ItemTour from '@/components/itemtour'
 import Image from 'next/image'
-import { useEffect } from 'react'
-export default function SliderTour({ type, dataBestTrip }) {
+import {useEffect} from 'react'
+export default function SliderTour({type, dataBestTrip}) {
   const isAllTourPage = type === 'alltour'
   return (
     <div className='container xmd:mt-[2rem] xmd:!px-0'>
       <div
-        data-aos="fade-up"
-        data-aos-duration="900"
-        className='xmd:container xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 '>
+        data-aos='fade-up'
+        data-aos-duration='900'
+        className='xmd:container xmd:mb-[0.75rem] text-1125 xmd:text-0875 xmd:text-greyscale-60 font-extrabold text-greyscale-80 '
+      >
         EXPLORE
       </div>
       {isAllTourPage ? (
-        <h2
-          className='xmd:container text-3 xmd:text-25 font-black text-greyscale-80'>
+        <h2 className='xmd:container text-3 xmd:text-25 font-black text-greyscale-80'>
           BEST TRIPS <br className='md:hidden' /> FOR YOU
         </h2>
       ) : (
-        <h2
-          className='xmd:container text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
+        <h2 className='xmd:container text-3 xmd:text-25 font-black text-green-normal-hover xmd:text-greyscale-80'>
           TRIPS FOR YOU
         </h2>
       )}
 
-      <div
-        className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
+      <div className='relative w-full mt-[3.56rem] xmd:mt-[2rem]'>
         <Swiper
           slidesPerView={'auto'}
           spaceBetween={12}
@@ -49,7 +47,7 @@ export default function SliderTour({ type, dataBestTrip }) {
         >
           {dataBestTrip?.map((e, index) => (
             <SwiperSlide
-              className='xmd:!w-[16.0175rem] xmd:!h-[23.33956rem]'
+              className='xmd:!w-[17.0175rem] xmd:!h-[23.33956rem]'
               key={index}
             >
               <ItemTour
