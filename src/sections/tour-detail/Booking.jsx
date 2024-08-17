@@ -34,22 +34,14 @@ export default function Booking({data, dataTourDetail, dataPage}) {
             ONLINE BOOKING
           </h2>
         </div>
-        <div
-        // data-aos="fade-up"
-        // data-aos-duration="900"
-        >
+        <div className='relative'>
           <Dialog>
             <HomeForm
               isTourDetail
               dataFormInit={dataFormInit}
               listLocation={dataPage}
-              // selfPax={dataFormInit?.priceSelf}
-              // localPax={dataFormInit?.priceLocal}
               typeOfTour={dataFormInit?.typeoftour}
               daysOfTour={dataFormInit?.choosedays?.title}
-
-              // priceSeftTourDetail={dataFormInit?.priceSelf}
-              // priceLLocalTourDetail={dataFormInit?.priceLocal}
             />
           </Dialog>
         </div>

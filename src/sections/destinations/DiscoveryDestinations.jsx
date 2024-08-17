@@ -91,7 +91,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
   return (
     <section
       ref={container}
-      className='relative mt-[2.63rem]'
+      className='relative mt-[2.63rem] xmd:mb-[2rem]'
     >
       <Image
         ref={pinRef}
@@ -113,7 +113,7 @@ const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
         src={'/imgs/all-destinations/discover-desti-mobi.png'}
         width={1600}
         height={900}
-        className='absolute md:hidden top-[41.53rem] z-[-1] w-full '
+        className={cn('absolute md:hidden top-[100vh] z-[-1] w-full')}
       />
       <Image
         priority

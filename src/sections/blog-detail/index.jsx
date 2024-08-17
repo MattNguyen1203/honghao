@@ -7,7 +7,7 @@ import Detail from './Detail'
 import StartPlanning from '@/sections/blog/StartPlanning.jsx'
 import './blogdetail.css'
 import getData from '@/lib/getData'
-const BlogDetail = async ({ dataDetailPost, data, slugCompare, dataCommon }) => {
+const BlogDetail = async ({dataDetailPost, data, slugCompare, dataCommon}) => {
   const dataStartPlanning = data?.acf?.start_planning
   const dataRelate = await getData(
     `wp-json/okhub/v1/get-posts-by-category/1?cat_id=${dataDetailPost?.primary_category?.id}&page=1&posts_per_page=3`,
@@ -19,7 +19,6 @@ const BlogDetail = async ({ dataDetailPost, data, slugCompare, dataCommon }) => 
 
   return (
     <main className='blog-detail'>
-
       <section>
         <Banner dataDetailPost={dataDetailPost} />
       </section>
@@ -32,15 +31,14 @@ const BlogDetail = async ({ dataDetailPost, data, slugCompare, dataCommon }) => 
           dataStartPlanning={dataStartPlanning}
         />
       </section>
-      <section>
-        <RelatedArticle
-          dataRelate={
-            dataRelateCompare?.length > 2
-              ? dataRelate?.posts?.slice(2)
-              : dataRelateCompare
-          }
-        />
-      </section>
+
+      <RelatedArticle
+        dataRelate={
+          dataRelateCompare?.length > 2
+            ? dataRelate?.posts?.slice(2)
+            : dataRelateCompare
+        }
+      />
     </main>
   )
 }

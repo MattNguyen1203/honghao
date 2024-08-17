@@ -8,12 +8,13 @@ import {
 } from '@/components/customCn/dialogFormhome'
 import HomeForm from '@/components/form/HomeForm'
 import useStore from '@/app/(store)/store'
-import { useState } from 'react'
+import {useState} from 'react'
 import Image from 'next/image'
-const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
-  const { openbookNow, setCheckOpenBookNow, setOpenBooknow } =
-    useStore((state) => state)
-  function Mailto({ email, subject, body, ...props }) {
+const Socials = ({dataAcf, listTypeofTour, listTime, listTours}) => {
+  const {openbookNow, setCheckOpenBookNow, setOpenBooknow} = useStore(
+    (state) => state,
+  )
+  function Mailto({email, subject, body, ...props}) {
     return (
       <a
         className=' animate-bounce-gmail'
@@ -39,13 +40,12 @@ const Socials = ({ dataAcf, listTypeofTour, listTime, listTours }) => {
               BOOK NOW
             </div>
           </DialogTrigger>
-          <DialogContent className=' sm:max-w-fit xmd:w-full max-h-[85vh] !overflow-x-hidden xmd:overflow-y-scroll'>
+          <DialogContent className=' sm:max-w-fit xmd:w-full'>
             <HomeForm
               listLocation={dataAcf}
               listTypeofTour={listTypeofTour}
               listTime={listTime}
               listTours={listTours?.tours}
-            // setCheckOpenBookNow={setCheckOpenBookNow}
             />
           </DialogContent>
         </Dialog>
