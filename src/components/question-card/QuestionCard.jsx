@@ -1,18 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { cn } from '@/lib/utils'
+import {useState} from 'react'
+import {cn} from '@/lib/utils'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 
-export default function QuestionCard({ title, content }) {
+export default function QuestionCard({title, content}) {
   const [isOpen, setIsOpen] = useState(false)
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div
       onMouseEnter={() => setIsOpen(true)}
       onMouuseLeave={() => setIsOpen(fasle)}
-      className='relative rounded-[1rem] md:rounded-3xl bg-[#F8EAE4] h-[16.75rem] md:h-[21.75rem] px-[1.31rem] py-[1.75rem] md:p-8 overflow-hidden flex-none xmd:w-[16.8125rem]'>
+      className='relative rounded-[1rem] md:rounded-3xl bg-[#F8EAE4] h-[16.75rem] md:h-[21.75rem] px-[1.31rem] py-[1.75rem] md:p-8 overflow-hidden flex-none xmd:w-[16.8125rem]'
+    >
       {!isMobile && (
         <>
           <h3
@@ -68,7 +69,7 @@ export default function QuestionCard({ title, content }) {
                 />
               </button>
             </div>
-            <div className='h-[14.3125rem] overflow-auto answer-container pr-[0.31rem]'>
+            <div className='h-[14.3125rem] overflow-auto answer-container pr-[0.31rem] '>
               <p className='text-greyscale-50 font-tripsans lead-1.375 tracking-[0.02rem]'>
                 {content}
               </p>

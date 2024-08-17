@@ -2,15 +2,17 @@
 
 import BikeAnimationMb from '@/components/bikeAnimateMb'
 import Image from 'next/image'
-import { useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import StepByStepTourDt from './StepByStepTourDt'
+import {cn} from '@/lib/utils'
 
 // import {dataSLides} from './data'
 
-export default function StepByStepRes({ dataAcf, dataTourDetail }) {
+export default function StepByStepRes({dataAcf, dataTourDetail, dataPage}) {
   const [seeLess, setSeeLess] = useState(true)
   if (typeof window !== 'undefined' && window?.innerWidth >= 1024) return null
   const dataSLides = dataAcf?.dataSLides || []
+
   return (
     <div className=''>
       <button
@@ -35,8 +37,9 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
         </svg>
       </button>
       <div
-        className={`${!seeLess && 'h-0 overflow-hidden'
-          } transition-all duration-500`}
+        className={`${
+          !seeLess && 'h-0 overflow-hidden'
+        } transition-all duration-500`}
       >
         <div className='tablet:hidden xmd:hidden transition-all w-[33.75rem] flex items-center flex-shrink-0 xlg:w-full xlg:px-[1.41rem]'>
           <Image
@@ -69,7 +72,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
           <div className='flex items-center xmd:px-[0.75rem] space-x-[1.25rem]'>
             <div className='flex items-center whitespace-nowrap'>
               <span className='text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-                {dataAcf?.don_vi}
+                {dataPage?.don_vị}
                 {dataAcf?.gia?.self_driving}
               </span>
               <span className='tablet:text-[#2e2e2e] block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
@@ -78,7 +81,7 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
             </div>
             <div className='flex items-center whitespace-nowrap'>
               <span className=' text-orange-normal mr-[0.44rem] text-[1.5rem] font-medium leading-[1.2] md:text-[2.5rem]'>
-                {dataAcf?.don_vi}
+                {dataPage?.don_vị}
                 {dataAcf?.gia?.self_driving}
               </span>
               <span className='tablet:text-[#2e2e2e] block font-normal text-white border-b border-solid border-b-white leading-normal tracking-[0.00219rem] text-[0.875rem] md:text-[1.875rem]'>
@@ -88,10 +91,12 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
           </div>
           <div className='flex bg-[#13341c] p-[2rem] rounded-[1rem] xmd:px-[0.75rem] xmd:pb-[1rem] flex-col md:space-y-[2rem] space-y-[1rem] mt-[1.5rem]'>
             {dataSLides?.map((item, index) => (
-              <ItemCardInfo
-                key={index}
-                item={item}
-              />
+              <div key={index}>
+                <ItemCardInfo
+                  item={item}
+                  index={index}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -99,15 +104,32 @@ export default function StepByStepRes({ dataAcf, dataTourDetail }) {
     </div>
   )
 }
-const ItemCardInfo = ({ item }) => {
+const ItemCardInfo = ({item, index}) => {
+  const itemRef = useRef()
+
+  const handleOpen = () => {
+    if (itemRef.current.offsetHeight > 0) {
+      itemRef.current.style.height = 0 + 'px'
+    } else {
+      itemRef.current.style.height = itemRef.current.scrollHeight + 'px'
+    }
+  }
+
   return (
-    <article className='min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative'>
+    <article
+      onClick={handleOpen}
+      className='md:min-h-[10.875rem] rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative'
+    >
       <h3 className='text-[1.25rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
         {item?.title}
       </h3>
       <div
-        className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
-        dangerouslySetInnerHTML={{ __html: item?.descriptions_text }}
+        ref={itemRef}
+        className={cn(
+          'text-greyscale-50  xmd:overflow-hidden transition-all duration-500 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]',
+          index !== 0 && 'xmd:h-0',
+        )}
+        dangerouslySetInnerHTML={{__html: item?.descriptions_text}}
       />
       <div className='lg:hidden rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.5rem]'>
         ( {item?.distance} )
@@ -115,7 +137,7 @@ const ItemCardInfo = ({ item }) => {
     </article>
   )
 }
-const IconOclock = ({ className = '' }) => {
+const IconOclock = ({className = ''}) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

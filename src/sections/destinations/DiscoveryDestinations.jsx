@@ -1,17 +1,17 @@
 'use client'
-import React, { useRef, useEffect, useState } from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import Image from 'next/image'
 import CardDestination from './CardDestination'
 import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import {useGSAP} from '@gsap/react'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import PaginationV2 from '@/components/pagination'
-import { useSearchParams } from 'next/navigation'
+import {useSearchParams} from 'next/navigation'
 import getData from '@/lib/getData'
-import { Skeleton } from '@/components/ui/skeleton'
-import { cn } from '@/lib/utils'
+import {Skeleton} from '@/components/ui/skeleton'
+import {cn} from '@/lib/utils'
 // gsap.registerPlugin(ScrollTrigger)
-const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
+const DiscoveryDestinations = ({dataListCat, dataAcf}) => {
   const firstTimeRef = useRef(true)
   const [listDestination, setListDestination] = useState({
     posts: dataListCat?.posts,
@@ -25,15 +25,15 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   const pin2Ref = useRef(null)
   const pinRefMobi = useRef(null)
   const scrollRef = useRef(null)
+  const scrollRef2 = useRef(null)
+
   const container = useRef(null)
   useGSAP(() => {
     if (listDestination?.posts?.length < 3) {
       ScrollTrigger.killAll()
     }
 
-
     if (window.innerWidth > 768) {
-      console.log('gsap');
       ScrollTrigger.create({
         trigger: container.current,
         pin: pinRef.current,
@@ -54,13 +54,12 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         // markers: true,
         pinSpacing: false,
       })
-
     } else {
       ScrollTrigger.create({
         trigger: pinRefMobi.current,
         pin: true,
         start: '-250% top',
-        end: `+=${scrollRef.current.offsetHeight + 99999} 65%`,
+        end: `+=${scrollRef.current.offsetHeight} 85%`,
         scrub: 1,
         anticipatePin: 1,
         // markers: true,
@@ -71,7 +70,6 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
 
     // }
   }, [listDestination, searchParams])
-
 
   useEffect(() => {
     if (firstTimeRef.current) {
@@ -91,7 +89,10 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
   }, [currentPage])
 
   return (
-    <section ref={container} className='relative mt-[2.63rem]'>
+    <section
+      ref={container}
+      className='relative mt-[2.63rem]'
+    >
       <Image
         ref={pinRef}
         priority
@@ -99,9 +100,10 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         src={'/imgs/all-destinations/discover-desti.png'}
         width={1600}
         height={900}
-        className={cn('absolute xmd:hidden z-[-1] object-cover w-full h-[100vh]',
+        className={cn(
+          'absolute xmd:hidden z-[-1] object-cover w-full h-[100vh]',
 
-          listDestination?.posts?.length < 3 ? ' pb-[3rem]' : ''
+          listDestination?.posts?.length < 3 ? ' pb-[3rem]' : '',
         )}
       />
       <Image
@@ -122,7 +124,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         className='absolute size-[6.75181rem] top-[-1.6rem] left-[1.5rem] md:hidden z-[-1]'
       />
       <div
-        ref={scrollRef}
+        // ref={scrollRef}
         className='xmd:mx-[1rem] xmd:mt-[3.4rem] md:space-x-[3rem] xl:w-[93rem] mx-auto xmd:space-y-[1.7rem] flex items-start xmd:flex-col justify-around'
       >
         <div
@@ -131,7 +133,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
         >
           <div className='flex flex-col items-start  space-y-[0.75rem]'>
             <div className='xmd:hidden text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
-              Discovery Ha Giang
+              {dataAcf?.subheader}
             </div>
             <div className='md:hidden xmd:translate-y-[-0.3rem] uppercase text-green-dark-active opacity-40 text-lg xmd:text-[0.875rem] not-italic font-extrabold xmd:leading-[120%] leading-[100%]'>
               Start With
@@ -141,7 +143,7 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
             </h2>
           </div>
           <div
-            dangerouslySetInnerHTML={{ __html: dataAcf?.description }}
+            dangerouslySetInnerHTML={{__html: dataAcf?.description}}
             className=' text-green-dark-active md:w-[27.5625rem] text-[1rem] xmd:text-[0.875rem]  not-italic font-normal xmd:tracking-[0.00219rem] tracking-[0.005rem] leading-[150%]'
           ></div>
         </div>
@@ -153,18 +155,18 @@ const DiscoveryDestinations = ({ dataListCat, dataAcf }) => {
           >
             {isLoading
               ? new Array(2).fill().map((item, index) => (
-                <Skeleton
-                  className='xmd:w-full xmd:h-[23.33775rem] w-[29.375rem] h-[31.875rem] rounded-[1.25rem] overflow-hidden'
-                  key={index}
-                />
-              ))
+                  <Skeleton
+                    className='xmd:w-full xmd:h-[23.33775rem] w-[29.375rem] h-[31.875rem] rounded-[1.25rem] overflow-hidden'
+                    key={index}
+                  />
+                ))
               : listDestination?.posts?.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <CardDestination data={item} />
-                  </div>
-                )
-              })}
+                  return (
+                    <div key={index}>
+                      <CardDestination data={item} />
+                    </div>
+                  )
+                })}
           </div>
 
           <PaginationV2

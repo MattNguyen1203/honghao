@@ -1,15 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Mousewheel } from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Mousewheel} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 import gsap from 'gsap'
 import useStore from '@/app/(store)/store'
-import { useGSAP } from '@gsap/react'
+import {useGSAP} from '@gsap/react'
 // import ScrollTrigger from 'gsap/ScrollTrigger'
 
 import {
@@ -20,14 +20,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/customCn/dialog"
+} from '@/components/customCn/dialog'
 
-export default function StepByStep({ dataAcf, dataTourDetail }) {
+export default function StepByStep({dataAcf, dataTourDetail}) {
   const swiperRef = useRef(null)
   const swiper2Ref = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
   const dataSLides = dataAcf?.dataSLides || []
-  const { setCheckOpenBookNow, checkOpenBookNow, setCheckOpenBookNow2, checkOpenBookNow2 } = useStore(state => state)
+  const {
+    setCheckOpenBookNow,
+    checkOpenBookNow,
+    setCheckOpenBookNow2,
+    checkOpenBookNow2,
+  } = useStore((state) => state)
   // useGSAP(() => {
 
   //   let mm = gsap.matchMedia();
@@ -76,9 +81,7 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
     if (index == -1) {
       setIndexSlider(0)
       swiper.slideTo(0, 500)
-
-    }
-    else {
+    } else {
       setIndexSlider(index + 1)
       swiper.slideTo(index + 1, 500)
     }
@@ -100,109 +103,118 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
       // }
     }
     // setIndexSlider(swiper.realIndex)
-
   }
 
-  const [slidePositions, setSlidePositions] = useState([]);
-  const bikeRef = useRef(null);
+  const [slidePositions, setSlidePositions] = useState([])
+  const bikeRef = useRef(null)
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.slides.length > 0) {
-      const swiperInstance = swiperRef.current;
-      const positions = Array.from(swiperInstance.slides).map(slide => slide.offsetTop);
-      setSlidePositions(positions);
+      const swiperInstance = swiperRef.current
+      const positions = Array.from(swiperInstance.slides).map(
+        (slide) => slide.offsetTop,
+      )
+      setSlidePositions(positions)
     }
-  }, [dataSLides]);
+  }, [dataSLides])
   useEffect(() => {
-    if (bikeRef.current && slidePositions.length > 0 && indexSlider <= dataSLides?.length - 1) {
-      bikeRef.current.style.top = `${slidePositions[indexSlider] - 5}px`;
+    if (
+      bikeRef.current &&
+      slidePositions.length > 0 &&
+      indexSlider <= dataSLides?.length - 1
+    ) {
+      bikeRef.current.style.top = `${slidePositions[indexSlider] - 5}px`
     }
     // if (indexSlider !== 0) {
     //   setCheckOpenBookNow2(indexSlider)
     // }
-  }, [indexSlider, slidePositions]);
+  }, [indexSlider, slidePositions])
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.params) {
-
       if (indexSlider === 0 || indexSlider === dataSLides?.length - 1) {
         setTimeout(() => {
-
-          swiperRef.current.params.mousewheel.releaseOnEdges = true;
-          swiperRef.current.update();
+          swiperRef.current.params.mousewheel.releaseOnEdges = true
+          swiperRef.current.update()
         }, 1000)
       } else {
-        swiperRef.current.params.mousewheel.releaseOnEdges = false;
-        swiperRef.current.update();
+        swiperRef.current.params.mousewheel.releaseOnEdges = false
+        swiperRef.current.update()
       }
-
     }
-  }, [indexSlider]);
+  }, [indexSlider])
 
-
-  const divRef = useRef(null);
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const divRef = useRef(null)
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
   // check box onsite
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting)
-          // let mm = gsap.matchMedia();
+        // let mm = gsap.matchMedia();
 
-          // // add a media query. When it matches, the associated function will run
-          // mm.add("(min-width: 1023px)", () => {
-          //   if (divRef.current) {
-          //     gsap.to(divRef.current, {
-          //       scrollTrigger: {
-          //         trigger: divRef.current,
-          //         start: "top",
-          //         end: "50%",
-          //         // scrub: true,
-          //         markers: true,
-          //         pinSpacing: false,
-          //         pin: true,
-          //       },
-          //       // duration: 1,
-          //       // ease: "power1.inOut",
-          //     });
+        // // add a media query. When it matches, the associated function will run
+        // mm.add("(min-width: 1023px)", () => {
+        //   if (divRef.current) {
+        //     gsap.to(divRef.current, {
+        //       scrollTrigger: {
+        //         trigger: divRef.current,
+        //         start: "top",
+        //         end: "50%",
+        //         // scrub: true,
+        //         markers: true,
+        //         pinSpacing: false,
+        //         pin: true,
+        //       },
+        //       // duration: 1,
+        //       // ease: "power1.inOut",
+        //     });
 
-          //   }
-          // })
-          ;
+        //   }
+        // })
       },
       {
         rootMargin: '100px 0px 100px 0px',
         threshold: 1.0,
-      }
-    );
+      },
+    )
 
     if (ref.current) {
-      observer.observe(ref.current);
+      observer.observe(ref.current)
     }
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current);
+        observer.unobserve(ref.current)
       }
-    };
-  }, []);
-  useEffect(() => {
-    const boxSlide = document.querySelector('.box-slides');
-    if (boxSlide) {
-      boxSlide.style.pointerEvents = isVisible ? 'auto' : 'none';
     }
-  }, [isVisible]);
+  }, [])
+  useEffect(() => {
+    const boxSlide = document.querySelector('.box-slides')
+    if (boxSlide) {
+      boxSlide.style.pointerEvents = isVisible ? 'auto' : 'none'
+    }
+  }, [isVisible])
   return (
     <div>
-      <section ref={divRef} className='  sticky-class flex w-full xmd:hidden  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'>
+      <section
+        ref={divRef}
+        className='  sticky-class flex w-full xmd:hidden  pointer-events-auto h-screen bg-white lg:pl-[2.25rem] xlg:h-fit'
+      >
         {/* map */}
         {/* <ScrollDetector /> */}
-        <div data-aos="fade-up"
-          data-aos-duration="900"
-          className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:px-[1.41rem]'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='900'
+          className='xmd:hidden w-[33.75rem] flex items-center flex-shrink-0 xlg:px-[1.41rem]'
+        >
           <Image
             className='w-[33.75rem] h-[42rem] xlg:h-[30.625rem] object-contain'
-            src={indexSlider > dataSLides?.length - 1 ? (dataSLides?.[dataSLides?.length - 1]?.imgStep?.url || '') : (dataSLides?.[indexSlider]?.imgStep?.url || '')}
+            src={
+              indexSlider > dataSLides?.length - 1
+                ? dataSLides?.[dataSLides?.length - 1]?.imgStep?.url || ''
+                : dataSLides?.[indexSlider]?.imgStep?.url || ''
+            }
             alt='map2'
             width={800}
             height={800}
@@ -210,14 +222,17 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
         </div>
 
         {/* map */}
-        <div data-aos="fade-up"
-          data-aos-duration="900"
-          className='ml-[3rem]   flex items-center w-full  pb-[2rem]'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='900'
+          className='ml-[3rem]   flex items-center w-full  pb-[2rem]'
+        >
           <div
             ref={ref}
             className='!overflow-hidde cursor-pointer bg-[#FAFAFA] tablet:h-[40vh] lg:h-[90vh] w-full rounded-tl-[2rem] rounded-bl-[2rem] shadow-[-206px_319px_106px_0px_rgba(13,48,33,0.00),-132px_204px_97px_0px_rgba(13,48,33,0.01),-50px_-10px_40px_0px_rgba(13,48,33,0.09),-8px_13px_33px_0px_rgba(13,48,33,0.10)] 
             pt-[2.63rem]
-            '>
+            '
+          >
             {/* pl-[3.19rem] */}
             <div className='pl-[3.19rem] flex items-center'>
               <IconOclock className='size-[1.5rem] mr-[0.37rem]' />
@@ -252,9 +267,8 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                 </div>
               </div>
             </div>
-            <div
-              className='w-full tablet:h-[30vh] h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
-              <div className=" absolute top-[-1.5rem] left-[3rem]">
+            <div className='w-full tablet:h-[30vh] h-[70vh] box-slides transition-all duration-300 mt-[2.25rem] relative flex justify-between pr-[4.81rem]'>
+              <div className=' absolute top-[-1.5rem] left-[3rem]'>
                 <span className=' text-[1rem] font-extrabold leading-[1.2] tracking-[0.0125rem] text-greyscale-80 block text-center'>
                   Pick up at :
                 </span>
@@ -282,59 +296,81 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
                   threshold: -1000, // Ngưỡng di chuyển chuột (100 pixel)
                 }}
                 modules={[Mousewheel]}
-                className={cn('w-full swiper box-slides !pl-[4.59rem] relative  transition-all duration-500 !mt-5 !mx-0',
+                className={cn(
+                  'w-full swiper box-slides !pl-[4.59rem] relative  transition-all duration-500 !mt-5 !mx-0',
 
-                  indexSlider > 0 ? '!pt-[10rem] ' : '!pt-[1.5rem]'
+                  indexSlider > 0 ? '!pt-[10rem] ' : '!pt-[1.5rem]',
                 )}
               >
-
                 {dataSLides?.map((item, index) => (
                   <SwiperSlide
-
                     className={cn('w-full flex  h-fit cursor-pointer')}
                     key={index}
                   >
-                    <div
-                      className="flex space-x-[7.87rem] relative">
-
-                      <div className=" relative w-[2rem]">
-
+                    <div className='flex space-x-[7.87rem] relative'>
+                      <div className=' relative w-[2rem]'>
                         {/* line */}
-                        {dataSLides?.length - 1 !== index && <div className={`h-full bg-[#C5C5C5]/80 absolute z-[5] left-1/2 w-[0.2rem]  transition-all duration-1000`} >
-                        </div>}
+                        {dataSLides?.length - 1 !== index && (
+                          <div
+                            className={`h-full bg-[#C5C5C5]/80 absolute z-[5] left-1/2 w-[0.2rem]  transition-all duration-1000`}
+                          ></div>
+                        )}
                         {/* line active */}
                         <div
-                          className={cn(`${indexSlider >= index + 1 && indexSlider <= dataSLides?.length - 1 ? 'h-full' : ' h-0'}  absolute z-[5] left-1/2 w-[0.2rem] bg-[#23704D] transition-all duration-1000`,
-                          )} ></div>
+                          className={cn(
+                            `${
+                              indexSlider >= index + 1 &&
+                              indexSlider <= dataSLides?.length - 1
+                                ? 'h-full'
+                                : ' h-0'
+                            }  absolute z-[5] left-1/2 w-[0.2rem] bg-[#23704D] transition-all duration-1000`,
+                          )}
+                        ></div>
                         {/* dot */}
-                        <div className={`${index <= indexSlider ? 'bg-[#23704D] delay-500' : 'bg-[#C5C5C5]/80'}  size-[0.675rem] rounded-full absolute top-0 left-[37%] z-50 transition-all duration-500`} >
-                        </div>
+                        <div
+                          className={`${
+                            index <= indexSlider
+                              ? 'bg-[#23704D] delay-500'
+                              : 'bg-[#C5C5C5]/80'
+                          }  size-[0.675rem] rounded-full absolute top-0 left-[37%] z-50 transition-all duration-500`}
+                        ></div>
                         {/* position */}
-                        {index !== 0 && <div
-                          onClick={() => handleClickDistrict(-1)}
-                          className='cursor-pointer absolute left-[2rem] top-[-1rem] z-10 flex flex-col'
-                        >
-                          <IconMarker
-                            className='size-[1.5rem]'
-                            isActive={index <= indexSlider}
-                          />
-                          <span className={cn('text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer',
+                        {index !== 0 && (
+                          <div
+                            onClick={() => handleClickDistrict(-1)}
+                            className='cursor-pointer absolute left-[2rem] top-[-1rem] z-10 flex flex-col'
+                          >
+                            <IconMarker
+                              className='size-[1.5rem]'
+                              isActive={index <= indexSlider}
+                            />
+                            <span
+                              className={cn(
+                                'text-[0.875rem] font-extrabold leading-normal text-greyscale-20 whitespace-nowrap cursor-pointer',
 
-                            index <= indexSlider ? 'text-[#E64827]' : 'text-[#C5C5C5]'
-                          )}>
-                            {item?.district}
-                          </span>
-                        </div>}
+                                index <= indexSlider
+                                  ? 'text-[#E64827]'
+                                  : 'text-[#C5C5C5]',
+                              )}
+                            >
+                              {item?.district}
+                            </span>
+                          </div>
+                        )}
                       </div>
 
-                      <ItemCardInfo item={item} active={indexSlider === index} />
+                      <ItemCardInfo
+                        item={item}
+                        active={indexSlider === index}
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
                 {/* XE MÁY */}
                 <SwiperSlide
                   ref={bikeRef}
-                  className=' !absolute  !transition-all !duration-1000 tablet:left-[-4rem] left-[-2rem]'>
+                  className=' !absolute  !transition-all !duration-1000 tablet:left-[-4rem] left-[-2rem]'
+                >
                   <Image
                     className='  object-contain'
                     src={'/home/motor1.png'}
@@ -348,13 +384,12 @@ export default function StepByStep({ dataAcf, dataTourDetail }) {
             </div>
           </div>
         </div>
-      </section >
-      <div className="h-[25rem] xlg:hidden"></div>
-
+      </section>
+      <div className='h-[25rem] xlg:hidden'></div>
     </div>
   )
 }
-const IconOclock = ({ className = '' }) => {
+const IconOclock = ({className = ''}) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -376,72 +411,75 @@ const IconOclock = ({ className = '' }) => {
   )
 }
 
-const ItemCardInfo = ({ item, active, dialog }) => {
-
-
-
-  const articleRef = useRef(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+const ItemCardInfo = ({item, active, dialog}) => {
+  const articleRef = useRef(null)
+  const [isOverflowing, setIsOverflowing] = useState(false)
 
   useEffect(() => {
     const checkOverflow = () => {
-      const el = articleRef.current;
+      const el = articleRef.current
       if (el) {
         // Kiểm tra overflow theo chiều dọc
-        const hasOverflow = el.scrollHeight > 25 * 16; // 25rem = 25 * 16px
-        setIsOverflowing(hasOverflow);
+        const hasOverflow = el.scrollHeight > 25 * 16 // 25rem = 25 * 16px
+        setIsOverflowing(hasOverflow)
       }
-    };
+    }
 
-    checkOverflow();
+    checkOverflow()
 
     // Kiểm tra lại khi cửa sổ thay đổi kích thước
-    window.addEventListener('resize', checkOverflow);
+    window.addEventListener('resize', checkOverflow)
 
     return () => {
-      window.removeEventListener('resize', checkOverflow);
-    };
-  }, []);
+      window.removeEventListener('resize', checkOverflow)
+    }
+  }, [])
   return (
     <article
       ref={articleRef}
-      className={cn('min-h-[17.875rem] scrollbar-popup-tour-detail  tablet:overflow-hidden tablet:h-[10rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
+      className={cn(
+        'min-h-[17.875rem] scrollbar-popup-tour-detail  tablet:overflow-hidden tablet:h-[10rem] 2xl:min-h-[18.875rem] 3xl:min-h-[20.875rem] 4xl:!min-h-[24.875rem] mb-[2rem] xl:border-[3px] ease-out border-[2px] flex-1 duration-1000 transition-all rounded-[1.5rem] bg-[#F5F5F5] p-[1.88rem] xlg:p-[2rem] xmd:p-[1rem] xlg:rounded-[0.75rem] relative',
         active ? ' border-[#23704D]' : ' border-transparent',
-        dialog ? 'max-h-[40rem] overflow-auto ' : 'lg:overflow-hidden max-h-[25rem] '
-
-      )}>
+        dialog
+          ? 'max-h-[40rem] overflow-auto '
+          : 'lg:overflow-hidden max-h-[25rem] ',
+      )}
+    >
       <h3 className='text-[1.25rem] md:w-[30rem] font-extrabold leading-[1.2] text-greyscale-80 xlg:text-[2rem] xmd:text-[1rem] xlg:tracking-[0.0125rem] xmd:w-[14.8125rem] xlg:w-[80%]'>
         {item?.title}
       </h3>
       <div
         className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
-        dangerouslySetInnerHTML={{ __html: item?.descriptions_text }}
+        dangerouslySetInnerHTML={{__html: item?.descriptions_text}}
       />
-      <div className=' rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex 
-      justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.3rem]'>
+      <div
+        className=' rounded-[1.5rem] bg-[#E6E6E6] w-[4.625rem] h-[1.625rem] text-[0.75rem] font-normal leading-[1.2] tracking-[0.00375rem] flex 
+      justify-center items-center absolute top-[1rem] right-[1rem] text-greyscale-50 md:w-[8rem] md:h-[2.5rem] md:text-[1.3rem]'
+      >
         {item?.distance}
       </div>
-
-      {
-
-        isOverflowing && !dialog &&
+      {isOverflowing && !dialog && (
         <Dialog>
           <DialogTrigger asChild>
-            <div
-              className=' text-orange-normal text-[0.875rem] font-bold uppercase z-[10000] absolute bottom-[1rem] right-[1rem]'>
+            <div className=' text-orange-normal text-[0.875rem] font-bold uppercase z-[10000] absolute bottom-[1rem] right-[1rem]'>
               Xem thêm
             </div>
           </DialogTrigger>
           <DialogContent>
-            <ItemCardInfo item={item} dialog />
+            <ItemCardInfo
+              item={item}
+              dialog
+            />
           </DialogContent>
         </Dialog>
-      }
-      {isOverflowing && !dialog && <div className='absolute bottom-0 left-0 w-full h-[4rem] bg-gradient-to-t from-white to-transparent pointer-events-none'></div>}
+      )}
+      {isOverflowing && !dialog && (
+        <div className='absolute bottom-0 left-0 w-full h-[4rem] bg-gradient-to-t from-white to-transparent pointer-events-none'></div>
+      )}
     </article>
   )
 }
-const IconMarker = ({ className = '', isActive = false }) => {
+const IconMarker = ({className = '', isActive = false}) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

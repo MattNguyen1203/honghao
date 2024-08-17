@@ -1,12 +1,11 @@
-import { regName, regPhone, regEmail, regContactSubject } from '@/lib/reg'
-import { cn } from '@/lib/utils'
+import {regName, regPhone, regEmail, regContactSubject} from '@/lib/reg'
+import {cn} from '@/lib/utils'
 import Image from 'next/image'
-import { useState } from 'react'
+import {useState} from 'react'
 import useClickOutSide from '@/hooks/useClickOutside'
-import { useToast } from '@/components/ui/use-toast'
-export default function ContactForm({ data }) {
-  console.log(data);
-  const { toast } = useToast()
+import {useToast} from '@/components/ui/use-toast'
+export default function ContactForm({data}) {
+  const {toast} = useToast()
   const [sideRef] = useClickOutSide(() => setIsOpenDropdown(false))
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const [name, setName] = useState('')
@@ -71,8 +70,11 @@ export default function ContactForm({ data }) {
     }
   }
   return (
-    <div data-aos="fade-up"
-      data-aos-duration="550" className='absolute top-[9rem] md:top-[20rem] md:left-[36%] md:w-[32rem] xmd:px-4 w-full'>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='550'
+      className='absolute top-[9rem] md:top-[20rem] md:left-[36%] md:w-[32rem] xmd:px-4 w-full'
+    >
       <Image
         src={'/imgs/contact-us/mountain-deco.png'}
         alt='mountain deco'
@@ -99,12 +101,12 @@ export default function ContactForm({ data }) {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-          // onBlur={() => {
-          //   setErrorMessage({
-          //     ...errorMessage,
-          //     name: regName.test(name) ? '' : 'Invalid name',
-          //   })
-          // }}
+            // onBlur={() => {
+            //   setErrorMessage({
+            //     ...errorMessage,
+            //     name: regName.test(name) ? '' : 'Invalid name',
+            //   })
+            // }}
           />
           <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage.name}
@@ -139,12 +141,12 @@ export default function ContactForm({ data }) {
             // required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          // onBlur={() => {
-          //   setErrorMessage({
-          //     ...errorMessage,
-          //     email: regEmail.test(email) ? '' : 'Invalid email',
-          //   })
-          // }}
+            // onBlur={() => {
+            //   setErrorMessage({
+            //     ...errorMessage,
+            //     email: regEmail.test(email) ? '' : 'Invalid email',
+            //   })
+            // }}
           />
           <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage.email}
@@ -155,7 +157,7 @@ export default function ContactForm({ data }) {
             ref={sideRef}
             type='button'
             className='relative flex flex-row justify-center items-center font-sans text-0.875 leading-1.2 py-[0.62rem] h-[2.31rem] w-full'
-            style={{ borderBottom: '1px solid rgba(187, 211, 200, 0.80)' }}
+            style={{borderBottom: '1px solid rgba(187, 211, 200, 0.80)'}}
             onClick={() => setIsOpenDropdown(!isOpenDropdown)}
           >
             {country ? (
@@ -180,7 +182,6 @@ export default function ContactForm({ data }) {
                 },
               )}
             >
-
               {data?.countries?.map((d, i) => (
                 <li
                   key={i}
@@ -190,8 +191,6 @@ export default function ContactForm({ data }) {
                   {d?.name}
                 </li>
               ))}
-
-
             </ul>
           </button>
         </div>
@@ -203,14 +202,14 @@ export default function ContactForm({ data }) {
             className='py-[0.62rem] rounded-none w-full font-sans text-0.875 text-greyscale-0 placeholder:text-[rgba(187,211,200,0.50)] leading-1.2 tracking-[0.00875rem] placeholder:font-sans border-b border-[rgba(187,211,200,0.80)] h-[2.31rem]'
             value={contactSubject}
             onChange={(e) => setContactSubject(e.target.value)}
-          // onBlur={() => {
-          //   setErrorMessage({
-          //     ...errorMessage,
-          //     contactSubject: regContactSubject.test(contactSubject)
-          //       ? ''
-          //       : 'Invalid contact object',
-          //   })
-          // }}
+            // onBlur={() => {
+            //   setErrorMessage({
+            //     ...errorMessage,
+            //     contactSubject: regContactSubject.test(contactSubject)
+            //       ? ''
+            //       : 'Invalid contact object',
+            //   })
+            // }}
           />
           <p className='text-0.75 md:text-0.875 font-sans font-semibold text-red-500 mt-0.5'>
             {errorMessage?.contactSubject}

@@ -1,21 +1,17 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import useStore from '@/app/(store)/store'
 import BreadcrumbLink from '@/components/breadcrumb/BreadcrumbLink'
 import Breadcrumb from '@/components/breadcrumb'
-import { usePathname, useRouter } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import { toast } from "sonner"
-import {
-  FacebookShareButton,
-  FacebookIcon,
-} from 'next-share'
-const Detail = ({ dataDetailPost }) => {
+import {usePathname, useRouter} from 'next/navigation'
+import {cn} from '@/lib/utils'
+import {toast} from 'sonner'
+import {FacebookShareButton, FacebookIcon} from 'next-share'
+const Detail = ({dataDetailPost}) => {
   const pathName = usePathname()
   const router = useRouter()
-  // console.log(pathName, window.location.href);
-  const { currentCategories, setCurrentCategories } = useStore((state) => state)
+  const {currentCategories, setCurrentCategories} = useStore((state) => state)
   const [headingTexts, setHeadingTexts] = useState([])
   const [isVisible, setIsVisible] = useState(false)
   const handleScrollToContent = (e) => {
@@ -42,29 +38,31 @@ const Detail = ({ dataDetailPost }) => {
     setIsVisible(true)
     setHeadingTexts(headings)
   }, [])
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState('')
 
   useEffect(() => {
     if (dataDetailPost?.content) {
-      let updatedContent = dataDetailPost.content;
+      let updatedContent = dataDetailPost.content
 
       // Thay thế các thẻ video shortcode thành thẻ video HTML5 với thuộc tính src
       updatedContent = updatedContent.replace(
         /\[video\s+width="(\d+)"\s+height="(\d+)"\s+mp4="([^"]+)"\s*\]\[\/video\]/g,
-        '<video controls width="$1" height="$2"><source src="$3" type="video/mp4"></video>'
-      );
+        '<video controls width="$1" height="$2"><source src="$3" type="video/mp4"></video>',
+      )
 
-      setContent(updatedContent);
+      setContent(updatedContent)
     }
-  }, [dataDetailPost]);
+  }, [dataDetailPost])
   const copyToClipboard = (link) => {
-    console.log(link);
-    navigator.clipboard.writeText(link).then(() => {
-      toast("Copy link thành công")
-    }).catch(err => {
-      console.error('Lỗi sao chép link: ', err);
-    });
-  };
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        toast('Copy link thành công')
+      })
+      .catch((err) => {
+        console.error('Lỗi sao chép link: ', err)
+      })
+  }
 
   const Share = () => {
     return (
@@ -74,8 +72,6 @@ const Detail = ({ dataDetailPost }) => {
             <div className='w-max '>Chia sẻ:</div>
           </div>
           <div className='flex w-[4.3125rem] justify-center items-center gap-[0.5625rem] shrink-0'>
-
-
             <FacebookShareButton
               url={`https://honghao.vercel.app/${dataDetailPost?.slug}`}
               quote={dataDetailPost?.title}
@@ -96,7 +92,14 @@ const Detail = ({ dataDetailPost }) => {
               </svg>
             </FacebookShareButton>
 
-            <div onClick={() => copyToClipboard(`https://honghao.vercel.app/${dataDetailPost?.slug}`)} className='size-[1.79rem] cursor-pointer bg-greyscale-50 rounded-full flex justify-center items-center'>
+            <div
+              onClick={() =>
+                copyToClipboard(
+                  `https://honghao.vercel.app/${dataDetailPost?.slug}`,
+                )
+              }
+              className='size-[1.79rem] cursor-pointer bg-greyscale-50 rounded-full flex justify-center items-center'
+            >
               <svg
                 className='size-[0.875rem]'
                 xmlns='http://www.w3.org/2000/svg'
@@ -119,8 +122,6 @@ const Detail = ({ dataDetailPost }) => {
       </div>
     )
   }
-
-
 
   // const content = replaceShortcodes(dataDetailPost?.content);
   return (
@@ -155,8 +156,6 @@ const Detail = ({ dataDetailPost }) => {
         </Breadcrumb>
       </div>
 
-
-
       <div className='container detail relative md:border-l md:border-r md:border-[#E5E5E5] mx-auto'>
         <h1 className='w-[65.6875rem] font-londrina xmd:w-[21.4375rem] xmd:pt-[1.8rem] xmd:pb-[1rem] pt-[5.25rem] pb-[3.26rem] mx-auto text-greyscale-70 text-[3.5rem] xmd:text-[1.5rem] not-italic xmd:font-black font-normal xmd:tracking-[0.00375rem] leading-[120%]'>
           {dataDetailPost?.title}
@@ -180,7 +179,7 @@ const Detail = ({ dataDetailPost }) => {
         </div>
         <div
           className='paragraph mt-[2.5rem] xmd:pb-[1rem] pb-[5rem] mx-auto w-[65.6875rem] flex flex-col space-y-[1.87rem]'
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{__html: content}}
         />
         <div className='xmd:hidden'>
           <Share />

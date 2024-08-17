@@ -19,14 +19,11 @@ const TourDetail = ({
 }) => {
   return (
     <Aos className='alldestinations relative'>
-
       <section>
-
         <Banner
           dataAcf={data}
           dataTourDetail={dataTourDetail}
         />
-
       </section>
       <section className='xmd:hidden'>
         <Breadcrumb
@@ -54,6 +51,7 @@ const TourDetail = ({
       <StepByStepRes
         dataAcf={data}
         dataTourDetail={dataTourDetail}
+        dataPage={dataPage}
       />
       <section>
         <Booking

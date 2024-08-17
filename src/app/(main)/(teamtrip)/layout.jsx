@@ -10,13 +10,13 @@ const listPageId = {
 }
 
 export default async function TeamTripLayout({children}) {
-  const pathnameRaw = headers().get('x-next-pathname')
-  const pathName = pathnameRaw?.split('/')?.[1]
+  const headersList = headers()
+  const fullUrl = headersList.get('referer') || ''
+
+  let Id = fullUrl.includes('faq') ? listPageId?.faq : listPageId?.destination
 
   const dataBestTrip = await getData(
-    `wp-json/okhub/v1/get_field_best_trip_by_page?page_id=${
-      listPageId[pathName] || ''
-    }`,
+    `wp-json/okhub/v1/get_field_best_trip_by_page?page_id=${Id || ''}`,
   )
   return (
     <main>
