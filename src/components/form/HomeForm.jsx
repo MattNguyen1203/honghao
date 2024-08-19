@@ -369,7 +369,7 @@ export default function HomeForm({
       <section
         className={cn(
           !isTourDetail &&
-            'max-h-[85vh] xmd:!overflow-x-hidden xmd:overflow-y-scroll',
+            'max-h-[85vh] xmd:!overflow-x-hidden w-fit overflow-y-scroll',
         )}
       >
         <div

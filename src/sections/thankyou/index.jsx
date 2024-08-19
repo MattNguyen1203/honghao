@@ -1,16 +1,16 @@
 'use client'
-import { Button } from '@/components/customCn/button'
-import { FORM_API, GOOGLE_KEY, paymentOnepay } from '@/lib/constants'
-import { generateParams, generateParamsPayment } from '@/lib/payment'
+import {Button} from '@/components/customCn/button'
+import {FORM_API, GOOGLE_KEY, paymentOnepay} from '@/lib/constants'
+import {generateParams, generateParamsPayment} from '@/lib/payment'
 // import {FORM_API} from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import CryptoJS from 'crypto-js'
-import { parseQueryString } from '@/lib/utils'
-import { useRouter } from 'next/navigation'
+import {parseQueryString} from '@/lib/utils'
+import {useRouter} from 'next/navigation'
 
-const ThankYou = ({ searchParams, slug }) => {
+const ThankYou = ({searchParams, slug}) => {
   const [isSuccessfull, setIsSuccessfull] = useState(false)
 
   const router = useRouter()
@@ -82,9 +82,12 @@ const ThankYou = ({ searchParams, slug }) => {
       })
 
       const data = await result.text()
-      const parseData = parseQueryString(data)
-
-      if (parseData?.vpc_TxnResponseCode) {
+      const parseData = await parseQueryString(data)
+      console.log(
+        'parseData?.vpc_TxnResponseCode',
+        parseData?.vpc_TxnResponseCode,
+      )
+      if (parseData?.vpc_TxnResponseCode == 0) {
         //if success => get data and push a new order
         setIsSuccessfull(true)
         const res = await fetch('/api/getData', {
@@ -92,18 +95,15 @@ const ThankYou = ({ searchParams, slug }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ slug: slug?.[0] }),
+          body: JSON.stringify({slug: slug?.[0]}),
         })
-
         if (!res.ok) {
           throw new Error('Network response was not ok')
         }
         const data = await res.json()
         const finalData = await JSON.parse(data)
-
         if (finalData?.orderId) {
-          router.push(`/payment-successfull/${finalData?.orderId}`)
-
+          router.push(`/result/${finalData?.orderId}`)
           postFile(finalData, 'Payment Successfull')
         } else {
           console.log('have something wrong')
@@ -115,12 +115,11 @@ const ThankYou = ({ searchParams, slug }) => {
 
     fetchData()
   }, [slug])
-
   return (
     <section className='w-screen h-screen overflow-hidden  bg-green-normal'>
       <div className='container xmd:pt-[4rem] pt-[10rem] flex flex-col items-center justify-center text-greyscale-0'>
         <h2 className='xmd:text-[2rem] xdm:!text-center text-center'>
-          Thank You For Booking Our Tour!
+          {isSuccessfull ? 'Thank You For Booking Our Tour!' : 'Booking Failed'}
         </h2>
         <div className='flex xmd:flex-col items-center justify-center xmd:mt-[1rem] mt-[5rem]'>
           <div className='flex flex-col md:mr-[1rem]'>
@@ -138,8 +137,9 @@ const ThankYou = ({ searchParams, slug }) => {
               {isSuccessfull ? 'Successful Payment!!!' : 'Payment failed'}
             </div>
             <div className='xmd:mt-[1rem] mt-[2rem] text-125 font-semibold capitalize w-[60%] text-center text-greyscale-0/70 font-londrina'>
-              Hope you have an enjoyable experience on this trip. We will
-              contact you as soon as possible.
+              {isSuccessfull
+                ? 'Hope you have an enjoyable experience on this trip. We will contact you as soon as possible.'
+                : 'Please check your information. We will contact you as soon as possible.'}
             </div>
 
             <Button className='xmd:mt-[1rem] mt-[3rem]'>

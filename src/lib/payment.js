@@ -14,12 +14,11 @@ const generateParamsPayment = (ip, idOrder, amount, pickVpc) => {
     vpc_MerchTxnRef: idOrder + 'honghao',
     vpc_Merchant: paymentOnepay.MERCHANT_ID,
     vpc_OrderInfo: idOrder,
-    vpc_ReturnURL: paymentOnepay.BASE_URL + `/payment-successfull/${idOrder}`,
+    vpc_ReturnURL: paymentOnepay.BASE_URL + `/result/${idOrder}`,
     vpc_TicketNo: ip,
     vpc_Version: '2',
   }
 
-  console.log('reqParam', reqParam)
   if (pickVpc) {
     const pickParams = {}
     for (const key in reqParam) {

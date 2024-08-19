@@ -112,7 +112,7 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
             </span>
           </div>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-fit'>
+        <DialogContent className=''>
           <HomeForm
             listLocation={commonData?.acf}
             listTypeofTour={listTypeofTour}
