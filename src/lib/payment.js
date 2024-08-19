@@ -18,6 +18,8 @@ const generateParamsPayment = (ip, idOrder, amount, pickVpc) => {
     vpc_TicketNo: ip,
     vpc_Version: '2',
   }
+
+  console.log('reqParam', reqParam)
   if (pickVpc) {
     const pickParams = {}
     for (const key in reqParam) {

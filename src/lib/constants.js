@@ -19,7 +19,7 @@ export const haGiangLat = 22.8026
 export const haGiangLon = 104.9784
 
 export const paymentOnepay = {
-  BASE_URL: process.env.DOMAIN,
+  BASE_URL: process.env.NEXT_PUBLIC_DOMAIN,
   SECRET_KEY_HASH: process.env.NEXT_PUBLIC_SECRET_KEY_HASH,
   ONEPAY_HOST: process.env.NEXT_PUBLIC_ONEPAY_HOST,
   ACCESS_CODE: process.env.NEXT_PUBLIC_ACCESS_CODE,

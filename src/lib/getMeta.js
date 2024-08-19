@@ -1,15 +1,15 @@
 export const getMeta = (result, slug) => {
   const meta = {
-    metadataBase: new URL(`${process.env.DOMAIN}${slug}`),
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_DOMAIN}${slug}`),
     title: result?.json?.title,
     description: result?.json?.description,
     alternates: {
-      canonical: `${process.env.DOMAIN}${slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_DOMAIN}${slug}`,
     },
     openGraph: {
       title: result?.json?.title,
       description: result?.json?.description,
-      url: `${process.env.DOMAIN}${slug}`,
+      url: `${process.env.NEXT_PUBLIC_DOMAIN}${slug}`,
       siteName: result?.json?.og_site_name,
       images: [],
       locale: result?.json?.og_locale,

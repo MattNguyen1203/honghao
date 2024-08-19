@@ -288,6 +288,7 @@ export default function HomeForm({
             totalPriceVND,
             false,
           )}&vpc_SecureHash=${vpc_SecureHash}`
+
           router.push(url)
         } else {
           setIsDialogOpen(true)
