@@ -38,8 +38,8 @@ COPY components.json .
 RUN mkdir -p /app/.next/cache/images && chmod -R 755 /app/.next/cache
 
 # Environment variables must be present at build time
-ARG DOMAIN
-ENV DOMAIN=${DOMAIN}
+ARG NEXT_PUBLIC_DOMAIN
+ENV NEXT_PUBLIC_DOMAIN=${NEXT_PUBLIC_DOMAIN}
 ARG NEXT_PUBLIC_API
 ENV NEXT_PUBLIC_API=${NEXT_PUBLIC_API}
 ARG NEXT_PUBLIC_API_ACF
@@ -96,8 +96,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 # COPY --chown=nextjs:nodejs --from=builder /app/ ./
 
 # Environment variables must be redefined at run time
-ARG DOMAIN
-ENV DOMAIN=${DOMAIN}
+ARG NEXT_PUBLIC_DOMAIN
+ENV NEXT_PUBLIC_DOMAIN=${NEXT_PUBLIC_DOMAIN}
 ARG NEXT_PUBLIC_API
 ENV NEXT_PUBLIC_API=${NEXT_PUBLIC_API}
 ARG NEXT_PUBLIC_API_ACF

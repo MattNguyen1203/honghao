@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        DOMAIN: ${DOMAIN}
+        NEXT_PUBLIC_DOMAIN: ${NEXT_PUBLIC_DOMAIN}
         NEXT_PUBLIC_API: ${NEXT_PUBLIC_API}
         NEXT_PUBLIC_API_ACF: ${NEXT_PUBLIC_API_ACF}
         OPEN_WEATHER_API_KEY: ${OPEN_WEATHER_API_KEY}
