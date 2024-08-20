@@ -6,8 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { formatCurrencyVND } from '@/lib/utils'
-
+import {formatCurrencyVND} from '@/lib/utils'
 
 export default function InformationForm({
   dataForm = {},
@@ -18,7 +17,7 @@ export default function InformationForm({
   paxValueSelf,
   isTourDetail = false,
   exchangeRate,
-  endDate
+  endDate,
 }) {
   const formattedDate = (date) => {
     let newDate = new Date(date || 0)
@@ -29,15 +28,10 @@ export default function InformationForm({
   }
 
   const totalPrice =
-    paxValueSelf
-    *
-    (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : data?.priceSelf)
-    +
-    paxValueLocal
-    *
-    (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : data?.priceLocal)
-
-
+    paxValueSelf *
+      (dataFormInit?.priceSelf ? dataFormInit?.priceSelf : data?.priceSelf) +
+    paxValueLocal *
+      (dataFormInit?.priceLocal ? dataFormInit?.priceLocal : data?.priceLocal)
 
   // ----------------- On And Off service Change--------------------
   const serviceCharge = 3
@@ -46,16 +40,18 @@ export default function InformationForm({
   const totalsvchange = (totalPrice / 100) * serviceCharge
   return (
     <div
-      className={`${isTourDetail
-        ? '!w-[34.0625rem] xmd:!w-full pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:!p-0 xmd:mt-[5rem]'
-        : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem] xmd:!px-0'
-        } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
+      className={`${
+        isTourDetail
+          ? '!w-[34.0625rem] xmd:!w-full pl-[2rem] translate-y-[-3.5rem] flex-1 xmd:!p-0 xmd:mt-[5rem]'
+          : 'pl-[0.75rem] w-[35.5rem] xmd:pt-[0.75rem] xmd:pb-[1.5rem] xmd:mt-[1rem] xmd:!px-0'
+      } space-y-[0.75rem] py-[1.5rem] pr-[1.5rem] xmd:px-[0.75rem] xmd:w-full`}
     >
       <span
-        className={`${isTourDetail
-          ? 'opacity-70 xmd:opacity-100 text-1 xmd:text-0875 text-white xmd:text-black xmd:font-extrabold'
-          : 'opacity-40 xmd:opacity-100 text-0875 text-greyscale-80 xmd:text-black'
-          } font-bold`}
+        className={`${
+          isTourDetail
+            ? 'opacity-70 xmd:opacity-100 text-1 xmd:text-0875 text-white xmd:text-black xmd:font-extrabold'
+            : 'opacity-40 xmd:opacity-100 text-0875 text-greyscale-80 xmd:text-black'
+        } font-bold uppercase`}
       >
         Confirmed tour booking
       </span>
@@ -65,7 +61,8 @@ export default function InformationForm({
             Type of tour
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
-            {dataFormInit?.titleTour ? dataFormInit?.titleTour : titleTour}: {dataForm?.typeoftour}{' '}
+            {dataFormInit?.titleTour ? dataFormInit?.titleTour : titleTour}:{' '}
+            {dataForm?.typeoftour}{' '}
             {dataForm?.typeoftour && dataForm?.choosedays && 'in '}
             {dataForm?.choosedays}
           </div>
@@ -102,7 +99,7 @@ export default function InformationForm({
                 <div className='max-w-[20rem] xmd:max-w-[14.53125rem] xmd:h-[3.625rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
                   <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
                     <span className='text-0875 font-semibold text-greyscale-80'>
-                      {(dataForm?.dob) ? formattedDate(dataForm?.dob) : ''}
+                      {dataForm?.dob ? formattedDate(dataForm?.dob) : ''}
                     </span>
                     {dataForm?.pickup && ' from '}
                     <span className='text-0875 font-semibold text-greyscale-80'>
@@ -142,7 +139,7 @@ export default function InformationForm({
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] xmd:h-[3.625rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[3.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee] text-075 text-[#727272]'>
             <p className='text-075 text-[#727272] line-clamp-2 text-ellipsis'>
               <span className='text-0875 font-semibold text-greyscale-80'>
-                {(dataForm?.dob && endDate) ? endDate : ''}
+                {dataForm?.dob && endDate ? endDate : ''}
               </span>
               {dataForm?.droff && ' - '} {dataForm?.droff}{' '}
               {dataForm?.destination && ' , '} {dataForm?.destination}
@@ -155,7 +152,11 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${dataFormInit?.priceSelf ? dataFormInit?.priceSelf : data?.priceSelf} x {paxValueSelf}
+              $
+              {dataFormInit?.priceSelf
+                ? dataFormInit?.priceSelf
+                : data?.priceSelf}{' '}
+              x {paxValueSelf}
             </p>
           </div>
         </div>
@@ -165,7 +166,11 @@ export default function InformationForm({
           </div>
           <div className='max-w-[20rem] xmd:max-w-[14.53125rem] w-[20rem] line-clamp-2 text-ellipsis flex flex-1 items-center h-[2.5rem] py-[0.5rem] px-[1rem] border-b-[0.5px] border-solid border-[#eee]'>
             <p className='text-0875 text-[#2E2E2E] font-semibold'>
-              ${dataFormInit?.priceLocal ? dataFormInit?.priceLocal : data?.priceLocal} x {paxValueLocal}
+              $
+              {dataFormInit?.priceLocal
+                ? dataFormInit?.priceLocal
+                : data?.priceLocal}{' '}
+              x {paxValueLocal}
             </p>
           </div>
         </div>
@@ -198,14 +203,16 @@ export default function InformationForm({
             ${totalPrice}
           </span>
         </div>
-        {hiddenServiceChange && <div className='flex justify-between items-center w-full'>
-          <span className='text-0875 font-bold text-greyscale-5'>
-            Service Charge 3%:
-          </span>
-          <span className='text-1 font-bold text-greyscale-5'>
-            ${((totalPrice / 100) * serviceCharge).toFixed(2)}
-          </span>
-        </div>}
+        {hiddenServiceChange && (
+          <div className='flex justify-between items-center w-full'>
+            <span className='text-0875 font-bold text-greyscale-5'>
+              Service Charge 3%:
+            </span>
+            <span className='text-1 font-bold text-greyscale-5'>
+              ${((totalPrice / 100) * serviceCharge).toFixed(2)}
+            </span>
+          </div>
+        )}
         <hr className='w-full h-[0.0625rem] my-[0.5rem] bg-[#d9d9d9]/20 opacity-40' />
         <div className='flex justify-between items-center w-full'>
           <span className='text-0875 font-bold text-greyscale-5'>
@@ -215,7 +222,7 @@ export default function InformationForm({
             ${(hiddenServiceChange ? totalsvchange : 0) + totalPrice} ~{' '}
             {formatCurrencyVND(
               ((hiddenServiceChange ? totalsvchange : 0) + totalPrice) *
-              Number(exchangeRate),
+                Number(exchangeRate),
             )}
           </span>
         </div>

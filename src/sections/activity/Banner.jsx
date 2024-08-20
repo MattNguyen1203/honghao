@@ -1,11 +1,11 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import useStore from '@/app/(store)/store'
 import Image from 'next/image'
-import { Button } from '@/components/customCn/button'
-import { cn } from '@/lib/utils'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper/modules'
+import {Button} from '@/components/customCn/button'
+import {cn} from '@/lib/utils'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {FreeMode} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import SlideVideoTours from '@/components/slide-video-tour'
@@ -28,12 +28,12 @@ import Link from 'next/link'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 const data1 = [
-  { title: 'Experience' },
-  { title: 'Food' },
-  { title: 'Treaking' },
-  { title: 'People' },
+  {title: 'Experience'},
+  {title: 'Food'},
+  {title: 'Treaking'},
+  {title: 'People'},
 ]
-const DialogCp = ({ children, data }) => {
+const DialogCp = ({children, data}) => {
   return (
     <Dialog className='Dialogclass '>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -64,7 +64,7 @@ const DialogCp = ({ children, data }) => {
   )
 }
 
-const SheetCp = ({ children, data }) => {
+const SheetCp = ({children, data}) => {
   const isMobile = useStore((state) => state.isMobile)
   const breakpoints = {
     767: {
@@ -142,20 +142,27 @@ const SheetCp = ({ children, data }) => {
     </Sheet>
   )
 }
-const Banner = ({ dataBaner, dataBanerMobi }) => {
+const Banner = ({dataBaner, dataBanerMobi}) => {
   const dataMoto = dataBaner?.motobike
   const dataHiking = dataBaner?.hiking
 
-  const { openbookNow, setOpenBooknow, setCheckOpenBookNow } = useStore(state => state)
-  const [loaded, setLoaded] = useState(false);
+  const {openbookNow, setOpenBooknow, setCheckOpenBookNow} = useStore(
+    (state) => state,
+  )
+  const [loaded, setLoaded] = useState(false)
   return (
     <section className='relative xl:h-[100rem] overflow-hidden'>
       <h1 className='opacity-0 z-[-1] fixed top-0 left-0'>Activity Ha Giang</h1>
-      <div className={cn('object-cover transition-all z-[5] duration-1000 xmd:duration-500 absolute bottom-[0rem] left-0 w-full h-[119.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_80%)]',
-        loaded ? ' opacity-100' : ' opacity-0'
-      )}></div>
       <div
-        className={` absolute top-0 left-0 z-[50] w-full h-full  bg-conicBanner opacity-100 transition-all duration-1000 xmd:duration-500 ${loaded ? '!opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={cn(
+          'object-cover transition-all z-[5] duration-1000 xmd:duration-500 absolute bottom-[0rem] left-0 w-full h-[119.375rem] shrink-0 bg-[linear-gradient(180deg,rgba(18,39,24,0.00)_0%,#122718_80%)]',
+          loaded ? ' opacity-100' : ' opacity-0',
+        )}
+      ></div>
+      <div
+        className={` absolute top-0 left-0 z-[50] w-full h-full  bg-conicBanner opacity-100 transition-all duration-1000 xmd:duration-500 ${
+          loaded ? '!opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       ></div>
       <Image
         priority
@@ -163,8 +170,9 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         src={dataBaner?.image?.url}
         width={1600}
         height={1935}
-        className={cn('z-[3] xmd:hidden absolute h-full w-full transition-all duration-1000 xmd:duration-500',
-          loaded ? '' : 'blur-lg'
+        className={cn(
+          'z-[3] xmd:hidden absolute h-full w-full transition-all duration-1000 xmd:duration-500',
+          loaded ? '' : 'blur-lg',
         )}
         onLoadingComplete={() => setLoaded(true)}
       />
@@ -175,8 +183,9 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         src={dataBanerMobi?.image?.url}
         width={1600}
         height={1935}
-        className={cn('object-cover md:hidden absolute top-0 left-0 h-full w-full transition-all duration-1000 xmd:duration-500',
-          loaded ? '' : 'blur-sm'
+        className={cn(
+          'object-cover md:hidden absolute top-0 left-0 h-full w-full transition-all duration-1000 xmd:duration-500',
+          loaded ? '' : 'blur-sm',
         )}
         onLoadingComplete={() => setLoaded(true)}
       />
@@ -198,8 +207,8 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
       />
       <div className='container relative z-[7] xmd:h-[105rem] h-[100rem] xmd:mt-[5.3rem]'>
         <Image
-          data-aos="fade-up"
-          data-aos-duration="900"
+          data-aos='fade-up'
+          data-aos-duration='900'
           priority
           alt='ảnh title web'
           src={dataBaner?.image_title_big?.url}
@@ -227,22 +236,24 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         </div>
         <div className=' md:absolute flex-col tablet:left-[5rem] lg:left-[0rem] left-[0rem] top-[32rem] items-start space-y-[2.0625rem]'>
           <div
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            className='xmd:max-h-[9rem] xmd:overflow-y-auto md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'>
+            data-aos='fade-up'
+            data-aos-duration='1000'
+            className='xmd:max-h-[9rem] xmd:overflow-y-auto md:w-[52.3125rem] text-white xmd:text-[0.875rem] text-base font-normal leading-[150%] xmd:tracking-0.00219 tracking-[0.005rem]'
+          >
             {dataBaner?.desc_text}
           </div>
-          <div data-aos="fade-up"
-            data-aos-delay="0"
-            data-aos-duration="1100"
-            className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'>
+          <div
+            data-aos='fade-up'
+            data-aos-delay='0'
+            data-aos-duration='1100'
+            className=' flex items-start xmd:w-full xmd:space-x-[0.5rem] space-x-[1rem]'
+          >
             <div
               className='xmd:!w-max xmd:!flex-1'
               href='/tours/book-now'
               onClick={() => {
                 setOpenBooknow(true)
                 setCheckOpenBookNow(true)
-
               }}
             >
               <Button
@@ -268,8 +279,8 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         </div>
 
         <Image
-          data-aos="fade-up"
-          data-aos-duration="1200"
+          data-aos='fade-up'
+          data-aos-duration='1200'
           priority
           alt='map'
           src={'/map2.png'}
@@ -290,9 +301,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         {/* motobike */}
 
         <div
-          data-aos="fade-up"
-          data-aos-duration="900"
-          className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] lg:left-[-1rem] tablet:left-[3.35rem] left-[2.8rem] '>
+          data-aos='fade-up'
+          data-aos-duration='900'
+          className='absolute w-[4.75rem] h-[6.25rem] top-[43.5rem] xmd:top-[43.2rem] lg:left-[-1rem] tablet:left-[3.35rem] left-[2.8rem] '
+        >
           <div className=' relative'>
             <div className=' absolute xmd:top-[6.4rem] xmd:left-[-1.5rem] md:left-[50.5rem] md:top-[-1rem] inline-flex flex-col items-center space-y-[0] w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -342,10 +354,13 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                 />
               </svg>
             </div>
-            <div data-aos="fade-up"
-              data-aos-delay="0"
+            <div
+              data-aos='fade-up'
+              data-aos-delay='0'
               // data-aos-easing="linear"
-              data-aos-duration="900" className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'>
+              data-aos-duration='900'
+              className='xmd:top-[11rem] xmd:left-[5.5rem] md:top-[3rem] md:left-[58rem] lg:left-[58.7rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[1.2rem]'
+            >
               <div className='relative'>
                 <div className=' text-linear1 text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataMoto?.label}
@@ -357,7 +372,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                   Experience
                 </div>
               </div>
-              <div className='overflow-y-scroll scrollbar-dichvu xmd:max-h-[5.5rem] max-h-[18rem] flex xmd:w-[14.6875rem] w-[30.6875rem] items-start content-start gap-2 flex-wrap'>
+              <div className='overflow-y-auto scrollbar-dichvu xmd:max-h-[5.5rem] max-h-[18rem] flex xmd:w-[14.6875rem] w-[30.6875rem] items-start content-start gap-2 flex-wrap'>
                 {dataMoto?.lists_place?.map((d, i) => (
                   <Link
                     href={`/${d?.link}`}
@@ -385,9 +400,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
         </div>
         {/* hiking */}
         <div
-          data-aos="fade-up"
-          data-aos-duration="900"
-          className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.7rem] top-[63.5rem]'>
+          data-aos='fade-up'
+          data-aos-duration='900'
+          className='absolute w-[4.75rem] h-[6.25rem] lg:left-[-3.6rem] tablet:left-[3rem]  left-[-0.7rem] top-[63.5rem]'
+        >
           <div className='relative '>
             <div className=' absolute top-[5rem] left-[14.2rem] md:left-[28rem] lg:left-[30.5rem] md:top-[7rem] inline-flex flex-col items-center w-[8.75013rem]'>
               <div className='xmd:hidden'>
@@ -438,9 +454,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
               </svg>
             </div>
             <div
-              data-aos="fade-up"
-              data-aos-duration="900"
-              className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[1rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[2.82rem]'>
+              data-aos='fade-up'
+              data-aos-duration='900'
+              className='xmd:top-[4.5rem] xmd:left-[2rem] left-[3.5rem] top-[1rem] absolute flex flex-col items-start xmd:space-y-[0.75rem] space-y-[2.82rem]'
+            >
               <div>
                 <div className=' text-linear  text-[6.25rem] not-italic font-bold leading-[100%] uppercase xmd:text-[2.94194rem] relative'>
                   {dataHiking?.label}
@@ -452,7 +469,7 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
                   Experience
                 </div>
               </div>
-              <div className='flex overflow-y-scroll scrollbar-dichvu xmd:max-h-[8rem] max-h-[18rem] xmd:w-[13.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
+              <div className='flex overflow-y-auto scrollbar-dichvu xmd:max-h-[8rem] max-h-[18rem] xmd:w-[13.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
                 {dataHiking?.lists_place?.map((d, i) => (
                   <Link
                     href={`/${d?.link}`}
@@ -479,9 +496,10 @@ const Banner = ({ dataBaner, dataBanerMobi }) => {
           </div>
         </div>
         <div
-          data-aos="fade-up"
-          data-aos-duration="900"
-          className='xmd:pr-[0.75rem]  line-clamp-[9] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'>
+          data-aos='fade-up'
+          data-aos-duration='900'
+          className='xmd:pr-[0.75rem]  line-clamp-[9] absolute lg:right-[0rem] md:right-[8rem] xmd:bottom-[10rem] bottom-[10.5rem] md:w-[38.0625rem] text-white xmd:text-left text-right text-base xmd:text-[0.875rem] not-italic font-normal leading-[150%] xmd:tracking-0.00219  tracking-[0.005rem]'
+        >
           {dataBaner?.desc_text_bottom}
         </div>
       </div>

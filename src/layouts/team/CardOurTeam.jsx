@@ -1,8 +1,8 @@
 'use client'
 import Image from 'next/image'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 import useStore from '@/app/(store)/store'
-const CardOurTeam = ({ data }) => {
+const CardOurTeam = ({data}) => {
   const isMobile = useStore((state) => state.isMobile)
   return (
     <div
@@ -57,7 +57,7 @@ const CardOurTeam = ({ data }) => {
             {data?.exp}
           </div>
         </div>
-        <div className='w-[15.75rem] scrollbar-custom group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[4rem]  overflow-y-scroll h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
+        <div className='w-[15.75rem] scrollbar-custom group-hover:translate-y-[0rem] translate-y-[2rem] group-hover:h-[4rem]  overflow-y-auto h-0 duration-500 ease-linear text-greyscale-30 text-center text-xs not-italic font-normal leading-[120%] tracking-[0.00375rem]'>
           {data?.content}
         </div>
       </div>

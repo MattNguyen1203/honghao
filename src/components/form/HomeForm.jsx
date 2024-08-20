@@ -33,7 +33,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {generateParamsPayment} from '@/lib/payment'
 import CryptoJS from 'crypto-js'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {usePathname, useRouter} from 'next/navigation'
 import ICWhiteArrow from '../icons/ICWhiteArrow'
 import Loading from '../loading/Loading'
@@ -364,12 +363,15 @@ export default function HomeForm({
     }
   }
 
+  console.log('dataFormInit', dataFormInit)
+  console.log('tour', tourSelected)
+
   return (
     <>
       <section
         className={cn(
           !isTourDetail &&
-            'max-h-[85vh] xmd:!overflow-x-hidden w-fit overflow-y-scroll',
+            'max-h-[85vh] xmd:!overflow-x-hidden md:w-fit overflow-y-auto',
         )}
       >
         <div
@@ -410,7 +412,7 @@ export default function HomeForm({
                   name='username'
                   render={({field}) => (
                     <FormItem>
-                      <FormLabel className='text-0875 font-bold xmd:font-extrabold text-[#2E2E2E] mb-[0.5rem] xmd:uppercase'>
+                      <FormLabel className='text-0875 font-bold xmd:font-extrabold text-[#2E2E2E] mb-[0.5rem] uppercase'>
                         Customer information:
                       </FormLabel>
                       <FormControl>
@@ -854,87 +856,88 @@ export default function HomeForm({
                     isTourDetail && 'md:px-[1rem]'
                   }flex flex-col py-[0.75rem] xmd:pt-[1.75rem] rounded-[0.5rem] bg-white`}
                 >
-                  {dataFormInit?.priceSelf ||
-                    (tourSelected?.priceSelf && (
-                      <>
-                        <div className='flex justify-between items-center'>
-                          <span className='text-0875 text-greyscale-60 font-normal'>
-                            {dataFormInit?.choosedays?.day
-                              ? dataFormInit?.choosedays?.day
-                              : tourSelected?.choosedays?.day}{' '}
-                            days of self-driving
+                  {((dataFormInit?.priceSelf &&
+                    Number(dataFormInit?.priceSelf) > 0) ||
+                    tourSelected?.priceSelf > 0) && (
+                    <>
+                      <div className='flex justify-between items-center'>
+                        <span className='text-0875 text-greyscale-60 font-normal'>
+                          {dataFormInit?.choosedays?.day
+                            ? dataFormInit?.choosedays?.day
+                            : tourSelected?.choosedays?.day}{' '}
+                          days of self-driving
+                        </span>
+                        <div className='flex items-center'>
+                          <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
+                            $
+                            {dataFormInit?.priceSelf
+                              ? dataFormInit?.priceSelf
+                              : tourSelected?.priceSelf}
                           </span>
-                          <div className='flex items-center'>
-                            <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                              $
-                              {dataFormInit?.priceSelf
-                                ? dataFormInit?.priceSelf
-                                : tourSelected?.priceSelf}
+                          <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
+                          <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
+                            <span className='text-0875 text-greyscale-60'>
+                              Pax
                             </span>
-                            <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
-                            <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
-                              <span className='text-0875 text-greyscale-60'>
-                                Pax
-                              </span>
-                              <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
-                                {paxValueSelf}
-                              </span>
-                              <div className='flex flex-col space-y-[0.5rem] xmd:space-y-[1rem] ml-[0.375rem]'>
-                                <div
-                                  onClick={() => {
-                                    setPaxValueSelf(paxValueSelf + 1)
-                                  }}
-                                  className=' cursor-pointer'
+                            <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
+                              {paxValueSelf}
+                            </span>
+                            <div className='flex flex-col space-y-[0.5rem] xmd:space-y-[1rem] ml-[0.375rem]'>
+                              <div
+                                onClick={() => {
+                                  setPaxValueSelf(paxValueSelf + 1)
+                                }}
+                                className=' cursor-pointer'
+                              >
+                                <svg
+                                  className='w-[0.75rem]  xmd:w-[1rem]  xmd:scale-125'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  width='12'
+                                  height='8'
+                                  viewBox='0 0 12 8'
+                                  fill='none'
                                 >
-                                  <svg
-                                    className='w-[0.75rem]  xmd:w-[1rem]  xmd:scale-125'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='12'
-                                    height='8'
-                                    viewBox='0 0 12 8'
-                                    fill='none'
-                                  >
-                                    <path
-                                      d='M6.00329 3.41525L2.38713 7.03125C2.20358 7.21498 1.97909 7.30664 1.71368 7.30664C1.4483 7.30664 1.22392 7.21496 1.04039 7.03125L0.482264 6.47331C0.298793 6.28986 0.207031 6.06534 0.207031 5.80004C0.207031 5.53474 0.298793 5.31032 0.482264 5.12659L5.32612 0.275364C5.50967 0.0917881 5.73413 2.41597e-07 5.99957 2.532e-07C6.265 2.64802e-07 6.48928 0.091762 6.67291 0.275364L11.5168 5.12656C11.7003 5.3103 11.7921 5.53468 11.7921 5.80001C11.7921 6.06534 11.7003 6.28984 11.5168 6.47328L10.9587 7.03123C10.7753 7.21496 10.5521 7.30662 10.289 7.30662C10.0262 7.30662 9.8005 7.21493 9.61202 7.03123L6.00329 3.41525Z'
-                                      fill='#727272'
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  onClick={() => {
-                                    if (paxValueSelf === 0) {
-                                      return
-                                    } else {
-                                      setPaxValueSelf(paxValueSelf - 1)
-                                    }
-                                  }}
-                                  className=' cursor-pointer'
+                                  <path
+                                    d='M6.00329 3.41525L2.38713 7.03125C2.20358 7.21498 1.97909 7.30664 1.71368 7.30664C1.4483 7.30664 1.22392 7.21496 1.04039 7.03125L0.482264 6.47331C0.298793 6.28986 0.207031 6.06534 0.207031 5.80004C0.207031 5.53474 0.298793 5.31032 0.482264 5.12659L5.32612 0.275364C5.50967 0.0917881 5.73413 2.41597e-07 5.99957 2.532e-07C6.265 2.64802e-07 6.48928 0.091762 6.67291 0.275364L11.5168 5.12656C11.7003 5.3103 11.7921 5.53468 11.7921 5.80001C11.7921 6.06534 11.7003 6.28984 11.5168 6.47328L10.9587 7.03123C10.7753 7.21496 10.5521 7.30662 10.289 7.30662C10.0262 7.30662 9.8005 7.21493 9.61202 7.03123L6.00329 3.41525Z'
+                                    fill='#727272'
+                                  />
+                                </svg>
+                              </div>
+                              <div
+                                onClick={() => {
+                                  if (paxValueSelf === 0) {
+                                    return
+                                  } else {
+                                    setPaxValueSelf(paxValueSelf - 1)
+                                  }
+                                }}
+                                className=' cursor-pointer'
+                              >
+                                <svg
+                                  className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  width='12'
+                                  height='8'
+                                  viewBox='0 0 12 8'
+                                  fill='none'
                                 >
-                                  <svg
-                                    className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='12'
-                                    height='8'
-                                    viewBox='0 0 12 8'
-                                    fill='none'
-                                  >
-                                    <path
-                                      d='M6.00329 4.19803L2.38713 0.58203C2.20358 0.398298 1.97909 0.306641 1.71368 0.306641C1.4483 0.306641 1.22392 0.398324 1.04039 0.58203L0.482264 1.13998C0.298793 1.32342 0.207031 1.54794 0.207031 1.81324C0.207031 2.07855 0.298793 2.30296 0.482264 2.48669L5.32612 7.33792C5.50967 7.52149 5.73413 7.61328 5.99957 7.61328C6.265 7.61328 6.48928 7.52152 6.67291 7.33792L11.5168 2.48672C11.7003 2.30298 11.7921 2.0786 11.7921 1.81327C11.7921 1.54794 11.7003 1.32345 11.5168 1.14L10.9587 0.582056C10.7753 0.398324 10.5521 0.306666 10.289 0.306666C10.0262 0.306666 9.8005 0.39835 9.61202 0.582056L6.00329 4.19803Z'
-                                      fill='#727272'
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d='M6.00329 4.19803L2.38713 0.58203C2.20358 0.398298 1.97909 0.306641 1.71368 0.306641C1.4483 0.306641 1.22392 0.398324 1.04039 0.58203L0.482264 1.13998C0.298793 1.32342 0.207031 1.54794 0.207031 1.81324C0.207031 2.07855 0.298793 2.30296 0.482264 2.48669L5.32612 7.33792C5.50967 7.52149 5.73413 7.61328 5.99957 7.61328C6.265 7.61328 6.48928 7.52152 6.67291 7.33792L11.5168 2.48672C11.7003 2.30298 11.7921 2.0786 11.7921 1.81327C11.7921 1.54794 11.7003 1.32345 11.5168 1.14L10.9587 0.582056C10.7753 0.398324 10.5521 0.306666 10.289 0.306666C10.0262 0.306666 9.8005 0.39835 9.61202 0.582056L6.00329 4.19803Z'
+                                    fill='#727272'
+                                  />
+                                </svg>
                               </div>
                             </div>
                           </div>
                         </div>
-                        {paxValueSelf === 0 && paxValueLocal === 0 && (
-                          <div className='w-full flex justify-end text-075 text-red-600'>
-                            Please select the number of people
-                          </div>
-                        )}
-                      </>
-                    ))}
+                      </div>
+                      {paxValueSelf === 0 && paxValueLocal === 0 && (
+                        <div className='w-full flex justify-end text-075 text-red-600'>
+                          Please select the number of people
+                        </div>
+                      )}
+                    </>
+                  )}
 
                   <hr
                     className={`${
@@ -942,87 +945,88 @@ export default function HomeForm({
                     } h-[0.0625rem] my-[0.75rem]`}
                   />
 
-                  {dataFormInit?.priceLocal ||
-                    (tourSelected?.priceLocal && (
-                      <>
-                        <div className='flex justify-between items-center'>
-                          <span className='text-0875 text-greyscale-60 font-normal '>
-                            {dataFormInit?.choosedays?.day
-                              ? dataFormInit?.choosedays?.day
-                              : tourSelected?.choosedays?.day}{' '}
-                            days with local driver
+                  {((dataFormInit?.priceLocal &&
+                    Number(dataFormInit?.priceLocal) > 0) ||
+                    tourSelected?.priceLocal > 0) && (
+                    <>
+                      <div className='flex justify-between items-center'>
+                        <span className='text-0875 text-greyscale-60 font-normal '>
+                          {dataFormInit?.choosedays?.day
+                            ? dataFormInit?.choosedays?.day
+                            : tourSelected?.choosedays?.day}{' '}
+                          days with local driver
+                        </span>
+                        <div className='flex items-center'>
+                          <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
+                            $
+                            {dataFormInit?.priceLocal
+                              ? dataFormInit?.priceLocal
+                              : tourSelected?.priceLocal}
                           </span>
-                          <div className='flex items-center'>
-                            <span className='w-[3.3125rem] text-0875 font-bold text-greyscale-40'>
-                              $
-                              {dataFormInit?.priceLocal
-                                ? dataFormInit?.priceLocal
-                                : tourSelected?.priceLocal}
+                          <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
+                          <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
+                            <span className='text-0875 text-greyscale-60'>
+                              Pax
                             </span>
-                            <div className='h-[1rem] w-[1px] bg-[#D9D9D9] mx-[0.5rem]'></div>
-                            <div className='flex items-center py-[0.375rem] px-[0.75rem] rounded-[0.25rem] bg-greyscale-5'>
-                              <span className='text-0875 text-greyscale-60'>
-                                Pax
-                              </span>
-                              <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
-                                {paxValueLocal}
-                              </span>
-                              <div className='flex flex-col ml-[0.375rem] space-y-[0.5rem] xmd:space-y-[1rem]'>
-                                <div
-                                  onClick={() => {
-                                    setPaxValueLocal(paxValueLocal + 1)
-                                  }}
-                                  className=' cursor-pointer'
+                            <span className='w-[1.25rem] text-0875 font-bold text-center text-orange-normal-hover'>
+                              {paxValueLocal}
+                            </span>
+                            <div className='flex flex-col ml-[0.375rem] space-y-[0.5rem] xmd:space-y-[1rem]'>
+                              <div
+                                onClick={() => {
+                                  setPaxValueLocal(paxValueLocal + 1)
+                                }}
+                                className=' cursor-pointer'
+                              >
+                                <svg
+                                  className='w-[0.75rem] xmd:w-[1rem] xmd:scale-125'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  width='12'
+                                  height='8'
+                                  viewBox='0 0 12 8'
+                                  fill='none'
                                 >
-                                  <svg
-                                    className='w-[0.75rem] xmd:w-[1rem] xmd:scale-125'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='12'
-                                    height='8'
-                                    viewBox='0 0 12 8'
-                                    fill='none'
-                                  >
-                                    <path
-                                      d='M6.00329 3.41525L2.38713 7.03125C2.20358 7.21498 1.97909 7.30664 1.71368 7.30664C1.4483 7.30664 1.22392 7.21496 1.04039 7.03125L0.482264 6.47331C0.298793 6.28986 0.207031 6.06534 0.207031 5.80004C0.207031 5.53474 0.298793 5.31032 0.482264 5.12659L5.32612 0.275364C5.50967 0.0917881 5.73413 2.41597e-07 5.99957 2.532e-07C6.265 2.64802e-07 6.48928 0.091762 6.67291 0.275364L11.5168 5.12656C11.7003 5.3103 11.7921 5.53468 11.7921 5.80001C11.7921 6.06534 11.7003 6.28984 11.5168 6.47328L10.9587 7.03123C10.7753 7.21496 10.5521 7.30662 10.289 7.30662C10.0262 7.30662 9.8005 7.21493 9.61202 7.03123L6.00329 3.41525Z'
-                                      fill='#727272'
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  onClick={() => {
-                                    if (paxValueLocal === 0) {
-                                      return
-                                    } else {
-                                      setPaxValueLocal(paxValueLocal - 1)
-                                    }
-                                  }}
-                                  className=' cursor-pointer'
+                                  <path
+                                    d='M6.00329 3.41525L2.38713 7.03125C2.20358 7.21498 1.97909 7.30664 1.71368 7.30664C1.4483 7.30664 1.22392 7.21496 1.04039 7.03125L0.482264 6.47331C0.298793 6.28986 0.207031 6.06534 0.207031 5.80004C0.207031 5.53474 0.298793 5.31032 0.482264 5.12659L5.32612 0.275364C5.50967 0.0917881 5.73413 2.41597e-07 5.99957 2.532e-07C6.265 2.64802e-07 6.48928 0.091762 6.67291 0.275364L11.5168 5.12656C11.7003 5.3103 11.7921 5.53468 11.7921 5.80001C11.7921 6.06534 11.7003 6.28984 11.5168 6.47328L10.9587 7.03123C10.7753 7.21496 10.5521 7.30662 10.289 7.30662C10.0262 7.30662 9.8005 7.21493 9.61202 7.03123L6.00329 3.41525Z'
+                                    fill='#727272'
+                                  />
+                                </svg>
+                              </div>
+                              <div
+                                onClick={() => {
+                                  if (paxValueLocal === 0) {
+                                    return
+                                  } else {
+                                    setPaxValueLocal(paxValueLocal - 1)
+                                  }
+                                }}
+                                className=' cursor-pointer'
+                              >
+                                <svg
+                                  className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  width='12'
+                                  height='8'
+                                  viewBox='0 0 12 8'
+                                  fill='none'
                                 >
-                                  <svg
-                                    className='w-[0.75rem]  xmd:w-[1rem] xmd:scale-125'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='12'
-                                    height='8'
-                                    viewBox='0 0 12 8'
-                                    fill='none'
-                                  >
-                                    <path
-                                      d='M6.00329 4.19803L2.38713 0.58203C2.20358 0.398298 1.97909 0.306641 1.71368 0.306641C1.4483 0.306641 1.22392 0.398324 1.04039 0.58203L0.482264 1.13998C0.298793 1.32342 0.207031 1.54794 0.207031 1.81324C0.207031 2.07855 0.298793 2.30296 0.482264 2.48669L5.32612 7.33792C5.50967 7.52149 5.73413 7.61328 5.99957 7.61328C6.265 7.61328 6.48928 7.52152 6.67291 7.33792L11.5168 2.48672C11.7003 2.30298 11.7921 2.0786 11.7921 1.81327C11.7921 1.54794 11.7003 1.32345 11.5168 1.14L10.9587 0.582056C10.7753 0.398324 10.5521 0.306666 10.289 0.306666C10.0262 0.306666 9.8005 0.39835 9.61202 0.582056L6.00329 4.19803Z'
-                                      fill='#727272'
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d='M6.00329 4.19803L2.38713 0.58203C2.20358 0.398298 1.97909 0.306641 1.71368 0.306641C1.4483 0.306641 1.22392 0.398324 1.04039 0.58203L0.482264 1.13998C0.298793 1.32342 0.207031 1.54794 0.207031 1.81324C0.207031 2.07855 0.298793 2.30296 0.482264 2.48669L5.32612 7.33792C5.50967 7.52149 5.73413 7.61328 5.99957 7.61328C6.265 7.61328 6.48928 7.52152 6.67291 7.33792L11.5168 2.48672C11.7003 2.30298 11.7921 2.0786 11.7921 1.81327C11.7921 1.54794 11.7003 1.32345 11.5168 1.14L10.9587 0.582056C10.7753 0.398324 10.5521 0.306666 10.289 0.306666C10.0262 0.306666 9.8005 0.39835 9.61202 0.582056L6.00329 4.19803Z'
+                                    fill='#727272'
+                                  />
+                                </svg>
                               </div>
                             </div>
                           </div>
                         </div>
-                        {paxValueSelf === 0 && paxValueLocal === 0 && (
-                          <div className='w-full flex justify-end text-075 text-red-600'>
-                            Please select the number of people
-                          </div>
-                        )}
-                      </>
-                    ))}
+                      </div>
+                      {paxValueSelf === 0 && paxValueLocal === 0 && (
+                        <div className='w-full flex justify-end text-075 text-red-600'>
+                          Please select the number of people
+                        </div>
+                      )}
+                    </>
+                  )}
 
                   <hr
                     className={`${

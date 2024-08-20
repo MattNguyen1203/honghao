@@ -80,7 +80,7 @@ const About = ({dataAbout}) => {
                 className={cn(
                   'group hover:bg-orange-normal overflow-hidden transition-all duration-500 rounded-full relative size-[11.75rem] tablet:size-[16rem] xmd:size-[6rem] flex items-center justify-center text-0875 xmd:text-[0.5rem] tablet:text-[1.5rem] tablet:tracking-0 xmd:leading-[1.2] font-bold uppercase text-greyscale-0 p-[1.5rem] xmd:py-[1rem] xmd:px-[0.54rem] xmd:tracking-[0] text-center xlg:mb-[1rem]',
 
-                  index === 3 && '!ml-0',
+                  index === 3 && 'xlog:!ml-0',
                 )}
                 key={index}
               >

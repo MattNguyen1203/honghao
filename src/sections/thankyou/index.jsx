@@ -83,10 +83,7 @@ const ThankYou = ({searchParams, slug}) => {
 
       const data = await result.text()
       const parseData = await parseQueryString(data)
-      console.log(
-        'parseData?.vpc_TxnResponseCode',
-        parseData?.vpc_TxnResponseCode,
-      )
+
       if (parseData?.vpc_TxnResponseCode == 0) {
         //if success => get data and push a new order
         setIsSuccessfull(true)

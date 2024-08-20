@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
+import React, {useEffect, useState} from 'react'
+import {cn} from '@/lib/utils'
 import ICArrow from '@/components/icons/ICArrow'
 import ICArrowDown from '@/components/icons/ICArrowDown'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Scrollbar } from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Scrollbar} from 'swiper/modules'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/scrollbar'
@@ -13,7 +13,13 @@ import ItemTour from '@/components/itemtour'
 import useClickOutSide from '@/hooks/useClickOutside'
 import useStore from '@/app/(store)/store'
 
-const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContacts }) => {
+const NavDropdown = ({
+  openNav,
+  setOpenNav,
+  dataHeader,
+  dataBestTrip,
+  dataContacts,
+}) => {
   const [openChild, setOpenChild] = useState(false)
   const [activeKey, setActiveKey] = useState('home')
   const [sideRef, isOutSide, isClick] = useClickOutSide(false)
@@ -141,7 +147,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContac
         />
       </Link>
 
-      <div className='mt-[8.31rem] w-[51rem] xmd:w-full relative z-[10] xmd:pb-[6rem] pl-[5rem] py-[1.5rem] xmd:px-[1.25rem] overflow-y-scroll no-scrollbar'>
+      <div className='mt-[8.31rem] w-[51rem] xmd:w-full relative z-[10] xmd:pb-[6rem] pl-[5rem] py-[1.5rem] xmd:px-[1.25rem] overflow-y-auto no-scrollbar'>
         <div className=' flex flex-col h-max w-[22.5rem] xmd:w-full text-2 xmd:text-15 font-bold text-greyscale-0 capitalize *:py-[0.75rem]'>
           {dataHeaderNav?.map((item, index) => {
             const children = item?.children
@@ -171,7 +177,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContac
                         className={cn(
                           'group-hover:translate-x-[1rem] duration-500',
                           openChild &&
-                          'text-[#CF4124] translate-x-[1rem] mr-[1rem]',
+                            'text-[#CF4124] translate-x-[1rem] mr-[1rem]',
                         )}
                       >
                         {item.label}
@@ -211,7 +217,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContac
                           className={cn(
                             'py-[0.5rem] pr-[1rem] w-fit mt-[1rem]',
                             subIndex !== children?.length - 1 &&
-                            'border-b border-solid border-greyscale-0/20',
+                              'border-b border-solid border-greyscale-0/20',
                           )}
                           onClick={handleClose}
                         >
@@ -257,7 +263,7 @@ const NavDropdown = ({ openNav, setOpenNav, dataHeader, dataBestTrip, dataContac
               Find your tour:
             </div>
             <Swiper
-              scrollbar={{ hide: true }}
+              scrollbar={{hide: true}}
               slidesPerView={2.2}
               spaceBetween={16}
               modules={[Scrollbar]}
