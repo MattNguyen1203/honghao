@@ -449,7 +449,7 @@ const ItemCardInfo = ({item, active, dialog}) => {
         {item?.title}
       </h3>
       <div
-        className='text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
+        className='detail_sched text-greyscale-50 text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] mt-[1.12rem] xlg:leading-normal xlg:tracking-[0.00219rem xlg:text-[1.5rem] xmd:text-[0.875rem] xmd:mt-[1.12rem] xlg:mt-[1.5rem]'
         dangerouslySetInnerHTML={{__html: item?.descriptions_text}}
       />
       <div

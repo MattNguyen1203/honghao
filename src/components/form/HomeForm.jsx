@@ -1055,7 +1055,7 @@ export default function HomeForm({
                 className={`${
                   isTourDetail
                     ? 'static order-4 xmd:absolute xmd:bottom-[0rem] xmd:left-0 xmd:!px-0'
-                    : 'absolute md:top-[37.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
+                    : 'absolute md:top-[36.5rem] right-[1.5rem] xmd:absolute xmd:bottom-[0.75rem] xmd:left-0 xmd:px-0 md:space-x-[0.5rem]'
                 } xmd:flex-col w-[33.25rem] xmd:w-full flex xmd:space-y-[0.5rem]`}
               >
                 <Button

@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function ItemCardBestTrip({ data }) {
+export default function ItemCardBestTrip({data}) {
   return (
     <Link
       href={`/tours/${data?.detail_link}`}
@@ -154,7 +154,7 @@ export default function ItemCardBestTrip({ data }) {
             From to
           </span>
           <span className='font-extrabold text-white lg:text-3 text-1125 tablet:text-25'>
-            ${data?.gia?.self_driving}
+            ${data?.gia?.self_driving || data?.gia?.local_driver}
           </span>
         </div>
         <button className='hidden group-hover:translate-x-0 transition-all duration-500 translate-x-[120%] bg-[#DA4B19] rounded-[0.5rem] h-[3.5rem] py-[1rem] px-[2rem] lg:flex justify-center items-center space-x-[0.5rem] border-[1px] border-solid border-[#DA4B19] text-0875 font-extrabold text-white'>

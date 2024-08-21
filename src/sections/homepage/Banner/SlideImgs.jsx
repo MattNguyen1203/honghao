@@ -12,34 +12,34 @@ const listDotPosition = [
   {
     // hagiang
     top: '28.5rem',
-    right: '17.5rem',
+    right: '17.3rem',
   },
   {
     // tamson
-    top: '21.5rem',
-    right: '17.5rem',
+    top: '21.4rem',
+    right: '18rem',
   },
   {
     // yenminh
-    top: '19rem',
-    right: '12.5rem',
+    top: '18.8rem',
+    right: '13.1rem',
   },
 
   {
     // dong van
-    top: '13.5rem',
-    right: '6.5rem',
+    top: '13.3rem',
+    right: '6.6rem',
   },
   {
     // meo vac
-    top: '17rem',
-    right: '5.5rem',
+    top: '16.7rem',
+    right: '4.8rem',
   },
 
   {
     // du gia
-    top: '27.5rem',
-    right: '10.5rem',
+    top: '27.7rem',
+    right: '10rem',
   },
 ]
 
