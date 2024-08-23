@@ -104,12 +104,25 @@ const Filter = ({listTypeofTour, listTime, listTours, commonData}) => {
               'bg-orange-normal px-[1.5rem] py-[0.75rem] rounded-[0.5rem] flex flex-col items-center cursor-pointer',
             )}
           >
-            <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
-              ${totalPrice}
-            </span>
-            <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase whitespace-nowrap'>
-              book now
-            </span>
+            {totalPrice == 0 ? (
+              <>
+                <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase whitespace-nowrap'>
+                  Customize
+                </span>
+                <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase whitespace-nowrap'>
+                  tour
+                </span>
+              </>
+            ) : (
+              <>
+                <span className='text-175 font-black text-greyscale-0 mb-[0.25rem]'>
+                  ${totalPrice}
+                </span>
+                <span className='text-0875 font-bold tracking-[0.00875rem] text-greyscale-0 uppercase whitespace-nowrap'>
+                  book now
+                </span>
+              </>
+            )}
           </div>
         </DialogTrigger>
         <DialogContent className=''>
