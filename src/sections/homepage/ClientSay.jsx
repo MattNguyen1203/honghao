@@ -2,16 +2,16 @@
 
 import ClientSayItem from '@/components/client-say/ClientSayItem'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectFade } from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Autoplay, EffectFade} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import { useHover } from '@/hooks/useHover'
+import {useHover} from '@/hooks/useHover'
 import Link from 'next/link'
 import SectionHeading from '../common/heading/SectionHeading'
 import ClientSayPopup from '@/components/client-say/ClientSayItemPopup'
 
-export default function ClientSay({ dataReview, commonData }) {
+export default function ClientSay({dataReview, commonData}) {
   const [hoverRef, isHover] = useHover()
   return (
     <section className='relative md:h-[60rem] tablet:mt-[4rem]'>

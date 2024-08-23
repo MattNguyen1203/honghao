@@ -1,5 +1,5 @@
 .cut-img {
-  mask-image: url('/public/imgs/home/england-shape.png');
+  mask-image: url('/imgs/home/england-shape.png');
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: 100%;
