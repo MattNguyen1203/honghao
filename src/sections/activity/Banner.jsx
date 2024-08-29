@@ -469,7 +469,7 @@ const Banner = ({dataBaner, dataBanerMobi}) => {
                   Experience
                 </div>
               </div>
-              <div className='flex overflow-y-auto scrollbar-dichvu xmd:max-h-[8rem] max-h-[18rem] xmd:w-[13.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
+              <div className='mb-[1rem] flex overflow-y-auto scrollbar-dichvu xmd:max-h-[8rem] max-h-[18rem] xmd:w-[13.6875rem] w-[28.6875rem] items-start content-start gap-2 flex-wrap'>
                 {dataHiking?.lists_place?.map((d, i) => (
                   <Link
                     href={`/${d?.link}`}

@@ -1,4 +1,3 @@
-
 import ClientSay from './ClientSay'
 import OurTeam from '@/layouts/team'
 import Season from './Season'
@@ -7,13 +6,10 @@ import React from 'react'
 import Banner from './Banner/Banner'
 import About from './About/About'
 import './homepage.css'
-import useStore from '@/app/(store)/store'
 import Image from 'next/image'
 import BestTrips from './BestTrips/BestTrips'
 import GladdestMoment from './GladdestMomment/GladdestMoment'
 import GladdestMomentRes from './GladdestMomment/GladdestMomentRes'
-import BestTripsMb from './BestTrips/BestTripsMb'
-import Aos from '@/components/Aos'
 
 const Homepage = ({
   dataAcf,
@@ -24,7 +20,6 @@ const Homepage = ({
   listBestTrip,
   commonData,
 }) => {
-
   return (
     <main>
       <Banner
