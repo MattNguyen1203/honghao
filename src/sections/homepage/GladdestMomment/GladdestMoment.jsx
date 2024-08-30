@@ -1,10 +1,10 @@
 'use client'
 import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useRef, useState } from 'react'
+import {useGSAP} from '@gsap/react'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import {useRef, useState} from 'react'
 import Image from 'next/image'
-import { Draggable } from 'gsap/Draggable'
+import {Draggable} from 'gsap/Draggable'
 import InertiaPlugin from 'gsap/InertiaPlugin'
 import ICMapSmall from '@/components/icons/ICMapSmall'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ import Link from 'next/link'
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger, Draggable, InertiaPlugin)
 }
-export default function GladdestMoment({ dataGallery }) {
+export default function GladdestMoment({dataGallery}) {
   const container = useRef(null)
   const slideRef = useRef(null)
   const tweenRef = useRef(null)
@@ -21,6 +21,7 @@ export default function GladdestMoment({ dataGallery }) {
   if (typeof window !== 'undefined' && window?.innerWidth <= 1024) return null
   useGSAP(
     () => {
+      gsap.set(slideRef.current, {x: 0})
       Draggable.create(slideRef.current, {
         type: 'x',
         inertia: true,
@@ -28,31 +29,37 @@ export default function GladdestMoment({ dataGallery }) {
       })
 
       // auto slide
-      tweenRef.current = gsap
-        .to(slideRef.current, {
-          x:
-            -1 *
-            (document.getElementById('slide_item_2').offsetWidth +
-              8 -
-              window.innerWidth),
-          repeat: 0,
-          yoyo: true,
-          duration: 10,
-          ease: 'linear',
-          onComplete: () => {
-            // handle slide run completed
-            setIsAnimationEnd(true)
-          },
-        })
+      tweenRef.current = gsap.to(slideRef.current, {
+        x:
+          -1 *
+          (document.getElementById('slide_item_2').offsetWidth +
+            8 -
+            window.innerWidth),
+        repeat: 0,
+        yoyo: true,
+        duration: 10,
+        ease: 'linear',
+        onComplete: () => {
+          // handle slide run completed
+          setIsAnimationEnd(true)
+        },
+        scrollTrigger: {
+          trigger: slideRef.current,
+          start: 'top center', // bắt đầu hoạt ảnh khi phần tử xuất hiện trong viewport
+          toggleActions: 'play none none none',
+        },
+      })
       // .timeScale(1)
 
       // Hàm xử lý khi hover vào
       const handleMouseEnter = () => {
+        console.log('handleMouseEnter')
         tweenRef.current.pause()
       }
 
       // Hàm xử lý khi bỏ hover
       const handleMouseLeave = () => {
+        console.log('handleMouseLeave')
         tweenRef.current.resume()
       }
 
@@ -60,7 +67,7 @@ export default function GladdestMoment({ dataGallery }) {
       slideElement.addEventListener('mouseenter', handleMouseEnter)
       slideElement.addEventListener('mouseleave', handleMouseLeave)
     },
-    { scope: container },
+    {scope: container},
   )
 
   return (
@@ -74,8 +81,9 @@ export default function GladdestMoment({ dataGallery }) {
         </h2>
         <div className='size-[6.5625rem] relative'>
           <Image
-            className={`${isAnimationEnd ? 'animate-spin' : ''
-              } object-cover size-full`}
+            className={`${
+              isAnimationEnd ? 'animate-spin' : ''
+            } object-cover size-full`}
             src={'/home/text-circle-box-map.svg'}
             alt='text circle box map'
             width={100}
@@ -86,7 +94,7 @@ export default function GladdestMoment({ dataGallery }) {
         </div>
         <div className='w-[42.6875rem] h-[4.9375rem] bg-[linear-gradient(90deg,rgba(255,255,255,0.00)_-48.55%,rgba(12,140,30,0.14)_100%)] flex items-center'>
           <p
-            dangerouslySetInnerHTML={{ __html: dataGallery?.description }}
+            dangerouslySetInnerHTML={{__html: dataGallery?.description}}
             className='text-[0.875rem] font-normal leading-[1.2] tracking-[0.00875rem] text-[#262626] ml-[2.13rem]'
           ></p>
         </div>
@@ -170,7 +178,7 @@ export default function GladdestMoment({ dataGallery }) {
     </section>
   )
 }
-const ItemGallery = ({ index, img }) => {
+const ItemGallery = ({index, img}) => {
   return (
     <div className='item_slide w-[33.33rem] flex-shrink-0 h-[21.125rem] relative group'>
       <Image

@@ -1,18 +1,18 @@
 'use client'
 import useStore from '@/app/(store)/store'
-import { useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import useSWR from 'swr'
 import ItemTour from '@/components/itemtour'
 import PaginationCustom from '@/components/paginationcustom'
 import CheckBox from './CheckBox'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useToast } from '@/components/ui/use-toast'
-import { useGSAP } from '@gsap/react'
-export default function GridCheckBox({ dataTours, typeOfTours }) {
+import {usePathname, useRouter, useSearchParams} from 'next/navigation'
+import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog'
+import {Skeleton} from '@/components/ui/skeleton'
+import {useToast} from '@/components/ui/use-toast'
+import {useGSAP} from '@gsap/react'
+export default function GridCheckBox({dataTours, typeOfTours}) {
   const isMobile = useStore((state) => state.isMobile)
   const tours = dataTours?.tours
   const pagination = dataTours?.pagination
@@ -23,7 +23,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
 
   const pageCurrent = searchParams.get('page')
   const deviceCurrent = searchParams.get('device')
-  const { shouldFetch, setShouldFetch } = useStore((state) => state)
+  const {shouldFetch, setShouldFetch} = useStore((state) => state)
   const [isAllTour, setIsAllTour] = useState(true)
   const [dataToursClient, setDataToursClient] = useState([])
   const [paginationClient, setPaginationClient] = useState({})
@@ -75,7 +75,7 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
   }
 
   const fetcher = (url) => fetch(url).then((r) => r.json())
-  const { data, error, isLoading } = useSWR(
+  const {data, error, isLoading} = useSWR(
     shouldFetch
       ? deviceCurrent !== null
         ? `${process.env.NEXT_PUBLIC_API}/wp-json/okhub/v1/tours?page=${pageCurrent}&per_page=9&type-of-tour=${selectedTypes}`
@@ -117,22 +117,21 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
         end: `+=${rightRef?.current.offsetHeight} center`,
         pinSpacing: false,
         // markers: true,
-        anticipatePin: 1
+        anticipatePin: 1,
       },
     })
     // }dd
   }, [])
   return (
-    <div className='xmd:relative container flex xmd:flex-col justify-between items-stretch md:space-x-[2.62rem] xmd:mb-[1rem] mb-[4rem]'>
+    <div className='xmd:relative container flex xmd:flex-col justify-between items-stretch md:space-x-[2.62rem] xmd:mb-[1rem] pb-[4rem]'>
       {!isMobile ? (
-        <div
-          className={`xmd:hidden min-w-[20.75rem]`}
-        >
+        <div className={`xmd:hidden min-w-[20.75rem]`}>
           <div
             ref={checkboxsRef}
             // data-aos="fade-up"
             // data-aos-duration="900"
-            className=' bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'>
+            className=' bg-white py-[1.9375rem] px-[1.875rem] rounded-[1rem] mb-[2rem]'
+          >
             <span className='font-bold text-1 text-greyscale-80'>
               TYPE OF TOUR
             </span>
@@ -255,10 +254,11 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
         </div>
       )}
 
-      <div data-aos="fade-up"
-        data-aos-duration="900"
-
-        className='max-w-[64.128rem]  mb-[2rem] xmd:w-full'>
+      <div
+        data-aos='fade-up'
+        data-aos-duration='900'
+        className='max-w-[64.128rem]  mb-[2rem] xmd:w-full'
+      >
         {!loading ? (
           <div
             ref={rightRef}
@@ -275,8 +275,6 @@ export default function GridCheckBox({ dataTours, typeOfTours }) {
                 // </div>
               ),
             )}
-
-
           </div>
         ) : (
           <div className='grid-tours grid grid-cols-3 xmd:w-full xmd:grid-cols-1 md:gap-x-[3.75rem] xmd:gap-y-[0.75rem] gap-y-[2.5rem]'>
