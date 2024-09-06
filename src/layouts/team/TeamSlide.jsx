@@ -1,14 +1,14 @@
 'use client'
 
 import NavigationCustom from '@/components/navigationcustom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
-import React, { useState, useRef } from 'react'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Navigation} from 'swiper/modules'
+import React, {useState, useRef} from 'react'
 import 'swiper/css'
 import CardOurTeam from './CardOurTeam'
-import { cn } from '@/lib/utils'
+import {cn} from '@/lib/utils'
 
-const TeamSlide = ({ darkTheme, data }) => {
+const TeamSlide = ({darkTheme, data}) => {
   const swiperRef = useRef(null)
   const [indexSlider, setIndexSlider] = useState(0)
 
@@ -51,7 +51,7 @@ const TeamSlide = ({ darkTheme, data }) => {
         speed={500}
         loop={'true'}
         modules={[Navigation]}
-        className=' xmd:w-[60.0625rem] w-[62.0625rem] xmd:!pl-[1rem] md:!pl-[1rem]'
+        className=' xmd:w-[60.0625rem] w-[62.0625rem] xmd:!pl-[1rem] md:!pl-[1rem] xmd:!hidden'
       >
         {data?.map((item, i) => (
           <SwiperSlide
@@ -62,6 +62,19 @@ const TeamSlide = ({ darkTheme, data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className='xmd:flex hidden overflow-x-auto w-screen'>
+        <div className='flex w-max'>
+          {data?.map((item, i) => (
+            <div
+              key={i}
+              className='mr-[1rem]'
+            >
+              <CardOurTeam data={item} />
+            </div>
+          ))}
+        </div>
+      </div>
       <div
         className={cn(
           'w-32 h-[28.5rem] z-10 absolute top-0 right-0 ',
