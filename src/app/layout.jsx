@@ -1,8 +1,9 @@
-import { Londrina_Solid } from 'next/font/google'
+import {Londrina_Solid} from 'next/font/google'
 import './globals.css'
 import localFont from 'next/font/local'
 import NextTopLoader from 'nextjs-toploader'
-import { Toaster } from "@/components/ui/sonner"
+import {Toaster} from '@/components/ui/sonner'
+import Head from 'next/head'
 const londrina = Londrina_Solid({
   display: 'swap',
   weight: ['100', '300', '400', '900'],
@@ -46,9 +47,18 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
 }
-export default function RootLayout({ children }) {
+export default function RootLayout({children}) {
   return (
-    <html lang='en' className=''>
+    <html
+      lang='en'
+      className=''
+    >
+      <Head>
+        <meta
+          name='google-site-verification'
+          content='SvsjgzIy8C28C7KWsHAmy8Sa5w37npYRpaeAOpIemyo'
+        />
+      </Head>
       <body
         className={` ${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
