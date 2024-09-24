@@ -3,7 +3,6 @@ import './globals.css'
 import localFont from 'next/font/local'
 import NextTopLoader from 'nextjs-toploader'
 import {Toaster} from '@/components/ui/sonner'
-import Head from 'next/head'
 const londrina = Londrina_Solid({
   display: 'swap',
   weight: ['100', '300', '400', '900'],
@@ -53,12 +52,12 @@ export default function RootLayout({children}) {
       lang='en'
       className=''
     >
-      <Head>
+      <head>
         <meta
           name='google-site-verification'
           content='SvsjgzIy8C28C7KWsHAmy8Sa5w37npYRpaeAOpIemyo'
         />
-      </Head>
+      </head>
       <body
         className={` ${tripsans.className} ${tripsans.variable} ${londrina.variable} antialiased`}
         suppressHydrationWarning={true}
