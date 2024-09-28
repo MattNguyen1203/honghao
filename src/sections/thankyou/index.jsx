@@ -78,6 +78,7 @@ const ThankYou = ({searchParams, slug}) => {
           vpc_User: 'op01',
           vpc_Version: '2',
           vpc_SecureHash: handleSecureHash(),
+          // vpc_SecureHash: '52E5B8337493C9279796D3B29178761C',
         }),
       })
 
