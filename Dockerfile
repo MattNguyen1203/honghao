@@ -11,13 +11,6 @@ COPY .npmrc .npmrc
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* pnpm-lock.yaml* ./
 # Omit --production flag for TypeScript devDependencies
-# RUN npm config set //npm.greensock.com/:_authToken=aed17840-5e79-41c3-9df8-25228f18d003
-# RUN npm config set @gsap:registry https://npm.greensock.com
-# RUN npm install @gsap/shockingly
-# RUN npm install gsap --registry https://npm.greensock.com
-# RUN npm config delete //npm.greensock.com/:_authToken
-# RUN npm config delete @gsap:registry
-# RUN npm install
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \

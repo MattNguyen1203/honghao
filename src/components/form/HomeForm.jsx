@@ -287,14 +287,14 @@ export default function HomeForm({
             totalPriceVND,
             false,
           )}&vpc_SecureHash=${vpc_SecureHash}`
+          // router.push(url)
 
-          router.push(url)
+          console.log('url', url)
         } else {
           setIsDialogOpen(true)
           setIsDialogText('Successfully booked the tour')
         }
         resetField()
-
         setIsLoading(false)
       }
     },
